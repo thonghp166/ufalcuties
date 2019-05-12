@@ -24,8 +24,10 @@
             <div class="col-sm-6 feature">
                 <ul>
                     <li class="home">Trang chủ</li>
-                    <li class="teacher">Giảng viên</li>
-                    <li class="signin"><a href="login"><?php echo $noteA?></a></li>
+                    <li class="department"><a href="{{ url('/department') }}">Đơn vị</a></li>
+                    <li class="field"><a href="{{url('/field')}}">Lĩnh vực nghiên cứu</a></li>
+                    <li class="teacher"><a href="{{ url('/staff') }}">Giảng viên<a></li>
+                    <li class="signin"><a href="login">Đăng nhập</a></li>
                 </ul>
             </div> 
         </div>        
