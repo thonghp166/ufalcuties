@@ -18,6 +18,7 @@
 			</div>
 		</div>
 		@endforeach
+		<button><a href="{{ url('/department/new') }}">Thêm mới</a></button>
 	</div>
 	
 </body>

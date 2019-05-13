@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Department;
+use Input;
 
 class DepartmentController extends Controller
 {
@@ -25,19 +26,20 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        //
+        return view('department.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function store(){
+        $name = Input::get('name');
+        $childOf = Input::get('childOf');
+        Department::create([
+            'name' => $name,
+            'childOf' => $childOf
+        ]);
+        return redirect()->route('department');
     }
+
+    
 
     /**
      * Display the specified resource.
