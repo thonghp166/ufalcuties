@@ -14,7 +14,6 @@
 </head>
 <body>
     <div class="menu">
-        <b>Hello</b>
         <div class="row">
             <div class="col-sm-6">
                 <a href="" class="logo">

@@ -17,7 +17,6 @@ class StaffController extends Controller
     {
         $canbo = CanBo::all();
         return view('staff',compact('canbo'));
-
     }
 
     /**

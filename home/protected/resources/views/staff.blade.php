@@ -4,21 +4,28 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Danh sách giảng viên</title>
-	<link rel="stylesheet" href="">
+	<link rel="stylesheet" href="{{URL::asset('css/welcome.css')}}">
+	<link rel="stylesheet" href="{{URL::asset('css/bootstrap.css')}}">
 </head>
 <body>
-	<div class='container'>
+	<div class="elements">
 		@foreach ($canbo as $a)
-		<div class='row'>
-			<div class='col-sm-6 col-sm-offset-3'>
-				<h2>{{$a->name}}</h2>
-				<p>{{$a->code}}</p>
-				<p>{{$a->staff_type}}</p>
-				<p><a href="#">Read more</a></p>
-			</div>
-		</div>
-		@endforeach
-	</div>
+		<div class="item">
+                   <a href="" class="cover">
+                       <img src="{{URL::asset('images/hungpn.jpg')}}" alt="">
+                   </a>
+                   <a href="" class="info">
+                     <i class="fas fa-info-circle"><span> Chi tiết</span></i>
+                   </a>
+                   <div class="transperant"></div>
+                   <div class="moredetails">
+                     <h5>Tên giảng viên: {{$a->name}}</h5>
+                     <h6>Mã giảng viên: {{$a->code}}</h6>
+                     <h6>Chức vụ: {{$a->staff_type}}</h6>
+                   </div>
+               </div>
+		@endforeach               
+    </div>
 	
 </body>
 </html>
