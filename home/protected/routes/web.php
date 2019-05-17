@@ -21,7 +21,7 @@ Route::group(['namespace'=>'Admin'],function(){
 Route::get('/staff','StaffController@index');
 
 Route::get('/department','DepartmentController@index');
-get('/department/new','DepartmentController@create');
-post('department','DepartmentController@store');
+//get('/department/new','DepartmentController@create');
+//post('department','DepartmentController@store');
 
 Route::get('/field','FieldController@index');
