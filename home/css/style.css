@@ -1,6 +1,13 @@
 * {
-	margin: 0px;
-	padding: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.zoomin {
+    margin-top: 0px!important;
+    border-radius: 0px!important;
+    padding: 5px 50px!important;
+    background: black!important;
 }
 
 div.col-4.tag a:hover {
@@ -25,9 +32,9 @@ div.col-4.tag a {
     background: #000000b5;
     position: fixed;
     z-index: 3;
-	transition: 0.4s;
-	visibility: hidden;
-	opacity: 0;
+    transition: 0.4s;
+    visibility: hidden;
+    opacity: 0;
 }
 
 .changeavatar p {
@@ -41,17 +48,17 @@ div.col-4.tag a {
 }
 
 .title {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 .upload {
-	font-weight: bold;
-	color: #3498db!important;
+    font-weight: bold;
+    color: #3498db!important;
 }
 
 .delete {
-	font-weight: bold;
-	color: #e74c3c!important;
+    font-weight: bold;
+    color: #e74c3c!important;
 }
 
 .changeavatar {
@@ -97,8 +104,8 @@ a.newresearch {
 }
 
 a.newresearch:hover {
-	border-color: #f1c40f;
-	background: #f1c40f;
+    border-color: #f1c40f;
+    background: #f1c40f;
 }
 
 .content label {
@@ -131,8 +138,8 @@ button#barbutton {
 }
 
 button#barbutton:hover {
-	border-color: #f1c40f;
-	background: #f1c40f;
+    border-color: #f1c40f;
+    background: #f1c40f;
 }
 
 a#logo img {
@@ -144,15 +151,16 @@ a#logo {
 }
 
 nav#bar {
-	border-radius: 30px;
-	background: #000000bf!important;
-	position: fixed;
-	width: 100%;
-	padding: 15px 120px;
-	z-index: 2;
+    border-radius: 30px;
+    background: #000000bf;
+    position: fixed;
+    width: 100%;
+    padding: 15px 120px;
+    z-index: 2;
+    transition: 0.4s;
 }
 
 .show {
-	visibility: visible;
-	opacity: 1;
+    visibility: visible;
+    opacity: 1;
 }
