@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/all.css">
+  <link rel="stylesheet" href="{{URL::asset('css/bootstrap.min.css')}}">
+  <link rel="stylesheet" href="{{URL::asset('css/style.css')}}">
+  <link rel="stylesheet" href="{{URL::asset('css/all.css')}}">
 </head>
 <body>
   
   
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-3" id="bar">
     <a class="navbar-brand" href="#" id="logo">
-        <img src="images/logo-outline.png" alt="Logo u-Faculties">
+        <img src="{{URL::asset('images/logo-outline.png')}}" alt="Logo u-Faculties">
         u-Faculties
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,10 +62,10 @@
           <form id="staffinfor">
             <div class="row">
               <div class="col-4 tag" style="border-right: 1px solid black;">
-              <a href="" style="font-weight: bold">Thông tin chung</a>
-              <a href="">Lĩnh vực nghiên cứu</a>
-              <a href="">Chủ đề quan tâm</a>
-              <a href="">Đổi mật khẩu</a>
+              <a href="../../staff/{{$staff->id}}" style="font-weight: bold">Thông tin chung</a>
+              <a href="../../research">Lĩnh vực nghiên cứu</a>
+              <a href="../home/topic">Chủ đề quan tâm</a>
+              <a href="../home/password">Đổi mật khẩu</a>
             </div>
             <div class="col-8">
               <fieldset class="form-group avatar-group">
@@ -75,7 +75,7 @@
                     <img src="{{URL::asset('images/hungpn.jpg')}}" alt="" class="img-fuild avatar">
                   </div>
                   <div class="col-8">
-                    <h3>PGS.TS Phạm Ngọc Hùng</h3>
+                    <h3>{{$staff->degree}} {{$staff->name}}</h3>
                     <p id="changeavatarbutton" onclick="change()">Thay đổi ảnh đại diện</p>
                   </div>
                 </div>
@@ -86,7 +86,7 @@
                     <label for="exampleInputEmail1">Mã cán bộ <i class="fas fa-user"></i></label>
                   </div>
                   <div class="col-7">
-                    <input type="text" class="form-control" disabled="" id="exampleInputEmail1" placeholder="Nhập mã cán bộ">
+                    <input type="text" class="form-control" disabled="" id="exampleInputEmail1" placeholder="Nhập mã cán bộ" value="{{$staff->code}}">
                   </div>
                 </div>
               </fieldset>
@@ -96,7 +96,7 @@
                   <label for="exampleSelect1">Chức vụ</label>
                 </div>
                 <div class="col-7">
-                  <input type="text" class="form-control" disabled="" id="exampleInputEmail1" placeholder="Nhập chức vụ">
+                  <input type="text" class="form-control" disabled="" id="exampleInputEmail1" placeholder="Nhập chức vụ" value="{{$staff->staff_type}}">
                 </div>              
               </fieldset>
               <fieldset class="form-group">
@@ -105,7 +105,7 @@
                   <label for="exampleSelect1">Bộ môn</label>
                 </div>
                 <div class="col-7">
-                  <input type="text" class="form-control" disabled="" id="exampleInputEmail1" placeholder="Nhập bộ môn, phòng thí nghiệm">
+                  <input type="text" class="form-control" disabled="" id="exampleInputEmail1" placeholder="Nhập bộ môn, phòng thí nghiệm" value="{{$staff->work_unit}}">
                 </div>              
               </fieldset>
               <fieldset class="form-group">
@@ -114,7 +114,7 @@
                   <label for="exampleSelect1">Học hàm, học vị</label>
                 </div>
                 <div class="col-7">
-                  <input type="text" class="form-control" disabled="" id="exampleInputEmail1" placeholder="Nhập học hàm, học vị">
+                  <input type="text" class="form-control" disabled="" id="exampleInputEmail1" placeholder="Nhập học hàm, học vị" value="{{$staff->degree}}">
                 </div>              
               </fieldset>
               <fieldset class="form-group">
@@ -133,7 +133,7 @@
                     <label for="exampleInputEmail1">VNU email <i class="fas fa-envelope"></i></label>
                   </div>
                   <div class="col-7">
-                    <input type="email" class="form-control" disabled="" id="exampleInputEmail1" placeholder="Nhập email VNU">
+                    <input type="email" class="form-control" disabled="" id="exampleInputEmail1" placeholder="Nhập email VNU" value="{{$staff->vnu_email}}">
                   </div>
                 </div>
               </fieldset>
@@ -179,7 +179,7 @@
                 </div>
               </fieldset>
               <div class="text-center">
-                <button type="submit" class="btn btn-primary btn-block">Gửi</button>
+                <button type="submit" class="btn btn-primary">Gửi</button>
               </div>            
             </div>
             </div>            
@@ -189,9 +189,9 @@
     </div>
   </div>
 
-  <script type="text/javascript" src="{{asset('js/jquery-3.3.1.slim.min.js')}}"></script>
-  <script type="text/javascript" src="js/popper.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="js/staff.js"></script>
+  <script type="text/javascript" src="{{URL::asset('js/jquery-3.3.1.slim.min.js')}}"></script>
+  <script type="text/javascript" src="{{URL::asset('js/popper.min.js')}}"></script>
+  <script type="text/javascript" src="{{URL::asset('js/bootstrap.min.js')}}"></script>
+  <script type="text/javascript" src="{{URL::asset('js/staff.js')}}"></script>
 </body>
 </html>

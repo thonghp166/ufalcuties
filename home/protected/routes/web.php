@@ -11,6 +11,18 @@ Route::get('/staff/{id}','StaffController@show');
 // 	'action' => 'StaffController@store'
 // }
 
+Route::get('/password', function() {
+    return view('password');
+});
+
+Route::get('/research', function() {
+    return view('research');
+});
+
+Route::get('/topic', function() {
+    return view('topic');
+});
+
 Route::get('/department','DepartmentController@index');
 //get('/department/new','DepartmentController@create');
 //post('department','DepartmentController@store');
