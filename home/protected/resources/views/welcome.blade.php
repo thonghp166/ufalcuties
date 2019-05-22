@@ -27,7 +27,7 @@
                     <li class="department"><a href="{{ url('/department') }}">Đơn vị</a></li>
                     <li class="field"><a href="{{url('/field')}}">Lĩnh vực nghiên cứu</a></li>
                     <li class="teacher"><a href="{{ url('/staff') }}">Giảng viên<a></li>
-                    <li class="signin"><a href="login">Đăng nhập</a></li>
+                    <li class="signin"><a href="{{ url('/') }}">Đăng nhập</a></li>
                 </ul>
             </div> 
         </div>        

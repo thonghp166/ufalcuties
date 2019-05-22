@@ -48,7 +48,8 @@ class StaffController extends Controller
      */
     public function show($id)
     {
-        //
+        $staff = Canbo::find($id);
+        return view('staff') -> with('staff', $staff);
     }
 
     /**
