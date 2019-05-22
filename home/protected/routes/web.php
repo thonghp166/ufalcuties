@@ -3,7 +3,7 @@
 Route::get('/','MainController@getHome');
 
 Route::get('/staff','StaffController@index');
-Route::get('/staff/{code}','StaffController@show');
+Route::get('/staff/{id}','StaffController@show');
 
 Route::get('/department','DepartmentController@index');
 //get('/department/new','DepartmentController@create');

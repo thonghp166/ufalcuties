@@ -13,15 +13,19 @@ class CreateStaffTable extends Migration
      */
     public function up()
     {
-        Schema::create('canbo', function (Blueprint $table) {
+        Schema::create('staff', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('code');
             $table->string('name');
-            $table->string('account');
-            $table->string('vnu_email');
+            $table->string('code');
+            $table->string('account')->unique();
+            $table->string('staff_type')->nullable();
+            $table->string('work_unit')->nullable();
             $table->string('degree');
-            $table->string('staff_type');
-            $table->string('work_unit');
+            $table->string('phone')->nullable();
+            $table->string('vnu_email')->unique();
+            $table->string('gmail')->unique()->nullable();
+            $table->string('website')->nullable();
+            $table->string('address')->nullable();
             $table->timestamps();
         });
     }

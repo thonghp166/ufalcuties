@@ -27,7 +27,29 @@
                     <li class="department"><a href="{{ url('/department') }}">Đơn vị</a></li>
                     <li class="field"><a href="{{url('/field')}}">Lĩnh vực nghiên cứu</a></li>
                     <li class="teacher"><a href="{{ url('/staff') }}">Giảng viên<a></li>
-                    <li class="signin"><a href="{{ url('/') }}">Đăng nhập</a></li>
+                    @if (Auth::guest())
+                        <li class="signin"><a href="{{ route('login') }}">Đăng nhập</a></li>
+                    @else
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                {{ Auth::user()->username }} <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <!-- <a href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form> -->
+                                </li>
+                            </ul>
+                        </li>
+                    @endif
                 </ul>
             </div> 
         </div>        
@@ -50,5 +72,6 @@
         </div>       
         
     </div>
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

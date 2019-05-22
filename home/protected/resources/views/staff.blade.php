@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div class="elements">
-		@foreach ($canbo as $a)
+		@foreach ($staff as $a)
 		<div class="item">
                    <a href="" class="cover">
                        <img src="{{URL::asset('images/hungpn.jpg')}}" alt="">

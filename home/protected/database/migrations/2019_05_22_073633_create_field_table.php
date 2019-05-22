@@ -16,8 +16,7 @@ class CreateFieldTable extends Migration
         Schema::create('field', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('childOf');
-            $table->foreign('childOf')->references('id')->on('field');
+            $table->integer('childOf')->nullable();
             $table->timestamps();
         });
     }
