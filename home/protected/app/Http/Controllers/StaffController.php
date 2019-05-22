@@ -50,6 +50,17 @@ class StaffController extends Controller
         if (Staff::where('vnu_email', '=', $vnu_email) -> exists() 
             or Staff::where('account', '=', $account) -> exists()) {
             return redirect()->route('staff.new')->withError('Trùng vnu mail hoặc trùng tài khoản')->withInput();
+        } else {
+            Staff::create([
+                'name' => $name,
+                'code' => $code, 
+                'account' => $account, 
+                'vnu_email' => $vnu_mail,
+                'staff_type' => $staff_type,
+                'degree' => $degree,      
+                'work_unit' => $work_unit
+            ]);
+            return redirect()->route('staff.new');
         }
     }
 
@@ -107,7 +118,7 @@ class StaffController extends Controller
     }
 
 //     public function addField($id, $list_field) {
-//         $staff = Staff::find($id);
+//         $staff = Staff::find($id);u
 //         $field = Field::find($list_field);
 //         $staff-> fields() -> attach($field);
 //         return "Success";
