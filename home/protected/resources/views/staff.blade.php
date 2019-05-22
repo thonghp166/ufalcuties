@@ -123,7 +123,7 @@
                     <label for="exampleInputEmail1">Số điện thoại <i class="fas fa-phone"></i></label>
                   </div>
                   <div class="col-7">
-                    <input type="tel" class="form-control" id="exampleInputEmail1" placeholder="Nhập số điện thoại">
+                    <input type="tel" class="form-control" id="exampleInputEmail1" placeholder="Nhập số điện thoại" value="{{$staff->phone}}">
                   </div>
                 </div>
               </fieldset>
@@ -143,7 +143,7 @@
                     <label for="exampleInputEmail1">Email khác <i class="far fa-envelope"></i></label>
                   </div>
                   <div class="col-7">
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Nhập email khác">
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Nhập email khác" value="{{$staff->gmail}}">
                   </div>
                 </div>
               </fieldset>
@@ -153,7 +153,7 @@
                     <label for="exampleInputEmail1">Website <i class="fas fa-paper-plane"></i></label>
                   </div>
                   <div class="col-7">
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nhập địa chỉ website">
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nhập địa chỉ website" value="{{$staff->website}}">
                   </div>
                 </div>
               </fieldset>
@@ -163,7 +163,7 @@
                     <label for="exampleInputEmail1">Địa chỉ <i class="fas fa-building"></i></label>
                   </div>
                   <div class="col-7">
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nhập địa chỉ nơi làm việc">
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nhập địa chỉ nơi làm việc" value="{{$staff->address}}">
                   </div>
                 </div>
               </fieldset>
