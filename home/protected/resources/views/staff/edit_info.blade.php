@@ -115,7 +115,7 @@
                   <label for="exampleSelect1">Học hàm, học vị</label>
                 </div>
                 <div class="col-7">
-                  <input type="text" class="form-control" disabled="" id="degree" placeholder="Nhập học hàm, học vị" value="{{$staff->degree}}">
+                  <input type="text" class="form-control" disabled="" name="degree" id="degree" placeholder="Nhập học hàm, học vị" value="{{$staff->degree}}">
                 </div>              
               </fieldset>
               <fieldset class="form-group">
@@ -124,7 +124,7 @@
                     <label for="phone">Số điện thoại<i class="fas fa-phone"></i></label>
                   </div>
                   <div class="col-7">
-                    <input type="tel" class="form-control" id="phone" placeholder="Nhập số điện thoại" value="{{$staff->phone}}">
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Nhập số điện thoại" value="{{$staff->phone}}">
                   </div>
                 </div>
               </fieldset>
@@ -134,7 +134,7 @@
                     <label for="exampleInputEmail1">VNU email <i class="fas fa-envelope"></i></label>
                   </div>
                   <div class="col-7">
-                    <input type="email" class="form-control" disabled="" id="vnu_email" placeholder="Nhập email VNU" value="{{$staff->vnu_email}}">
+                    <input type="email" class="form-control" disabled="" name="vnu_email" id="vnu_email" placeholder="Nhập email VNU" value="{{$staff->vnu_email}}">
                   </div>
                 </div>
               </fieldset>
@@ -144,7 +144,7 @@
                     <label for="exampleInputEmail1">Email khác <i class="far fa-envelope"></i></label>
                   </div>
                   <div class="col-7">
-                    <input type="email" class="form-control" id="gmail" placeholder="Nhập email khác" value="{{$staff->gmail}}">
+                    <input type="email" class="form-control" id="gmail" name="gmail" placeholder="Nhập email khác" value="{{$staff->gmail}}">
                   </div>
                 </div>
               </fieldset>
@@ -154,7 +154,7 @@
                     <label for="exampleInputEmail1">Website <i class="fas fa-paper-plane"></i></label>
                   </div>
                   <div class="col-7">
-                    <input type="text" class="form-control" id="website" placeholder="Nhập địa chỉ website" value="{{$staff->website}}">
+                    <input type="text" class="form-control" id="website" name="website" placeholder="Nhập địa chỉ website" value="{{$staff->website}}">
                   </div>
                 </div>
               </fieldset>
@@ -164,7 +164,7 @@
                     <label for="exampleInputEmail1">Địa chỉ <i class="fas fa-building"></i></label>
                   </div>
                   <div class="col-7">
-                    <input type="text" class="form-control" id="address" placeholder="Nhập địa chỉ nơi làm việc" value="{{$staff->address}}">
+                    <input type="text" class="form-control" id="address" name="address" placeholder="Nhập địa chỉ nơi làm việc" value="{{$staff->address}}">
                   </div>
                 </div>
               </fieldset>

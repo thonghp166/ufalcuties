@@ -116,18 +116,18 @@ class StaffController extends Controller
     {
         $staff = Staff::find($id);
         
-        // $phone = $request->input('phone');
-        // $gmail = $request->get('gmail');
-        // $website = $request->get('website');
-        // $address = $request->get('address');
+        $phone = $request->input('phone');
+        $gmail = $request->input('gmail');
+        $website = $request->input('website');
+        $address = $request->input('address');
 
-        // $staff->update([
-        //     'phone' => $phone,
-        //     'gmail' => $gmail,
-        //     'website' => $website,
-        //     'address' => $address
-        // ]);
-        return Input::get('phone');
+        $staff->update([
+            'phone' => $phone,
+            'gmail' => $gmail,
+            'website' => $website,
+            'address' => $address
+        ]);
+        return $staff;
        // return redirect('staff/{{$staff->id}}/edit');
     }
 
