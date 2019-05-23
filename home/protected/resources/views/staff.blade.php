@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/all.css">
+  <link rel="stylesheet" href="{{URL::asset('css/bootstrap.min.css')}}">
+  <link rel="stylesheet" href="{{URL::asset('css/style.css')}}">
+  <link rel="stylesheet" href="{{URL::asset('css/all.css')}}">
 </head>
 <body>
   
   
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-3" id="bar">
     <a class="navbar-brand" href="#" id="logo">
-        <img src="images/logo-outline.png" alt="Logo u-Faculties">
+        <img src="{{URL::asset('images/logo-outline.png')}}" alt="Logo u-Faculties">
         u-Faculties
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,7 +75,7 @@
                     <img src="{{URL::asset('images/hungpn.jpg')}}" alt="" class="img-fuild avatar">
                   </div>
                   <div class="col-8">
-                    <h3>PGS.TS Phạm Ngọc Hùng</h3>
+                    <h3>PGS.TS <?= $staff->name ?></h3>
                     <p id="changeavatarbutton" onclick="change()">Thay đổi ảnh đại diện</p>
                   </div>
                 </div>
@@ -189,9 +189,9 @@
     </div>
   </div>
 
-  <script type="text/javascript" src="{{asset('js/jquery-3.3.1.slim.min.js')}}"></script>
-  <script type="text/javascript" src="js/popper.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="js/staff.js"></script>
+  <script type="text/javascript" src="{{URL::asset('js/jquery-3.3.1.slim.min.js')}}"></script>
+  <script type="text/javascript" src="{{URL::asset('js/popper.min.js')}}"></script>
+  <script type="text/javascript" src="{{URL::asset('js/bootstrap.min.js')}}"></script>
+  <script type="text/javascript" src="{{URL::asset('js/staff.js')}}"></script>
 </body>
 </html>
