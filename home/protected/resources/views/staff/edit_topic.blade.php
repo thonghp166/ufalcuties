@@ -91,15 +91,17 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>An toàn thông tin</td>
-                      <td>Cách bảo mật dữ liệu</td>
-                      <td>
-                        <button type="submit" name="action" value="edit" class="btn btn-primary">Sửa</button>
-                        <button type="submit" name="action" value="delete"class="btn btn-danger">Xóa</button>
-                      </td>
-                    </tr>
+                    <?php foreach ($staff->topics as $element): ?>
+                    	<tr>
+	                      <td>{{$element->id}}</td>
+	                      <td>{{$element->name}}</td>
+	                      <td>{{$element->detail}}</td>
+	                      <td>
+	                        <button type="submit" name="action" value="edit" class="btn btn-primary">Sửa</button>
+	                        <button type="submit" name="action" value="delete"class="btn btn-danger">Xóa</button>
+	                      </td>
+	                    </tr>
+                    <?php endforeach ?>
                   </tbody>
                 </table>
               </fieldset>

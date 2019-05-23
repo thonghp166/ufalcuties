@@ -32,12 +32,23 @@
     </div>
     <div class="row">
       <?php foreach ($department as $element): ?>
-        <div class="col-3">
-          <h3>{{$element->name}}</h3>
-          <h4>{{$element->type}}</h4>
-          <h4>{{$element->address}}</h4>
-          <h4>{{$element->phone}}</h4>
-          <h4>{{$element->website}}</h4>
+        <div class="col-4">
+          <div class="text-left item">
+            <div class="avatar">
+              <img src="{{URL::asset('images/DTVT.png')}}" alt="" class="img-fuild">
+            </div>
+            <div class="transperantlayer"></div>
+            <div class="content">
+              <h3>Đơn vị: {{$element->name}}</h3>
+              <h4>Loại đơn vị  : {{$element->type}}</h4>
+              <h4>Địa chỉ      : {{$element->address}}</h4>
+              <h4>Số điện thoại: {{$element->phone}}</h4>
+              <h4>Website      : {{$element->website}}</h4>
+            </div>
+            <div class="more">
+              <a href="">Chi tiết</a>
+            </div>            
+          </div>
         </div>
       <?php endforeach ?>
     </div>
@@ -68,9 +79,20 @@
     </div>
     <div class="row">
       <?php foreach ($field as $element): ?>
-        <div class="col-3">
-          <h3>{{$element->name}}</h3>
-          <h4>{{$element->childOf}}</h4>
+        <div class="col-4">
+          <div class="text-left item">
+            <div class="avatar">
+              <img src="{{URL::asset('images/CNTT.jpg')}}" alt="" class="img-fuild">
+            </div>
+            <div class="transperantlayer"></div>
+            <div class="content">
+              <h3>{{$element->name}}</h3>
+              <h4>{{$element->childOf}}</h4>
+            </div>
+            <div class="more">
+              <a href="">Chi tiết</a>
+            </div>
+          </div>
         </div>
       <?php endforeach ?>
     </div>
@@ -100,16 +122,27 @@
     </div>
     <div class="row">
       <?php foreach ($staff as $element): ?>
-        <div class="col-3">
-          <h3>{{$element->degree}} {{$element->name}}</h3>
-          <h4>{{$element->code}}</h4>
-          <h4>{{$element->staff_type}}</h4>
-          <h4>{{$element->work_unit}}</h4>
-          <h4>{{$element->phone}}</h4>
-          <h4>{{$element->vnu_email}}</h4>
-          <h4>{{$element->gmail}}</h4>
-          <h4>{{$element->website}}</h4>
-          <h4>{{$element->address}}</h4>
+        <div class="col-4">
+          <div class="text-left item">
+            <div class="avatar">
+              <img src="{{URL::asset('images/CNTT.jpg')}}" alt="" class="img-fuild">
+            </div>
+            <div class="transperantlayer"></div>
+            <div class="content">
+              <h3>{{$element->degree}} {{$element->name}}</h3>
+              <h4>{{$element->code}}</h4>
+              <h4>{{$element->staff_type}}</h4>
+              <h4>{{$element->work_unit}}</h4>
+              <h4>{{$element->phone}}</h4>
+              <h4>{{$element->vnu_email}}</h4>
+              <h4>{{$element->gmail}}</h4>
+              <h4>{{$element->website}}</h4>
+              <h4>{{$element->address}}</h4>
+            </div>
+            <div class="more">
+              <a href="">Chi tiết</a>
+            </div>
+          </div>
         </div>
       <?php endforeach ?>
     </div>
