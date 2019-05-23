@@ -25,18 +25,6 @@ a.forgotpassword {
     color: white;
 }
 
-p.go i:hover {
-    color: gold;
-    cursor: pointer;
-}
-
-p.go {
-    display: block;
-    margin-top: 20px;
-    font-size: 60px;
-    color: #3498db;
-}
-
 .loginform input {
     padding: 15px 10px;
 }
