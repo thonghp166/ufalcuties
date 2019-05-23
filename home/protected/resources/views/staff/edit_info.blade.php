@@ -181,6 +181,12 @@
               </fieldset>
               <div class="text-center">
                 <button type="submit" class="btn btn-primary">Gửi</button>
+                @if (session('status'))
+                  <div class="alert alert-success">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
+                    {{ session('status') }}
+                  </div>
+                @endif
               </div>            
             </div>
             </div>            

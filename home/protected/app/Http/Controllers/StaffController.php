@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Staff;
 use App\Field;
 use Illuminate\Support\Facades\Input;
+use Session;
 
 
 use Illuminate\Http\Request;
@@ -103,15 +104,7 @@ class StaffController extends Controller
         $staff = Staff::find($id);
         return view('staff.edit_topic',compact('staff'));
     }
-
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function updateInfo(Request $request, $id)
     {
         $staff = Staff::find($id);
@@ -127,8 +120,7 @@ class StaffController extends Controller
             'website' => $website,
             'address' => $address
         ]);
-        return $staff;
-       // return redirect('staff/{{$staff->id}}/edit');
+        return redirect()->back()->with('status', 'Đã cập nhật thành công');
     }
 
 
