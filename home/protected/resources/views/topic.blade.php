@@ -1,1 +1,1 @@
-Thay doi chu de quan tam
+chu de quan tam
