@@ -128,7 +128,7 @@
                   <label for="exampleSelect1">Mô tả chủ đề</label>
                 </div>
                 <div class="col-7">
-                  <textarea name="" id="" cols="53" rows="5"></textarea>
+                  <textarea name="" id="" cols="" rows="" style="width: 100%;height: 100px;"></textarea>
                 </div>              
               </fieldset>
               <fieldset>
