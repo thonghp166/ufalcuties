@@ -64,8 +64,8 @@
               <div class="col-4 tag" style="border-right: 1px solid black;">
               <a href="../../staff/{{$staff->id}}" style="font-weight: bold">Thông tin chung</a>
               <a href="../../research">Lĩnh vực nghiên cứu</a>
-              <a href="../home/topic">Chủ đề quan tâm</a>
-              <a href="../home/password">Đổi mật khẩu</a>
+              <a href="../topic">Chủ đề quan tâm</a>
+              <a href="password">Đổi mật khẩu</a>
             </div>
             <div class="col-8">
               <fieldset class="form-group avatar-group">
@@ -75,11 +75,8 @@
                     <img src="{{URL::asset('images/thanhld.png')}}" alt="" class="img-fuild avatar">
                   </div>
                   <div class="col-8">
-<<<<<<< HEAD
-                    <h3>PGS.TS <?= $staff->name ?></h3>
-=======
                     <h3>{{$staff->degree}} {{$staff->name}}</h3>
->>>>>>> a6ce8e418355aebf1ea8360c4e2624867e924928
+
                     <p id="changeavatarbutton" onclick="change()">Thay đổi ảnh đại diện</p>
                   </div>
                 </div>
