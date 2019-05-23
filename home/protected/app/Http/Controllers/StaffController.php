@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Staff;
 use App\Field;
+use Illuminate\Support\Facades\Input;
 
 
 use Illuminate\Http\Request;
@@ -115,19 +116,19 @@ class StaffController extends Controller
     {
         $staff = Staff::find($id);
         
-        $phone = $request->get('phone');
-        $gmail = $request->get('gmail');
-        $website = $request->get('website');
-        $address = $request->get('address');
+        // $phone = $request->input('phone');
+        // $gmail = $request->get('gmail');
+        // $website = $request->get('website');
+        // $address = $request->get('address');
 
-        $staff::update([
-            'phone' => $phone,
-            'gmail' => $gmail,
-            'website' => $website,
-            'address' => $address
-        ]);
-        return $staff;
-       // return redirect() -> route('staff.update_info');
+        // $staff->update([
+        //     'phone' => $phone,
+        //     'gmail' => $gmail,
+        //     'website' => $website,
+        //     'address' => $address
+        // ]);
+        return Input::get('phone');
+       // return redirect('staff/{{$staff->id}}/edit');
     }
 
 
