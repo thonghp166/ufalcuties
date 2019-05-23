@@ -1,6 +1,40 @@
 * {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.copyright {
+    position: absolute;
+    bottom: 5px;
+    right: 15px;
+    z-index: 3;
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+a.forgotpassword:hover {
+    text-decoration: underline;
+}
+
+a.forgotpassword {
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+    margin-top: 12px;
+    color: white;
+}
+
+p.go i:hover {
+    color: gold;
+    cursor: pointer;
+}
+
+p.go {
+    display: block;
+    margin-top: 20px;
+    font-size: 60px;
+    color: #3498db;
 }
 
 .loginform input {
@@ -53,9 +87,13 @@ p.title {
     top: 10px;
     left: 50px;
     z-index: 3;
+}
+
+.logo a {
     font-size: 40px;
     font-weight: 400;
     color: white;
+    text-decoration: none;
 }
 
 .layer {
@@ -75,6 +113,7 @@ img.img-fluid.backgroundimage {
     left: 0;
     z-index: 1;
     height: 800px;
+    width: 100%;
 }
 
 .background {

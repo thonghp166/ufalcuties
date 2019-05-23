@@ -13,7 +13,7 @@
 		<img src="{{URL::asset('images/webv1.jpg')}}" alt="" class="img-fluid backgroundimage">
 		<div class="layer"></div>
 		<div class="logo">
-			<p>u-Faculties</p>
+			<a href="">u-Faculties</a>
 		</div>
 		<div class="container">
 			<div class="row">
@@ -27,19 +27,28 @@
 								<input type="email" id="acount" placeholder="Nhập email">
 							</fieldset>
 							<fieldset>
-								<div class="line" style="width: 100%; height: 2px; background: gray; margin: 0.5px 0px;"></div>
+								<div class="line" style="width: 100%; height: 2px; background: #3498db; margin: 0.5px 0px;"></div>
 							</fieldset>
 							<fieldset>
 								<input type="password" id="password" placeholder="Nhập mật khẩu">
 							</fieldset>
 							<div class="submit">
-								
+								<p class="go"><i class="fas fa-arrow-alt-circle-right"></i></p>
 							</div>
+							<fieldset>
+								<div class="line" style="width: 60%; height: 0.5px; background: white; margin-top: 10px; margin-bottom: 5px; display: block; margin: auto;"></div>
+							</fieldset>
+							<fieldset>
+								<a href="" class="forgotpassword">Bạn đã quên mật khẩu ?</a>
+							</fieldset>
 						</form>
 					</div>		
 				</div>
 				<div class="col-3"></div>
 			</div>
+		</div>
+		<div class="copyright">
+			Copyright © 2019 Sharon Team. Giữ toàn quyền.
 		</div>
 	</div>
 	
