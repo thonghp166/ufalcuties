@@ -28,21 +28,16 @@
           <a class="nav-link" href="#">Quản lý thông tin</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Giáo viên
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight: bold; font-style: italic;">
+            Xin chào {{Auth::user()->username}} !
           </a>
           <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Chỉnh sửa thông tin cá nhân</a>
             <a class="dropdown-item" href="#">Đổi mật khẩu</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Đăng xuất</a>
           </div>
         </li>
       </ul>
-      <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm giảng viên" aria-label="Search">
-        <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" id="barbutton">Tìm kiếm</button>
-      </form>
     </div>
   </nav>
 

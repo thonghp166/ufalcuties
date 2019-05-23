@@ -68,5 +68,7 @@
     <script type="text/javascript" src="{{URL::asset('js/jquery-3.3.1.slim.min.js')}}"></script>
     <script type="text/javascript" src="{{URL::asset('js/popper.min.js')}}"></script>
     <script type="text/javascript" src="{{URL::asset('js/bootstrap.min.js')}}"></script>
+    <script type="text/javascript" src="{{URL::asset('js/welcome.js')}}"></script>
+    <script type="text/javascript" src="{{URL::asset('js/jquery-3.4.1.min.js')}}"></script>
 </body>
 </html>

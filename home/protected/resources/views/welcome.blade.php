@@ -25,12 +25,32 @@
 <div class="workunit">
   <div class="container">
     <div class="row">
-      <div class="col-12">
-        <h2 class="title"><i class="fas fa-building"></i> BỘ MÔN, PHÒNG THÍ NGHIỆM</h2>
+      <div class="col-6 title">
+        <h2><i class="fas fa-building"></i> BỘ MÔN, PHÒNG THÍ NGHIỆM</h2>
       </div>
+      <div class="col-6"></div>
     </div>
+  </div>
+</div>
+
+<div class="research">
+  <div class="container">
     <div class="row">
-      
+      <div class="col-6 title">
+        <h2><i class="fas fa-building"></i> LĨNH VỰC NGHIÊN CỨU</h2>
+      </div>
+      <div class="col-6"></div>
+    </div>
+  </div>
+</div>
+
+<div class="teacher">
+  <div class="container">
+    <div class="row">
+      <div class="col-6 title">
+        <h2><i class="fas fa-building"></i> DANH SÁCH CÁN BỘ</h2>
+      </div>
+      <div class="col-6"></div>
     </div>
   </div>
 </div>

@@ -3,18 +3,40 @@
     padding: 0px;
 }
 
-h2.title {
-    border-bottom: 3px solid #27ae60;
-    padding-bottom: 7px;
-    padding-right: 40%;
+.workunit .col-6.title {
+    border-bottom: 4px solid #27ae60;
+}
+
+.workunit .col-6.title i {
+    color: #27ae60;
 }
 
 .workunit {
     margin-top: 30px;
 }
 
-h2.title i {
-    color: #27ae60;
+.research .col-6.title {
+    border-bottom: 4px solid #f1c40f;
+}
+
+.research .col-6.title i {
+    color: #f1c40f;
+}
+
+.research {
+    margin-top: 30px;
+}
+
+.teacher .col-6.title {
+    border-bottom: 4px solid #e74c3c;
+}
+
+.teacher .col-6.title i {
+    color: #e74c3c;
+}
+
+.teacher {
+    margin-top: 30px;
 }
 
 p.go:hover {
@@ -98,7 +120,7 @@ a.nav-link.loginbutton {
     margin-top: 0px!important;
     border-radius: 0px!important;
     padding: 5px 50px!important;
-    background: black!important;
+    background: #3498db!important;
 }
 
 .layer {
