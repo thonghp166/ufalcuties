@@ -38,13 +38,13 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
-        $name = Input::get('name');
-        $code = Input::get('code');
-        $account = Input::get('account');
-        $vnu_mail = input::get('vnu_email');
-        $staff_type = Input::get('staff_type');
-        $degree = Input::get('degree');
-        $work_unit = Input::get('work_unit');
+        $name = $request->input('name');
+        $code = $request->input('code');
+        $account = $request->input('account');
+        $vnu_mail = $request->input('vnu_email');
+        $staff_type = $request->input('staff_type');
+        $degree = $request->input('degree');
+        $work_unit = $request->input('work_unit');
 
 
         if (Staff::where('vnu_email', '=', $vnu_email) -> exists() 
@@ -60,7 +60,8 @@ class StaffController extends Controller
                 'degree' => $degree,      
                 'work_unit' => $work_unit
             ]);
-            return redirect()->route('staff.new');
+            return "Success";
+            // return redirect()->route('staff.new');
         }
     }
 
@@ -84,7 +85,8 @@ class StaffController extends Controller
      */
     public function edit($id)
     {
-        //
+        $staff = Staff::find($id);
+        return view('staff',compact('staff'));
     }
 
     /**
@@ -94,9 +96,23 @@ class StaffController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateInfo(Request $request, $id)
     {
-        //
+        $staff = Staff::find($id);
+        
+        $phone = $request->get('phone');
+        $gmail = $request->get('gmail');
+        $website = $request->get('website');
+        $address = $request->get('address');
+
+        $staff::update([
+            'phone' => $phone,
+            'gmail' => $gmail,
+            'website' => $website,
+            'address' => $address
+        ]);
+        return $staff;
+       // return redirect() -> route('staff.update_info');
     }
 
     /**
@@ -108,13 +124,6 @@ class StaffController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function addTopic($id, $list) {
-        $staff = Staff::find($id);
-        $topic = Topic::find($list);
-        $staff-> topics()-> attach($topic);
-        return "Success";
     }
 
 //     public function addField($id, $list_field) {
@@ -130,11 +139,11 @@ class StaffController extends Controller
 //         return "Success remove";
 //     }
 
-    public function updateField($id,$newlist)
+    public function updateField(Request $request,$id)
     {
         $staff = Staff::find($id);
-        $field = Field::all();
-        $new = Field::find($newlist);
-        $staff->fields()-> detach($field)->attach($new);
+        $new = Field::find($request->list);
+        $staff->fields()->sync($new);
+        return redirect()->route('staff.edit_field');
     }
 }

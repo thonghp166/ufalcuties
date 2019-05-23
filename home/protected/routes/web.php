@@ -5,11 +5,16 @@ Route::get('/','MainController@getHome');
 Route::get('/staff','StaffController@index');
 Route::get('/staff/{id}','StaffController@show');
 
-// post('/staff/new') ->
-// {
+// post('/staff/new', 
+// [
 // 	'as' => 'staff.new',
-// 	'action' => 'StaffController@store'
-// }
+// 	'uses' => 'StaffController@store'
+// ]);
+
+Route::put('/staff/{id}', [
+	'as' => 'staff.update_info',
+	'uses' => 'StaffController@updateInfo'
+]);
 
 Route::get('/password', function() {
     return view('password');
@@ -28,6 +33,7 @@ Route::get('/department','DepartmentController@index');
 //post('department','DepartmentController@store');
 
 Route::get('/field','FieldController@index');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
