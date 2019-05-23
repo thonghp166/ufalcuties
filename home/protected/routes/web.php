@@ -1,6 +1,6 @@
 <?php
 
-Route::get('/','HomeController@getHome');
+Route::get('/','HomeController@index');
 
 Route::get('/staff','StaffController@index');
 Route::get('/staff/{id}','StaffController@show');
