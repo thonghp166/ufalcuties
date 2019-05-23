@@ -37,7 +37,7 @@
   <div class="container">
     <div class="row">
       <div class="col-6 title">
-        <h2><i class="fas fa-building"></i> LĨNH VỰC NGHIÊN CỨU</h2>
+        <h2><i class="fas fa-search"></i> LĨNH VỰC NGHIÊN CỨU</h2>
       </div>
       <div class="col-6"></div>
     </div>
@@ -48,7 +48,7 @@
   <div class="container">
     <div class="row">
       <div class="col-6 title">
-        <h2><i class="fas fa-building"></i> DANH SÁCH CÁN BỘ</h2>
+        <h2><i class="fas fa-users"></i> DANH SÁCH CÁN BỘ</h2>
       </div>
       <div class="col-6"></div>
     </div>
