@@ -26,9 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $department = Department::limit(6)->offset(6)->get();
-        $staff = Staff::limit(6)->offset(6)->get();
-        $field = Field::limit(6)->offset(6)->get();
+        $staff = Staff::all();
+        $field = Field::all();
+        $department = Department::all();
         return view('welcome') -> with(compact('department'))
                                -> with(compact('field'))
                                -> with(compact('staff'));

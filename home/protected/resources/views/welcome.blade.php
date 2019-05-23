@@ -30,6 +30,17 @@
       </div>
       <div class="col-6"></div>
     </div>
+    <div class="row">
+      <?php foreach ($department as $element): ?>
+        <div class="col-4">
+          <h3>{{$element->name}}</h3>
+          <h4>{{$element->type}}</h4>
+          <h4>{{$element->address}}</h4>
+          <h4>{{$element->phone}}</h4>
+          <h4>{{$element->website}}</h4>
+        </div>
+      <?php endforeach ?>
+    </div>
   </div>
 </div>
 
@@ -41,6 +52,14 @@
       </div>
       <div class="col-6"></div>
     </div>
+    <div class="row">
+      <?php foreach ($field as $element): ?>
+        <div class="col-4">
+          <h3>{{$element->name}}</h3>
+          <h4>{{$element->childOf}}</h4>
+        </div>
+      <?php endforeach ?>
+    </div>
   </div>
 </div>
 
@@ -51,6 +70,21 @@
         <h2><i class="fas fa-users"></i> DANH SÁCH CÁN BỘ</h2>
       </div>
       <div class="col-6"></div>
+    </div>
+    <div class="row">
+      <?php foreach ($staff as $element): ?>
+        <div class="col-4">
+          <h3>{{$element->degree}} {{$element->name}}</h3>
+          <h4>{{$element->code}}</h4>
+          <h4>{{$element->staff_type}}</h4>
+          <h4>{{$element->work_unit}}</h4>
+          <h4>{{$element->phone}}</h4>
+          <h4>{{$element->vnu_email}}</h4>
+          <h4>{{$element->gmail}}</h4>
+          <h4>{{$element->website}}</h4>
+          <h4>{{$element->address}}</h4>
+        </div>
+      <?php endforeach ?>
     </div>
   </div>
 </div>
