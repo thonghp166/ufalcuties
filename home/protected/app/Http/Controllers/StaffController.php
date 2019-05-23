@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Staff;
+use App\Field;
 
 
 use Illuminate\Http\Request;
@@ -74,7 +75,7 @@ class StaffController extends Controller
     public function show($id)
     {
         $staff = Staff::find($id);
-        return view('staff',compact('staff'));
+        return view('staff.staff_view',compact('staff'));
     }
 
     /**
@@ -86,8 +87,22 @@ class StaffController extends Controller
     public function edit($id)
     {
         $staff = Staff::find($id);
-        return view('staff',compact('staff'));
+        // return $staff;
+        return view('staff.edit_info',compact('staff'));
     }
+
+    public function edit_field($id)
+    {   
+        $staff = Staff::find($id);
+        return view('staff.edit_field',compact('staff'));
+    }
+
+    public function edit_topic($id)
+    {   
+        $staff = Staff::find($id);
+        return view('staff.edit_topic',compact('staff'));
+    }
+
 
     /**
      * Update the specified resource in storage.
@@ -114,6 +129,7 @@ class StaffController extends Controller
         return $staff;
        // return redirect() -> route('staff.update_info');
     }
+
 
     /**
      * Remove the specified resource from storage.

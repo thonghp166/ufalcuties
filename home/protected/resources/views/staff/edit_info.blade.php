@@ -62,10 +62,9 @@
           <form id="staffinfor" method="PUT" >
             <div class="row">
               <div class="col-4 tag" style="border-right: 1px solid black;">
-              <a href="../../staff/{{$staff->id}}" style="font-weight: bold">Thông tin chung</a>
-              <a href="../../research">Lĩnh vực nghiên cứu</a>
-              <a href="../topic">Chủ đề quan tâm</a>
-              <a href="{{route('password')}}">Đổi mật khẩu</a>
+              <a href="../../staff/{{$staff->id}}/edit" style="font-weight: bold">Thông tin chung</a>
+              <a href="../{{$staff->id}}/field">Lĩnh vực nghiên cứu</a>
+              <a href="../{{$staff->id}}/topic">Chủ đề quan tâm</a>
             </div>
             <div class="col-8">
               <fieldset class="form-group avatar-group">

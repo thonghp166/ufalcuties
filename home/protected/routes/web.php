@@ -1,6 +1,6 @@
 <?php
 
-Route::get('/','MainController@getHome');
+Route::get('/','HomeController@getHome');
 
 Route::get('/staff','StaffController@index');
 Route::get('/staff/{id}','StaffController@show');
@@ -10,19 +10,22 @@ Route::get('/staff/{id}','StaffController@show');
 // 	'as' => 'staff.new',
 // 	'uses' => 'StaffController@store'
 // ]);
+Route::get('/staff/{id}/edit',[
+	'as' =>'staff.edit',
+	'uses' => 'StaffController@edit']);
 
-Route::put('/staff/{id}', [
-	'as' => 'staff.update_info',
-	'uses' => 'StaffController@updateInfo'
-]);
+Route::get('/staff/{id}/field',[
+	'as' =>'staff.edit_field',
+	'uses' => 'StaffController@edit_field']);
+
+Route::get('/staff/{id}/topic',[
+	'as' =>'staff.edit_topic',
+	'uses' => 'StaffController@edit_topic']);
 
 Route::get('/password', function() {
     return view('password');
 });
 
-Route::get('/research', function() {
-    return view('research');
-});
 
 Route::get('/topic', function() {
     return view('topic');
