@@ -44,6 +44,7 @@
                     </a>
                     <div class="dropdown-menu text-right" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item" href="#">Chỉnh sửa thông tin cá nhân</a>
+                      <a class="dropdown-item" href="#">Đổi mật khẩu</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         Đăng xuất

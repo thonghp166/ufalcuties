@@ -34,7 +34,12 @@
           <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="#">Đổi mật khẩu</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Đăng xuất</a>
+            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              Đăng xuất
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              {{ csrf_field() }}
+            </form>
           </div>
         </li>
       </ul>
