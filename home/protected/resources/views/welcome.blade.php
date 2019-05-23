@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('content')
+@section('banner')
 <div class="banner">
   <img src="{{URL::asset('images/webv1.jpg')}}" alt="" class="img-fluid banner-image">
   <div class="blacklayer"></div>
@@ -16,6 +16,21 @@
         </div>
       </div>
       <div class="col-3"></div>
+    </div>
+  </div>
+</div>
+@endsection
+
+@section('content')
+<div class="workunit">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="title"><i class="fas fa-building"></i> BỘ MÔN, PHÒNG THÍ NGHIỆM</h2>
+      </div>
+    </div>
+    <div class="row">
+      
     </div>
   </div>
 </div>

@@ -38,34 +38,31 @@
                         <a class="nav-link loginbutton" href="{{route('login')}}">Đăng nhập</a>
                   </li>
                 @else
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            {{ Auth::user()->username }} <span class="caret"></span>
-                        </a>
-
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                                    Logout
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-                            </li>
-                        </ul>
-                    </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight: bold; font-style: italic;">
+                      Xin chào {{Auth::user()->username}} !
+                    </a>
+                    <div class="dropdown-menu text-right" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#">Chỉnh sửa thông tin cá nhân</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        Đăng xuất
+                      </a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                      </form>
+                    </div>
+                  </li>
                 @endif
             </ul>
             
           </div>
         </nav>
 
-        @yield('content')
+        @yield('banner')
   </div>
 
+  @yield('content')
     
     
     <script type="text/javascript" src="{{URL::asset('js/jquery-3.3.1.slim.min.js')}}"></script>

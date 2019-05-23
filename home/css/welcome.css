@@ -3,6 +3,20 @@
     padding: 0px;
 }
 
+h2.title {
+    border-bottom: 3px solid #27ae60;
+    padding-bottom: 7px;
+    padding-right: 40%;
+}
+
+.workunit {
+    margin-top: 30px;
+}
+
+h2.title i {
+    color: #27ae60;
+}
+
 p.go:hover {
     transform: scale(1.5);
 }
