@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Staff;
 use App\Field;
+use App\Topic;
 use Illuminate\Support\Facades\Input;
 use Session;
 
@@ -27,10 +28,11 @@ class StaffController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        return $request;
+        // return Topic::all();
         // return view('staffs.new');
+        return Staff::all();
     }
 
     /**
@@ -102,9 +104,10 @@ class StaffController extends Controller
     public function edit_topic($id)
     {   
         $staff = Staff::find($id);
+        $topic = $staff->topics;
         return view('staff.edit_topic',compact('staff'));
     }
-    
+
     public function updateInfo(Request $request, $id)
     {
         $staff = Staff::find($id);
@@ -153,6 +156,6 @@ class StaffController extends Controller
         $staff = Staff::find($id);
         $new = Field::find($request->list);
         $staff->fields()->sync($new);
-        return redirect()->route('staff.edit_field');
+        return redirect()->back()->with('status', 'Đã cập nhật thành công');
     }
 }

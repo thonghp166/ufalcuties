@@ -29,6 +29,11 @@ class Staff extends Model
 
     public function topics()
     {
-    	return $this->belongsToMany(Topic::class);
+    	return $this->hasMany('App\Topic');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 }

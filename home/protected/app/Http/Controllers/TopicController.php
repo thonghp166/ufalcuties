@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Topic;
+use App\Staff;
 
 class TopicController extends Controller
 {
@@ -25,7 +26,8 @@ class TopicController extends Controller
      */
     public function create()
     {
-        
+        $staff = Staff::find(1);
+        return $staff->topics;
     }
 
     /**
@@ -34,9 +36,27 @@ class TopicController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function addTopic(Request $request)
     {
-        //
+        switch ($request->input('action')) {
+            case 'new':
+                $name = $request->input('name');
+                $detail = $request->input('detail');
+                return $request->input('action');
+
+            case 'update':
+                $name = $request->input('name');
+                $detail = $request->input('detail');
+                return $request->input('action');
+
+            // case 'delete':
+            //     $this->destroy($request);
+            //     break;
+
+            case 'edit':
+                return $request->input('action');
+        }
+        
     }
 
     /**

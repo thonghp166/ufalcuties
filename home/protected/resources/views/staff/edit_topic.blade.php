@@ -60,7 +60,8 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <form id="staffinfor">
+          <form id="staffinfor" method="POST" action="../{{$staff->id}}/topic">
+            {{ csrf_field() }}
             <div class="row">
               <div class="col-4 tag" style="border-right: 1px solid black;">
               <a href="../{{$staff->id}}/edit">Thông tin chung</a>
@@ -95,8 +96,8 @@
                       <td>An toàn thông tin</td>
                       <td>Cách bảo mật dữ liệu</td>
                       <td>
-                        <button type="submit" class="btn btn-primary">Sửa</button>
-                        <button type="submit" class="btn btn-danger">Xóa</button>
+                        <button type="submit" name="action" value="edit" class="btn btn-primary">Sửa</button>
+                        <button type="submit" name="action" value="delete"class="btn btn-danger">Xóa</button>
                       </td>
                     </tr>
                   </tbody>
@@ -116,20 +117,20 @@
               <fieldset class="form-group">
                 <div class="row">
                   <div class="col-4 text-right">
-                    <label for="exampleInputEmail1">Chủ đề quan tâm mới</label>
+                    <label for="name">Chủ đề quan tâm mới</label>
                   </div>
                   <div class="col-7">
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nhập tiêu đề chủ đề quan tâm mới">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Nhập tiêu đề chủ đề quan tâm mới">
                   </div>
                 </div>
               </fieldset>
               <fieldset class="form-group">
                 <div class="row">
                   <div class="col-4 text-right">
-                  <label for="exampleSelect1">Mô tả chủ đề</label>
+                  <label for="detail">Mô tả chủ đề</label>
                 </div>
                 <div class="col-7">
-                  <textarea name="" id="" cols="" rows="" style="width: 100%;height: 100px;"></textarea>
+                  <textarea name="detail" id="detail" cols="" rows="" style="width: 100%;height: 100px;"></textarea>
                 </div>              
               </fieldset>
               <fieldset>
@@ -144,8 +145,8 @@
                 </div>
               </fieldset>
               <div class="text-center">
-                <button type="submit" class="btn btn-primary">Thêm mới</button>
-                <button type="submit" class="btn btn-success">Cập nhật</button>
+                <button type="submit" name="action" value="new" class="btn btn-primary">Thêm mới</button>
+                <button type="submit" name="action" value="update" class="btn btn-success">Cập nhật</button>
               </div>            
             </div>
             </div>            

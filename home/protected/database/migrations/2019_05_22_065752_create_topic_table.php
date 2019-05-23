@@ -17,6 +17,7 @@ class CreateTopicTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('detail');
+            $table->integer('staff_id');
             $table->timestamps();
         });
     }

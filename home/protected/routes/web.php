@@ -4,6 +4,7 @@ Route::get('/','HomeController@index');
 
 Route::get('/staff','StaffController@index');
 Route::get('/staff/{id}','StaffController@show');
+// Route::get('/staff/create','StaffController@create');
 
 // post('/staff/new', 
 // [
@@ -25,15 +26,14 @@ Route::get('/staff/{id}/field',[
 Route::get('/staff/{id}/topic',[
 	'as' =>'staff.edit_topic',
 	'uses' => 'StaffController@edit_topic']);
+Route::post('/staff/{id}/topic',[
+	'as' => 'staff.addtopic',
+	'uses' => 'TopicController@addTopic'
+]);
 
-Route::get('/password', function() {
-    return view('password');
-});
 
 
-Route::get('/topic', function() {
-    return view('topic');
-});
+Route::get('/topic', 'TopicController@create');
 
 Route::get('/department','DepartmentController@index');
 //get('/department/new','DepartmentController@create');
