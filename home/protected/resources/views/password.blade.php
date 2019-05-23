@@ -8,8 +8,7 @@
   <link rel="stylesheet" href="{{URL::asset('css/all.css')}}">
 </head>
 <body>
-  
-  
+    
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-3" id="bar">
     <a class="navbar-brand" href="#" id="logo">
         <img src="{{URL::asset('images/logo-outline.png')}}" alt="Logo u-Faculties">
@@ -46,15 +45,6 @@
     </div>
   </nav>
 
-  <div class="layer"></div>
-
-  <div class="changeavatar">
-    <span class="title">Thay đổi ảnh đại diện</span>
-    <p class="upload">Tải ảnh lên</p>
-    <p class="delete">Xóa ảnh đại diện</p>
-    <p id="cancel">Hủy</p>
-  </div>
-
   <div class="content">
     <div class="container">
       <div class="row">
@@ -67,7 +57,7 @@
               <a href="../home/topic">Chủ đề quan tâm</a>
               <a href="../home/password" style="font-weight: bold">Đổi mật khẩu</a>
             </div>
-            <div class="col-8">
+            <div class="col-8 password">
               <fieldset class="form-group avatar-group">
                 <div class="row">
 

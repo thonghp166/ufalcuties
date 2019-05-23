@@ -23,6 +23,10 @@ Route::get('/topic', function() {
     return view('topic');
 });
 
+Route::get('/mylogin', function() {
+    return view('mylogin');
+});
+
 Route::get('/department','DepartmentController@index');
 //get('/department/new','DepartmentController@create');
 //post('department','DepartmentController@store');

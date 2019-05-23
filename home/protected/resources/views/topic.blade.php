@@ -67,7 +67,7 @@
               <a href="../home/topic" style="font-weight: bold">Chủ đề quan tâm</a>
               <a href="../home/password">Đổi mật khẩu</a>
             </div>
-            <div class="col-8">
+            <div class="col-8 topic">
               <fieldset class="form-group avatar-group">
                 <div class="row">
 
