@@ -19,7 +19,7 @@
         <img src="{{URL::asset('images/webv1.jpg')}}" alt="" class="img-fluid backgroundimage">
         <div class="layer"></div>
         <div class="logo">
-            <a href="../home">u-Faculties</a>
+            <a href="../">u-Faculties</a>
         </div>
         <div class="container">
             <div class="row">

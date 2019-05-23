@@ -13,6 +13,10 @@ Route::get('/staff/{id}','StaffController@show');
 Route::get('/staff/{id}/edit',[
 	'as' =>'staff.edit',
 	'uses' => 'StaffController@edit']);
+Route::post('/staff/{id}/edit',[
+	'as' => 'staff.updateinfo',
+	'uses' => 'StaffController@updateInfo'
+]);
 
 Route::get('/staff/{id}/field',[
 	'as' =>'staff.edit_field',
