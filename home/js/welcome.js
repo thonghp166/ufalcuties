@@ -1,7 +1,8 @@
 $(function() {
 	$('.go').click(function(event) {
 		var content = $('.workunit .title');
-		$('html, body').animate({scrollTop: content.offset().top}, 1000);
+		var fontheight = 80;
+		$('html, body').animate({scrollTop: content.offset().top - fontheight}, 1000);
 	});
 });
 

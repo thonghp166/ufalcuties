@@ -3,6 +3,46 @@
     padding: 0px;
 }
 
+.line {
+    height: 4px;
+    position: relative;
+    top: 65px;
+}
+
+.workunit .line {
+    background: #27ae60;
+}
+
+.research .line {
+    background: #f1c40f;
+}
+
+.teacher .line {
+    background: #e74c3c;
+}
+
+a.findstaff {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 40px;
+    margin-bottom: 100px;
+    background: white;
+    color: #2c3e50;
+    border: 3px solid #2c3e50;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.4s;
+    width: 100%;
+}
+
+a.findstaff:hover {
+    color: #1abc9c;
+    background: #2c3e50;
+}
+
+
 .workunit .col-6.title {
     border-bottom: 4px solid #27ae60;
 }
@@ -38,6 +78,11 @@
 .teacher {
     margin-top: 30px;
 }
+
+.col-6.title {
+    margin-bottom: 30px;
+}
+
 
 p.go:hover {
     transform: scale(1.5);
