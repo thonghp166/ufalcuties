@@ -14,4 +14,20 @@ document.addEventListener("DOMContentLoaded", function () {
 		 avatar[0].classList.remove('show');
 	}
 	
+	var check = "under100"
+	window.addEventListener("scroll", function () {
+		if (window.pageYOffset > 100) {
+			if (check == "under100") {
+				var bar = document.getElementById("bar");
+				bar.classList.add("zoomin");
+				check = "above100";
+			}
+		} else {
+			if (check == "above100") {
+				var bar = document.getElementById("bar");
+				bar.classList.remove("zoomin");
+				check = "under100";	
+			}
+		}
+	}, false);
 }, false);
