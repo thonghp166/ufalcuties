@@ -3,6 +3,23 @@
     padding: 0;
 }
 
+.submit i {
+    font-size: 40px;
+    width: 40px;
+    height: 40px;
+}
+
+.submit {
+    margin-bottom: 10px;
+}
+
+
+fieldset.rememberbox {
+    color: white;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
 .copyright {
     position: absolute;
     bottom: 5px;
