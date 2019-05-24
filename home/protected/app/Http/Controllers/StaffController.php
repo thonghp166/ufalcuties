@@ -97,8 +97,9 @@ class StaffController extends Controller
     public function edit_field($id)
     {   
         $staff = Staff::find($id);
-        return $staff->fields;
-        // return view('staff.edit_field',compact('staff'));
+        $fields = $staff->fields;
+        return view('staff.edit_field')-> with(compact('fields'))
+                                       -> with(compact('staff'));
     }
 
     public function edit_topic($id)
