@@ -30,7 +30,7 @@
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('vnu_email') ? ' has-error' : '' }}">
-                                <label for="vnu_email" class="col-md-4 control-label">E-Mail Address</label>
+                                <label for="vnu_email" class="col-md-4 control-label">VNU-Mail Address</label>
 
                                 <div class="col-md-6">
                                     <input id="vnu_email" type="vnu_email" class="form-control" name="vnu_email" value="{{ old('vnu_email') }}" required>
@@ -46,7 +46,7 @@
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">
-                                        Send Password Reset Link
+                                        Gửi email lấy lại mật khẩu
                                     </button>
                                 </div>
                             </div>

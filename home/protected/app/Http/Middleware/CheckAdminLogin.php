@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Auth;
 
-class CheckLogedIn
+class CheckAdminLogin
 {
     /**
      * Handle an incoming request.
@@ -16,14 +16,21 @@ class CheckLogedIn
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::check()){
+        // nếu user đã đăng nhập
+        if (Auth::check())
+        {
             $user = Auth::user();
+            // nếu level =1 (admin)thì cho qua.
             if ($user->level == 1)
             {
-                return redirect()->intended('admin/home');;
+                return $next($request);
             }
-            return redirect()->intended('/');
-        }
-        return $next($request);
+            else
+            {
+                Auth::logout();
+                return redirect()->route('home');
+            }
+        } else
+            return redirect()->route('login');
     }
 }

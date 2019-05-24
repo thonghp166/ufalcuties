@@ -61,3 +61,15 @@ Route::post('password/change', [
 	'as' => 'password.change',
 	'uses' => 'Auth\ChangePasswordController@change'
 ]);
+
+// Route::get('/admin',[
+// 	'middleware' => 'CheckAdminLogin',
+// 	'as' => 'admin.home',
+// 	'uses' => 'AdminController@index'
+// ]);
+
+Route::group(['middleware' => 'CheckAdminLogin', 'prefix' => 'admin', 'namespace' => 'Admin'], function() {
+	Route::get('/', function() {
+		return view('admin.home');
+	})->name('admin.home');
+});

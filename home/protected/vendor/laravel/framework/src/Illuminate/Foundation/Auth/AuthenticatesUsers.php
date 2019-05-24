@@ -113,7 +113,10 @@ trait AuthenticatesUsers
      */
     protected function authenticated(Request $request, $user)
     {
-        //
+        if($user->level == 1){
+            return redirect()->route('admin.home');
+        }
+        return redirect()->route('home');
     }
 
     /**
@@ -155,7 +158,7 @@ trait AuthenticatesUsers
 
         $request->session()->invalidate();
 
-         return redirect('/home');
+        return redirect('/home');
     }
 
     /**
