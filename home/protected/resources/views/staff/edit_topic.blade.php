@@ -98,7 +98,6 @@
 	                      <td>{{$element->detail}}</td>
 	                      <td>
 	                        <span class="btn btn-primary edit" data-id="{{$element->id}}" data-name="{{$element->name}}" data-detail="{{$element->detail}}" style="color: white!important; font-weight: normal; font-style: italic;">Sửa</span>
-	                        <span class="btn btn-danger delete" data-id="{{$element->id}}" data-name="{{$element->name}}" data-detail="{{$element->detail}}" style="color: white!important; font-weight: normal; font-style: italic;">Xóa</span>
 	                      </td>
 	                    </tr>
                     <?php endforeach ?>
@@ -158,6 +157,7 @@
               <div class="text-center">
                 <button type="submit" name="action" value="new" class="btn btn-primary">Thêm mới</button>
                 <button type="submit" name="action" value="update" class="btn btn-success">Cập nhật</button>
+                <button type="submit" name="action" value="delete" class="btn btn-danger">Xóa</button>
               </div>            
             </div>
             </div>            
