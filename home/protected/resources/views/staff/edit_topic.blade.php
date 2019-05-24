@@ -91,9 +91,9 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php foreach ($staff->topics as $element): ?>
+                    <?php $count = 1; foreach ($staff->topics as $element): ?>
                     	<tr>
-	                      <td>{{$element->id}}</td>
+	                      <td><?php echo $count; $count++;?></td>
 	                      <td>{{$element->name}}</td>
 	                      <td>{{$element->detail}}</td>
 	                      <td>
