@@ -129,10 +129,7 @@ trait AuthenticatesUsers
         if ($request->expectsJson()) {
             return response()->json($errors, 422);
         }
-
         return redirect()->back()->
-            // ->withInput($request->only($this->username(), 'remember'))
-            // ->withErrors($errors);
             with('error', trans('auth.failed'));
     }
 
@@ -158,7 +155,7 @@ trait AuthenticatesUsers
 
         $request->session()->invalidate();
 
-        return redirect()->route('home');
+         return redirect('/home');
     }
 
     /**
