@@ -5,7 +5,6 @@ use App\Staff;
 use App\Field;
 use App\Topic;
 use Illuminate\Support\Facades\Input;
-use Session;
 
 
 use Illuminate\Http\Request;
@@ -126,7 +125,6 @@ class StaffController extends Controller
         ]);
         return redirect()->back()->with('status', 'Đã cập nhật thành công');
     }
-
 
     /**
      * Remove the specified resource from storage.

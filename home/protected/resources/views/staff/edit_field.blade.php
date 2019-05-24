@@ -32,7 +32,7 @@
             Xin chào {{Auth::user()->username}} !
           </a>
           <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{route('password.change')}}">Đổi mật khẩu</a>
+            <a class="dropdown-item" href=" {{route('password.change')}}">Đổi mật khẩu</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
               Đăng xuất
@@ -77,17 +77,6 @@
                   <div class="col-8">
                     <h3>{{$staff->degree}} {{$staff->name}}</h3>
 				  </div>
-                </div>
-              </fieldset>
-              </fieldset>
-                <div class="line">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-4"></div>
-                      <div class="col-4" style="height: 2px; background: #3498db; margin-top: 20px; margin-bottom: 30px;"></
-                      <div class="col-4"></div>
-                    </div>
-                  </div>
                 </div>
               </fieldset>
               <fieldset class="form-group">

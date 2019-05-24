@@ -106,6 +106,18 @@
               </fieldset>
               <div class="text-center">
                 <button type="submit" class="btn btn-primary">Đổi mật khẩu</button>
+                @if (session('status'))
+                  <div class="alert alert-success" style="display: block; margin-top: 30px;transition: 0.4s;">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
+                    {{ session('status') }}
+                  </div>
+                @endif
+                @if (session('error'))
+                  <div class="alert alert-error" style="display: block; margin-top: 30px;transition: 0.4s;">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
+                    {{ session('error') }}
+                  </div>
+                @endif
               </div>            
             </div>
             </div>            

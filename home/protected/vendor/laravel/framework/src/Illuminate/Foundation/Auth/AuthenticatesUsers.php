@@ -157,7 +157,7 @@ trait AuthenticatesUsers
 
         $request->session()->invalidate();
 
-        return redirect()->back();
+        return redirect()->route('home');
     }
 
     /**

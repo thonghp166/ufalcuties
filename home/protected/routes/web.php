@@ -1,6 +1,9 @@
 <?php
 
-Route::get('/','HomeController@index');
+Route::get('/',[
+	'as' => 'home',
+	'uses' => 'HomeController@index'
+]);
 
 Route::get('/staff','StaffController@index');
 Route::get('/staff/{id}',[
@@ -15,26 +18,29 @@ Route::get('/staff/{id}',[
 // 	'uses' => 'StaffController@store'
 // ]);
 Route::get('/staff/{id}/edit',[
+	'middleware' => 'auth',
 	'as' =>'staff.edit',
 	'uses' => 'StaffController@edit']);
 Route::post('/staff/{id}/edit',[
+	'middleware' => 'auth',
 	'as' => 'staff.updateinfo',
 	'uses' => 'StaffController@updateInfo'
 ]);
 
 Route::get('/staff/{id}/field',[
+	'middleware' => 'auth',
 	'as' =>'staff.edit_field',
 	'uses' => 'StaffController@edit_field']);
 
 Route::get('/staff/{id}/topic',[
+	'middleware' => 'auth',
 	'as' =>'staff.edit_topic',
 	'uses' => 'StaffController@edit_topic']);
 Route::post('/staff/{id}/topic',[
+	'middleware' => 'auth',
 	'as' => 'staff.addtopic',
 	'uses' => 'TopicController@addTopic'
 ]);
-
-
 
 Route::get('/topic', 'TopicController@create');
 
@@ -46,11 +52,12 @@ Route::get('/field','FieldController@index');
 
 Auth::routes();
 Route::get('password/change',[
+	'middleware' => 'auth',
 	'as' => 'password.change',
 	'uses' => 'Auth\ChangePasswordController@showChangePasswordForm'
 ]);
 Route::post('password/change', [
+	'middleware' => 'auth',
 	'as' => 'password.change',
 	'uses' => 'Auth\ChangePasswordController@change'
 ]);
-Route::get('/', 'HomeController@index')->name('home');
