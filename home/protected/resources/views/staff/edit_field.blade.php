@@ -114,7 +114,7 @@
 	                  	<?php else: ?>
 	                  		<div class="rootparent box box{{$element->id}}" data-parent="0" data-id="{{$element->id}}">
 	                  			<i class="dropdownicon fas fa-caret-down"></i>
-	                  			<input type="checkbox" id="_{{$element->id}}" name="_{{$element->id}}"> {{$element->name}}
+	                  			<input type="checkbox" class="checkbox" id="_{{$element->id}}" name="_{{$element->id}}"> {{$element->name}}
 	                  		</div>
 						<?php endif ?>
                   	<?php endforeach ?>

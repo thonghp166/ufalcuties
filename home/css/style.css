@@ -12,23 +12,45 @@
     font-weight: 500;
 }
 
+.box .checkbox {
+    width: 15px;
+    height: 15px;
+}
+
 .box i {
     font-size: 25px;
-    padding: 5px 10px;
-    cursor: pointer;
     transition: 0.4s;
-    color: #2980b9
+    color: #2980b9;
+    margin-right: 10px;
 }
 
 .box i:hover {
-    font-size: 25px;
-    padding: 5px 10px;
     cursor: pointer;
     transform: scale(1.2);
 }
 
+.box i.fas.fa-caret-down {
+    width: 30px;
+    height: 30px;
+    color: blue;
+    cursor: pointer;
+    text-align: center;
+}
+
+.box i.fas.fa-caret-right {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    color: blue;
+    cursor: pointer;
+}
+
 .box i.fas.fa-ban {
-    color: #e74c3c;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    color: white;
+    font-size: 25px;
     cursor: auto;
 }
 

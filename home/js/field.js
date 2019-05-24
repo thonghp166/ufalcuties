@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		dropdownicon.setAttribute("class", "dropdownicon fas fa-ban");
 		var element = document.createElement("input");
 		element.setAttribute("type", "checkbox");
+		element.setAttribute("class", "checkbox");
 		element.setAttribute("id", "_" + idArr[i]);
 		element.setAttribute("name", "_" + idArr[i]);
 		var text = document.createTextNode(" " + nameArr[i]);
