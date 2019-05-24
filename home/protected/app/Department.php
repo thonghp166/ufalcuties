@@ -10,6 +10,9 @@ class Department extends Model
 
     protected $fillable = [
     	'name',
-    	'childOf'
+    	'type',
+    	'address',
+    	'phone',
+    	'website'
     ];
 }

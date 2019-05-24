@@ -47,8 +47,7 @@ class TopicController extends Controller
                     'detail' => $detail,
                     'staff_id' => $id
                 ]);
-                $list = Staff::find($id)->topics;
-                return $list;
+                return redirect()->back();
                 // return $topic;
                 // return $request->input('action');
 
