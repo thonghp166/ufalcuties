@@ -5,8 +5,6 @@ use App\Staff;
 use App\Field;
 use App\Topic;
 use Illuminate\Support\Facades\Input;
-use Session;
-
 
 use Illuminate\Http\Request;
 
@@ -53,7 +51,7 @@ class StaffController extends Controller
 
         if (Staff::where('vnu_email', '=', $vnu_email) -> exists() 
             or Staff::where('account', '=', $account) -> exists()) {
-            return redirect()->route('staff.new')->withError('Trùng vnu mail hoặc trùng tài khoản')->withInput();
+            return redirect()->route('staff.new')->withError('Trùng vnu mail hoặc trùng tài khoản');
         } else {
             Staff::create([
                 'name' => $name,
@@ -126,7 +124,6 @@ class StaffController extends Controller
         ]);
         return redirect()->back()->with('status', 'Đã cập nhật thành công');
     }
-
 
     /**
      * Remove the specified resource from storage.
