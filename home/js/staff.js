@@ -1,3 +1,5 @@
+// javascript for staff
+
 document.addEventListener("DOMContentLoaded", function () {
 	
 	var changeavatar = document.getElementById("changeavatarbutton");
@@ -13,6 +15,24 @@ document.addEventListener("DOMContentLoaded", function () {
 		 layer[0].classList.remove('show');
 		 avatar[0].classList.remove('show');
 	}
+
+	var editbutton = document.getElementsByClassName("edit");
+	for (var i = 0; i < editbutton.length; i++) {
+		editbutton[i].onclick = function () {
+			var id = this.getAttribute("data-id");
+			console.log(id);
+		}
+	}
+
+
+	var deletebutton = document.getElementsByClassName("delete");
+	for (var i = 0; i < deletebutton.length; i++) {
+		deletebutton[i].onclick = function () {
+			var id = this.getAttribute("data-id");
+			console.log(id);
+		}
+	}
+
 	
 	var check = "under100"
 	window.addEventListener("scroll", function () {
