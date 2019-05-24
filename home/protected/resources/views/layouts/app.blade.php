@@ -37,16 +37,15 @@
                   </li>
                 @else
                 <li class="nav-item">
-                  <a class="nav-link" href="{{route('staff.info',['id' => Auth::user()->id])}}">
-                  Quản lý thông tin</a>
+                  <a class="nav-link" href="#" >Quản lý thông tin</a>
                 </li>   
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight: bold; font-style: italic;">
                       Xin chào {{Auth::user()->username}} !
                     </a>
                     <div class="dropdown-menu text-right" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="">Chỉnh sửa thông tin cá nhân</a>
-                      <a class="dropdown-item" href="#">Đổi mật khẩu</a>
+                      <a class="dropdown-item" href="{{route('staff.edit',['id' => Auth::user()->id])}}">Chỉnh sửa thông tin cá nhân</a>
+                      <a class="dropdown-item" href="{{route('password.reset',['token' => $this->token])}}">Đổi mật khẩu</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         Đăng xuất

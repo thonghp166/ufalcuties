@@ -821,6 +821,7 @@ class ComposerStaticInitd883d0ca5ea2a52a31a5d2c9f0c793cf
         'Faker\\UniqueGenerator' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/UniqueGenerator.php',
         'Faker\\ValidGenerator' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/ValidGenerator.php',
         'FieldSeeder' => __DIR__ . '/../..' . '/database/seeds/FieldSeeder.php',
+        'FieldStaffSeeder' => __DIR__ . '/../..' . '/database/seeds/FieldStaffSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
         'File_Iterator_Factory' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Factory.php',
