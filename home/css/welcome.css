@@ -3,6 +3,22 @@
     padding: 0px;
 }
 
+.moveleft {
+    transform: translateY(0px)!important;
+}
+
+.top {
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    font-size: 50px;
+    z-index: 6;
+    color: #e74c3c;
+    cursor: pointer;
+    transition: 0.4s;
+    transform: translateY(100px);
+}
+
 .more {
     position: absolute;
     top: 18%;
@@ -253,7 +269,7 @@ a.nav-link.loginbutton:hover {
 
 a.nav-link.loginbutton {
     border-radius: 20px;
-    background: #3498db;
+    background: #e74c3c;
     color: white!important;
     padding: 10px 20px!important;
 }

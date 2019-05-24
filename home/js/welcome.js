@@ -4,6 +4,10 @@ $(function() {
 		var fontheight = 80;
 		$('html, body').animate({scrollTop: content.offset().top - fontheight}, 1000);
 	});
+
+	$('.top').click(function(event) {
+		$('html, body').animate({scrollTop: 0}, 1000);
+	});
 });
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -21,6 +25,23 @@ document.addEventListener("DOMContentLoaded", function () {
 				var bar = document.getElementById("bar");
 				bar.classList.remove("zoomin");
 				check = "under100";	
+			}
+		}
+	}, false);
+	
+	var check1 = "under800"
+	window.addEventListener("scroll", function () {
+		if (window.pageYOffset > 800) {
+			if (check1 == "under800") {
+				var top = document.querySelector(".top");
+				top.classList.add("moveleft");
+				check1 = "above800";
+			}
+		} else {
+			if (check1 == "above800") {
+				var top = document.querySelector(".top");
+				top.classList.remove("moveleft");
+				check1 = "under800";	
 			}
 		}
 	}, false);
