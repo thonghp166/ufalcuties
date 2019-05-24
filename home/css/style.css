@@ -10,7 +10,6 @@
 .box {
     font-size: 18px;
     font-weight: 500;
-    font-style: italic;
 }
 
 .box i {
@@ -18,6 +17,7 @@
     padding: 5px 10px;
     cursor: pointer;
     transition: 0.4s;
+    color: #2980b9
 }
 
 .box i:hover {
@@ -32,14 +32,6 @@
     cursor: auto;
 }
 
-.box i.fas.fa-minus-circle {
-    color: green;
-    cursor: auto;
-}
-
-.box i.fas.fa-plus-circle {
-    color: #2980b9;
-}
 
 .zoomin {
     margin-top: 0px!important;

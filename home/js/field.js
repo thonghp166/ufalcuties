@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		var result = find(allId[i], allParent);
 		if (result == true) {
 			var boxelement = document.querySelector(".box" + allId[i] + " .dropdownicon");
-			boxelement.setAttribute("class", "dropdownicon fas fa-minus-circle");
+			boxelement.setAttribute("class", "dropdownicon fas fa-caret-down");
 		}
 	}
 
@@ -41,8 +41,8 @@ document.addEventListener("DOMContentLoaded", function () {
 	for (var i = 0; i < dropdown.length; i++) {
 		dropdown[i].onclick = function () {
 			if (this.getAttribute("class") != "dropdownicon fas fa-ban") {
-				this.classList.toggle("fa-minus-circle");
-				this.classList.toggle("fa-plus-circle");
+				this.classList.toggle("fa-caret-down");
+				this.classList.toggle("fa-caret-right");
 				var id = this.parentNode.getAttribute("data-id");
 				for (var i = 0; i < dropdown.length; i++) {
 					if (dropdown[i].parentNode.getAttribute("data-parent") == id) {

@@ -113,7 +113,7 @@
 	                  		</script>
 	                  	<?php else: ?>
 	                  		<div class="rootparent box box{{$element->id}}" data-parent="0" data-id="{{$element->id}}">
-	                  			<i class="dropdownicon fas fa-minus-circle"></i>
+	                  			<i class="dropdownicon fas fa-caret-down"></i>
 	                  			<input type="checkbox" id="_{{$element->id}}" name="_{{$element->id}}"> {{$element->name}}
 	                  		</div>
 						<?php endif ?>
