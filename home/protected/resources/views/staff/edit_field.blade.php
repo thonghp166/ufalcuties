@@ -107,6 +107,7 @@
 	                  		</script>
 	                  	<?php else: ?>
 	                  		<div id="box{{$element->id}}" class="rootparent">
+	                  			<i class="dropdownicon"></i>
 	                  			<input type="checkbox" id="_{{$element->id}}" name="_{{$element->id}}">{{$element->name}}
 	                  		</div>
 						<?php endif ?>

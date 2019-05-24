@@ -17,15 +17,26 @@ document.addEventListener("DOMContentLoaded", function () {
 		var boxmargin = 30;
 		box.style.marginLeft = boxmargin + 'px';
 		
+		var dropdownicon = document.createElement("i");
+		dropdownicon.setAttribute("class", "dropdownicon");
 		var element = document.createElement("input");
 		element.setAttribute("type", "checkbox");
 		element.setAttribute("id", "_" + idArr[i]);
 		element.setAttribute("name", "_" + idArr[i]);
 		var text = document.createTextNode(nameArr[i]);
+		box.appendChild(dropdownicon);
 		box.appendChild(element);
 		box.appendChild(text);
 		parent.appendChild(box);
 	}
+
+	// for (var i = 0; i < idArr.length; i++) {
+	// 	var node = document.getElementById("box" + idArr[i]);
+	// 	if (node.hasChildNodes()) {
+	// 		var icon = node.childNodes[0];
+	// 		icon.setAttribute("class", "dropdownicon" + " fas fa-plus-circle");
+	// 	}
+	// }
 
 	var check = "under100"
 	window.addEventListener("scroll", function () {
