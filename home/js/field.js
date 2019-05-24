@@ -11,17 +11,20 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 
 	for (var i = 0; i < idArr.length; i++) {
-		var parent = document.getElementById("box" + childArr[i]);
+		var parent = document.querySelector(".box" + childArr[i]);
 		var box = document.createElement("div");
-		box.setAttribute("id", "box" + idArr[i]);
+		box.setAttribute("class", "box box" + idArr[i]);
 		var boxmargin = 30;
 		box.style.marginLeft = boxmargin + 'px';
 		
+		var dropdownicon = document.createElement("i");
+		dropdownicon.setAttribute("class", "dropdownicon");
 		var element = document.createElement("input");
 		element.setAttribute("type", "checkbox");
 		element.setAttribute("id", "_" + idArr[i]);
 		element.setAttribute("name", "_" + idArr[i]);
 		var text = document.createTextNode(nameArr[i]);
+		box.appendChild(dropdownicon);
 		box.appendChild(element);
 		box.appendChild(text);
 		parent.appendChild(box);
