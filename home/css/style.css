@@ -3,6 +3,44 @@
     padding: 0px;
 }
 
+.hide {
+    display: none;
+}
+
+.box {
+    font-size: 18px;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.box i {
+    font-size: 25px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.box i:hover {
+    font-size: 25px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.box i.fas.fa-ban {
+    color: #e74c3c;
+    cursor: auto;
+}
+
+.box i.fas.fa-minus-circle {
+    color: green;
+    cursor: auto;
+}
+
+.box i.fas.fa-plus-circle {
+    color: #2980b9;
+}
+
 .zoomin {
     margin-top: 0px!important;
     border-radius: 0px!important;

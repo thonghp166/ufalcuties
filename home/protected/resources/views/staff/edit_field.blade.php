@@ -112,9 +112,9 @@
 	                  			var childLength = childArr.push(<?php echo $element->childOf ?>);
 	                  		</script>
 	                  	<?php else: ?>
-	                  		<div class="rootparent box box{{$element->id}}">
-	                  			<i class="dropdownicon fas fa-plus-circle"></i>
-	                  			<input type="checkbox" id="_{{$element->id}}" name="_{{$element->id}}">{{$element->name}}
+	                  		<div class="rootparent box box{{$element->id}}" data-parent="0" data-id="{{$element->id}}">
+	                  			<i class="dropdownicon fas fa-minus-circle"></i>
+	                  			<input type="checkbox" id="_{{$element->id}}" name="_{{$element->id}}"> {{$element->name}}
 	                  		</div>
 						<?php endif ?>
                   	<?php endforeach ?>
