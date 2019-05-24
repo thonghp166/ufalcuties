@@ -97,8 +97,8 @@
 	                      <td>{{$element->name}}</td>
 	                      <td>{{$element->detail}}</td>
 	                      <td>
-	                        <button type="submit" name="action" value="edit" class="btn btn-primary">Sửa</button>
-	                        <button type="submit" name="action" value="delete"class="btn btn-danger">Xóa</button>
+	                        <span class="btn btn-primary edit" data-id="{{$element->id}}" data-name="{{$element->name}}" data-detail="{{$element->detail}}" style="color: white!important; font-weight: normal; font-style: italic;">Sửa</span>
+	                        <span class="btn btn-danger delete" data-id="{{$element->id}}" data-name="{{$element->name}}" data-detail="{{$element->detail}}" style="color: white!important; font-weight: normal; font-style: italic;">Xóa</span>
 	                      </td>
 	                    </tr>
                     <?php endforeach ?>
@@ -132,7 +132,7 @@
                   <label for="detail">Mô tả chủ đề</label>
                 </div>
                 <div class="col-7">
-                  <textarea name="detail" id="detail" cols="" rows="" style="width: 100%;height: 100px;"></textarea>
+                  <textarea name="detail" id="detail" cols="" rows="" style="width: 100%;height: 100px; padding: 5px 10px;"></textarea>
                 </div>              
               </fieldset>
               <fieldset>
@@ -161,6 +161,6 @@
   <script type="text/javascript" src="{{URL::asset('js/jquery-3.3.1.slim.min.js')}}"></script>
   <script type="text/javascript" src="{{URL::asset('js/popper.min.js')}}"></script>
   <script type="text/javascript" src="{{URL::asset('js/bootstrap.min.js')}}"></script>
-  <script type="text/javascript" src="{{URL::asset('js/staff.js')}}"></script>
+  <script type="text/javascript" src="{{URL::asset('js/topic.js')}}"></script>
 </body>
 </html>

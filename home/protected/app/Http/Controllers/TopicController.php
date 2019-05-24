@@ -59,9 +59,6 @@ class TopicController extends Controller
             // case 'delete':
             //     $this->destroy($request);
             //     break;
-
-            case 'edit':
-                return $request->input('action');
         }
         
     }
