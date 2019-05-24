@@ -31,8 +31,7 @@
     transition: 0.4s;
 }
 
-.more a {
-    text-decoration: none;
+.more p {
     color: white;
     border-radius: 20px;
     background: #3498db;
@@ -95,6 +94,7 @@
 }
 
 .text-left.item:hover .more {
+    cursor: auto;
     opacity: 1;
 }
 

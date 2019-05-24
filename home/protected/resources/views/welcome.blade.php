@@ -39,14 +39,14 @@
             </div>
             <div class="transperantlayer"></div>
             <div class="content">
-              <h3>Đơn vị: {{$element->name}}</h3>
-              <h4>Loại đơn vị  : {{$element->type}}</h4>
-              <h4>Địa chỉ      : {{$element->address}}</h4>
-              <h4>Số điện thoại: {{$element->phone}}</h4>
-              <h4>Website      : {{$element->website}}</h4>
+              <p class="departmentname">Đơn vị: {{$element->name}}</p>
+              <p class="departmenttype">Loại đơn vị: {{$element->type}}</p>
+              <p class="departmentaddress">Địa chỉ: {{$element->address}}</p>
+              <p class="departmentphone">Số điện thoại: {{$element->phone}}</p>
+              <p class="departmentwebsite">Website: {{$element->website}}</p>
             </div>
             <div class="more">
-              <a href="">Chi tiết</a>
+              <p>Chi tiết</p>
             </div>            
           </div>
         </div>
@@ -90,7 +90,7 @@
               <h4>{{$element->childOf}}</h4>
             </div>
             <div class="more">
-              <a href="">Chi tiết</a>
+              <p>Chi tiết</p>
             </div>
           </div>
         </div>
@@ -140,7 +140,7 @@
               <h4>{{$element->address}}</h4>
             </div>
             <div class="more">
-              <a href="">Chi tiết</a>
+              <p>Chi tiết</p>
             </div>
           </div>
         </div>
