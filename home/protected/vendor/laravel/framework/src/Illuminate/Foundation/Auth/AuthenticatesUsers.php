@@ -130,9 +130,10 @@ trait AuthenticatesUsers
             return response()->json($errors, 422);
         }
 
-        return redirect()->back()
-            ->withInput($request->only($this->username(), 'remember'))
-            ->withErrors($errors);
+        return redirect()->back()->
+            // ->withInput($request->only($this->username(), 'remember'))
+            // ->withErrors($errors);
+            with('error', trans('auth.failed'));
     }
 
     /**

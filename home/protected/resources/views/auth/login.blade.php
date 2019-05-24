@@ -33,11 +33,11 @@
                             {{ csrf_field() }}
                                 <fieldset class="{{ $errors->has('username') ? ' has-error' : '' }}">
                                     <input placeholder="Nhập username" id="username" type="username" name="username" value="{{ old('username') }}" required autofocus>
-                                    @if ($errors->has('username'))
+                                    <!-- @if ($errors->has('username'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('username') }}</strong>
                                         </span>
-                                    @endif
+                                    @endif -->
                                 </fieldset>
                                 <fieldset>
                                     <div class="line" style="width: 60%;height: 2px;background: #3498db;display: block;margin: auto;"></div>

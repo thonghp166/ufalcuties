@@ -6,7 +6,6 @@ use App\Field;
 use App\Topic;
 use Illuminate\Support\Facades\Input;
 
-
 use Illuminate\Http\Request;
 
 class StaffController extends Controller
@@ -52,7 +51,7 @@ class StaffController extends Controller
 
         if (Staff::where('vnu_email', '=', $vnu_email) -> exists() 
             or Staff::where('account', '=', $account) -> exists()) {
-            return redirect()->route('staff.new')->withError('Trùng vnu mail hoặc trùng tài khoản')->withInput();
+            return redirect()->route('staff.new')->withError('Trùng vnu mail hoặc trùng tài khoản');
         } else {
             Staff::create([
                 'name' => $name,

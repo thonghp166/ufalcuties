@@ -35,7 +35,8 @@
           <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{{route('password.change')}}">Đổi mật khẩu</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            <a class="dropdown-item" href="{{ route('logout') }}" 
+              onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
               Đăng xuất
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -111,9 +112,8 @@
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
                     {{ session('status') }}
                   </div>
-                @endif
-                @if (session('error'))
-                  <div class="alert alert-error" style="display: block; margin-top: 30px;transition: 0.4s;">
+                @elseif (session('error'))
+                  <div class="alert alert-danger" style="display: block; margin-top: 30px;transition: 0.4s;">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
                     {{ session('error') }}
                   </div>

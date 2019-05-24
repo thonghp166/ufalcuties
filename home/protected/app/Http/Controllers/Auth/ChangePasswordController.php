@@ -34,7 +34,7 @@ class ChangePasswordController extends Controller
         ];
     	$user = User::find(auth()->user()->id);
     	if(!Hash::check($data['old_password'], $user->password)){
-         	return back()->with('error','Đổi mật khẩu không thành công');
+         	return redirect()->back()->with('error', 'Đổi mật khẩu không thành công');
     	} else {
        		$user->update([
        			'password' => bcrypt($data['new_password'])
