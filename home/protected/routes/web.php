@@ -4,7 +4,7 @@ Route::get('/',[
 	'as' => 'home',
 	'uses' => 'HomeController@index'
 ]);
-
+Route::get('/home','HomeController@index');
 Route::get('/staff','StaffController@index');
 Route::get('/staff/{id}',[
 	'as' => 'staff.info',

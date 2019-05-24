@@ -44,16 +44,19 @@
                                 </fieldset>
                                 <fieldset class="{{ $errors->has('password') ? ' has-error' : '' }}">
                                     <input placeholder="Nhập mật khẩu" id="password" type="password"name="password" required>
-                                    @if ($errors->has('password'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('password') }}</strong>
-                                        </span>
-                                    @endif
+                                    
                                 </fieldset>
                                 <fieldset class="rememberbox">
                                     <input type="checkbox" {{ old('remember') ? 'checked' : '' }} class="custom-checkbox rememberbutton"> Duy trì đăng nhập
                                 </fieldset>
                                 <fieldset>
+                                    @if(session('error'))
+                                        <div class="alert alert-danger" style="display: block; margin-top: 30px;transition: 0.4s;">
+                                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
+                                        {{ session('error') }}
+                                        </div>
+                                    @endif
+
                                     <div class="submit">
                                     <button type="submit" class="btn btn-primary">
                                         <i class="fas fa-arrow-alt-circle-right"></i>
