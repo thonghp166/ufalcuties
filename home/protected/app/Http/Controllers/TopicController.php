@@ -36,13 +36,21 @@ class TopicController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function addTopic(Request $request)
+    public function addTopic(Request $request,$id)
     {
         switch ($request->input('action')) {
             case 'new':
                 $name = $request->input('name');
                 $detail = $request->input('detail');
-                return $request->input('action');
+                $topic = Topic::create([
+                    'name' => $name,
+                    'detail' => $detail,
+                    'staff_id' => $id
+                ]);
+                $list = Staff::find($id)->topics;
+                return $list;
+                // return $topic;
+                // return $request->input('action');
 
             case 'update':
                 $name = $request->input('name');
@@ -59,16 +67,6 @@ class TopicController extends Controller
         
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.

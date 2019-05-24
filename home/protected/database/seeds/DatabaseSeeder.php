@@ -17,9 +17,24 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
        $data = [
+          [
+            'name'=> 'Administrator',
+            'account' => 'admin',
+            'user_id' => 1,
+            'staff_type' => 'Administrator',
+            'vnu_email' => '16020286@vnu.edu.vn',
+            'code' => 'THONGLT',
+            'work_unit' => 'FIT',
+            'phone' => '0356859900',
+            'gmail' => 'thonghp11@gmail.com',
+            'website' => 'fb.com/tt166',
+            'address' => 'My Dinh',
+            'degree' => 'None'
+          ],
        		[
        			'name'=> 'Lê Đình Thanh',
        			'account' => 'thanhld',
+            'user_id' => 3,
        			'staff_type' => 'Giảng viên',
        			'vnu_email' => 'thanld@vnu.edu.vn',
        			'code' => 'FIT01',
@@ -33,6 +48,7 @@ class DatabaseSeeder extends Seeder
        		[
        			'name'=> 'Hoàng Xuân Tùng',
        			'account' => 'tunghx',
+            'user_id' => 2,
        			'staff_type' => 'Giảng viên',
        			'vnu_email' => 'tunghx@vnu.edu.vn',
        			'code' => 'FIT02',

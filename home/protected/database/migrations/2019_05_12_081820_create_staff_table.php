@@ -15,13 +15,13 @@ class CreateStaffTable extends Migration
     {
         Schema::create('staff', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unique()->nullable();
+            $table->integer('user_id')->unique()->unsigned();
             $table->string('name');
-            $table->string('code');
+            $table->string('code')->nullable();
             $table->string('account')->unique();
             $table->string('staff_type')->nullable();
             $table->string('work_unit')->nullable();
-            $table->string('degree');
+            $table->string('degree')->nullable();
             $table->string('phone')->nullable();
             $table->string('vnu_email')->unique();
             $table->string('gmail')->unique()->nullable();

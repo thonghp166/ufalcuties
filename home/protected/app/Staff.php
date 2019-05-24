@@ -10,6 +10,7 @@ class Staff extends Model
 
     protected $fillable = [
     	'name',
+        'user_id',
         'code', 
        	'account', 
         'vnu_email',

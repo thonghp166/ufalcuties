@@ -10,7 +10,8 @@ class Topic extends Model
 
     protected $fillable = [
     	'name',
-        'detail'
+        'detail',
+        'staff_id'
     ];
 
     public function staff()

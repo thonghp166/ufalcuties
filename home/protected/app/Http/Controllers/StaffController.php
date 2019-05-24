@@ -51,7 +51,6 @@ class StaffController extends Controller
         $degree = $request->input('degree');
         $work_unit = $request->input('work_unit');
 
-
         if (Staff::where('vnu_email', '=', $vnu_email) -> exists() 
             or Staff::where('account', '=', $account) -> exists()) {
             return redirect()->route('staff.new')->withError('Trùng vnu mail hoặc trùng tài khoản')->withInput();

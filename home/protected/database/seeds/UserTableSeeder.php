@@ -12,16 +12,22 @@ class UserTableSeeder extends Seeder
     public function run()
     {
        $data = [
-       		[
-       			'username'=> 'fit',
-       			'password' => bcrypt('fit123'),
-       			'level'=> 1
-       		],
+       		
        		[
        			'username'=> 'admin',
-       			'password' => bcrypt('admin123'),
-       			'level'=> 1
+       			'password' => bcrypt('admin4321'),
+       			'level'=> 0
        		],
+          [
+            'username'=> 'fit',
+            'password' => bcrypt('fit123'),
+            'level'=> 1
+          ],
+          [
+            'username'=> 'thanld',
+            'password' => bcrypt('abc123'),
+            'level'=> 0
+          ],
        ];
        DB::table('users')->insert($data);
     }
