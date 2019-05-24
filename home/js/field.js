@@ -1,9 +1,6 @@
 // javascript for field
 
 document.addEventListener("DOMContentLoaded", function () {
-	console.log(idArr);
-	console.log(nameArr);
-	console.log(childArr);
 	
 	var boxparent = document.getElementsByClassName("rootparent");
 	for (var i = 0; i < boxparent.length; i++) {
@@ -28,6 +25,23 @@ document.addEventListener("DOMContentLoaded", function () {
 		box.appendChild(element);
 		box.appendChild(text);
 		parent.appendChild(box);
+	}
+
+	for (var i = 0; i < allId.length; i++) {
+		var result = find(allId[i], allParent);
+		if (result == true) {
+			var boxelement = document.querySelector(".box" + allId[i] + " .dropdownicon");
+			boxelement.setAttribute("class", "dropdownicon fas fa-plus-circle");
+		}
+	}
+
+	function find (value, array) {
+		for (var i = 0; i < array.length; i++) {
+			if (array[i] == value) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	var check = "under100"

@@ -97,11 +97,13 @@
                   		var idArr = [];
                   		var nameArr = [];
                   		var childArr = [];
-                  		var all = [];
+                  		var allId = [];
+                  		var allParent = [];
                   	</script>
                   	<?php foreach ($fields as $element): ?>
                   		<script>
-                  			
+                  			var allParentLength = allParent.push(<?php echo $element->childOf ?>);
+                  			var allIdLength = allId.push(<?php echo $element->id ?>);
                   		</script>
                   		<?php if ($element->childOf != 0): ?>
 	                  		<script>
