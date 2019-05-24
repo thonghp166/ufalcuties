@@ -11,9 +11,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 
 	for (var i = 0; i < idArr.length; i++) {
-		var parent = document.getElementById("box" + childArr[i]);
+		var parent = document.querySelector(".box" + childArr[i]);
 		var box = document.createElement("div");
-		box.setAttribute("id", "box" + idArr[i]);
+		box.setAttribute("class", "box box" + idArr[i]);
 		var boxmargin = 30;
 		box.style.marginLeft = boxmargin + 'px';
 		
@@ -29,14 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
 		box.appendChild(text);
 		parent.appendChild(box);
 	}
-
-	// for (var i = 0; i < idArr.length; i++) {
-	// 	var node = document.getElementById("box" + idArr[i]);
-	// 	if (node.hasChildNodes()) {
-	// 		var icon = node.childNodes[0];
-	// 		icon.setAttribute("class", "dropdownicon" + " fas fa-plus-circle");
-	// 	}
-	// }
 
 	var check = "under100"
 	window.addEventListener("scroll", function () {

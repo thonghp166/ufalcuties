@@ -97,8 +97,12 @@
                   		var idArr = [];
                   		var nameArr = [];
                   		var childArr = [];
+                  		var all = [];
                   	</script>
                   	<?php foreach ($fields as $element): ?>
+                  		<script>
+                  			
+                  		</script>
                   		<?php if ($element->childOf != 0): ?>
 	                  		<script>
 	                  			var idLength = idArr.push(<?php echo $element->id ?>);
@@ -106,8 +110,8 @@
 	                  			var childLength = childArr.push(<?php echo $element->childOf ?>);
 	                  		</script>
 	                  	<?php else: ?>
-	                  		<div id="box{{$element->id}}" class="rootparent">
-	                  			<i class="dropdownicon"></i>
+	                  		<div class="rootparent box box{{$element->id}}">
+	                  			<i class="dropdownicon fas fa-plus-circle"></i>
 	                  			<input type="checkbox" id="_{{$element->id}}" name="_{{$element->id}}">{{$element->name}}
 	                  		</div>
 						<?php endif ?>
