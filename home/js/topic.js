@@ -4,9 +4,11 @@ document.addEventListener("DOMContentLoaded", function () {
 	
 	var editbutton = document.getElementsByClassName("edit"),
 			topic = document.getElementById("name"),
-			description = document.getElementById("detail");
+			description = document.getElementById("detail"),
+			topic_id = document.getElementById("topic_id");
 	for (var i = 0; i < editbutton.length; i++) {
 		editbutton[i].onclick = function () {
+			topic_id.value = this.getAttribute("data-id");
 			topic.value = this.getAttribute("data-name");
 			description.value = this.getAttribute("data-detail");
 		}

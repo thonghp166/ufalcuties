@@ -119,6 +119,15 @@
               <fieldset class="form-group">
                 <div class="row">
                   <div class="col-4 text-right">
+                  </div>
+                  <div class="col-7">
+                    <input type="text" class="form-control" id="topic_id" name="topic_id" hidden="">
+                  </div>
+                </div>
+              </fieldset>
+              <fieldset class="form-group">
+                <div class="row">
+                  <div class="col-4 text-right">
                     <label for="name">Chủ đề quan tâm mới</label>
                   </div>
                   <div class="col-7">
