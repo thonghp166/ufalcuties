@@ -32,7 +32,7 @@
             Xin chào {{Auth::user()->username}} !
           </a>
           <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Đổi mật khẩu</a>
+            <a class="dropdown-item" href="{{route('password.change')}}">Đổi mật khẩu</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
               Đăng xuất

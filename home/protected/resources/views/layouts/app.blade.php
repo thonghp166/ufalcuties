@@ -45,7 +45,7 @@
                     </a>
                     <div class="dropdown-menu text-right" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item" href="{{route('staff.edit',['id' => Auth::user()->id])}}">Chỉnh sửa thông tin cá nhân</a>
-                      <a class="dropdown-item" href="{{route('password.reset',['token' => $this->token])}}">Đổi mật khẩu</a>
+                      <a class="dropdown-item" href="{{route('password.change')}}">Đổi mật khẩu</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         Đăng xuất
