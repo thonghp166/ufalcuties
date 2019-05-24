@@ -30,14 +30,16 @@
               <li class="nav-item active">
                 <a class="nav-link" href="#">Trang chủ<span class="sr-only">(current)</span></a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Quản lý thông tin</a>
-              </li>              
+                         
               @if (Auth::guest())
                     <li class="nav-item">
                         <a class="nav-link loginbutton" href="{{route('login')}}">Đăng nhập</a>
                   </li>
                 @else
+                <li class="nav-item">
+                  <a class="nav-link" href="{{route('staff.info',['id' => Auth::user()->id])}}">
+                  Quản lý thông tin</a>
+                </li>   
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight: bold; font-style: italic;">
                       Xin chào {{Auth::user()->username}} !

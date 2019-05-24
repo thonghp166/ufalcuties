@@ -3,7 +3,10 @@
 Route::get('/','HomeController@index');
 
 Route::get('/staff','StaffController@index');
-Route::get('/staff/{id}','StaffController@show');
+Route::get('/staff/{id}',[
+	'as' => 'staff.info',
+	'uses' => 'StaffController@show'
+]);
 // Route::get('/staff/create','StaffController@create');
 
 // post('/staff/new', 

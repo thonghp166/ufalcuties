@@ -49,16 +49,22 @@ class TopicController extends Controller
                 ]);
                 return redirect()->back();
                 // return $topic;
-                // return $request->input('action');
+                // return $request->input('topic_id');
 
             case 'update':
                 $name = $request->input('name');
                 $detail = $request->input('detail');
-                return $request->input('action');
+                $id_topic = $request->input('topic_id');
+                $topic = Topic::find($id_topic);
+                $topic->update([
+                    'name' => $name,
+                    'detail' => $detail
+                ]);
+                return redirect()->back();
 
-            // case 'delete':
-            //     $this->destroy($request);
-            //     break;
+            case 'delete':
+                Topic::destroy($request->input('topic_id'));
+                return redirect()->back();
         }
         
     }
