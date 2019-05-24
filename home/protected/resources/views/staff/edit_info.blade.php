@@ -180,7 +180,7 @@
                 </div>
               </fieldset>
               <div class="text-center">
-                <button type="submit" class="btn btn-primary">Gửi</button>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Gửi</button>
                 @if (session('status'))
                   <div class="alert alert-success" style="display: block; margin-top: 30px; position: fixed; top: 100px; right: 10%; z-index: 4; transition: 0.4s;">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 

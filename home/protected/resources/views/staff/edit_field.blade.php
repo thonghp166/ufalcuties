@@ -79,6 +79,17 @@
 				  </div>
                 </div>
               </fieldset>
+              </fieldset>
+                <div class="line">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-4"></div>
+                      <div class="col-4" style="height: 2px; background: #3498db; margin-top: 20px; margin-bottom: 30px;"></
+                      <div class="col-4"></div>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
               <fieldset class="form-group">
                 <div class="row">
                   <div class="col-12 ml-5 mr-5">
