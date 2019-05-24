@@ -97,7 +97,7 @@
 	                      <td>{{$element->name}}</td>
 	                      <td>{{$element->detail}}</td>
 	                      <td>
-	                        <span class="btn btn-primary edit" data-id="{{$element->id}}" data-name="{{$element->name}}" data-detail="{{$element->detail}}" style="color: white!important; font-weight: normal; font-style: italic;">Sửa</span>
+	                        <span class="btn btn-primary edit" data-id="{{$element->id}}" data-name="{{$element->name}}" data-detail="{{$element->detail}}" style="color: white!important; font-weight: normal; font-style: italic;"><i class="fas fa-edit"></i> Sửa</span>
 	                      </td>
 	                    </tr>
                     <?php endforeach ?>
@@ -155,9 +155,9 @@
                 </div>
               </fieldset>
               <div class="text-center">
-                <button type="submit" name="action" value="new" class="btn btn-primary">Thêm mới</button>
-                <button type="submit" name="action" value="update" class="btn btn-success">Cập nhật</button>
-                <button type="submit" name="action" value="delete" class="btn btn-danger">Xóa</button>
+                <button type="submit" name="action" value="new" class="btn btn-primary"><i class="fas fa-plus-square"></i> Thêm mới</button>
+                <button type="submit" name="action" value="update" class="btn btn-success"><i class="fas fa-pen-square"></i> Cập nhật</button>
+                <button type="submit" name="action" value="delete" class="btn btn-danger"><i class="fas fa-trash"></i> Xóa</button>
               </div>            
             </div>
             </div>            
