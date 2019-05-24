@@ -45,5 +45,12 @@ Route::get('/department','DepartmentController@index');
 Route::get('/field','FieldController@index');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('password/change',[
+	'as' => 'password.change',
+	'uses' => 'Auth\ChangePasswordController@showChangePasswordForm'
+]);
+Route::post('password/change', [
+	'as' => 'password.change',
+	'uses' => 'Auth\ChangePasswordController@change'
+]);
+Route::get('/', 'HomeController@index')->name('home');
