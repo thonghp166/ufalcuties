@@ -68,8 +68,6 @@ Route::post('password/change', [
 // 	'uses' => 'AdminController@index'
 // ]);
 
-Route::group(['middleware' => 'CheckAdminLogin', 'prefix' => 'admin', 'namespace' => 'Admin'], function() {
-	Route::get('/', function() {
-		return view('admin.home');
-	})->name('admin.home');
+Route::group(['middleware' => 'CheckAdminLogin', 'prefix' => 'admin'], function() {
+	Route::get('/', 'AdminController@index')->name('admin.home');
 });
