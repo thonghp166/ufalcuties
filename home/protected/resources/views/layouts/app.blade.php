@@ -27,7 +27,7 @@
           <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto mr-5">
               <li class="nav-item active">
-                <a class="nav-link" href="#">Trang chủ<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{{route('home')}}">Trang chủ<span class="sr-only">(current)</span></a>
               </li>
                          
               @if (Auth::guest())
