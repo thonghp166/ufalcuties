@@ -26,7 +26,7 @@ class User extends Authenticatable {
         'password', 'remember_token',
     ];
 
-    public function account(){
+    public function staff(){
         return $this->hasOne('App\Staff');
     }
 }
