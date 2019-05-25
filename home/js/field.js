@@ -3,6 +3,7 @@
 document.addEventListener("DOMContentLoaded", function () {
 	
 	var boxparent = document.getElementsByClassName("rootparent");
+	
 	for (var i = 0; i < boxparent.length; i++) {
 		boxparent[i].style.marginLeft = '30px';
 	}
@@ -30,8 +31,25 @@ document.addEventListener("DOMContentLoaded", function () {
 		parent.appendChild(box);
 	}
 
+	function checkedEvent (checkbox) {
+		var id = checkbox.parentNode.getAttribute("data-id");
+			for (var i = 0; i < allId.length; i++) {
+				var _checkbox = document.getElementById("_" + allId[i]);
+				var parent = _checkbox.parentNode.getAttribute("data-parent");
+				if (parent == id) {
+					_checkbox.checked = checkbox.checked;
+					checkedEvent(_checkbox);
+			}
+		} 
+	}
+
 	for (var i = 0; i < allId.length; i++) {
 		
+		var checkbox = document.getElementById("_" + allId[i]);
+			checkbox.onchange = function () {
+				checkedEvent(this);
+			}
+
 		var result = find(allId[i], allParent);
 		if (result == true) {
 			var boxelement = document.querySelector(".box" + allId[i] + " .dropdownicon");
