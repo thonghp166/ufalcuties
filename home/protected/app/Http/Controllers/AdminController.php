@@ -18,7 +18,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-    	$user = User::all();
+    	$user = User::where('level','=',0);
     	$field = Field::all();
     	$department = Department::all();
         return view('admin.home')-> with(compact('department'))
