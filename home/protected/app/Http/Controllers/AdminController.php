@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Field;
+use App\Department;
+
+
 
 class AdminController extends Controller
 {
@@ -13,7 +18,12 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.home');
+    	$user = User::all();
+    	$field = Field::all();
+    	$department = Department::all();
+        return view('admin.home')-> with(compact('department'))
+                               	 -> with(compact('field'))
+                                 -> with(compact('user'));
     }
 
     
