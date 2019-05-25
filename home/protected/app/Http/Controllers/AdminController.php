@@ -18,14 +18,11 @@ class AdminController extends Controller
      */
     public function index()
     {
-    	// $user = User::where('level','=',0);
-        $user = User::all();
+    	$user = User::where('level','=',0)->get();
     	$field = Field::all();
     	$department = Department::all();
         return view('admin.home')-> with(compact('department'))
                                	 -> with(compact('field'))
                                  -> with(compact('user'));
     }
-
-    
 }
