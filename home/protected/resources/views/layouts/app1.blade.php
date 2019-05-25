@@ -31,14 +31,16 @@
                 <a class="nav-link" href="{{route('home')}}">Trang chủ<span class="sr-only">(current)</span></a>
               </li>
                          
-              @if (Auth::guest())
-                    <li class="nav-item">
+             @if (Auth::guest())
+                  <li class="nav-item">
                         <a class="nav-link loginbutton" href="{{route('login')}}">Đăng nhập</a>
                   </li>
-                @else
-                <li class="nav-item">
-                  <a class="nav-link" href="" >Quản lý thông tin</a>
-                </li>   
+              @else
+                @if (Auth::user()->level == 1)
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{route('admin.home')}}" >Quản lý thông tin</a>
+                  </li> 
+                @endif  
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight: bold; font-style: italic;">
                       Xin chào {{Auth::user()->username}} !

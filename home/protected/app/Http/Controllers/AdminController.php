@@ -25,6 +25,4 @@ class AdminController extends Controller
                                	 -> with(compact('field'))
                                  -> with(compact('user'));
     }
-
-    
 }
