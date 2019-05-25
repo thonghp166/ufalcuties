@@ -48,10 +48,6 @@ Route::post('/staff/{id}/topic',[
 	'as' => 'staff.update.topic',
 	'uses' => 'TopicController@update'
 ]);
-
-Route::get('/topic', 'TopicController@create');
-
-Route::get('/department','DepartmentController@index');
 //get('/department/new','DepartmentController@create');
 //post('department','DepartmentController@store');
 
@@ -71,7 +67,15 @@ Route::post('password/change', [
 
 Route::group(['middleware' => 'CheckAdminLogin', 'prefix' => 'admin'], function() {
 	Route::get('/', 'AdminController@index')->name('admin.home');
-	Route::post('/','AdminController@addDepartment')->name('admin.add.department');
 	Route::post('/','AdminController@addField')->name('admin.add.field');
 	Route::post('/','AdminController@addUser')->name('admin.add.user');
+	Route::post('/','AdminController@deleteUser')->name('admin.delete.user');
+	Route::post('/','AdminController@updateUser')->name('admin.update.user');
+
+	Route::post('/','DepartmentController@store')->name('admin.add.department');
+	Route::post('/{id}','DepartmentController@delete')->name('admin.delete.department');
+	Route::post('/','DepartmentController@update')->name('admin.update.department');
+
+	Route::post('/','AdminController@add')->name('admin.add.user');
+
 });

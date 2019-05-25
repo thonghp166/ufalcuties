@@ -19,48 +19,21 @@ class DepartmentController extends Controller
         return view('department',compact('department'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('department.create');
-    }
 
-    public function store(){
-        $name = Input::get('name');
-        $childOf = Input::get('childOf');
+    public function store(Request $request){
+        $name = $request->input('name');
+        $type = $request->input('type');
+        $address = $request->input('address');
+        $phone = $request->input('phone');
+        $website = $request->input('website');
         Department::create([
             'name' => $name,
-            'childOf' => $childOf
+            'type' => $type,
+            'address' => $address,
+            'phone' => $phone,
+            'website' => $website
         ]);
-        return redirect()->route('department');
-    }
-
-    
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //    
+        return redirect()->route('admin.home')->with('status','Đã thêm mới thành công');
     }
 
     /**
@@ -70,9 +43,24 @@ class DepartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $department = Department::find($request->input('id'));
+        $name = $request->input('name');
+        $type = $request->input('type');
+        $address = $request->input('address');
+        $phone = $request->input('phone');
+        $website = $request->input('website');
+
+        $department->update([
+            'name' => $name,
+            'type' => $type,
+            'address' => $address,
+            'phone' => $phone,
+            'website' => $website
+        ]);
+        return redirect()->route('admin.home')->with('status', 'Đã cập nhật thành công');
+
     }
 
     /**
@@ -81,8 +69,9 @@ class DepartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+        Department::destroy($id);
+        return redirect()->route('admin.home')->with('status','Đã xóa thành công');
     }
 }
