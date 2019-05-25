@@ -11,7 +11,7 @@
   
   
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-3" id="bar">
-    <a class="navbar-brand" href="#" id="logo">
+    <a class="navbar-brand" href="{{route('home')}}" id="logo">
         <img src="{{URL::asset('images/logo-outline.png')}}" alt="Logo u-Faculties">
         u-Faculties
     </a>
