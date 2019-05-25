@@ -67,4 +67,9 @@
         </div>
     </div>
 </div>
+
+<div class="top">
+  <i class="fas fa-arrow-circle-up"></i>
+</div>
+
 @endsection

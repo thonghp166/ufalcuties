@@ -1,60 +1,70 @@
-<!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
-<head>
-    <meta charset="utf-8">
-    
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+@extends('layouts.app')
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+@section('content')
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="{{URL::asset('css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{URL::asset('css/login.css')}}">
-    <link rel="stylesheet" href="{{URL::asset('css/all.css')}}">
-</head>
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Reset Password</div>
-
-                    <div class="panel-body">
-                        @if (session('status'))
-                            <div class="alert alert-success">
-                                {{ session('status') }}
+<div class="content">
+    <div class="resetbox">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <h2>Bạn gặp trở ngại khi đăng nhập ?</h2>
+                    <p class="resettitle">Nhập email của bạn để bắt đầu</p>
+                    <form method="POST" action="{{ route('password.email') }}">
+                        {{ csrf_field() }}
+                        <fieldset class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required placeholder="Nhập email của bạn vào đây">
+                            @if ($errors->has('email'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </span>
+                            @endif
+                        </fieldset>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Gửi email lấy lại mật khẩu</button>
+                    </form>
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                </div>
+                <div class="col-2"></div>
+                <div class="col-4 detail">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="text-right">
+                                <i class="fas fa-user-friends icon"></i>                 
                             </div>
-                        @endif
-                        <form class="form-horizontal" method="POST" action="{{ route('password.email') }}">
-                            {{ csrf_field() }}
-
-                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label for="email" class="col-md-4 control-label">Mail Address</label>
-
-                                <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                    @if ($errors->has('email'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-md-6 col-md-offset-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        Gửi email lấy lại mật khẩu
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                        </div>
+                        <div class="col-9">
+                            <p>Sau khi bấm gửi, thông tin đặt lại mật khẩu sẽ được chuyển vào hòm thư email của bạn, vào email để lấy thông tin này</p>  
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>    
-</body>
-</html>
+    </div>
+</div>
+
+<div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <div class="float-left">
+                    Copyright © 2019 Sharon Team. All rights reserved.        
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="float-right">
+                    <img src="{{URL::asset('images/vietnam.png')}}" alt="" class="img-fluid flag">
+                    <p class="vietnam">Việt Nam</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="top">
+  <i class="fas fa-arrow-circle-up"></i>
+</div>
+
+@endsection

@@ -10,10 +10,11 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{URL::asset('css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{URL::asset('css/welcome.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('css/style.css')}}">
     <link rel="stylesheet" href="{{URL::asset('css/all.css')}}">
 </head>
 <body>
+
     <div class="menubar">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-3" id="bar">
           <a class="navbar-brand" href="#" id="logo">
@@ -43,7 +44,6 @@
                       Xin chào {{Auth::user()->username}} !
                     </a>
                     <div class="dropdown-menu text-right" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="{{route('staff.edit',['id' => Auth::user()->id])}}">Chỉnh sửa thông tin cá nhân</a>
                       <a class="dropdown-item" href="{{route('password.change')}}">Đổi mật khẩu</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -66,10 +66,10 @@
   @yield('content')
     
     
-    <script type="text/javascript" src="{{URL::asset('js/jquery-3.3.1.slim.min.js')}}"></script>
-    <script type="text/javascript" src="{{URL::asset('js/popper.min.js')}}"></script>
-    <script type="text/javascript" src="{{URL::asset('js/bootstrap.min.js')}}"></script>
-    <script type="text/javascript" src="{{URL::asset('js/welcome.js')}}"></script>
-    <script type="text/javascript" src="{{URL::asset('js/jquery-3.4.1.min.js')}}"></script>
+  <script type="text/javascript" src="{{URL::asset('js/jquery-3.3.1.slim.min.js')}}"></script>
+  <script type="text/javascript" src="{{URL::asset('js/popper.min.js')}}"></script>
+  <script type="text/javascript" src="{{URL::asset('js/bootstrap.min.js')}}"></script>
+  <script type="text/javascript" src="{{URL::asset('js/welcome.js')}}"></script>
+  <script type="text/javascript" src="{{URL::asset('js/jquery-3.4.1.min.js')}}"></script>
 </body>
 </html>

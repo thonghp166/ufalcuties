@@ -1,1 +1,1 @@
-admin homepage
+@extends('layouts.app')

@@ -3,6 +3,66 @@
     padding: 0px;
 }
 
+p.vietnam {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+img.img-fluid.flag {
+    width: 40px;
+    display: inline-block;
+    float: left;
+}
+
+.copyright {
+    margin-top: 150px;
+    background: #000000bf;
+    color: #ffffff;
+    padding: 40px 0px;
+    height: 100px;
+}
+
+i.fas.fa-user-friends.icon {
+    font-size: 40px;
+    border: 3px solid #666;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    border-radius: 50%;
+    padding-top: 5px;
+}
+
+.col-4.detail {
+    margin-top: 60px;
+    border-left: 2px solid #666;
+    padding-top: 30px;
+    color: #666;
+}
+
+.col-4.detail p {
+    font-size: 18px;
+}
+
+.resetbox button {
+    margin-top: 10px;
+}
+
+p.resettitle {
+    margin-top: 40px;
+    font-size: 18px;
+}
+
+input#resetemail {
+    width: 70%;
+    height: 57px;
+    font-size: 18px;
+    color: #666;
+}
+
+.resetbox {
+    padding-top: 150px;
+}
+
 .moveleft {
     transform: translateY(0px)!important;
 }
