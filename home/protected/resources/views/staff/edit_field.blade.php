@@ -22,13 +22,13 @@
     <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto mr-5">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Trang chủ<span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="{{route('home')}}">Trang chủ<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Quản lý thông tin</a>
+          <a class="nav-link" href="{{route('admin.home')}}">Quản lý thông tin</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight: bold; font-style: italic;">
+          <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight: bold; font-style: italic;">
             Xin chào {{Auth::user()->username}} !
           </a>
           <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown">

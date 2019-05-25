@@ -16,12 +16,12 @@ class UserTableSeeder extends Seeder
        		[
        			'username'=> 'admin',
        			'password' => bcrypt('admin4321'),
-       			'level'=> 0
+       			'level'=> 1
        		],
           [
             'username'=> 'fit',
             'password' => bcrypt('fit123'),
-            'level'=> 1
+            'level'=> 0
           ],
           [
             'username'=> 'thanld',

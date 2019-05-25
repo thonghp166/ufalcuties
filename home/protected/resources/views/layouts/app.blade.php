@@ -40,7 +40,7 @@
                   <a class="nav-link" href="#" >Quản lý thông tin</a>
                 </li>   
                   <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight: bold; font-style: italic;">
+                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-weight: bold; font-style: italic;">
                       Xin chào {{Auth::user()->username}} !
                     </a>
                     <div class="dropdown-menu text-right" aria-labelledby="navbarDropdown">
