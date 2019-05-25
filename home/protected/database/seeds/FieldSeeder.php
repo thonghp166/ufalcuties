@@ -22,11 +22,11 @@ class FieldSeeder extends Seeder
        		],
        		[
        			'name'=> 'Công nghệ phần mềm',
-            'childOf' => 1
+            'childOf' => 2
        		],
        		[
        			'name'=> 'Mạng máy tính',
-       			'childOf' =>  1
+       			'childOf' =>  3
        		],
        		[
        			'name'=> 'Điện tử viễn thông',
@@ -38,7 +38,7 @@ class FieldSeeder extends Seeder
 	        ],
 	        [
 	            'name'=> 'DVT1',
-	            'childOf' => 5,
+	            'childOf' => 6,
 	        ],
        ];
        DB::table('field')->insert($data);

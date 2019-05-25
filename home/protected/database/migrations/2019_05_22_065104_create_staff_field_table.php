@@ -13,7 +13,7 @@ class CreateStaffFieldTable extends Migration
      */
     public function up()
     {
-        Schema::create('staff_field', function (Blueprint $table) {
+        Schema::create('field_staff', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('staff_id');
             $table->integer('field_id');
@@ -27,6 +27,6 @@ class CreateStaffFieldTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('staff_field');
+        Schema::dropIfExists('field_staff');
     }
 }
