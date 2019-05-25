@@ -35,7 +35,7 @@
                     <li class="nav-item">
                         <a class="nav-link loginbutton" href="{{route('login')}}">Đăng nhập</a>
                   </li>
-                @else
+              @else
                 <li class="nav-item">
                   <a class="nav-link" href="#" >Quản lý thông tin</a>
                 </li>   

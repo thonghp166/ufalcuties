@@ -44,7 +44,7 @@
                       Xin chào {{Auth::user()->username}} !
                     </a>
                     <div class="dropdown-menu text-right" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="{{route('staff.edit',['id' => Auth::user()->id])}}">Chỉnh sửa thông tin cá nhân</a>
+                      <a class="dropdown-item" href="{{route('staff.edit',['id' => Auth::user()->staff->id])}}">Chỉnh sửa thông tin cá nhân</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         Đăng xuất

@@ -6,7 +6,7 @@
 	<div class="container">
 	  <div class="row">
 	    <div class="col-12">
-	      <form id="staffinfor" method="POST" action="../{{$staff->id}}/edit">
+	      <form id="staffinfor" method="POST" action="{{route('staff.update.field,['id' => Auth::user()->id])}}">
 	        {{ csrf_field() }}
 	        <div class="row">
 	          <div class="col-4 tag" style="border-right: 1px solid black;">

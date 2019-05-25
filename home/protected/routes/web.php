@@ -30,7 +30,14 @@ Route::post('/staff/{id}/edit',[
 Route::get('/staff/{id}/field',[
 	'middleware' => 'auth',
 	'as' =>'staff.edit_field',
-	'uses' => 'StaffController@edit_field']);
+	'uses' => 'StaffController@edit_field'
+]);
+
+Route::post('/staff/{id}/field',[
+	'middleware' => 'auth',
+	'as' =>'staff.update.field',
+	'uses' => 'StaffController@updateField'
+]);
 
 Route::get('/staff/{id}/topic',[
 	'middleware' => 'auth',
@@ -64,4 +71,7 @@ Route::post('password/change', [
 
 Route::group(['middleware' => 'CheckAdminLogin', 'prefix' => 'admin'], function() {
 	Route::get('/', 'AdminController@index')->name('admin.home');
+	Route::post('/','AdminController@addDepartment')->name('admin.add.department');
+	Route::post('/','AdminController@addField')->name('admin.add.field');
+	Route::post('/','AdminController@addUser')->name('admin.add.user');
 });
