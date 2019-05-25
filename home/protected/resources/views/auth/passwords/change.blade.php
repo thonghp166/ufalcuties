@@ -17,7 +17,7 @@
                   <img src="{{URL::asset('images/hungpn.jpg')}}" alt="" class="img-fuild avatar">
                 </div>
                 <div class="col-8">
-                  {{Auth::user()->staff->degree}} {{Auth::user()->staff->name}} 
+                  <h3>{{Auth::user()->staff->degree}} {{Auth::user()->staff->name}}</h3>
                 </div>
               </div>
             </fieldset>

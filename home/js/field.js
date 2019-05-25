@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 
 	for (var i = 0; i < allId.length; i++) {
+		
 		var result = find(allId[i], allParent);
 		if (result == true) {
 			var boxelement = document.querySelector(".box" + allId[i] + " .dropdownicon");
@@ -52,8 +53,9 @@ document.addEventListener("DOMContentLoaded", function () {
 				}
 			}
 		}
-
 	}
+
+
 
 	function find (value, array) {
 		for (var i = 0; i < array.length; i++) {
