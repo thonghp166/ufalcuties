@@ -23,13 +23,13 @@ Route::get('/staff/{id}/edit',[
 	'uses' => 'StaffController@edit']);
 Route::post('/staff/{id}/edit',[
 	'middleware' => 'auth',
-	'as' => 'staff.updateinfo',
+	'as' => 'staff.update.info',
 	'uses' => 'StaffController@updateInfo'
 ]);
 
 Route::get('/staff/{id}/field',[
 	'middleware' => 'auth',
-	'as' =>'staff.edit_field',
+	'as' =>'staff.edit.field',
 	'uses' => 'StaffController@edit_field'
 ]);
 
@@ -41,7 +41,7 @@ Route::post('/staff/{id}/field',[
 
 Route::get('/staff/{id}/topic',[
 	'middleware' => 'auth',
-	'as' =>'staff.edit_topic',
+	'as' =>'staff.edit.topic',
 	'uses' => 'StaffController@edit_topic']);
 Route::post('/staff/{id}/topic',[
 	'middleware' => 'auth',

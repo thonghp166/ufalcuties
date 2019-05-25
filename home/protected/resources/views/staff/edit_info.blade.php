@@ -15,13 +15,13 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <form id="staffinfor" method="POST" action="../{{$staff->id}}/edit">
+        <form id="staffinfor" method="POST" action="{{route('staff.update.info',['id' => Auth::user()->staff->id])}}">
           {{ csrf_field() }}
           <div class="row">
             <div class="col-4 tag" style="border-right: 1px solid black;">
-            <a href="../{{$staff->id}}/edit" style="font-weight: bold">Thông tin chung</a>
-            <a href="../{{$staff->id}}/field">Lĩnh vực nghiên cứu</a>
-            <a href="../{{$staff->id}}/topic">Chủ đề quan tâm</a>
+            <a href="{{route('staff.edit',['id' => Auth::user()->staff->id])}}" style="font-weight: bold">Thông tin chung</a>
+            <a href="{{route('staff.edit.field',['id' => Auth::user()->staff->id])}}">Lĩnh vực nghiên cứu</a>
+            <a href="{{route('staff.edit.topic',['id' => Auth::user()->staff->id])}}">Chủ đề quan tâm</a>
           </div>
           <div class="col-8">
             <fieldset class="form-group avatar-group">
