@@ -27,7 +27,6 @@ class CheckAdminLogin
             }
             else
             {
-                Auth::logout();
                 return redirect()->route('home');
             }
         } else
