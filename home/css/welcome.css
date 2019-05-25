@@ -3,6 +3,20 @@
     padding: 0px;
 }
 
+.field {
+    margin: 10px 0px;
+}
+
+.field i {
+    font-size: 25px;
+    color: #3498db;
+    transition: 0.4s;
+}
+
+.field i:hover {
+    transform: scale(1.4);
+}
+
 #department {
     border: 3px solid;
     border-top-left-radius: 20px;
@@ -10,11 +24,11 @@
     overflow: auto;
     padding: 10px 20px;
 }
-
+/*
 #department .table {
-    width: 1500px;
+    width: 1300px;
 }
-
+*/
 #user {
     border: 3px solid;
     border-top-left-radius: 20px;
@@ -22,12 +36,16 @@
     overflow: auto;
     padding: 10px 20px;
 }
-
+/*
 #user .table{
-    width: 1500px;
+    width: 1300px;
 }
-
+*/
 .usertable {padding-top: 150px;}
+
+.departmenttable {margin-top: 50px;}
+
+.fieldtable {margin-top: 50px;}
 
 button.btn.btn-primary.resetpasswordbutton {
     margin-left: 15px;

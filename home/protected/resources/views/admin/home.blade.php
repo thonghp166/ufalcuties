@@ -107,21 +107,51 @@
         	</div>
         </div>
     </div>
-</div>
 
-<div class="copyright">
-    <div class="container">
-        <div class="row">
-            <div class="col-6">
-                <div class="float-left">
-                    Copyright © 2019 Sharon Team. All rights reserved.        
+    <div class="fieldtable">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h3 style="border-left: 5px solid #3498db; padding-left: 10px; margin-bottom: 40px;">Quản lý lĩnh vực nghiên cứu</h3>
                 </div>
             </div>
-            <div class="col-6">
-                <div class="float-right">
-                    <img src="{{URL::asset('images/vietnam.png')}}" alt="" class="img-fluid flag">
-                    <p class="vietnam">Việt Nam</p>
-                </div>
+
+            <div class="row" id="field">
+                <!-- <script>
+                        var idArr = [];
+                        var nameArr = [];
+                        var childArr = [];
+                        var allId = [];
+                        var allParent = [];
+                    </script> -->
+                    <?php foreach ($field as $element): ?>
+                        <!-- <script>
+                            var allParentLength = allParent.push(<?php echo $element->childOf ?>);
+                            var allIdLength = allId.push(<?php echo $element->id ?>);
+                        </script>
+                        <?php if ($element->childOf != 0): ?>
+                            <script>
+                                var idLength = idArr.push(<?php echo $element->id ?>);
+                                var nameLength = nameArr.push("<?php echo $element->name ?>");
+                                var childLength = childArr.push(<?php echo $element->childOf ?>);
+                            </script>
+                        <?php else: ?>
+                            <div class="rootparent box box{{$element->id}}" data-parent="0" data-id="{{$element->id}}">
+                                <i class="dropdownicon fas fa-caret-down"></i>
+                                <input type="checkbox" class="checkbox" id="_{{$element->id}}" name="ids[]" value="{{$element->id}}"> {{$element->name}}
+                            </div>
+                        <?php endif ?> -->
+                        <?php if ($element->childOf == 0): ?>
+                            <div class="col-12 field">
+                                <i class="fas fa-caret-right"></i> {{$element->name}} 
+                                <button class="btn btn-success">Thêm</button>  
+                                <button class="btn btn-primary">Sửa</button>  
+                                <button class="btn btn-danger">Xoá</button>  
+                            </div>
+                        <?php else: ?>
+                            
+                        <?php endif ?>
+                    <?php endforeach ?>
             </div>
         </div>
     </div>
@@ -144,7 +174,6 @@
         </div>
     </div>
 </div>
-
 
 <div class="top">
   <i class="fas fa-arrow-circle-up"></i>
