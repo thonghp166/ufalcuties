@@ -95,6 +95,26 @@
 	</div>
 </div>
 
+
+<div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <div class="float-left">
+                    Copyright © 2019 Sharon Team. All rights reserved.        
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="float-right">
+                    <img src="{{URL::asset('images/vietnam.png')}}" alt="" class="img-fluid flag">
+                    <p class="vietnam">Việt Nam</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div class="top">
   <i class="fas fa-arrow-circle-up"></i>
 </div>

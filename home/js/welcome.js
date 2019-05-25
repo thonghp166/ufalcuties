@@ -29,19 +29,19 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 	}, false);
 	
-	var check1 = "under800"
+	var check1 = "under400"
 	window.addEventListener("scroll", function () {
-		if (window.pageYOffset > 800) {
-			if (check1 == "under800") {
+		if (window.pageYOffset > 400) {
+			if (check1 == "under400") {
 				var top = document.querySelector(".top");
 				top.classList.add("moveleft");
-				check1 = "above800";
+				check1 = "above400";
 			}
 		} else {
-			if (check1 == "above800") {
+			if (check1 == "above400") {
 				var top = document.querySelector(".top");
 				top.classList.remove("moveleft");
-				check1 = "under800";	
+				check1 = "under400";	
 			}
 		}
 	}, false);

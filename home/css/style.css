@@ -3,6 +3,42 @@
     padding: 0px;
 }
 
+p.vietnam {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+img.img-fluid.flag {
+    width: 40px;
+    display: inline-block;
+    float: left;
+}
+
+
+.copyright {
+    margin-top: 150px;
+    background: #000000bf;
+    color: #ffffff;
+    padding: 40px 0px;
+    height: 100px;
+}
+
+.moveleft {
+    transform: translateY(0px)!important;
+}
+
+.top {
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    font-size: 50px;
+    z-index: 6;
+    color: #e74c3c;
+    cursor: pointer;
+    transition: 0.4s;
+    transform: translateY(100px);
+}
+
 .hide {
     display: none;
 }
