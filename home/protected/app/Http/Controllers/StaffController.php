@@ -151,9 +151,9 @@ class StaffController extends Controller
 
     public function updateField(Request $request,$id)
     {
+        $list = $request->ids;
         $staff = Staff::find($id);
-        $new = Field::find($request->list);
-        $staff->fields()->sync($new);
+        $staff->fields()->sync($list);
         return redirect()->back()->with('status', 'Đã cập nhật thành công');
     }
 }

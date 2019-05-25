@@ -61,7 +61,7 @@
 	                  	<?php else: ?>
 	                  		<div class="rootparent box box{{$element->id}}" data-parent="0" data-id="{{$element->id}}">
 	                  			<i class="dropdownicon fas fa-caret-down"></i>
-	                  			<input type="checkbox" class="checkbox" id="_{{$element->id}}" name="_{{$element->id}}"> {{$element->name}}
+	                  			<input type="checkbox" class="checkbox" id="_{{$element->id}}" name="ids[]" value="{{$element->id}}"> {{$element->name}}
 	                  		</div>
 						<?php endif ?>
 	              	<?php endforeach ?>
@@ -79,7 +79,13 @@
 	            </div>
 	          </fieldset>
 	          <div class="text-center">
-	            <button type="submit" class="btn btn-primary">Đồng ý</button>
+	            <button type="submit" class="btn btn-primary">Cập nhật</button>
+	            @if (session('status'))
+                <div class="alert alert-success" style="display: block; margin-top: 30px;transition: 0.4s;">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
+                  {{ session('status') }}
+                </div>
+                @endif
 	          </div>            
 	        </div>
 	        </div>            

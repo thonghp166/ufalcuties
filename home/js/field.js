@@ -23,7 +23,8 @@ document.addEventListener("DOMContentLoaded", function () {
 		element.setAttribute("type", "checkbox");
 		element.setAttribute("class", "checkbox");
 		element.setAttribute("id", "_" + idArr[i]);
-		element.setAttribute("name", "_" + idArr[i]);
+		element.setAttribute("name", "ids[]");
+		element.setAttribute("value", idArr[i]);
 		var text = document.createTextNode(" " + nameArr[i]);
 		box.appendChild(dropdownicon);
 		box.appendChild(element);

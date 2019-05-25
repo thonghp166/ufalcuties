@@ -45,8 +45,8 @@ Route::get('/staff/{id}/topic',[
 	'uses' => 'StaffController@edit_topic']);
 Route::post('/staff/{id}/topic',[
 	'middleware' => 'auth',
-	'as' => 'staff.addtopic',
-	'uses' => 'TopicController@addTopic'
+	'as' => 'staff.update.topic',
+	'uses' => 'TopicController@update'
 ]);
 
 Route::get('/topic', 'TopicController@create');

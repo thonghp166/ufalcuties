@@ -36,7 +36,7 @@ class TopicController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function addTopic(Request $request,$id)
+    public function update(Request $request,$id)
     {
         switch ($request->input('action')) {
             case 'new':
