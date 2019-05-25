@@ -1,1 +1,134 @@
 @extends('layouts.app')
+
+@section('content')
+
+<div class="content">
+    <div class="usertable">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                	<h3 style="border-left: 5px solid #3498db; padding-left: 10px; margin-bottom: 40px;">Quản lý tài khoản</h3>
+                </div>
+            </div>
+            <div class="row" id="user">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Số thứ tự</th>
+                            <th>Mã cán bộ</th>
+                            <th>Họ và tên</th>
+                            <th>Tài khoản</th>
+                            <th>VNU Email</th>
+                            <th>Loại cán bộ</th>
+                            <th>Học vị</th>
+                            <th>Đơn vị công tác</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $count = 1; foreach ($user as $element): ?>
+                            <tr>
+                                <?php $staff = $element->staff ?>
+                                <td><?php echo $count; $count++; ?></td>
+                                <td>{{$staff->code}}</td>
+                                <td>{{$staff->name}}</td>
+                                <td>{{$element->username}}</td>
+                                <td>{{$staff->vnu_email}}</td>
+                                <td>{{$staff->type}}</td>
+                                <td>{{$staff->degree}}</td>
+                                <td>{{$staff->work_unit}}</td>
+                                <td>
+                                    <button class="btn btn-primary">Sửa</button>
+                                    <button class="btn btn-danger">Xóa</button>
+                                </td>
+                            </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="text-center">
+                    <button class="btn btn-success" style="margin-top: 20px;">Thêm mới</button>
+                    <button class="btn btn-success" style="margin-top: 20px;">Thêm từ excel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="departmenttable">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                	<h3 style="border-left: 5px solid #3498db; padding-left: 10px; margin-bottom: 40px;">Quản lý đơn vị</h3>
+                </div>
+            </div>
+
+			<div class="row" id="department">
+                <table class="table">
+                	<thead>
+	            		<tr>
+	            			<th>Số thứ tự</th>
+	            			<th>Tên đơn vị</th>
+	            			<th>Loại đơn vị</th>
+	            			<th>Địa chỉ</th>
+	            			<th>Điện thoại</th>
+	            			<th>Website</th>
+	            			<th>Thao tác</th>
+	            		</tr>
+            		</thead>
+                	<tbody>
+                		
+                			<?php $count = 1; foreach ($department as $element): ?>
+                				<tr>
+                					<td><?php echo $count; $count++; ?></td>	
+	                				<td>{{$element->name}}</td>	
+	                				<td>{{$element->type}}</td>	
+	                				<td>{{$element->address}}</td>	
+	                				<td>{{$element->phone}}</td>	
+	                				<td>{{$element->website}}</td>	
+	                				<td>
+	                					<button class="btn btn-primary">Sửa</button>
+	                					<button class="btn btn-danger">Xóa</button>
+	                				</td>
+                				</tr>	
+                			<?php endforeach ?>                		
+                	</tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-12">
+        		<div class="text-center">
+	        		<button class="btn btn-success" style="margin-top: 20px;">Thêm mới</button>
+	        	</div>
+        	</div>
+        </div>
+    </div>
+</div>
+
+<div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <div class="float-left">
+                    Copyright © 2019 Sharon Team. All rights reserved.        
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="float-right">
+                    <img src="{{URL::asset('images/vietnam.png')}}" alt="" class="img-fluid flag">
+                    <p class="vietnam">Việt Nam</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="top">
+  <i class="fas fa-arrow-circle-up"></i>
+</div>
+
+@endsection

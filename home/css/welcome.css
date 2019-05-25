@@ -3,6 +3,24 @@
     padding: 0px;
 }
 
+#department {
+    border: 3px solid;
+    border-radius: 20px;
+    height: 200px;
+    overflow: auto;
+    padding: 10px 20px;
+}
+
+#user {
+    border: 3px solid;
+    border-radius: 20px;
+    height: 200px;
+    overflow: auto;
+    padding: 10px 20px;
+}
+
+.usertable {padding-top: 150px;}
+
 button.btn.btn-primary.resetpasswordbutton {
     margin-left: 15px;
 }
@@ -206,6 +224,7 @@ input#resetemail {
 .teacher .line {
     background: #e74c3c;
 }
+
 
 a.findstaff {
     display: inline-block;
