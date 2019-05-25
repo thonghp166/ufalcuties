@@ -22,7 +22,7 @@
                         <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Gửi email lấy lại mật khẩu</button>
                     </form>
                     @if (session('status'))
-                        <div class="alert alert-success">
+                        <div class="alert alert-success" style="margin-top: 30px;">
                             {{ session('status') }}
                         </div>
                     @endif

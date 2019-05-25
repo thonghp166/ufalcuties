@@ -3,6 +3,19 @@
     padding: 0px;
 }
 
+button.btn.btn-primary.resetpasswordbutton {
+    margin-left: 15px;
+}
+
+form.resetpassword {
+    margin-top: 30px;
+    margin-left: -13px;
+}
+
+label.title {
+    font-size: 18px;
+}
+
 p.vietnam {
     display: inline-block;
     margin-left: 10px;
