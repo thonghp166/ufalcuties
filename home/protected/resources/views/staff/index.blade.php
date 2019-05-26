@@ -91,18 +91,15 @@
 			            </div>
 			            <div class="transperantlayer"></div>
 			            <div class="content">
-			              <h3>{{$element->degree}} {{$element->name}}</h3>
-			              <h4>{{$element->code}}</h4>
-			              <h4>{{$element->staff_type}}</h4>
-			              <h4>{{$element->work_unit}}</h4>
-			              <h4>{{$element->phone}}</h4>
-			              <h4>{{$element->vnu_email}}</h4>
-			              <h4>{{$element->gmail}}</h4>
-			              <h4>{{$element->website}}</h4>
-			              <h4>{{$element->address}}</h4>
+			              <p class="unique">{{$element->degree}} {{$element->name}}</p>
+			              <p class="code">Mã cán bộ: {{$element->code}}</p>
+			              <p class="staff_type">Chức vụ: {{$element->staff_type}}</p>
+			              <p class="work_unit">Bộ môn: {{$element->work_unit}}</p>
+			              <p class="phone">Số điện thoại: {{$element->phone}}</p>
+			              <p class="email">VNU Email: {{$element->vnu_email}}</p>
 			            </div>
 			            <div class="more">
-			              <p>Chi tiết</p>
+			            	<a href="">Chi tiết</a>
 			            </div>
 			          </div>
 			        </div>

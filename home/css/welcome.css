@@ -3,6 +3,48 @@
     padding: 0px;
 }
 
+p.address {
+    font-size: 18px;
+    color: #3498db;
+    height: 30px;
+}
+
+p.email {
+    font-size: 18px;
+    color: #3498db;
+    height: 20px;
+}
+
+p.phone {
+    font-size: 18px;
+    color: #3498db;
+    height: 20px;
+}
+
+p.work_unit {
+    font-size: 18px;
+    color: #3498db;
+    height: 20px;
+}
+
+p.staff_type {
+    font-size: 18px;
+    color: #3498db;
+    height: 20px;
+}
+
+p.code {
+    font-size: 18px;
+    color: #3498db;
+    height: 30px;
+}
+
+p.unique {
+    font-size: 22px;
+    font-weight: bold;
+    height: 70px;
+}
+
 #welcome {
     font-size: 25px;
 }
@@ -37,6 +79,7 @@ p.departmenttype {
 p.departmentname {
     font-size: 22px;
     height: 70px;
+    font-weight: bold;
 }
 
 #category .fields .content {
