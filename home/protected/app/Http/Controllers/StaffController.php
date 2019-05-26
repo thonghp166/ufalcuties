@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Staff;
 use App\Field;
 use App\Topic;
+use App\Department;
 use Illuminate\Support\Facades\Input;
 
 use Illuminate\Http\Request;
