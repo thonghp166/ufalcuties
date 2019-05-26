@@ -23,4 +23,27 @@ class UserController extends Controller
     {
         return view('user.create');
     }
+
+    public function store(Request $request)
+    {
+        $email = $request->input('vnu_email');
+        $username = $request->input('username');
+        $password = bcrypt('12345678');
+
+
+        $user = User::create([
+            'email' => $email,
+            'username' => $username,
+            'password' => $password,
+        ]);
+
+        $name = $request->input('name');
+        $code = $request->input('code');
+        $vnu_email = $email;
+        $name = $request->input('username');
+
+
+        
+    }
+
 }

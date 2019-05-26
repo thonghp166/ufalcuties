@@ -3,6 +3,16 @@
     padding: 0px;
 }
 
+.content {
+    background: white;
+}
+
+.departmentelement {
+    text-decoration: none;
+    display: block;
+    color: black;
+    margin: 15px;
+}
 
 div#resulttitle {
     margin: 20px;
@@ -14,10 +24,6 @@ div#category p.title {
     color: #3e3939;
     font-weight: bold;
     cursor: pointer;
-}
-
-div#categoty .content {
-    
 }
 
 #search {

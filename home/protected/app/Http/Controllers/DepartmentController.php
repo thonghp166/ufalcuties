@@ -69,9 +69,17 @@ class DepartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete($id)
+    public function delete(Request $request)
     {
-        Department::destroy($id);
-        return redirect()->route('admin.home')->with('status','Đã xóa thành công');
+        // $id = $request->input('id');
+        // // Department::destroy($id);
+        // // $department = Department::find($request->input('id'));
+        // if(Department::destroy($id))
+        // {
+        //     echo 'Data Deleted';
+        // }
+        // return $id;
+        // return redirect()->route('admin.home')->with('status','Đã xóa thành công');
+        return $request;
     }
 }

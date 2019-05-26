@@ -35,7 +35,7 @@
 					</p>
 					<div class="content">
 						<?php foreach ($department as $element): ?>
-							<a href="">{{$element->name}}</a>
+							<a href="" class="departmentelement">{{$element->name}}</a>
 						<?php endforeach ?>
 					</div>
 				</div>

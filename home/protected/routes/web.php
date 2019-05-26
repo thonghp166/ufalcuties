@@ -62,7 +62,7 @@ Route::group(['middleware' => 'CheckAdminLogin', 'prefix' => 'admin'], function(
 	Route::get('/', 'AdminController@index')->name('admin.home');
 
 	Route::post('/','DepartmentController@store')->name('admin.add.department');
-	Route::post('/{id}','DepartmentController@delete')->name('admin.delete.department');
+	Route::get('/delete','DepartmentController@delete')->name('admin.delete.department');
 	Route::post('/','DepartmentController@update')->name('admin.update.department');
 
 
