@@ -54,9 +54,13 @@
 #department, #user, #field {
     border: 3px solid;
     border-top-left-radius: 20px;
-    height: 200px;
+    height: 300px;
     overflow: auto;
     padding: 10px 20px;
+}
+
+#field {
+    height: 400px;
 }
 
 
