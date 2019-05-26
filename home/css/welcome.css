@@ -34,16 +34,19 @@
 .field i.fas.fa-plus-square {
     color: #27ae60;
     font-size: 25px;
+    cursor: pointer;
 }
 
 .field i.fas.fa-pen-square {
     color: #2980b9;
     font-size: 25px;
+    cursor: pointer;
 }
 
 .field i.fas.fa-minus-square {
     color: #c0392b;
     font-size: 25px;
+    cursor: pointer;
 }
 
 .field i.fas.fa-ban {
