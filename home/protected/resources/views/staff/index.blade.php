@@ -29,8 +29,8 @@
 				</div>
 			</div>
 			<div class="row" id="category">
-				<div class="col-6 text-center">
-					<p class="title">
+				<div class="col-6 text-center department">
+					<p class="title" onclick="contentprocess('department')">
 						Đơn vị  <i class="fas fa-caret-down"></i>
 					</p>
 					<div class="content">
@@ -39,14 +39,38 @@
 						<?php endforeach ?>
 					</div>
 				</div>
-				<div class="col-6 text-center">
-					<p class="title">
+				<div class="col-6 text-center fields">
+					<p class="title" onclick="contentprocess('fields')">
 						Lĩnh vực nghiên cứu  <i class="fas fa-caret-down"></i>
 					</p>
 					<div class="content">
-						<!-- <?php foreach ($field as $element): ?>
-							<a href="">{{$element}}</a>
-						<?php endforeach ?> -->
+						<div class="row">
+							<script>
+		                        var idArr = [];
+		                        var nameArr = [];
+		                        var parentArr = [];
+		                        var allId = [];
+		                        var allParent = [];
+		                    </script>
+		                    <?php foreach ($field as $element): ?>
+		                        <script>
+		                            var allParentLength = allParent.push(<?php echo $element->childOf ?>);
+		                            var allIdLength = allId.push(<?php echo $element->id ?>);
+		                        </script>
+		                        <?php if ($element->childOf == 0): ?>
+		                            <div class="col-12 field field{{$element->id}}" data-id="{{$element->id}}" data-parent="{{$element->childOf}}">
+		                                <i class="dropdownicon fas fa-caret-right"></i> 
+		                                <a href="" class="fieldelement"> {{$element->name}}</a>
+		                            </div>
+		                        <?php else: ?>
+		                                <script>
+		                                    var idLength = idArr.push(<?php echo $element->id ?>);
+		                                    var nameLength = nameArr.push("<?php echo $element->name ?>");
+		                                    var parentLength = parentArr.push(<?php echo $element->childOf ?>);
+		                                </script>                         
+		                        <?php endif ?>
+		                    <?php endforeach ?>
+						</div>
 					</div>					
 				</div>
 			</div>
@@ -88,5 +112,14 @@
 	</div>
 
 </div>
+
+<script type="text/javascript" src="{{URL::asset('js/search.js')}}"></script>
+<script>
+	function contentprocess (name) {
+		var content = document.querySelector("#category ." + name + " .content");
+		content.classList.toggle("showcontent");
+	}
+
+</script>
 
 @endsection

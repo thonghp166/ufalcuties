@@ -3,6 +3,74 @@
     padding: 0px;
 }
 
+#category .fields .content {
+    position: absolute;
+    top: 80px;
+    right: 10px;
+    z-index: 4;
+    transition: 0.4s;
+    transform: translateY(40px);
+    border: 1px solid;
+    border-top-left-radius: 15px;
+    text-align: left;
+    padding-left: 20px;
+    overflow: auto;
+    height: 300px;
+    opacity: 0;
+    visibility: hidden;
+}
+
+#category .col-6.text-center.fields {
+    position: relative;
+}
+
+a.fieldelement {
+    color: black;
+}
+
+a.fieldelement:hover {
+    color: #3498db;
+    font-style: italic;
+}
+
+#category .department i.fas.fa-caret-up.arrow {
+    position: absolute;
+    top: -35px;
+    right: 16px;
+    z-index: 4;
+    font-size: 50px;
+    color: #3498db;
+}
+
+.showcontent {
+    opacity: 1!important;
+    transform: translateY(0px)!important;
+    visibility: visible!important;
+}
+
+#category .col-6.text-center.department {
+    position: relative;
+}
+
+#category .col-6.text-center.department .content {
+    position: absolute;
+    top: 80px;
+    left: 64px;
+    z-index: 4;
+    border: 1px solid;
+    border-top-left-radius: 15px;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.4s;
+    transform: translateY(40px);
+    overflow: auto;
+    height: 300px;
+}
+
+.result {
+    position: relative;
+}
+
 #category .content {
     background: white;
 }
@@ -12,6 +80,12 @@
     display: block;
     color: black;
     margin: 15px;
+    padding: 5px 5px;
+}
+
+a.departmentelement:hover {
+    color: #3498db;
+    font-style: italic;
 }
 
 div#resulttitle {
