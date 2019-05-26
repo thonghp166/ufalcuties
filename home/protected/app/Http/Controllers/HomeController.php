@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Department;
 use App\Field;
-use App\Staff; 
+use App\Staff;
 
 class HomeController extends Controller
 {
