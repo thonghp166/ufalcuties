@@ -117,42 +117,41 @@
             </div>
 
             <div class="row" id="field">
-                <!-- <script>
+                    <script>
                         var idArr = [];
                         var nameArr = [];
-                        var childArr = [];
+                        var parentArr = [];
                         var allId = [];
                         var allParent = [];
-                    </script> -->
+                    </script>
                     <?php foreach ($field as $element): ?>
-                        <!-- <script>
+                        <script>
                             var allParentLength = allParent.push(<?php echo $element->childOf ?>);
                             var allIdLength = allId.push(<?php echo $element->id ?>);
                         </script>
-                        <?php if ($element->childOf != 0): ?>
-                            <script>
-                                var idLength = idArr.push(<?php echo $element->id ?>);
-                                var nameLength = nameArr.push("<?php echo $element->name ?>");
-                                var childLength = childArr.push(<?php echo $element->childOf ?>);
-                            </script>
-                        <?php else: ?>
-                            <div class="rootparent box box{{$element->id}}" data-parent="0" data-id="{{$element->id}}">
-                                <i class="dropdownicon fas fa-caret-down"></i>
-                                <input type="checkbox" class="checkbox" id="_{{$element->id}}" name="ids[]" value="{{$element->id}}"> {{$element->name}}
-                            </div>
-                        <?php endif ?> -->
                         <?php if ($element->childOf == 0): ?>
-                            <div class="col-12 field">
-                                <i class="fas fa-caret-right"></i> {{$element->name}} 
-                                <button class="btn btn-success">Thêm</button>  
-                                <button class="btn btn-primary">Sửa</button>  
-                                <button class="btn btn-danger">Xoá</button>  
+                            <div class="col-12 field field{{$element->id}}" data-id="{{$element->id}}" data-parent="{{$element->childOf}}">
+                                <i class="dropdownicon fas fa-caret-right"></i> {{$element->name}}
+                                <i class="fas fa-plus-square"></i>
+                                <i class="fas fa-pen-square"></i>
+                                <i class="fas fa-minus-square"></i>  
                             </div>
                         <?php else: ?>
-                            
-                            
+                                <script>
+                                    var idLength = idArr.push(<?php echo $element->id ?>);
+                                    var nameLength = nameArr.push("<?php echo $element->name ?>");
+                                    var parentLength = parentArr.push(<?php echo $element->childOf ?>);
+                                </script>                         
                         <?php endif ?>
                     <?php endforeach ?>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12">
+                <div class="text-center">
+                    <button class="btn btn-success" style="margin-top: 20px;">Thêm mới</button>
+                </div>
             </div>
         </div>
     </div>
@@ -179,5 +178,7 @@
 <div class="top">
   <i class="fas fa-arrow-circle-up"></i>
 </div>
+
+<script type="text/javascript" src="{{URL::asset('js/admin.js')}}"></script>
 
 @endsection

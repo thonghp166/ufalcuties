@@ -3,44 +3,63 @@
     padding: 0px;
 }
 
+.hide {
+    display: none;
+}
+
 .field {
     margin: 10px 0px;
 }
 
-.field i {
+.field i.fas.fa-caret-right {
     font-size: 25px;
     color: #3498db;
     transition: 0.4s;
 }
 
-.field i:hover {
+.field i.fas.fa-caret-right:hover {
     transform: scale(1.4);
 }
 
-#department {
+.field i.fas.fa-caret-down {
+    font-size: 25px;
+    color: #3498db;
+    transition: 0.4s;
+}
+
+.field i.fas.fa-caret-down:hover {
+    transform: scale(1.4);
+}
+
+.field i.fas.fa-plus-square {
+    color: #27ae60;
+    font-size: 25px;
+}
+
+.field i.fas.fa-pen-square {
+    color: #2980b9;
+    font-size: 25px;
+}
+
+.field i.fas.fa-minus-square {
+    color: #c0392b;
+    font-size: 25px;
+}
+
+.field i.fas.fa-ban {
+    color: white;
+}
+
+
+#department, #user, #field {
     border: 3px solid;
     border-top-left-radius: 20px;
     height: 200px;
     overflow: auto;
     padding: 10px 20px;
 }
-/*
-#department .table {
-    width: 1300px;
-}
-*/
-#user {
-    border: 3px solid;
-    border-top-left-radius: 20px;
-    height: 200px;
-    overflow: auto;
-    padding: 10px 20px;
-}
-/*
-#user .table{
-    width: 1300px;
-}
-*/
+
+
 .usertable {padding-top: 150px;}
 
 .departmenttable {margin-top: 50px;}
