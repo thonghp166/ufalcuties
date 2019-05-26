@@ -7,7 +7,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                	<h3 style="border-left: 5px solid #3498db; padding-left: 10px; margin-bottom: 40px;">Quản lý tài khoản</h3>
+                    <h3 style="border-left: 5px solid #3498db; padding-left: 10px; margin-bottom: 40px;">Quản lý tài khoản</h3>
                 </div>
             </div>
             <div class="row" id="user">
@@ -62,49 +62,49 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                	<h3 style="border-left: 5px solid #3498db; padding-left: 10px; margin-bottom: 40px;">Quản lý đơn vị</h3>
+                    <h3 style="border-left: 5px solid #3498db; padding-left: 10px; margin-bottom: 40px;">Quản lý đơn vị</h3>
                 </div>
             </div>
 
-			<div class="row" id="department">
+            <div class="row" id="department">
                 <table class="table">
-                	<thead>
-	            		<tr>
-	            			<th>Số thứ tự</th>
-	            			<th>Tên đơn vị</th>
-	            			<th>Loại đơn vị</th>
-	            			<th>Địa chỉ</th>
-	            			<th>Điện thoại</th>
-	            			<th>Website</th>
-	            			<th>Thao tác</th>
-	            		</tr>
-            		</thead>
-                	<tbody>
-                		
-                			<?php $count = 1; foreach ($department as $element): ?>
-                				<tr>
-                					<td><?php echo $count; $count++; ?></td>	
-	                				<td>{{$element->name}}</td>	
-	                				<td>{{$element->type}}</td>	
-	                				<td>{{$element->address}}</td>	
-	                				<td>{{$element->phone}}</td>	
-	                				<td>{{$element->website}}</td>	
-	                				<td>
-	                					<button class="btn btn-primary">Sửa</button>
-	                					<button class="btn btn-danger">Xóa</button>
-	                				</td>
-                				</tr>	
-                			<?php endforeach ?>                		
-                	</tbody>
+                    <thead>
+                        <tr>
+                            <th>Số thứ tự</th>
+                            <th>Tên đơn vị</th>
+                            <th>Loại đơn vị</th>
+                            <th>Địa chỉ</th>
+                            <th>Điện thoại</th>
+                            <th>Website</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                            <?php $count = 1; foreach ($department as $element): ?>
+                                <tr>
+                                    <td><?php echo $count; $count++; ?></td>    
+                                    <td>{{$element->name}}</td> 
+                                    <td>{{$element->type}}</td> 
+                                    <td>{{$element->address}}</td>  
+                                    <td>{{$element->phone}}</td>    
+                                    <td>{{$element->website}}</td>  
+                                    <td>
+                                        <button class="btn btn-primary">Sửa</button>
+                                        <button class="btn btn-danger">Xóa</button>
+                                    </td>
+                                </tr>   
+                            <?php endforeach ?>                     
+                    </tbody>
                 </table>
             </div>
         </div>
         <div class="row">
-        	<div class="col-12">
-        		<div class="text-center">
-	        		<button class="btn btn-success" style="margin-top: 20px;">Thêm mới</button>
-	        	</div>
-        	</div>
+            <div class="col-12">
+                <div class="text-center">
+                    <button class="btn btn-success" style="margin-top: 20px;">Thêm mới</button>
+                </div>
+            </div>
         </div>
     </div>
 
