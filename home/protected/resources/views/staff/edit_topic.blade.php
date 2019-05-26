@@ -26,8 +26,8 @@
                 </div>
               </div>
             </fieldset>
-            <fieldset>
-              <table class="table text-center">
+            <fieldset id="topic">
+              <table class="table text-center" id="topictable">
                 <thead>
                   <tr>
                     <th>Số thứ tự</th>

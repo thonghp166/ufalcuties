@@ -2,6 +2,8 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 	
+	console.log(staff_fieldArr);
+
 	var boxparent = document.getElementsByClassName("rootparent");
 	
 	for (var i = 0; i < boxparent.length; i++) {
@@ -32,6 +34,12 @@ document.addEventListener("DOMContentLoaded", function () {
 		parent.appendChild(box);
 	}
 
+	for (var i = 0; i < staff_fieldArr.length; i++) {
+		var checkbox = document.querySelector(".box" + staff_fieldArr[i]);
+		var inputtag = checkbox.querySelector("input#_" + staff_fieldArr[i]);
+		inputtag.checked = true;
+	}
+
 	function checkedEvent (checkbox) {
 		var id = checkbox.parentNode.getAttribute("data-id");
 			for (var i = 0; i < allId.length; i++) {
@@ -57,6 +65,8 @@ document.addEventListener("DOMContentLoaded", function () {
 			boxelement.setAttribute("class", "dropdownicon fas fa-caret-down");
 		}
 	}
+
+
 
 	var dropdown = document.querySelectorAll(".box i.dropdownicon");
 	for (var i = 0; i < dropdown.length; i++) {

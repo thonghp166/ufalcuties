@@ -3,6 +3,14 @@
     padding: 0px;
 }
 
+#topic {
+    overflow: auto;
+    height: 300px;
+    border: 3px solid;
+    border-top-left-radius: 20px;
+}
+
+
 p.vietnam {
     display: inline-block;
     margin-left: 10px;

@@ -3,6 +3,66 @@
     padding: 0px;
 }
 
+
+div#resulttitle {
+    margin: 20px;
+}
+
+div#category p.title {
+    margin-top: 40px;
+    font-size: 20px;
+    color: #3e3939;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+div#categoty .content {
+    
+}
+
+#search {
+    padding: 10px 20px;
+}
+
+#right {
+    padding-left: 0px; 
+}
+
+
+#center {
+    padding: 0px 0px;    
+}
+
+#left {
+    padding-right: 0px;
+}
+
+#right button.btn.btn-primary {
+    height: 40px;
+    background: #3498db;
+}
+
+#center input.key {
+    height: 40px;
+    padding: 0px 20px;
+    border: 2px solid #3498db;
+    border-radius: 5px;
+}
+
+#left select {
+    background: #2c3e50;
+    color: white;
+    height: 40px;
+    
+}
+
+.searchbar {
+    padding-top: 150px;
+    background-color: #f4f4f4;
+    border-bottom: 1px solid #d9d9d9;
+    padding-bottom: 15px;
+}
+
 .hide {
     display: none;
 }
