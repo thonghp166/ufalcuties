@@ -18,7 +18,11 @@ class StaffController extends Controller
     public function index()
     {
         $staff = Staff::all();
-        return view('staff.index',compact('staff'));
+        $field = Field::all();
+        $department = Department::all();
+        return view('staff.index')-> with(compact('department'))
+                                  -> with(compact('field'))
+                                  -> with(compact('staff'));
     }
 
     /**
