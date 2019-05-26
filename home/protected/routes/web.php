@@ -10,13 +10,6 @@ Route::get('/staff/{id}',[
 	'as' => 'staff.info',
 	'uses' => 'StaffController@show'
 ]);
-// Route::get('/staff/create','StaffController@create');
-
-// post('/staff/new', 
-// [
-// 	'as' => 'staff.new',
-// 	'uses' => 'StaffController@store'
-// ]);
 Route::get('/staff/{id}/edit',[
 	'middleware' => 'auth',
 	'as' =>'staff.edit',
@@ -67,15 +60,19 @@ Route::post('password/change', [
 
 Route::group(['middleware' => 'CheckAdminLogin', 'prefix' => 'admin'], function() {
 	Route::get('/', 'AdminController@index')->name('admin.home');
-	Route::post('/','AdminController@addField')->name('admin.add.field');
-	Route::post('/','AdminController@addUser')->name('admin.add.user');
-	Route::post('/','AdminController@deleteUser')->name('admin.delete.user');
-	Route::post('/','AdminController@updateUser')->name('admin.update.user');
 
 	Route::post('/','DepartmentController@store')->name('admin.add.department');
 	Route::post('/{id}','DepartmentController@delete')->name('admin.delete.department');
 	Route::post('/','DepartmentController@update')->name('admin.update.department');
 
-	Route::post('/','AdminController@add')->name('admin.add.user');
+
+	Route::post('/','FieldController@addField')->name('admin.add.field');
+	Route::post('/','FieldController@deleteField')->name('admin.delete.field');
+	Route::post('/','FieldController@updateField')->name('admin.update.field');
+
+
+	Route::post('/','UserController@add')->name('admin.add.user');
+	Route::post('/','UserController@deleteUser')->name('admin.delete.user');
+	Route::post('/','UserController@updateUser')->name('admin.update.user');
 
 });
