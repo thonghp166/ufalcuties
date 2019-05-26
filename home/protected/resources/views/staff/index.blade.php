@@ -136,10 +136,8 @@
   <i class="fas fa-arrow-circle-up"></i>
 </div>
 
-<script type="text/javascript" src="{{URL::asset('js/admin.js')}}"></script>
-
-
 <script type="text/javascript" src="{{URL::asset('js/search.js')}}"></script>
+
 <script>
 	function contentprocess (name) {
 		var content = document.querySelector("#category ." + name + " .content");

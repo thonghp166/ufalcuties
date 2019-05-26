@@ -3,6 +3,42 @@
     padding: 0px;
 }
 
+#welcome {
+    font-size: 25px;
+}
+
+#welcome a:hover {
+    color: #3498db;
+}
+
+p.departmentwebsite {
+    font-size: 18px;
+    color: #3498db;
+}
+
+p.departmentaddress {
+    font-size: 18px;
+    color: #3498db;
+    height: 35px;
+}
+
+p.departmentphone {
+    font-size: 18px;
+    color: #3498db;
+    height: 20px;
+}
+
+p.departmenttype {
+    color: #3498db;
+    height: 30px;
+    font-size: 18px;
+}
+
+p.departmentname {
+    font-size: 22px;
+    height: 70px;
+}
+
 #category .fields .content {
     position: absolute;
     top: 80px;
@@ -314,9 +350,10 @@ input#resetemail {
     transition: 0.4s;
 }
 
-.more p {
+.more a {
     color: white;
     border-radius: 20px;
+    text-decoration: none;
     background: #3498db;
     padding: 10px 40px;
     font-size: 20px;
