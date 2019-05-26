@@ -59,7 +59,7 @@
       </div>
       <div class="col-4">
         <div class="text-center">
-          <a href="" class="findstaff">Xem thêm</a>
+          <a href="{{route('search')}}" class="findstaff">Xem thêm</a>
         </div>
       </div>
       <div class="col-4">
@@ -102,7 +102,7 @@
       </div>
       <div class="col-4">
         <div class="text-center">
-          <a href="" class="findstaff">Xem thêm</a>
+          <a href="{{route('search')}}" class="findstaff">Xem thêm</a>
         </div>
       </div>
       <div class="col-4">
@@ -152,7 +152,7 @@
       </div>
       <div class="col-4">
         <div class="text-center">
-          <a href="" class="findstaff">Xem thêm</a>
+          <a href="{{route('search')}}" class="findstaff">Xem thêm</a>
         </div>
       </div>
       <div class="col-4">

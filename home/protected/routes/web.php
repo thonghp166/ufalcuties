@@ -6,6 +6,11 @@ Route::get('/',[
 ]);
 Route::get('/home','HomeController@index');
 Route::get('/staff','StaffController@index');
+
+Route::get('/search',[
+	'as' => 'search',
+	'uses' => 'HomeController@search'
+]);
 Route::get('/staff/{id}',[
 	'as' => 'staff.info',
 	'uses' => 'StaffController@show'
@@ -63,6 +68,7 @@ Route::group(['middleware' => 'CheckAdminLogin', 'prefix' => 'admin'], function(
 
 	Route::post('/','DepartmentController@store')->name('admin.add.department');
 	Route::get('/delete','DepartmentController@delete')->name('admin.delete.department');
+	Route::delete('/delete','DepartmentController@delete')->name('admin.delete.department');
 	Route::post('/','DepartmentController@update')->name('admin.update.department');
 
 
