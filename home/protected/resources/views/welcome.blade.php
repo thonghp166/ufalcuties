@@ -5,17 +5,17 @@
   <div class="blacklayer"></div>
   <div class="container">
     <div class="row">
-      <div class="col-3"></div>
-      <div class="col-6 detail">
+      <div class="col-2"></div>
+      <div class="col-8 detail">
         <div class="box">
           <p class="title">u-faculties</p>
           <p class="lineleft"></p>
           <p class="lineright"></p>
-          <p class="content">Tiện tích, đầy đủ, hiệu quả.</p>
+          <p class="clonetitle">Hệ thống tìm kiếm cán bộ theo danh mục: đơn vị, lĩnh vực nghiên cứu</p>
           <p class="go">Khám phá nào</p>
         </div>
       </div>
-      <div class="col-3"></div>
+      <div class="col-2"></div>
     </div>
   </div>
 </div>
