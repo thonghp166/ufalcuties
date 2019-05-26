@@ -46,7 +46,9 @@
 	              		var childArr = [];
 	              		var allId = [];
 	              		var allParent = [];
+	              		var staff_fieldArr = [];
 	              	</script>
+
 	              	<?php foreach ($fields as $element): ?>
 	              		<script>
 	              			var allParentLength = allParent.push(<?php echo $element->childOf ?>);
@@ -65,6 +67,14 @@
 	                  		</div>
 						<?php endif ?>
 	              	<?php endforeach ?>
+	              
+					<?php foreach ($staff->fields as $element): ?>
+	              		<script>
+	              			var staff_fieldLength = staff_fieldArr.push(<?php echo $element->id ?>);
+	              		</script>
+	              	<?php endforeach ?>
+	              	
+	              	
 	              </div>
 	            </div>
 	          </fieldset>
