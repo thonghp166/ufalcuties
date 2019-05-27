@@ -38,8 +38,8 @@
                                 <td>{{$staff->degree}}</td>
                                 <td>{{$staff->work_unit}}</td>
                                 <td>
-                                    <button class="btn btn-primary">Sửa</button>
-                                    <button class="btn btn-danger">Xóa</button>
+                                    <button class="btn btn-primary" style="margin: 5px 5px;"><i class="fas fa-edit"></i> Sửa</button>
+                                    <button class="btn btn-danger" style="margin: 5px 5px;"><i class="fas fa-trash"></i> Xóa</button>
                                 </td>
                             </tr>
                         <?php endforeach ?>
@@ -48,12 +48,30 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-12">
-                <div class="text-center">
-                    <button class="btn btn-success" style="margin-top: 20px;">Thêm mới</button>
-                    <button class="btn btn-success" style="margin-top: 20px;">Thêm từ excel</button>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="text-center">
+                        <button class="btn btn-success" style="margin-top: 20px;"><i class="fas fa-plus-circle"></i> Thêm mới</button>
+                        <button class="btn btn-primary" style="margin-top: 20px;"><i class="fas fa-plus-circle"></i> Thêm từ excel</button>
+                    </div>
                 </div>
+            </div>
+
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-6" id="excelimport">
+                    <div class="text-center">
+                        <form>
+                            <fieldset class="form-group">
+                                <label for="exampleInputFile">Tải file excel</label>
+                                <input type="file" class="form-control-file" id="exampleInputFile">
+                            </fieldset>
+                            <button class="btn btn-primary" id="doexcel"><i class="fas fa-file-upload"></i> Nhập vào</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-3"></div>
             </div>
         </div>
     </div>
@@ -90,8 +108,8 @@
                                     <td>{{$element->phone}}</td>    
                                     <td>{{$element->website}}</td>  
                                     <td>
-                                        <button class="btn btn-primary">Sửa</button>
-                                        <button class="btn btn-danger">Xóa</button>
+                                        <button class="btn btn-primary" style="margin: 5px 5px;"><i class="fas fa-edit"></i> Sửa</button>
+                                        <button class="btn btn-danger" style="margin: 5px 5px;"><i class="fas fa-trash"></i> Xóa</button>
                                     </td>
                                 </tr>   
                             <?php endforeach ?>                     
@@ -102,7 +120,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="text-center">
-                    <button class="btn btn-success" style="margin-top: 20px;">Thêm mới</button>
+                    <button class="btn btn-success" style="margin-top: 20px;"><i class="fas fa-plus-circle"></i> Thêm mới</button>
                 </div>
             </div>
         </div>
@@ -150,7 +168,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="text-center">
-                    <button class="btn btn-success" style="margin-top: 20px;">Thêm mới</button>
+                    <button class="btn btn-success" style="margin-top: 20px;"><i class="fas fa-plus-circle"></i> Thêm mới</button>
                 </div>
             </div>
         </div>

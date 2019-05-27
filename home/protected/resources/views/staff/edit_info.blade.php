@@ -19,9 +19,9 @@
           {{ csrf_field() }}
           <div class="row">
             <div class="col-4 tag" style="border-right: 1px solid black;">
-            <a href="{{route('staff.edit',['id' => Auth::user()->staff->id])}}" style="font-weight: bold">Thông tin chung</a>
-            <a href="{{route('staff.edit.field',['id' => Auth::user()->staff->id])}}">Lĩnh vực nghiên cứu</a>
-            <a href="{{route('staff.edit.topic',['id' => Auth::user()->staff->id])}}">Chủ đề quan tâm</a>
+            <a href="{{route('staff.edit',['id' => Auth::user()->staff->id])}}" style="font-weight: bold"><i class="fas fa-user"></i> Thông tin chung</a>
+            <a href="{{route('staff.edit.field',['id' => Auth::user()->staff->id])}}"><i class="fas fa-search"></i> Lĩnh vực nghiên cứu</a>
+            <a href="{{route('staff.edit.topic',['id' => Auth::user()->staff->id])}}"><i class="fas fa-newspaper"></i> Chủ đề quan tâm</a>
           </div>
           <div class="col-8">
             <fieldset class="form-group avatar-group">
@@ -39,8 +39,9 @@
             </fieldset>
             <fieldset class="form-group">
               <div class="row">
-                <div class="col-4 text-right">
-                  <label for="exampleInputEmail1">Mã cán bộ <i class="fas fa-user"></i></label>
+                <div class="col-1"></div>
+                <div class="col-4 text-left">
+                  <label for="exampleInputEmail1"><i class="fas fa-user"></i> Mã cán bộ : </label>
                 </div>
                 <div class="col-7">
                   <input type="text" class="form-control" disabled="" id="code" placeholder="Nhập mã cán bộ" value="{{$staff->code}}">
@@ -49,8 +50,9 @@
             </fieldset>
             <fieldset class="form-group">
               <div class="row">
-                <div class="col-4 text-right">
-                <label for="exampleSelect1">Chức vụ</label>
+                <div class="col-1"></div>
+                <div class="col-4 text-left">
+                <label for="exampleSelect1"><i class="fas fa-graduation-cap"></i> Chức vụ : </label>
               </div>
               <div class="col-7">
                 <input type="text" class="form-control" disabled="" id="staff_type" placeholder="Nhập chức vụ" value="{{$staff->staff_type}}">
@@ -58,8 +60,9 @@
             </fieldset>
             <fieldset class="form-group">
               <div class="row">
-                <div class="col-4 text-right">
-                <label for="exampleSelect1">Bộ môn</label>
+                <div class="col-1"></div>
+                <div class="col-4 text-left">
+                <label for="exampleSelect1"><i class="fas fa-window-restore"></i> Bộ môn : </label>
               </div>
               <div class="col-7">
                 <input type="text" class="form-control" disabled="" id="work_unit" placeholder="Nhập bộ môn, phòng thí nghiệm" value="{{$staff->work_unit}}">
@@ -67,8 +70,9 @@
             </fieldset>
             <fieldset class="form-group">
               <div class="row">
-                <div class="col-4 text-right">
-                <label for="exampleSelect1">Học hàm, học vị</label>
+                <div class="col-1"></div>
+                <div class="col-4 text-left">
+                <label for="exampleSelect1"><i class="fas fa-newspaper"></i> Học hàm, học vị : </label>
               </div>
               <div class="col-7">
                 <input type="text" class="form-control" disabled="" name="degree" id="degree" placeholder="Nhập học hàm, học vị" value="{{$staff->degree}}">
@@ -76,8 +80,9 @@
             </fieldset>
             <fieldset class="form-group">
               <div class="row">
-                <div class="col-4 text-right">
-                  <label for="phone">Số điện thoại<i class="fas fa-phone"></i></label>
+                <div class="col-1"></div>
+                <div class="col-4 text-left">
+                  <label for="phone"><i class="fas fa-phone"></i> Số điện thoại : </label>
                 </div>
                 <div class="col-7">
                   <input type="tel" class="form-control" id="phone" name="phone" placeholder="Nhập số điện thoại" value="{{$staff->phone}}">
@@ -86,8 +91,9 @@
             </fieldset>
             <fieldset class="form-group">
               <div class="row">
-                <div class="col-4 text-right">
-                  <label for="exampleInputEmail1">VNU email <i class="fas fa-envelope"></i></label>
+                <div class="col-1"></div>
+                <div class="col-4 text-left">
+                  <label for="exampleInputEmail1"><i class="fas fa-envelope"></i> VNU email : </label>
                 </div>
                 <div class="col-7">
                   <input type="email" class="form-control" disabled="" name="vnu_email" id="vnu_email" placeholder="Nhập email VNU" value="{{$staff->vnu_email}}">
@@ -96,8 +102,9 @@
             </fieldset>
             <fieldset class="form-group">
               <div class="row">
-                <div class="col-4 text-right">
-                  <label for="exampleInputEmail1">Email khác <i class="far fa-envelope"></i></label>
+                <div class="col-1"></div>
+                <div class="col-4 text-left">
+                  <label for="exampleInputEmail1"><i class="far fa-envelope"></i> Email khác : </label>
                 </div>
                 <div class="col-7">
                   <input type="email" class="form-control" id="gmail" name="gmail" placeholder="Nhập email khác" value="{{$staff->gmail}}">
@@ -106,8 +113,9 @@
             </fieldset>
             <fieldset class="form-group">
               <div class="row">
-                <div class="col-4 text-right">
-                  <label for="exampleInputEmail1">Website <i class="fas fa-paper-plane"></i></label>
+                <div class="col-1"></div>
+                <div class="col-4 text-left">
+                  <label for="exampleInputEmail1"><i class="fas fa-paper-plane"></i> Website : </label>
                 </div>
                 <div class="col-7">
                   <input type="text" class="form-control" id="website" name="website" placeholder="Nhập địa chỉ website" value="{{$staff->website}}">
@@ -116,8 +124,9 @@
             </fieldset>
             <fieldset class="form-group">
               <div class="row">
-                <div class="col-4 text-right">
-                  <label for="exampleInputEmail1">Địa chỉ <i class="fas fa-building"></i></label>
+                <div class="col-1"></div>
+                <div class="col-4 text-left">
+                  <label for="exampleInputEmail1"><i class="fas fa-building"></i> Địa chỉ : </label>
                 </div>
                 <div class="col-7">
                   <input type="text" class="form-control" id="address" name="address" placeholder="Nhập địa chỉ nơi làm việc" value="{{$staff->address}}">

@@ -9,10 +9,10 @@
 	      <form id="staffinfor" method="POST" action="{{route('staff.update.field',['id' => Auth::user()->staff->id])}}">
 	        {{ csrf_field() }}
 	        <div class="row">
-	          <div class="col-4 tag" style="border-right: 1px solid black;">
-	          <a href="{{route('staff.edit',['id' => Auth::user()->staff->id])}}">Thông tin chung</a>
-	          <a href="{{route('staff.edit.field',['id' => Auth::user()->staff->id])}}" style="font-weight: bold">Lĩnh vực nghiên cứu</a>
-	          <a href="{{route('staff.edit.topic',['id' => Auth::user()->staff->id])}}">Chủ đề quan tâm</a>
+	            <div class="col-4 tag" style="border-right: 1px solid black;">
+	            <a href="{{route('staff.edit',['id' => Auth::user()->staff->id])}}"><i class="fas fa-user"></i> Thông tin chung</a>
+	            <a href="{{route('staff.edit.field',['id' => Auth::user()->staff->id])}}" style="font-weight: bold"><i class="fas fa-search"></i> Lĩnh vực nghiên cứu</a>
+	            <a href="{{route('staff.edit.topic',['id' => Auth::user()->staff->id])}}"><i class="fas fa-newspaper"></i> Chủ đề quan tâm</a>
 	        </div>
 	        <div class="col-8">
 	          <fieldset class="form-group avatar-group">
@@ -89,7 +89,7 @@
 	            </div>
 	          </fieldset>
 	          <div class="text-center">
-	            <button type="submit" class="btn btn-primary">Cập nhật</button>
+	            <button type="submit" class="btn btn-primary"><i class="fas fa-pen-square"></i> Cập nhật</button>
 	            @if (session('status'))
                 <div class="alert alert-success" style="display: block; margin-top: 30px;transition: 0.4s;">
                   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 

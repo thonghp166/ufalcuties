@@ -3,6 +3,25 @@
     padding: 0px;
 }
 
+#excelimport label {
+    font-size: 20px;
+}
+
+#excelimport input {
+    border: 2px solid #d9d9d9;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+div#excelimport {
+    background: #f4f4f4;
+    border: 1px solid #d9d9d9;
+    margin-top: 30px;
+    padding: 20px 30px;
+}
+
 p.clonetitle {
     text-transform: uppercase;
     font-size: 30px;
@@ -298,7 +317,7 @@ div#category p.title {
 
 .departmenttable {margin-top: 50px;}
 
-.fieldtable {margin-top: 50px;}
+.fieldtable {margin-top: 50px;margin-bottom: 150px;}
 
 button.btn.btn-primary.resetpasswordbutton {
     margin-left: 15px;
