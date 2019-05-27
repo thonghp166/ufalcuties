@@ -40,6 +40,10 @@ class TopicController extends Controller
     {
         switch ($request->input('action')) {
             case 'new':
+                $request->validate([
+                    'name' => 'unique',
+                    'detail' => 'unique'
+                ]);
                 $name = $request->input('name');
                 $detail = $request->input('detail');
                 $topic = Topic::create([
@@ -47,7 +51,9 @@ class TopicController extends Controller
                     'detail' => $detail,
                     'staff_id' => $id
                 ]);
-                return redirect()->back();
+                return 'Success';
+
+
                 // return $topic;
                 // return $request->input('topic_id');
 
