@@ -38,4 +38,24 @@ document.addEventListener("DOMContentLoaded", function () {
 			}
 		}
 	}, false);
+
+	var newtopic = document.getElementById("newtopic");
+	newtopic.onclick = function () {
+		
+		var newrequest = new XMLHttpRequest();
+		newrequest.onreadystatechange = function () {
+			
+			if (this.readyState == 4 && this.status == 200) {				
+				console.log(this.responseText);
+			} else {
+				console.log('error');
+			}
+		}
+
+		var id = document.getElementById("name");
+		newrequest.open("POST", "http://ufaculties.vn/staff/" + staff_id + "/topic", true);
+		console.log("http://ufaculties.vn/staff/" + staff_id + "/topic");
+		newrequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		newrequest.send("name" + id + "&detail='minhmon'");		
+	}
 }, false);

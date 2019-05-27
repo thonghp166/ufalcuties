@@ -189,4 +189,6 @@
   <i class="fas fa-arrow-circle-up"></i>
 </div>
 
+
+<script type="text/javascript" src="{{URL::asset('js/welcome_tree.js')}}"></script>
 @endsection

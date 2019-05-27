@@ -22,6 +22,7 @@
                   <img src="{{URL::asset('images/thanhld.png')}}" alt="" class="img-fuild avatar">
                 </div>
                 <div class="col-8">
+                  <script> var staff_id = <?php echo $staff->id ?> </script>
                   <h3>{{$staff->degree}} {{$staff->name}}</h3>
                 </div>
               </div>
@@ -102,8 +103,8 @@
               </div>
             </fieldset>
             <div class="text-center">
-              <button type="submit" name="action" value="new" class="btn btn-primary"><i class="fas fa-plus-square"></i> Thêm mới</button>
-              <button type="submit" name="action" value="update" class="btn btn-success"><i class="fas fa-pen-square"></i> Cập nhật</button>
+              <p id="newtopic" class="btn btn-primary"><i class="fas fa-plus-square"></i> Thêm mới</p>
+              <p id="edittopic" class="btn btn-success"><i class="fas fa-pen-square"></i> Cập nhật</p>
             </div>            
           </div>
           </div>            
@@ -137,5 +138,4 @@
 </div>
 
 <script type="text/javascript" src="{{URL::asset('js/topic.js')}}"></script>
-
 @endsection
