@@ -96,7 +96,18 @@ class TopicController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+                    'name' => 'unique',
+                    'detail' => 'unique'
+                ]);
+                $name = $request->input('name');
+                $detail = $request->input('detail');
+                $topic = Topic::create([
+                    'name' => $name,
+                    'detail' => $detail,
+                    'staff_id' => $id
+                ]);
+                return 'Success';
     }
 
     /**
