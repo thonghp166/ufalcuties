@@ -93,8 +93,6 @@
 			            <div class="content">
 			              <p class="unique">{{$element->degree}} {{$element->name}}</p>
 			              <p class="code">Mã cán bộ: {{$element->code}}</p>
-			              <p class="staff_type">Chức vụ: {{$element->staff_type}}</p>
-			              <p class="work_unit">Bộ môn: {{$element->work_unit}}</p>
 			              <p class="phone">Số điện thoại: {{$element->phone}}</p>
 			              <p class="email">VNU Email: {{$element->vnu_email}}</p>
 			            </div>
@@ -142,5 +140,4 @@
 	}
 
 </script>
-
 @endsection

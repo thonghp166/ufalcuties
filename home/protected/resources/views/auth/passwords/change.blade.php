@@ -61,7 +61,7 @@
               </div>
             </fieldset>
             <div class="text-center">
-              <button type="submit" class="btn btn-primary">Đổi mật khẩu</button>
+              <button type="submit" class="btn btn-primary"><i class="fas fa-key"></i> Đổi mật khẩu</button>
               @if (session('status'))
                 <div class="alert alert-success" style="display: block; margin-top: 30px;transition: 0.4s;">
                   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
@@ -104,5 +104,4 @@
 <div class="top">
   <i class="fas fa-arrow-circle-up"></i>
 </div>
-
 @endsection

@@ -10,9 +10,9 @@
           {{ csrf_field() }}
           <div class="row">
             <div class="col-4 tag" style="border-right: 1px solid black;">
-            <a href="{{route('staff.edit',['id' => Auth::user()->staff->id])}}">Thông tin chung</a>
-            <a href="{{route('staff.edit.field',['id' => Auth::user()->staff->id])}}">Lĩnh vực nghiên cứu</a>
-            <a href="{{route('staff.edit.topic',['id' => Auth::user()->staff->id])}}" style="font-weight: bold">Chủ đề quan tâm</a>
+            <a href="{{route('staff.edit',['id' => Auth::user()->staff->id])}}"><i class="fas fa-user"></i> Thông tin chung</a>
+            <a href="{{route('staff.edit.field',['id' => Auth::user()->staff->id])}}"><i class="fas fa-search"></i> Lĩnh vực nghiên cứu</a>
+            <a href="{{route('staff.edit.topic',['id' => Auth::user()->staff->id])}}" style="font-weight: bold"><i class="fas fa-newspaper"></i> Chủ đề quan tâm</a>
           </div>
           <div class="col-8">
             <fieldset class="form-group avatar-group">
@@ -106,8 +106,8 @@
               </div>
             </fieldset>
             <div class="text-center">
-              <p id="newtopic" class="btn btn-primary"><i class="fas fa-plus-square"></i> Thêm mới</p>
-              <p id="edittopic" class="btn btn-success"><i class="fas fa-pen-square"></i> Cập nhật</p>
+              <p id="newtopic" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Thêm mới</p>
+              <p id="edittopic" class="btn btn-success"><i class="fas fa-pen-circle"></i> Cập nhật</p>
             </div>            
           </div>
           </div>            
@@ -141,4 +141,5 @@
 </div>
 @routes
 <script type="text/javascript" src="{{URL::asset('js/topic.js')}}"></script>
+
 @endsection
