@@ -1,0 +1,220 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+.copyright p {
+    color: #a1b1bc;
+    margin-top: 30px;
+}
+
+.copyright {
+    height: 93px;
+    background: #222533;
+}
+
+
+html, body {
+    width: 100%;
+    background: #fafafa;
+    height: 100%;
+    font-family: 'Lato', sans-serif!important;
+}
+
+a.logo p {
+    float: left;
+    font-size: 30px;
+    color: white;
+    font-weight: 700;
+}
+
+a.logo {
+    display: block;
+    line-height: 100px;
+    margin-left: 20%;
+}
+
+.menu {
+    height: 100px;
+    background: #294468;
+    border-bottom: 3px solid gray;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 10;
+    width: 100%;
+}
+
+.feature li {
+    float: left;
+    padding: 38px 20px 37px 20px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #d6caca;
+    font-size: 14px;
+}
+
+li.signin {
+
+    border: 1px solid #2ecc71;
+    border-radius: 30px;
+    padding-top: 16px;
+    height: 50px;
+    margin-top: 22px;
+    background: #2ecc71;
+    color: white;
+    font-weight: 700;
+}
+
+
+li.signin:hover {
+  background: #3498db;
+  border-color: #3498db;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.feature ul {
+    list-style-type: none;
+    float: right;
+    margin-right: 20%;
+}
+
+a.logo img {
+    width: 130px;
+    height: 100px;
+    float: left;
+}
+
+
+.bar {
+    background: #294468;
+    transition: 0.4s;
+}
+
+.webcontent {
+    background: #fafafa;
+    margin-top: 150px;
+    margin-bottom: 50px;
+}
+
+.teacherInformation {
+    background: #fff;
+    border: 1px solid gray;
+    padding: 10px 20px;
+}
+
+
+
+div.top {
+    position: fixed;
+    bottom: 0px;
+    right: -200px;
+    width: 70px;
+    height: 70px;
+    transition: 0.4s;
+}
+
+.moveleft {
+    right: 0px !important;    
+    transition: 0.4s;
+}
+
+div.top:hover {
+    cursor: pointer;
+}
+
+.menu .home a {    
+    text-decoration: none;
+    color: #adadad;
+    font-family: 'Lato', sans-serif !important;
+    font-weight: 610;
+    font-size: 15px;
+}
+
+.menu .teacher a {
+    text-decoration: none;
+    color: #adadad;
+    font-family: 'Lato', sans-serif !important;
+    font-weight: 610;
+    font-size: 15px;
+}
+
+.menu .signin a {
+    text-decoration: none;
+    color: #000;
+    font-family: 'Lato', sans-serif !important;
+    font-weight: 610;
+    font-size: 15px;
+}
+
+.changeAvatarPanel {
+    border-bottom: 1px solid gray;
+    padding-bottom: 20px;
+}
+
+.changeAvatarPanel label {
+    margin: auto;
+    text-align: center;
+    display: block;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.changeAvatarPanel input {
+    display: block;
+    margin: auto;
+    text-align: center;
+    font-size: 20px;
+    border: 1px solid gray;
+    padding: 10px 15px;
+}
+
+.avatar {    
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.avatar .frame {
+    border: 1px solid gray;
+    border-radius: 50%;
+    overflow: hidden;
+    height: 250px;
+    width: 250px;
+}
+
+.avatar img {
+
+    transform: scale(1.5);
+}
+
+.research {
+    font-size: 20px;
+}
+
+.menu .home a:hover {
+    
+    text-decoration: none;
+    color: white;
+    font-family: 'Lato', sans-serif !important;
+    font-weight: 610;
+    font-size: 15px;
+}
+
+.menu .teacher a:hover {
+    text-decoration: none;
+    color: white;
+    font-family: 'Lato', sans-serif !important;
+    font-weight: 610;
+    font-size: 15px;
+}
+
+.menu .signin a:hover {
+    text-decoration: none;
+    color: white;
+    font-family: 'Lato', sans-serif !important;
+    font-weight: 610;
+    font-size: 15px;
+}
