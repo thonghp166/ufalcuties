@@ -22,7 +22,10 @@
                   <img src="{{URL::asset('images/thanhld.png')}}" alt="" class="img-fuild avatar">
                 </div>
                 <div class="col-8">
-                  <script> var staff_id = <?php echo $staff->id ?> </script>
+                  <script> 
+                    var staff_id = <?php echo $staff->id ?>; 
+                    var count = 1;
+                  </script>
                   <h3>{{$staff->degree}} {{$staff->name}}</h3>
                 </div>
               </div>
@@ -37,15 +40,15 @@
                     <th>Thao tác</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="topicbody">
                   <?php $count = 1; foreach ($staff->topics as $element): ?>
                     <tr>
-                      <td><?php echo $count; $count++;?></td>
+                      <td><?php echo $count; $count++;?><script> count = <?php echo $count; ?></script></td>
                       <td>{{$element->name}}</td>
                       <td>{{$element->detail}}</td>
                       <td>
-                        <span class="btn btn-primary edit" data-id="{{$element->id}}" data-name="{{$element->name}}" data-detail="{{$element->detail}}" style="color: white!important; font-weight: normal; font-style: italic;"><i class="fas fa-edit"></i> Sửa</span>
-                        <span class="btn btn-danger delete" data-id="{{$element->id}}" data-name="{{$element->name}}" data-detail="{{$element->detail}}" style="color: white!important; font-weight: normal; font-style: italic;"><i class="fas fa-trash"></i> Xóa</span>
+                        <span class="btn btn-primary edit" data-name="{{$element->name}}" data-detail="{{$element->detail}}" style="color: white!important; font-weight: normal; font-style: italic;"><i class="fas fa-edit"></i> Sửa</span>
+                        <span class="btn btn-danger delete" data-name="{{$element->name}}" data-detail="{{$element->detail}}" style="color: white!important; font-weight: normal; font-style: italic;"><i class="fas fa-trash"></i> Xóa</span>
                       </td>
                     </tr>
                   <?php endforeach ?>
@@ -78,7 +81,7 @@
                   <label for="name">Chủ đề quan tâm mới</label>
                 </div>
                 <div class="col-7">
-                  <input type="text" class="form-control" id="dd" name="name" placeholder="Nhập tiêu đề chủ đề quan tâm mới">
+                  <input type="text" class="form-control" id="name" name="name" placeholder="Nhập tiêu đề chủ đề quan tâm mới">
                 </div>
               </div>
             </fieldset>

@@ -43,27 +43,70 @@ document.addEventListener("DOMContentLoaded", function () {
 	newtopic.onclick = function () {
 		
 		var newrequest = new XMLHttpRequest();
+		
+		var name = document.getElementById("name");
+		var detail = document.getElementById("detail");
+		
 		newrequest.onreadystatechange = function () {
 			
 			if (this.readyState == 4 && this.status == 200) {				
-				console.log(this.responseText);
+				var topicbody = document.getElementById("topicbody");
+
+				var newrow = document.createElement("tr");
+				
+				var col1 = document.createElement("td");
+				var text1 = document.createTextNode(count);
+				col1.appendChild(text1);
+
+				var col2 = document.createElement("td");
+				var text2 = document.createTextNode(name.value);
+				col2.appendChild(text2);
+
+				var col3 = document.createElement("td");
+				var text3 = document.createTextNode(detail.value);
+				col3.appendChild(text3);
+
+				var col4 = document.createElement("td");
+				
+				var editbutton = document.createElement("span");
+				editbutton.setAttribute("class", "btn btn-primary edit");
+				editbutton.setAttribute("data-name", name.value);
+				editbutton.setAttribute("data-detail", detail.value);
+				editbutton.setAttribute("style", "color: white!important; font-weight: normal; font-style: italic; margin-right: 4px;");
+				var editicon = document.createElement("i");
+				editicon.setAttribute("class", "fas fa-edit");
+				var text4 = document.createTextNode(" Sửa");
+				editbutton.appendChild(editicon);
+				editbutton.appendChild(text4);
+				col4.appendChild(editbutton);
+
+				var deletebutton = document.createElement("span");
+				deletebutton.setAttribute("class", "btn btn-danger delete");
+				deletebutton.setAttribute("data-name", name.value);
+				deletebutton.setAttribute("data-detail", detail.value);
+				deletebutton.setAttribute("style", "color: white!important; font-weight: normal; font-style: italic;");
+				var deleteicon = document.createElement("i");
+				deleteicon.setAttribute("class", "fas fa-trash");
+				var text5 = document.createTextNode(" Xóa");
+				deletebutton.appendChild(deleteicon);
+				deletebutton.appendChild(text5);
+				col4.appendChild(deletebutton);
+
+				newrow.appendChild(col1);
+				newrow.appendChild(col2);
+				newrow.appendChild(col3);
+				newrow.appendChild(col4);
+				topicbody.appendChild(newrow);
+
+				name.value = "";
+				detail.value = "";
+				
+				count++;
 			} else {
 				console.log('error');
 			}
 		}
-
-<<<<<<< HEAD
-		var id = document.getElementById("name");
-		console.log(id.value);
-		newrequest.open("POST", "http://ufaculties.vn/staff/" + staff_id + "/topic", true);
-		console.log("http://ufaculties.vn/staff/" + staff_id + "/topic");
-		newrequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		newrequest.send("name=" + id.value + "&detail='minhmon'");		
-=======
-		var name = document.getElementById("name");
-		var detail = document.getElementById("detail");
 		newrequest.open("GET", "http://ufaculties.vn/shit?name=" + name.value + "&detail=" + detail.value , true);
 		newrequest.send();
->>>>>>> 6dc0a8ea0658637c12253e3ee1e1a06c26deff99
 	}
 }, false);
