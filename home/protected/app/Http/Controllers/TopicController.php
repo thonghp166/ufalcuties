@@ -30,50 +30,7 @@ class TopicController extends Controller
         return $staff->topics;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request,$id)
-    {
-        switch ($request->input('action')) {
-            case 'new':
-                $request->validate([
-                    'name' => 'unique',
-                    'detail' => 'unique'
-                ]);
-                $name = $request->input('name');
-                $detail = $request->input('detail');
-                $topic = Topic::create([
-                    'name' => $name,
-                    'detail' => $detail,
-                    'staff_id' => $id
-                ]);
-                return 'Success';
-
-
-                // return $topic;
-                // return $request->input('topic_id');
-
-            case 'update':
-                $name = $request->input('name');
-                $detail = $request->input('detail');
-                $id_topic = $request->input('topic_id');
-                $topic = Topic::find($id_topic);
-                $topic->update([
-                    'name' => $name,
-                    'detail' => $detail
-                ]);
-                return redirect()->back();
-
-            case 'delete':
-                Topic::destroy($request->input('topic_id'));
-                return redirect()->back();
-        }
-        
-    }
+    
 
 
     /**
@@ -97,17 +54,17 @@ class TopicController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-                    'name' => 'unique',
-                    'detail' => 'unique'
-                ]);
-                $name = $request->input('name');
-                $detail = $request->input('detail');
-                $topic = Topic::create([
-                    'name' => $name,
-                    'detail' => $detail,
-                    'staff_id' => $id
-                ]);
-                return 'Success';
+                'name' => 'unique',
+                'detail' => 'unique'
+        ]);
+        $name = $request->input('name');
+        $detail = $request->input('detail');
+        $topic = Topic::create([
+            'name' => $name,
+            'detail' => $detail,
+            'staff_id' => $id
+        ]);
+        return 'Success';
     }
 
     /**
