@@ -39,7 +39,6 @@ class HomeController extends Controller
 
     public function test()
     {
-        $department = Department::all();
-        return $department;
+        return view('test');
     }
 }

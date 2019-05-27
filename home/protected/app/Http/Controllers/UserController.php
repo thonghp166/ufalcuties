@@ -5,6 +5,12 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Staff;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use Session;
+use Excel;
+use File;
+use App\Imports\UsersImport;
 
 class UserController extends Controller
 {
@@ -65,5 +71,20 @@ class UserController extends Controller
         ]);
 
         return redirect()->back();
+    }
+
+    public function storeFromExcel(Request $request)
+    {
+        $this->validate($request, array(
+            'file'      => 'required'
+        ));
+        if($request->hasFile('file')){
+            $extension = File::extension($request->file->getClientOriginalName());
+            if ($extension == "xlsx" || $extension == "xls" || $extension == "csv") {
+                $file = $request->file;
+                $collection = Excel::toCollection(new UsersImport, $file)->get(0);
+                return $collection;
+            }
+        }
     }
 }

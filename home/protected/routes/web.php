@@ -93,3 +93,8 @@ Route::get('/test',[
 	'as' => 'test',
 	'uses' => 'HomeController@test'
 ]);
+
+Route::post('/test',[
+	'as' => 'import',
+	'uses' => 'UserController@storeFromExcel'
+]);
