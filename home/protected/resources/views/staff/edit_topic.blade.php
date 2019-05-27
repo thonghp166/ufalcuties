@@ -139,6 +139,6 @@
 <div class="top">
   <i class="fas fa-arrow-circle-up"></i>
 </div>
-
+@routes
 <script type="text/javascript" src="{{URL::asset('js/topic.js')}}"></script>
 @endsection

@@ -73,7 +73,7 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    public function storeFromExcel(Request $request)
+    public function importExcel(Request $request)
     {
         $this->validate($request, array(
             'file'      => 'required'
@@ -83,8 +83,52 @@ class UserController extends Controller
             if ($extension == "xlsx" || $extension == "xls" || $extension == "csv") {
                 $file = $request->file;
                 $collection = Excel::toCollection(new UsersImport, $file)->get(0);
-                return $collection;
+
+                if (!$collection->isEmpty()){
+                    $collection->pop();
+
+                    foreach ($collection as $value) {
+                        if (!$this->saveFromExcel($value)) {                    
+                            Session::flash('error', 'Lỗi khi thêm tài khoản');
+                            return 'Fail qua';
+                        }
+                    }
+                    Session::flash('success', 'Đã thêm thành công');
+                    return "success";
+                } else {
+                    Session::flash('error', 'Sai định dạng');
+                    return 'Wrong file type';
+                }
             }
         }
+    }
+
+    private function saveFromExcel($element){
+        $name = $element->get('ho_va_ten');
+        $username = $element->get('ten_dang_nhap');
+        $email = $element->get('vnu_email');
+        $password = bcrypt($element->get('mat_khau'));
+        if ($this->checkValidate($username, $email)){
+            $user = User::create([
+                'username' => $username,
+                'password' => $password,
+                'email' => $email
+            ]);
+            $staff = Staff::create([
+                'name' => $name,
+                'vnu_email' => $email,
+                'user_id' => $user->id,
+                'account' => $username,
+            ]);
+        } else {
+            return false;
+        }
+        return true;
+    }
+
+    private function checkValidate($username, $email){
+        if (User::where('username','=',$username)->where('email','=',$email)->exists())
+            return false;
+        return true;
     }
 }

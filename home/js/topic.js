@@ -106,7 +106,8 @@ document.addEventListener("DOMContentLoaded", function () {
 				console.log('error');
 			}
 		}
-		newrequest.open("GET", "http://ufaculties.vn/shit?name=" + name.value + "&detail=" + detail.value , true);
+
+		newrequest.open("GET", route('staff.add.topic') + "?name=" + name.value + "&detail=" + detail.value , true);
 		newrequest.send();
 	}
 }, false);

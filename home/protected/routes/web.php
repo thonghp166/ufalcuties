@@ -47,7 +47,7 @@ Route::post('/staff/{id}/topic',[
 	'uses' => 'TopicController@update'
 ]);
 
-Route::get('/shit',[
+Route::get('/addtopic',[
 	'middleware' => 'auth',
 	'as' => 'staff.add.topic',
 	'uses' => 'TopicController@add'
@@ -86,6 +86,8 @@ Route::group(['middleware' => 'CheckAdminLogin', 'prefix' => 'admin'], function(
 	Route::post('/','UserController@add')->name('admin.add.user');
 	Route::post('/','UserController@deleteUser')->name('admin.delete.user');
 	Route::post('/','UserController@updateUser')->name('admin.update.user');
+
+	 Route::get('/import','UserController@importExcel')->name('admin.add.user.excel');
 });
 
 
@@ -96,5 +98,5 @@ Route::get('/test',[
 
 Route::post('/test',[
 	'as' => 'import',
-	'uses' => 'UserController@storeFromExcel'
+	'uses' => 'UserController@importExcel'
 ]);
