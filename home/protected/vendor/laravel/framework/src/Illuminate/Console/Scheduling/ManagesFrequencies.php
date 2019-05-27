@@ -2,7 +2,7 @@
 
 namespace Illuminate\Console\Scheduling;
 
-use Illuminate\Support\Carbon;
+use Carbon\Carbon;
 
 trait ManagesFrequencies
 {
@@ -62,56 +62,6 @@ trait ManagesFrequencies
     }
 
     /**
-     * Schedule the event to run every minute.
-     *
-     * @return $this
-     */
-    public function everyMinute()
-    {
-        return $this->spliceIntoPosition(1, '*');
-    }
-
-    /**
-     * Schedule the event to run every five minutes.
-     *
-     * @return $this
-     */
-    public function everyFiveMinutes()
-    {
-        return $this->spliceIntoPosition(1, '*/5');
-    }
-
-    /**
-     * Schedule the event to run every ten minutes.
-     *
-     * @return $this
-     */
-    public function everyTenMinutes()
-    {
-        return $this->spliceIntoPosition(1, '*/10');
-    }
-
-    /**
-     * Schedule the event to run every fifteen minutes.
-     *
-     * @return $this
-     */
-    public function everyFifteenMinutes()
-    {
-        return $this->spliceIntoPosition(1, '*/15');
-    }
-
-    /**
-     * Schedule the event to run every thirty minutes.
-     *
-     * @return $this
-     */
-    public function everyThirtyMinutes()
-    {
-        return $this->spliceIntoPosition(1, '0,30');
-    }
-
-    /**
      * Schedule the event to run hourly.
      *
      * @return $this
@@ -165,7 +115,7 @@ trait ManagesFrequencies
         $segments = explode(':', $time);
 
         return $this->spliceIntoPosition(2, (int) $segments[0])
-                    ->spliceIntoPosition(1, count($segments) === 2 ? (int) $segments[1] : '0');
+                    ->spliceIntoPosition(1, count($segments) == 2 ? (int) $segments[1] : '0');
     }
 
     /**
@@ -351,7 +301,7 @@ trait ManagesFrequencies
         return $this->spliceIntoPosition(1, 0)
                     ->spliceIntoPosition(2, 0)
                     ->spliceIntoPosition(3, 1)
-                    ->spliceIntoPosition(4, '1-12/3');
+                    ->spliceIntoPosition(4, '*/3');
     }
 
     /**
@@ -365,6 +315,46 @@ trait ManagesFrequencies
                     ->spliceIntoPosition(2, 0)
                     ->spliceIntoPosition(3, 1)
                     ->spliceIntoPosition(4, 1);
+    }
+
+    /**
+     * Schedule the event to run every minute.
+     *
+     * @return $this
+     */
+    public function everyMinute()
+    {
+        return $this->spliceIntoPosition(1, '*');
+    }
+
+    /**
+     * Schedule the event to run every five minutes.
+     *
+     * @return $this
+     */
+    public function everyFiveMinutes()
+    {
+        return $this->spliceIntoPosition(1, '*/5');
+    }
+
+    /**
+     * Schedule the event to run every ten minutes.
+     *
+     * @return $this
+     */
+    public function everyTenMinutes()
+    {
+        return $this->spliceIntoPosition(1, '*/10');
+    }
+
+    /**
+     * Schedule the event to run every thirty minutes.
+     *
+     * @return $this
+     */
+    public function everyThirtyMinutes()
+    {
+        return $this->spliceIntoPosition(1, '0,30');
     }
 
     /**

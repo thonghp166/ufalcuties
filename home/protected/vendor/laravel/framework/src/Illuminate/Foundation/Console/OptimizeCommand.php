@@ -3,6 +3,8 @@
 namespace Illuminate\Foundation\Console;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Composer;
+use Symfony\Component\Console\Input\InputOption;
 
 class OptimizeCommand extends Command
 {
@@ -18,18 +20,57 @@ class OptimizeCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Cache the framework bootstrap files';
+    protected $description = 'Optimize the framework for better performance';
+
+    /**
+     * The composer instance.
+     *
+     * @var \Illuminate\Support\Composer
+     */
+    protected $composer;
+
+    /**
+     * Create a new optimize command instance.
+     *
+     * @param  \Illuminate\Support\Composer  $composer
+     * @return void
+     */
+    public function __construct(Composer $composer)
+    {
+        parent::__construct();
+
+        $this->composer = $composer;
+    }
 
     /**
      * Execute the console command.
      *
      * @return void
      */
-    public function handle()
+    public function fire()
     {
-        $this->call('config:cache');
-        $this->call('route:cache');
+        $this->info('Generating optimized class loader');
 
-        $this->info('Files cached successfully!');
+        if ($this->option('psr')) {
+            $this->composer->dumpAutoloads();
+        } else {
+            $this->composer->dumpOptimized();
+        }
+
+        $this->call('clear-compiled');
+    }
+
+    /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+            ['force', null, InputOption::VALUE_NONE, 'Force the compiled class file to be written (deprecated).'],
+
+            ['psr', null, InputOption::VALUE_NONE, 'Do not optimize Composer dump-autoload.'],
+        ];
     }
 }

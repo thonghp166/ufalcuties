@@ -4,7 +4,7 @@ namespace Illuminate\Database\Connectors;
 
 use PDO;
 use Exception;
-use Throwable;
+use Illuminate\Support\Arr;
 use Doctrine\DBAL\Driver\PDOConnection;
 use Illuminate\Database\DetectsLostConnections;
 
@@ -32,13 +32,11 @@ class Connector
      * @param  array   $config
      * @param  array   $options
      * @return \PDO
-     *
-     * @throws \Exception
      */
     public function createConnection($dsn, array $config, array $options)
     {
-        [$username, $password] = [
-            $config['username'] ?? null, $config['password'] ?? null,
+        list($username, $password) = [
+            Arr::get($config, 'username'), Arr::get($config, 'password'),
         ];
 
         try {
@@ -85,7 +83,7 @@ class Connector
     /**
      * Handle an exception that occurred during connect execution.
      *
-     * @param  \Throwable  $e
+     * @param  \Exception  $e
      * @param  string  $dsn
      * @param  string  $username
      * @param  string  $password
@@ -94,7 +92,7 @@ class Connector
      *
      * @throws \Exception
      */
-    protected function tryAgainIfCausedByLostConnection(Throwable $e, $dsn, $username, $password, $options)
+    protected function tryAgainIfCausedByLostConnection(Exception $e, $dsn, $username, $password, $options)
     {
         if ($this->causedByLostConnection($e)) {
             return $this->createPdoConnection($dsn, $username, $password, $options);
@@ -111,7 +109,7 @@ class Connector
      */
     public function getOptions(array $config)
     {
-        $options = $config['options'] ?? [];
+        $options = Arr::get($config, 'options', []);
 
         return array_diff_key($this->options, $options) + $options;
     }

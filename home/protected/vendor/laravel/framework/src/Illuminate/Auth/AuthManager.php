@@ -13,7 +13,7 @@ class AuthManager implements FactoryContract
     /**
      * The application instance.
      *
-     * @var \Illuminate\Contracts\Foundation\Application
+     * @var \Illuminate\Foundation\Application
      */
     protected $app;
 
@@ -43,7 +43,7 @@ class AuthManager implements FactoryContract
     /**
      * Create a new Auth manager instance.
      *
-     * @param  \Illuminate\Contracts\Foundation\Application  $app
+     * @param  \Illuminate\Foundation\Application  $app
      * @return void
      */
     public function __construct($app)
@@ -65,7 +65,9 @@ class AuthManager implements FactoryContract
     {
         $name = $name ?: $this->getDefaultDriver();
 
-        return $this->guards[$name] ?? $this->guards[$name] = $this->resolve($name);
+        return isset($this->guards[$name])
+                    ? $this->guards[$name]
+                    : $this->guards[$name] = $this->resolve($name);
     }
 
     /**
@@ -94,9 +96,7 @@ class AuthManager implements FactoryContract
             return $this->{$driverMethod}($name, $config);
         }
 
-        throw new InvalidArgumentException(
-            "Auth driver [{$config['driver']}] for guard [{$name}] is not defined."
-        );
+        throw new InvalidArgumentException("Auth guard driver [{$name}] is not defined.");
     }
 
     /**
@@ -120,7 +120,7 @@ class AuthManager implements FactoryContract
      */
     public function createSessionDriver($name, $config)
     {
-        $provider = $this->createUserProvider($config['provider'] ?? null);
+        $provider = $this->createUserProvider($config['provider']);
 
         $guard = new SessionGuard($name, $provider, $this->app['session.store']);
 
@@ -155,11 +155,8 @@ class AuthManager implements FactoryContract
         // that takes an API token field from the request and matches it to the
         // user in the database or another persistence layer where users are.
         $guard = new TokenGuard(
-            $this->createUserProvider($config['provider'] ?? null),
-            $this->app['request'],
-            $config['input_key'] ?? 'api_token',
-            $config['storage_key'] ?? 'api_token',
-            $config['hash'] ?? false
+            $this->createUserProvider($config['provider']),
+            $this->app['request']
         );
 
         $this->app->refresh('request', $guard, 'setRequest');
@@ -226,7 +223,7 @@ class AuthManager implements FactoryContract
     public function viaRequest($driver, callable $callback)
     {
         return $this->extend($driver, function () use ($callback) {
-            $guard = new RequestGuard($callback, $this->app['request'], $this->createUserProvider());
+            $guard = new RequestGuard($callback, $this->app['request']);
 
             $this->app->refresh('request', $guard, 'setRequest');
 

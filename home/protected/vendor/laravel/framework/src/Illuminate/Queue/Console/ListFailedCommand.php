@@ -33,9 +33,9 @@ class ListFailedCommand extends Command
      *
      * @return void
      */
-    public function handle()
+    public function fire()
     {
-        if (count($jobs = $this->getFailedJobs()) === 0) {
+        if (count($jobs = $this->getFailedJobs()) == 0) {
             return $this->info('No failed jobs!');
         }
 
@@ -82,7 +82,7 @@ class ListFailedCommand extends Command
         $payload = json_decode($payload, true);
 
         if ($payload && (! isset($payload['data']['command']))) {
-            return $payload['job'] ?? null;
+            return Arr::get($payload, 'job');
         } elseif ($payload && isset($payload['data']['command'])) {
             return $this->matchJobName($payload);
         }
@@ -98,7 +98,11 @@ class ListFailedCommand extends Command
     {
         preg_match('/"([^"]+)"/', $payload['data']['command'], $matches);
 
-        return $matches[1] ?? $payload['job'] ?? null;
+        if (isset($matches[1])) {
+            return $matches[1];
+        } else {
+            return Arr::get($payload, 'job');
+        }
     }
 
     /**

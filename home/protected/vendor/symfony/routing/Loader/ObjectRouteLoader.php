@@ -44,14 +44,9 @@ abstract class ObjectRouteLoader extends Loader
      */
     public function load($resource, $type = null)
     {
-        if (1 === substr_count($resource, ':')) {
-            $resource = str_replace(':', '::', $resource);
-            @trigger_error(sprintf('Referencing service route loaders with a single colon is deprecated since Symfony 4.1. Use %s instead.', $resource), E_USER_DEPRECATED);
-        }
-
-        $parts = explode('::', $resource);
+        $parts = explode(':', $resource);
         if (2 != \count($parts)) {
-            throw new \InvalidArgumentException(sprintf('Invalid resource "%s" passed to the "service" route loader: use the format "service::method"', $resource));
+            throw new \InvalidArgumentException(sprintf('Invalid resource "%s" passed to the "service" route loader: use the format "service_name:methodName"', $resource));
         }
 
         $serviceString = $parts[0];
@@ -63,11 +58,11 @@ abstract class ObjectRouteLoader extends Loader
             throw new \LogicException(sprintf('%s:getServiceObject() must return an object: %s returned', \get_class($this), \gettype($loaderObject)));
         }
 
-        if (!\is_callable([$loaderObject, $method])) {
+        if (!method_exists($loaderObject, $method)) {
             throw new \BadMethodCallException(sprintf('Method "%s" not found on "%s" when importing routing resource "%s"', $method, \get_class($loaderObject), $resource));
         }
 
-        $routeCollection = $loaderObject->$method($this);
+        $routeCollection = \call_user_func([$loaderObject, $method], $this);
 
         if (!$routeCollection instanceof RouteCollection) {
             $type = \is_object($routeCollection) ? \get_class($routeCollection) : \gettype($routeCollection);

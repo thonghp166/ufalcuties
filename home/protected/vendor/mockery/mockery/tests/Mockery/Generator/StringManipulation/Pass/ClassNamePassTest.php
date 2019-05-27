@@ -1,34 +1,16 @@
 <?php
-/**
- * Mockery
- *
- * LICENSE
- *
- * This source file is subject to the new BSD license that is bundled
- * with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://github.com/padraic/mockery/master/LICENSE
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to padraic@php.net so we can send you a copy immediately.
- *
- * @category   Mockery
- * @package    Mockery
- * @subpackage UnitTests
- * @copyright  Copyright (c) 2010 Pádraic Brady (http://blog.astrumfutura.com)
- * @license    http://github.com/padraic/mockery/blob/master/LICENSE New BSD License
- */
 
 namespace Mockery\Generator\StringManipulation\Pass;
 
-use Mockery\Adapter\Phpunit\MockeryTestCase;
+use Mockery as m;
 use Mockery\Generator\MockConfiguration;
+use Mockery\Generator\StringManipulation\Pass\ClassNamePass;
 
-class ClassNamePassTest extends MockeryTestCase
+class ClassNamePassTest extends \PHPUnit_Framework_TestCase
 {
     const CODE = "namespace Mockery; class Mock {}";
 
-    public function mockeryTestSetUp()
+    public function setup()
     {
         $this->pass = new ClassNamePass();
     }
@@ -40,7 +22,7 @@ class ClassNamePassTest extends MockeryTestCase
     {
         $config = new MockConfiguration(array(), array(), array(), "Dave\Dave");
         $code = $this->pass->apply(static::CODE, $config);
-        $this->assertTrue(\mb_strpos($code, 'namespace Mockery;') === false);
+        $this->assertNotContains('namespace Mockery;', $code);
     }
 
     /**
@@ -50,8 +32,8 @@ class ClassNamePassTest extends MockeryTestCase
     {
         $config = new MockConfiguration(array(), array(), array(), "Dave\Dave");
         $code = $this->pass->apply(static::CODE, $config);
-        $this->assertTrue(\mb_strpos($code, 'namespace Mockery;') === false);
-        $this->assertTrue(\mb_strpos($code, 'namespace Dave;') !== false);
+        $this->assertNotContains('namespace Mockery;', $code);
+        $this->assertContains('namespace Dave;', $code);
     }
 
     /**
@@ -61,7 +43,7 @@ class ClassNamePassTest extends MockeryTestCase
     {
         $config = new MockConfiguration(array(), array(), array(), "Dave");
         $code = $this->pass->apply(static::CODE, $config);
-        $this->assertTrue(\mb_strpos($code, 'class Dave') !== false);
+        $this->assertContains('class Dave', $code);
     }
 
     /**
@@ -71,6 +53,6 @@ class ClassNamePassTest extends MockeryTestCase
     {
         $config = new MockConfiguration(array(), array(), array(), "\Dave\Dave");
         $code = $this->pass->apply(static::CODE, $config);
-        $this->assertTrue(\mb_strpos($code, 'namespace Dave;') !== false);
+        $this->assertContains('namespace Dave;', $code);
     }
 }

@@ -34,6 +34,16 @@ trait FileHelpers
     }
 
     /**
+     * Get the file's extension supplied by the client.
+     *
+     * @return string
+     */
+    public function clientExtension()
+    {
+        return $this->guessClientExtension();
+    }
+
+    /**
      * Get a filename for the file.
      *
      * @param  string  $path
@@ -47,10 +57,6 @@ trait FileHelpers
 
         $hash = $this->hashName ?: $this->hashName = Str::random(40);
 
-        if ($extension = $this->guessExtension()) {
-            $extension = '.'.$extension;
-        }
-
-        return $path.$hash.$extension;
+        return $path.$hash.'.'.$this->guessExtension();
     }
 }

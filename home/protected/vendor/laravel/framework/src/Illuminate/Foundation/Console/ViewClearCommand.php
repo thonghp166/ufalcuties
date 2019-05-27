@@ -46,10 +46,8 @@ class ViewClearCommand extends Command
      * Execute the console command.
      *
      * @return void
-     *
-     * @throws \RuntimeException
      */
-    public function handle()
+    public function fire()
     {
         $path = $this->laravel['config']['view.compiled'];
 

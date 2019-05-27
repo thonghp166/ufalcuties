@@ -14,7 +14,7 @@
  *
  * @category   Mockery
  * @package    Mockery
- * @copyright  Copyright (c) 2010 Pádraic Brady (http://blog.astrumfutura.com)
+ * @copyright  Copyright (c) 2010-2014 Pádraic Brady (http://blog.astrumfutura.com)
  * @license    http://github.com/padraic/mockery/blob/master/LICENSE New BSD License
  */
 
@@ -22,6 +22,7 @@ namespace Mockery;
 
 class CompositeExpectation implements ExpectationInterface
 {
+
     /**
      * Stores an array of all expectations for this composite
      *
@@ -41,22 +42,11 @@ class CompositeExpectation implements ExpectationInterface
     }
 
     /**
-     * @param mixed ...$args
+     * @param mixed ...
      */
-    public function andReturn(...$args)
+    public function andReturn()
     {
-        return $this->__call(__FUNCTION__, $args);
-    }
-
-    /**
-     * Set a return value, or sequential queue of return values
-     *
-     * @param mixed ...$args
-     * @return self
-     */
-    public function andReturns(...$args)
-    {
-        return call_user_func_array([$this, 'andReturn'], $args);
+        return $this->__call(__FUNCTION__, func_get_args());
     }
 
     /**
@@ -112,28 +102,15 @@ class CompositeExpectation implements ExpectationInterface
      * Starts a new expectation addition on the first mock which is the primary
      * target outside of a demeter chain
      *
-     * @param mixed ...$args
+     * @param mixed ...
      * @return \Mockery\Expectation
      */
-    public function shouldReceive(...$args)
+    public function shouldReceive()
     {
+        $args = func_get_args();
         reset($this->_expectations);
         $first = current($this->_expectations);
         return call_user_func_array(array($first->getMock(), 'shouldReceive'), $args);
-    }
-
-    /**
-     * Starts a new expectation addition on the first mock which is the primary
-     * target outside of a demeter chain
-     *
-     * @param mixed ...$args
-     * @return \Mockery\Expectation
-     */
-    public function shouldNotReceive(...$args)
-    {
-        reset($this->_expectations);
-        $first = current($this->_expectations);
-        return call_user_func_array(array($first->getMock(), 'shouldNotReceive'), $args);
     }
 
     /**

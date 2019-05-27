@@ -2,15 +2,13 @@
 
 namespace Illuminate\Broadcasting\Broadcasters;
 
-use Exception;
-use ReflectionClass;
 use ReflectionFunction;
-use Illuminate\Support\Arr;
+use ReflectionParameter;
 use Illuminate\Support\Str;
 use Illuminate\Container\Container;
-use Illuminate\Contracts\Routing\UrlRoutable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Routing\BindingRegistrar;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Contracts\Broadcasting\Broadcaster as BroadcasterContract;
 
 abstract class Broadcaster implements BroadcasterContract
@@ -23,16 +21,9 @@ abstract class Broadcaster implements BroadcasterContract
     protected $channels = [];
 
     /**
-     * The registered channel options.
-     *
-     * @var array
-     */
-    protected $channelOptions = [];
-
-    /**
      * The binding registrar instance.
      *
-     * @var \Illuminate\Contracts\Routing\BindingRegistrar
+     * @var BindingRegistrar
      */
     protected $bindingRegistrar;
 
@@ -40,15 +31,12 @@ abstract class Broadcaster implements BroadcasterContract
      * Register a channel authenticator.
      *
      * @param  string  $channel
-     * @param  callable|string  $callback
-     * @param  array  $options
+     * @param  callable  $callback
      * @return $this
      */
-    public function channel($channel, $callback, $options = [])
+    public function channel($channel, callable $callback)
     {
         $this->channels[$channel] = $callback;
-
-        $this->channelOptions[$channel] = $options;
 
         return $this;
     }
@@ -59,26 +47,22 @@ abstract class Broadcaster implements BroadcasterContract
      * @param  \Illuminate\Http\Request  $request
      * @param  string  $channel
      * @return mixed
-     *
-     * @throws \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException
      */
     protected function verifyUserCanAccessChannel($request, $channel)
     {
         foreach ($this->channels as $pattern => $callback) {
-            if (! $this->channelNameMatchesPattern($channel, $pattern)) {
+            if (! Str::is(preg_replace('/\{(.*?)\}/', '*', $pattern), $channel)) {
                 continue;
             }
 
             $parameters = $this->extractAuthParameters($pattern, $channel, $callback);
 
-            $handler = $this->normalizeChannelHandlerToCallable($callback);
-
-            if ($result = $handler($this->retrieveUser($request, $channel), ...$parameters)) {
+            if ($result = $callback($request->user(), ...$parameters)) {
                 return $this->validAuthenticationResponse($request, $result);
             }
         }
 
-        throw new AccessDeniedHttpException;
+        throw new HttpException(403);
     }
 
     /**
@@ -86,56 +70,18 @@ abstract class Broadcaster implements BroadcasterContract
      *
      * @param  string  $pattern
      * @param  string  $channel
-     * @param  callable|string  $callback
+     * @param  callable  $callback
      * @return array
      */
     protected function extractAuthParameters($pattern, $channel, $callback)
     {
-        $callbackParameters = $this->extractParameters($callback);
+        $callbackParameters = (new ReflectionFunction($callback))->getParameters();
 
         return collect($this->extractChannelKeys($pattern, $channel))->reject(function ($value, $key) {
             return is_numeric($key);
         })->map(function ($value, $key) use ($callbackParameters) {
             return $this->resolveBinding($key, $value, $callbackParameters);
         })->values()->all();
-    }
-
-    /**
-     * Extracts the parameters out of what the user passed to handle the channel authentication.
-     *
-     * @param  callable|string  $callback
-     * @return \ReflectionParameter[]
-     *
-     * @throws \Exception
-     */
-    protected function extractParameters($callback)
-    {
-        if (is_callable($callback)) {
-            return (new ReflectionFunction($callback))->getParameters();
-        } elseif (is_string($callback)) {
-            return $this->extractParametersFromClass($callback);
-        }
-
-        throw new Exception('Given channel handler is an unknown type.');
-    }
-
-    /**
-     * Extracts the parameters out of a class channel's "join" method.
-     *
-     * @param  string  $callback
-     * @return \ReflectionParameter[]
-     *
-     * @throws \Exception
-     */
-    protected function extractParametersFromClass($callback)
-    {
-        $reflection = new ReflectionClass($callback);
-
-        if (! $reflection->hasMethod('join')) {
-            throw new Exception('Class based channel must define a "join" method.');
-        }
-
-        return $reflection->getMethod('join')->getParameters();
     }
 
     /**
@@ -194,8 +140,6 @@ abstract class Broadcaster implements BroadcasterContract
      * @param  mixed  $value
      * @param  array  $callbackParameters
      * @return mixed
-     *
-     * @throws \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException
      */
     protected function resolveImplicitBindingIfPossible($key, $value, $callbackParameters)
     {
@@ -204,13 +148,11 @@ abstract class Broadcaster implements BroadcasterContract
                 continue;
             }
 
-            $instance = $parameter->getClass()->newInstance();
+            $model = $parameter->getClass()->newInstance();
 
-            if (! $model = $instance->resolveRouteBinding($value)) {
-                throw new AccessDeniedHttpException;
-            }
-
-            return $model;
+            return $model->where($model->getRouteKeyName(), $value)->firstOr(function () {
+                throw new HttpException(403);
+            });
         }
 
         return $value;
@@ -220,13 +162,13 @@ abstract class Broadcaster implements BroadcasterContract
      * Determine if a given key and parameter is implicitly bindable.
      *
      * @param  string  $key
-     * @param  \ReflectionParameter  $parameter
+     * @param  ReflectionParameter  $parameter
      * @return bool
      */
     protected function isImplicitlyBindable($key, $parameter)
     {
         return $parameter->name === $key && $parameter->getClass() &&
-                        $parameter->getClass()->isSubclassOf(UrlRoutable::class);
+                $parameter->getClass()->isSubclassOf(Model::class);
     }
 
     /**
@@ -245,7 +187,7 @@ abstract class Broadcaster implements BroadcasterContract
     /**
      * Get the model binding registrar instance.
      *
-     * @return \Illuminate\Contracts\Routing\BindingRegistrar
+     * @return BindingRegistrar
      */
     protected function binder()
     {
@@ -255,75 +197,5 @@ abstract class Broadcaster implements BroadcasterContract
         }
 
         return $this->bindingRegistrar;
-    }
-
-    /**
-     * Normalize the given callback into a callable.
-     *
-     * @param  mixed  $callback
-     * @return callable|\Closure
-     */
-    protected function normalizeChannelHandlerToCallable($callback)
-    {
-        return is_callable($callback) ? $callback : function (...$args) use ($callback) {
-            return Container::getInstance()
-                ->make($callback)
-                ->join(...$args);
-        };
-    }
-
-    /**
-     * Retrieve the authenticated user using the configured guard (if any).
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  string  $channel
-     * @return mixed
-     */
-    protected function retrieveUser($request, $channel)
-    {
-        $options = $this->retrieveChannelOptions($channel);
-
-        $guards = $options['guards'] ?? null;
-
-        if (is_null($guards)) {
-            return $request->user();
-        }
-
-        foreach (Arr::wrap($guards) as $guard) {
-            if ($user = $request->user($guard)) {
-                return $user;
-            }
-        }
-    }
-
-    /**
-     * Retrieve options for a certain channel.
-     *
-     * @param  string  $channel
-     * @return array
-     */
-    protected function retrieveChannelOptions($channel)
-    {
-        foreach ($this->channelOptions as $pattern => $options) {
-            if (! $this->channelNameMatchesPattern($channel, $pattern)) {
-                continue;
-            }
-
-            return $options;
-        }
-
-        return [];
-    }
-
-    /**
-     * Check if channel name from request match a pattern from registered channels.
-     *
-     * @param  string  $channel
-     * @param  string  $pattern
-     * @return bool
-     */
-    protected function channelNameMatchesPattern($channel, $pattern)
-    {
-        return Str::is(preg_replace('/\{(.*?)\}/', '*', $pattern), $channel);
     }
 }

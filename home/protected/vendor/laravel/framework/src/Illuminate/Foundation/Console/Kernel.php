@@ -5,16 +5,12 @@ namespace Illuminate\Foundation\Console;
 use Closure;
 use Exception;
 use Throwable;
-use ReflectionClass;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
-use Illuminate\Console\Command;
-use Symfony\Component\Finder\Finder;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Console\Application as Artisan;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Cache\Repository as Cache;
 use Illuminate\Contracts\Console\Kernel as KernelContract;
 use Symfony\Component\Debug\Exception\FatalThrowableError;
 
@@ -98,24 +94,11 @@ class Kernel implements KernelContract
      */
     protected function defineConsoleSchedule()
     {
-        $this->app->singleton(Schedule::class, function ($app) {
-            return (new Schedule($this->scheduleTimezone()))
-                    ->useCache($this->scheduleCache());
-        });
-
-        $schedule = $this->app->make(Schedule::class);
+        $this->app->instance(
+            Schedule::class, $schedule = new Schedule($this->app[Cache::class])
+        );
 
         $this->schedule($schedule);
-    }
-
-    /**
-     * Get the name of the cache store that should manage scheduling mutexes.
-     *
-     * @return string
-     */
-    protected function scheduleCache()
-    {
-        return $_ENV['SCHEDULE_CACHE_DRIVER'] ?? null;
     }
 
     /**
@@ -129,6 +112,12 @@ class Kernel implements KernelContract
     {
         try {
             $this->bootstrap();
+
+            if (! $this->commandsLoaded) {
+                $this->commands();
+
+                $this->commandsLoaded = true;
+            }
 
             return $this->getArtisan()->run($input, $output);
         } catch (Exception $e) {
@@ -172,18 +161,6 @@ class Kernel implements KernelContract
     }
 
     /**
-     * Get the timezone that should be used by default for scheduled events.
-     *
-     * @return \DateTimeZone|string|null
-     */
-    protected function scheduleTimezone()
-    {
-        $config = $this->app['config'];
-
-        return $config->get('app.schedule_timezone', $config->get('app.timezone'));
-    }
-
-    /**
      * Register the Closure based commands for the application.
      *
      * @return void
@@ -197,7 +174,7 @@ class Kernel implements KernelContract
      * Register a Closure based command with the application.
      *
      * @param  string  $signature
-     * @param  \Closure  $callback
+     * @param  Closure  $callback
      * @return \Illuminate\Foundation\Console\ClosureCommand
      */
     public function command($signature, Closure $callback)
@@ -209,42 +186,6 @@ class Kernel implements KernelContract
         });
 
         return $command;
-    }
-
-    /**
-     * Register all of the commands in the given directory.
-     *
-     * @param  array|string  $paths
-     * @return void
-     */
-    protected function load($paths)
-    {
-        $paths = array_unique(Arr::wrap($paths));
-
-        $paths = array_filter($paths, function ($path) {
-            return is_dir($path);
-        });
-
-        if (empty($paths)) {
-            return;
-        }
-
-        $namespace = $this->app->getNamespace();
-
-        foreach ((new Finder)->in($paths)->files() as $command) {
-            $command = $namespace.str_replace(
-                ['/', '.php'],
-                ['\\', ''],
-                Str::after($command->getPathname(), realpath(app_path()).DIRECTORY_SEPARATOR)
-            );
-
-            if (is_subclass_of($command, Command::class) &&
-                ! (new ReflectionClass($command))->isAbstract()) {
-                Artisan::starting(function ($artisan) use ($command) {
-                    $artisan->resolve($command);
-                });
-            }
-        }
     }
 
     /**
@@ -265,12 +206,16 @@ class Kernel implements KernelContract
      * @param  array  $parameters
      * @param  \Symfony\Component\Console\Output\OutputInterface  $outputBuffer
      * @return int
-     *
-     * @throws \Symfony\Component\Console\Exception\CommandNotFoundException
      */
     public function call($command, array $parameters = [], $outputBuffer = null)
     {
         $this->bootstrap();
+
+        if (! $this->commandsLoaded) {
+            $this->commands();
+
+            $this->commandsLoaded = true;
+        }
 
         return $this->getArtisan()->call($command, $parameters, $outputBuffer);
     }
@@ -322,13 +267,10 @@ class Kernel implements KernelContract
             $this->app->bootstrapWith($this->bootstrappers());
         }
 
+        // If we are calling an arbitrary command from within the application, we'll load
+        // all of the available deferred providers which will make all of the commands
+        // available to an application. Otherwise the command will not be available.
         $this->app->loadDeferredProviders();
-
-        if (! $this->commandsLoaded) {
-            $this->commands();
-
-            $this->commandsLoaded = true;
-        }
     }
 
     /**
@@ -379,7 +321,7 @@ class Kernel implements KernelContract
     }
 
     /**
-     * Render the given exception.
+     * Report the exception to the exception handler.
      *
      * @param  \Symfony\Component\Console\Output\OutputInterface  $output
      * @param  \Exception  $e

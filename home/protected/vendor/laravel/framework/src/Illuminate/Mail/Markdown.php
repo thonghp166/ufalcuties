@@ -3,6 +3,7 @@
 namespace Illuminate\Mail;
 
 use Parsedown;
+use Illuminate\Support\Arr;
 use Illuminate\Support\HtmlString;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
@@ -12,7 +13,7 @@ class Markdown
     /**
      * The view factory implementation.
      *
-     * @var \Illuminate\Contracts\View\Factory
+     * @var \Illuminate\View\Factory
      */
     protected $view;
 
@@ -40,8 +41,8 @@ class Markdown
     public function __construct(ViewFactory $view, array $options = [])
     {
         $this->view = $view;
-        $this->theme = $options['theme'] ?? 'default';
-        $this->loadComponentsFrom($options['paths'] ?? []);
+        $this->theme = Arr::get($options, 'theme', 'default');
+        $this->loadComponentsFrom(Arr::get($options, 'paths', []));
     }
 
     /**
@@ -60,13 +61,13 @@ class Markdown
             'mail', $this->htmlComponentPaths()
         )->make($view, $data)->render();
 
-        return new HtmlString(($inliner ?: new CssToInlineStyles)->convert(
+        return new HtmlString(with($inliner ?: new CssToInlineStyles)->convert(
             $contents, $this->view->make('mail::themes.'.$this->theme)->render()
         ));
     }
 
     /**
-     * Render the Markdown template into text.
+     * Render the Markdown template into HTML.
      *
      * @param  string  $view
      * @param  array  $data
@@ -77,7 +78,7 @@ class Markdown
         $this->view->flushFinderCache();
 
         $contents = $this->view->replaceNamespace(
-            'mail', $this->textComponentPaths()
+            'mail', $this->markdownComponentPaths()
         )->make($view, $data)->render();
 
         return new HtmlString(
@@ -89,7 +90,7 @@ class Markdown
      * Parse the given Markdown text into HTML.
      *
      * @param  string  $text
-     * @return \Illuminate\Support\HtmlString
+     * @return string
      */
     public static function parse($text)
     {
@@ -111,14 +112,14 @@ class Markdown
     }
 
     /**
-     * Get the text component paths.
+     * Get the Markdown component paths.
      *
      * @return array
      */
-    public function textComponentPaths()
+    public function markdownComponentPaths()
     {
         return array_map(function ($path) {
-            return $path.'/text';
+            return $path.'/markdown';
         }, $this->componentPaths());
     }
 
@@ -143,18 +144,5 @@ class Markdown
     public function loadComponentsFrom(array $paths = [])
     {
         $this->componentPaths = $paths;
-    }
-
-    /**
-     * Set the default theme to be used.
-     *
-     * @param  string  $theme
-     * @return $this
-     */
-    public function theme($theme)
-    {
-        $this->theme = $theme;
-
-        return $this;
     }
 }

@@ -7,22 +7,18 @@ interface Encrypter
     /**
      * Encrypt the given value.
      *
-     * @param  mixed  $value
+     * @param  string  $value
      * @param  bool  $serialize
-     * @return mixed
-     *
-     * @throws \Illuminate\Contracts\Encryption\EncryptException
+     * @return string
      */
     public function encrypt($value, $serialize = true);
 
     /**
      * Decrypt the given value.
      *
-     * @param  mixed  $payload
+     * @param  string  $payload
      * @param  bool  $unserialize
-     * @return mixed
-     *
-     * @throws \Illuminate\Contracts\Encryption\DecryptException
+     * @return string
      */
     public function decrypt($payload, $unserialize = true);
 }

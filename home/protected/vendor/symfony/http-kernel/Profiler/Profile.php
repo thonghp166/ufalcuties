@@ -43,7 +43,10 @@ class Profile
      */
     private $children = [];
 
-    public function __construct(string $token)
+    /**
+     * @param string $token The token
+     */
+    public function __construct($token)
     {
         $this->token = $token;
     }
@@ -214,17 +217,6 @@ class Profile
     {
         $this->children[] = $child;
         $child->setParent($this);
-    }
-
-    public function getChildByToken(string $token): ?self
-    {
-        foreach ($this->children as $child) {
-            if ($token === $child->getToken()) {
-                return $child;
-            }
-        }
-
-        return null;
     }
 
     /**

@@ -2,10 +2,14 @@
 
 namespace Illuminate\Notifications;
 
+use Illuminate\Mail\Markdown;
 use InvalidArgumentException;
 use Illuminate\Support\Manager;
+use Nexmo\Client as NexmoClient;
+use GuzzleHttp\Client as HttpClient;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\Bus\Dispatcher as Bus;
+use Nexmo\Client\Credentials\Basic as NexmoCredentials;
 use Illuminate\Contracts\Notifications\Factory as FactoryContract;
 use Illuminate\Contracts\Notifications\Dispatcher as DispatcherContract;
 
@@ -19,13 +23,6 @@ class ChannelManager extends Manager implements DispatcherContract, FactoryContr
     protected $defaultChannel = 'mail';
 
     /**
-     * The locale used when sending notifications.
-     *
-     * @var string|null
-     */
-    protected $locale;
-
-    /**
      * Send the given notification to the given notifiable entities.
      *
      * @param  \Illuminate\Support\Collection|array|mixed  $notifiables
@@ -35,7 +32,7 @@ class ChannelManager extends Manager implements DispatcherContract, FactoryContr
     public function send($notifiables, $notification)
     {
         return (new NotificationSender(
-            $this, $this->app->make(Bus::class), $this->app->make(Dispatcher::class), $this->locale)
+            $this, $this->app->make(Bus::class), $this->app->make(Dispatcher::class))
         )->send($notifiables, $notification);
     }
 
@@ -50,7 +47,7 @@ class ChannelManager extends Manager implements DispatcherContract, FactoryContr
     public function sendNow($notifiables, $notification, array $channels = null)
     {
         return (new NotificationSender(
-            $this, $this->app->make(Bus::class), $this->app->make(Dispatcher::class), $this->locale)
+            $this, $this->app->make(Bus::class), $this->app->make(Dispatcher::class))
         )->sendNow($notifiables, $notification, $channels);
     }
 
@@ -92,7 +89,35 @@ class ChannelManager extends Manager implements DispatcherContract, FactoryContr
      */
     protected function createMailDriver()
     {
-        return $this->app->make(Channels\MailChannel::class);
+        return $this->app->make(Channels\MailChannel::class)->setMarkdownResolver(function () {
+            return $this->app->make(Markdown::class);
+        });
+    }
+
+    /**
+     * Create an instance of the Nexmo driver.
+     *
+     * @return \Illuminate\Notifications\Channels\NexmoSmsChannel
+     */
+    protected function createNexmoDriver()
+    {
+        return new Channels\NexmoSmsChannel(
+            new NexmoClient(new NexmoCredentials(
+                $this->app['config']['services.nexmo.key'],
+                $this->app['config']['services.nexmo.secret']
+            )),
+            $this->app['config']['services.nexmo.sms_from']
+        );
+    }
+
+    /**
+     * Create an instance of the Slack driver.
+     *
+     * @return \Illuminate\Notifications\Channels\SlackWebhookChannel
+     */
+    protected function createSlackDriver()
+    {
+        return new Channels\SlackWebhookChannel(new HttpClient);
     }
 
     /**
@@ -145,18 +170,5 @@ class ChannelManager extends Manager implements DispatcherContract, FactoryContr
     public function deliverVia($channel)
     {
         $this->defaultChannel = $channel;
-    }
-
-    /**
-     * Set the locale of notifications.
-     *
-     * @param  string  $locale
-     * @return $this
-     */
-    public function locale($locale)
-    {
-        $this->locale = $locale;
-
-        return $this;
     }
 }

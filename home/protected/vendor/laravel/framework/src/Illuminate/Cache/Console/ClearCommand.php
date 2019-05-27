@@ -4,7 +4,6 @@ namespace Illuminate\Cache\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Cache\CacheManager;
-use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
@@ -32,25 +31,16 @@ class ClearCommand extends Command
     protected $cache;
 
     /**
-     * The filesystem instance.
-     *
-     * @var \Illuminate\Filesystem\Filesystem
-     */
-    protected $files;
-
-    /**
      * Create a new cache clear command instance.
      *
      * @param  \Illuminate\Cache\CacheManager  $cache
-     * @param  \Illuminate\Filesystem\Filesystem  $files
      * @return void
      */
-    public function __construct(CacheManager $cache, Filesystem $files)
+    public function __construct(CacheManager $cache)
     {
         parent::__construct();
 
         $this->cache = $cache;
-        $this->files = $files;
     }
 
     /**
@@ -60,41 +50,13 @@ class ClearCommand extends Command
      */
     public function handle()
     {
-        $this->laravel['events']->dispatch(
-            'cache:clearing', [$this->argument('store'), $this->tags()]
-        );
+        $this->laravel['events']->fire('cache:clearing', [$this->argument('store'), $this->tags()]);
 
-        $successful = $this->cache()->flush();
+        $this->cache()->flush();
 
-        $this->flushFacades();
+        $this->laravel['events']->fire('cache:cleared', [$this->argument('store'), $this->tags()]);
 
-        if (! $successful) {
-            return $this->error('Failed to clear cache. Make sure you have the appropriate permissions.');
-        }
-
-        $this->laravel['events']->dispatch(
-            'cache:cleared', [$this->argument('store'), $this->tags()]
-        );
-
-        $this->info('Application cache cleared!');
-    }
-
-    /**
-     * Flush the real-time facades stored in the cache directory.
-     *
-     * @return void
-     */
-    public function flushFacades()
-    {
-        if (! $this->files->exists($storagePath = storage_path('framework/cache'))) {
-            return;
-        }
-
-        foreach ($this->files->files($storagePath) as $file) {
-            if (preg_match('/facade-.*\.php$/', $file)) {
-                $this->files->delete($file);
-            }
-        }
+        $this->info('Cache cleared successfully.');
     }
 
     /**
@@ -127,7 +89,7 @@ class ClearCommand extends Command
     protected function getArguments()
     {
         return [
-            ['store', InputArgument::OPTIONAL, 'The name of the store you would like to clear'],
+            ['store', InputArgument::OPTIONAL, 'The name of the store you would like to clear.'],
         ];
     }
 
@@ -139,7 +101,7 @@ class ClearCommand extends Command
     protected function getOptions()
     {
         return [
-            ['tags', null, InputOption::VALUE_OPTIONAL, 'The cache tags you would like to clear', null],
+            ['tags', null, InputOption::VALUE_OPTIONAL, 'The cache tags you would like to clear.', null],
         ];
     }
 }

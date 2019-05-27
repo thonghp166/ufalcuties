@@ -31,25 +31,16 @@ class BeanstalkdQueue extends Queue implements QueueContract
     protected $timeToRun;
 
     /**
-     * The maximum number of seconds to block for a job.
-     *
-     * @var int
-     */
-    protected $blockFor;
-
-    /**
      * Create a new Beanstalkd queue instance.
      *
      * @param  \Pheanstalk\Pheanstalk  $pheanstalk
      * @param  string  $default
      * @param  int  $timeToRun
-     * @param  int  $blockFor
      * @return void
      */
-    public function __construct(Pheanstalk $pheanstalk, $default, $timeToRun, $blockFor = 0)
+    public function __construct(Pheanstalk $pheanstalk, $default, $timeToRun)
     {
         $this->default = $default;
-        $this->blockFor = $blockFor;
         $this->timeToRun = $timeToRun;
         $this->pheanstalk = $pheanstalk;
     }
@@ -77,7 +68,7 @@ class BeanstalkdQueue extends Queue implements QueueContract
      */
     public function push($job, $data = '', $queue = null)
     {
-        return $this->pushRaw($this->createPayload($job, $this->getQueue($queue), $data), $queue);
+        return $this->pushRaw($this->createPayload($job, $data), $queue);
     }
 
     /**
@@ -98,7 +89,7 @@ class BeanstalkdQueue extends Queue implements QueueContract
     /**
      * Push a new job onto the queue after a delay.
      *
-     * @param  \DateTimeInterface|\DateInterval|int  $delay
+     * @param  \DateTime|int  $delay
      * @param  string  $job
      * @param  mixed   $data
      * @param  string  $queue
@@ -109,7 +100,7 @@ class BeanstalkdQueue extends Queue implements QueueContract
         $pheanstalk = $this->pheanstalk->useTube($this->getQueue($queue));
 
         return $pheanstalk->put(
-            $this->createPayload($job, $this->getQueue($queue), $data),
+            $this->createPayload($job, $data),
             Pheanstalk::DEFAULT_PRIORITY,
             $this->secondsUntil($delay),
             $this->timeToRun
@@ -126,7 +117,7 @@ class BeanstalkdQueue extends Queue implements QueueContract
     {
         $queue = $this->getQueue($queue);
 
-        $job = $this->pheanstalk->watchOnly($queue)->reserveWithTimeout($this->blockFor);
+        $job = $this->pheanstalk->watchOnly($queue)->reserve(0);
 
         if ($job instanceof PheanstalkJob) {
             return new BeanstalkdJob(

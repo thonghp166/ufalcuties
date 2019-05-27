@@ -27,12 +27,10 @@ class AuthServiceProvider extends ServiceProvider
     }
 
     /**
-     * Get the policies defined on the provider.
-     *
-     * @return array
+     * {@inheritdoc}
      */
-    public function policies()
+    public function register()
     {
-        return $this->policies;
+        //
     }
 }

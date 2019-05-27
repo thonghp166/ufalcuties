@@ -15,7 +15,7 @@ namespace Illuminate\Support\Facades;
  * @method static void booted(mixed $callback)
  * @method static string getCachedServicesPath()
  *
- * @see \Illuminate\Contracts\Foundation\Application
+ * @see \Illuminate\Foundation\Application
  */
 class App extends Facade
 {

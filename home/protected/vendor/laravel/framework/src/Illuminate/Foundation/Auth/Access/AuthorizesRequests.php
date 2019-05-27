@@ -2,7 +2,6 @@
 
 namespace Illuminate\Foundation\Auth\Access;
 
-use Illuminate\Support\Str;
 use Illuminate\Contracts\Auth\Access\Gate;
 
 trait AuthorizesRequests
@@ -18,7 +17,7 @@ trait AuthorizesRequests
      */
     public function authorize($ability, $arguments = [])
     {
-        [$ability, $arguments] = $this->parseAbilityAndArguments($ability, $arguments);
+        list($ability, $arguments) = $this->parseAbilityAndArguments($ability, $arguments);
 
         return app(Gate::class)->authorize($ability, $arguments);
     }
@@ -35,7 +34,7 @@ trait AuthorizesRequests
      */
     public function authorizeForUser($user, $ability, $arguments = [])
     {
-        [$ability, $arguments] = $this->parseAbilityAndArguments($ability, $arguments);
+        list($ability, $arguments) = $this->parseAbilityAndArguments($ability, $arguments);
 
         return app(Gate::class)->forUser($user)->authorize($ability, $arguments);
     }
@@ -68,7 +67,7 @@ trait AuthorizesRequests
     {
         $map = $this->resourceAbilityMap();
 
-        return $map[$ability] ?? $ability;
+        return isset($map[$ability]) ? $map[$ability] : $ability;
     }
 
     /**
@@ -82,7 +81,7 @@ trait AuthorizesRequests
      */
     public function authorizeResource($model, $parameter = null, array $options = [], $request = null)
     {
-        $parameter = $parameter ?: Str::snake(class_basename($model));
+        $parameter = $parameter ?: lcfirst(class_basename($model));
 
         $middleware = [];
 

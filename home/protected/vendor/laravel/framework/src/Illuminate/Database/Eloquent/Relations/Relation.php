@@ -9,14 +9,13 @@ use Illuminate\Support\Traits\Macroable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\Expression;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Traits\ForwardsCalls;
 
 /**
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
 abstract class Relation
 {
-    use ForwardsCalls, Macroable {
+    use Macroable {
         __call as macroCall;
     }
 
@@ -53,7 +52,7 @@ abstract class Relation
      *
      * @var array
      */
-    public static $morphMap = [];
+    protected static $morphMap = [];
 
     /**
      * Create a new relation instance.
@@ -145,30 +144,15 @@ abstract class Relation
     }
 
     /**
-     * Execute the query as a "select" statement.
-     *
-     * @param  array  $columns
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function get($columns = ['*'])
-    {
-        return $this->query->get($columns);
-    }
-
-    /**
      * Touch all of the related models for the relationship.
      *
      * @return void
      */
     public function touch()
     {
-        $model = $this->getRelated();
+        $column = $this->getRelated()->getUpdatedAtColumn();
 
-        if (! $model::isIgnoringTouch()) {
-            $this->rawUpdate([
-                $model->getUpdatedAtColumn() => $model->freshTimestampString(),
-            ]);
-        }
+        $this->rawUpdate([$column => $this->getRelated()->freshTimestampString()]);
     }
 
     /**
@@ -179,7 +163,7 @@ abstract class Relation
      */
     public function rawUpdate(array $attributes = [])
     {
-        return $this->query->withoutGlobalScopes()->update($attributes);
+        return $this->query->update($attributes);
     }
 
     /**
@@ -193,7 +177,7 @@ abstract class Relation
     {
         return $this->getRelationExistenceQuery(
             $query, $parentQuery, new Expression('count(*)')
-        )->setBindings([], 'select');
+        );
     }
 
     /**
@@ -224,7 +208,7 @@ abstract class Relation
     {
         return collect($models)->map(function ($value) use ($key) {
             return $key ? $value->getAttribute($key) : $value->getKey();
-        })->values()->unique(null, true)->sort()->all();
+        })->values()->unique()->sort()->all();
     }
 
     /**
@@ -308,22 +292,6 @@ abstract class Relation
     }
 
     /**
-     * Get the name of the "where in" method for eager loading.
-     *
-     * @param  \Illuminate\Database\Eloquent\Model  $model
-     * @param  string  $key
-     * @return string
-     */
-    protected function whereInMethod(Model $model, $key)
-    {
-        return $model->getKeyName() === last(explode('.', $key))
-                    && $model->getIncrementing()
-                    && in_array($model->getKeyType(), ['int', 'integer'])
-                        ? 'whereIntegerInRaw'
-                        : 'whereIn';
-    }
-
-    /**
      * Set or get the morph map for polymorphic relations.
      *
      * @param  array|null  $map
@@ -336,7 +304,7 @@ abstract class Relation
 
         if (is_array($map)) {
             static::$morphMap = $merge && static::$morphMap
-                            ? $map + static::$morphMap : $map;
+                            ? array_merge(static::$morphMap, $map) : $map;
         }
 
         return static::$morphMap;
@@ -367,7 +335,9 @@ abstract class Relation
      */
     public static function getMorphedModel($alias)
     {
-        return self::$morphMap[$alias] ?? null;
+        return array_key_exists($alias, self::$morphMap)
+            ? self::$morphMap[$alias]
+            : null;
     }
 
     /**
@@ -383,7 +353,7 @@ abstract class Relation
             return $this->macroCall($method, $parameters);
         }
 
-        $result = $this->forwardCallTo($this->query, $method, $parameters);
+        $result = call_user_func_array([$this->query, $method], $parameters);
 
         if ($result === $this->query) {
             return $this;
