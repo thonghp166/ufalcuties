@@ -31,7 +31,7 @@ class TopicController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -40,12 +40,12 @@ class TopicController extends Controller
     {
         switch ($request->input('action')) {
             case 'new':
-                $request->validate([
-                    'name' => 'unique',
-                    'detail' => 'unique'
-                ]);
                 $name = $request->input('name');
                 $detail = $request->input('detail');
+                if (Topic::where('staff_id', '=', $id)->
+                    where('name', '=', $name)->where('detail', '=', $detail)->exists()) {
+                    return 'Fail';
+                }
                 $topic = Topic::create([
                     'name' => $name,
                     'detail' => $detail,
