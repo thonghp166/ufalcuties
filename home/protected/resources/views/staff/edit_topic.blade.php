@@ -78,7 +78,7 @@
                   <label for="name">Chủ đề quan tâm mới</label>
                 </div>
                 <div class="col-7">
-                  <input type="text" class="form-control" id="name" name="name" placeholder="Nhập tiêu đề chủ đề quan tâm mới">
+                  <input type="text" class="form-control" id="dd" name="name" placeholder="Nhập tiêu đề chủ đề quan tâm mới">
                 </div>
               </div>
             </fieldset>

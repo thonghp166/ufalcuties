@@ -53,9 +53,10 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 
 		var id = document.getElementById("name");
+		console.log(id.value);
 		newrequest.open("POST", "http://ufaculties.vn/staff/" + staff_id + "/topic", true);
 		console.log("http://ufaculties.vn/staff/" + staff_id + "/topic");
 		newrequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		newrequest.send("name" + id + "&detail='minhmon'");		
+		newrequest.send("name=" + id.value + "&detail='minhmon'");		
 	}
 }, false);
