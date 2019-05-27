@@ -52,11 +52,18 @@ document.addEventListener("DOMContentLoaded", function () {
 			}
 		}
 
+<<<<<<< HEAD
 		var id = document.getElementById("name");
 		console.log(id.value);
 		newrequest.open("POST", "http://ufaculties.vn/staff/" + staff_id + "/topic", true);
 		console.log("http://ufaculties.vn/staff/" + staff_id + "/topic");
 		newrequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		newrequest.send("name=" + id.value + "&detail='minhmon'");		
+=======
+		var name = document.getElementById("name");
+		var detail = document.getElementById("detail");
+		newrequest.open("GET", "http://ufaculties.vn/shit?name=" + name.value + "&detail=" + detail.value , true);
+		newrequest.send();
+>>>>>>> 6dc0a8ea0658637c12253e3ee1e1a06c26deff99
 	}
 }, false);

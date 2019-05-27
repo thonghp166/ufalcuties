@@ -46,6 +46,12 @@ Route::post('/staff/{id}/topic',[
 	'as' => 'staff.update.topic',
 	'uses' => 'TopicController@update'
 ]);
+
+Route::get('/shit',[
+	'middleware' => 'auth',
+	'as' => 'staff.add.topic',
+	'uses' => 'TopicController@add'
+]);
 //get('/department/new','DepartmentController@create');
 //post('department','DepartmentController@store');
 
