@@ -32,7 +32,6 @@ class UserController extends Controller
             'code' => 'required|unique:staff'
         ]);
 
-
         $email = $request->input('email');
         $username = $request->input('username');
         $password = bcrypt('12345678');

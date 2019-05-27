@@ -70,7 +70,6 @@ class TopicController extends Controller
                 Topic::destroy($request->input('topic_id'));
                 return redirect()->back();
         }
-        
     }
 
 
