@@ -36,4 +36,10 @@ class HomeController extends Controller
                                   -> with(compact('staff'));
     
     }
+
+    public function test()
+    {
+        $department = Department::all();
+        return $department;
+    }
 }

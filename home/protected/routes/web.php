@@ -80,5 +80,10 @@ Route::group(['middleware' => 'CheckAdminLogin', 'prefix' => 'admin'], function(
 	Route::post('/','UserController@add')->name('admin.add.user');
 	Route::post('/','UserController@deleteUser')->name('admin.delete.user');
 	Route::post('/','UserController@updateUser')->name('admin.update.user');
-
 });
+
+
+Route::get('/test',[
+	'as' => 'test',
+	'uses' => 'HomeController@test'
+]);
