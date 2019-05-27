@@ -5,17 +5,17 @@
   <div class="blacklayer"></div>
   <div class="container">
     <div class="row">
-      <div class="col-3"></div>
-      <div class="col-6 detail">
+      <div class="col-2"></div>
+      <div class="col-8 detail">
         <div class="box">
           <p class="title">u-faculties</p>
           <p class="lineleft"></p>
           <p class="lineright"></p>
-          <p class="content">Tiện tích, đầy đủ, hiệu quả.</p>
+          <p class="clonetitle">Hệ thống tìm kiếm cán bộ theo danh mục: đơn vị, lĩnh vực nghiên cứu</p>
           <p class="go">Khám phá nào</p>
         </div>
       </div>
-      <div class="col-3"></div>
+      <div class="col-2"></div>
     </div>
   </div>
 </div>
@@ -46,7 +46,7 @@
               <p class="departmentwebsite">Website: {{$element->website}}</p>
             </div>
             <div class="more">
-              <p>Chi tiết</p>
+              <a href="">Chi tiết</a>
             </div>            
           </div>
         </div>
@@ -77,23 +77,31 @@
       </div>
       <div class="col-6"></div>
     </div>
-    <div class="row">
+    <div class="row" id="welcome">
+      <script>
+          var idArr = [];
+          var nameArr = [];
+          var parentArr = [];
+          var allId = [];
+          var allParent = [];
+      </script>
       <?php foreach ($field as $element): ?>
-        <div class="col-4">
-          <div class="text-left item">
-            <div class="avatar">
-              <img src="{{URL::asset('images/CNTT.jpg')}}" alt="" class="img-fuild">
-            </div>
-            <div class="transperantlayer"></div>
-            <div class="content">
-              <h3>{{$element->name}}</h3>
-              <h4>{{$element->childOf}}</h4>
-            </div>
-            <div class="more">
-              <p>Chi tiết</p>
-            </div>
-          </div>
-        </div>
+          <script>
+              var allParentLength = allParent.push(<?php echo $element->childOf ?>);
+              var allIdLength = allId.push(<?php echo $element->id ?>);
+          </script>
+          <?php if ($element->childOf == 0): ?>
+              <div class="col-12 field field{{$element->id}}" data-id="{{$element->id}}" data-parent="{{$element->childOf}}">
+                  <i class="dropdownicon fas fa-caret-right"></i> 
+                  <a href="" class="fieldelement"> {{$element->name}}</a>
+              </div>
+          <?php else: ?>
+                  <script>
+                      var idLength = idArr.push(<?php echo $element->id ?>);
+                      var nameLength = nameArr.push("<?php echo $element->name ?>");
+                      var parentLength = parentArr.push(<?php echo $element->childOf ?>);
+                  </script>                         
+          <?php endif ?>
       <?php endforeach ?>
     </div>
     <div class="row">
@@ -129,18 +137,15 @@
             </div>
             <div class="transperantlayer"></div>
             <div class="content">
-              <h3>{{$element->degree}} {{$element->name}}</h3>
-              <h4>{{$element->code}}</h4>
-              <h4>{{$element->staff_type}}</h4>
-              <h4>{{$element->work_unit}}</h4>
-              <h4>{{$element->phone}}</h4>
-              <h4>{{$element->vnu_email}}</h4>
-              <h4>{{$element->gmail}}</h4>
-              <h4>{{$element->website}}</h4>
-              <h4>{{$element->address}}</h4>
+              <p class="unique">{{$element->degree}} {{$element->name}}</p>
+              <p class="code">Mã cán bộ: {{$element->code}}</p>
+              <p class="staff_type">Chức vụ: {{$element->staff_type}}</p>
+              <p class="work_unit">Bộ môn: {{$element->work_unit}}</p>
+              <p class="phone">Số điện thoại: {{$element->phone}}</p>
+              <p class="email">VNU Email: {{$element->vnu_email}}</p>
             </div>
             <div class="more">
-              <p>Chi tiết</p>
+              <a href="">Chi tiết</a>
             </div>
           </div>
         </div>

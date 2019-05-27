@@ -29,8 +29,8 @@
 				</div>
 			</div>
 			<div class="row" id="category">
-				<div class="col-6 text-center">
-					<p class="title">
+				<div class="col-6 text-center department">
+					<p class="title" onclick="contentprocess('department')">
 						Đơn vị  <i class="fas fa-caret-down"></i>
 					</p>
 					<div class="content">
@@ -39,14 +39,38 @@
 						<?php endforeach ?>
 					</div>
 				</div>
-				<div class="col-6 text-center">
-					<p class="title">
+				<div class="col-6 text-center fields">
+					<p class="title" onclick="contentprocess('fields')">
 						Lĩnh vực nghiên cứu  <i class="fas fa-caret-down"></i>
 					</p>
 					<div class="content">
-						<!-- <?php foreach ($field as $element): ?>
-							<a href="">{{$element}}</a>
-						<?php endforeach ?> -->
+						<div class="row">
+							<script>
+		                        var idArr = [];
+		                        var nameArr = [];
+		                        var parentArr = [];
+		                        var allId = [];
+		                        var allParent = [];
+		                    </script>
+		                    <?php foreach ($field as $element): ?>
+		                        <script>
+		                            var allParentLength = allParent.push(<?php echo $element->childOf ?>);
+		                            var allIdLength = allId.push(<?php echo $element->id ?>);
+		                        </script>
+		                        <?php if ($element->childOf == 0): ?>
+		                            <div class="col-12 field field{{$element->id}}" data-id="{{$element->id}}" data-parent="{{$element->childOf}}">
+		                                <i class="dropdownicon fas fa-caret-right"></i> 
+		                                <a href="" class="fieldelement"> {{$element->name}}</a>
+		                            </div>
+		                        <?php else: ?>
+		                                <script>
+		                                    var idLength = idArr.push(<?php echo $element->id ?>);
+		                                    var nameLength = nameArr.push("<?php echo $element->name ?>");
+		                                    var parentLength = parentArr.push(<?php echo $element->childOf ?>);
+		                                </script>                         
+		                        <?php endif ?>
+		                    <?php endforeach ?>
+						</div>
 					</div>					
 				</div>
 			</div>
@@ -67,18 +91,15 @@
 			            </div>
 			            <div class="transperantlayer"></div>
 			            <div class="content">
-			              <h3>{{$element->degree}} {{$element->name}}</h3>
-			              <h4>{{$element->code}}</h4>
-			              <h4>{{$element->staff_type}}</h4>
-			              <h4>{{$element->work_unit}}</h4>
-			              <h4>{{$element->phone}}</h4>
-			              <h4>{{$element->vnu_email}}</h4>
-			              <h4>{{$element->gmail}}</h4>
-			              <h4>{{$element->website}}</h4>
-			              <h4>{{$element->address}}</h4>
+			              <p class="unique">{{$element->degree}} {{$element->name}}</p>
+			              <p class="code">Mã cán bộ: {{$element->code}}</p>
+			              <p class="staff_type">Chức vụ: {{$element->staff_type}}</p>
+			              <p class="work_unit">Bộ môn: {{$element->work_unit}}</p>
+			              <p class="phone">Số điện thoại: {{$element->phone}}</p>
+			              <p class="email">VNU Email: {{$element->vnu_email}}</p>
 			            </div>
 			            <div class="more">
-			              <p>Chi tiết</p>
+			            	<a href="">Chi tiết</a>
 			            </div>
 			          </div>
 			        </div>
@@ -88,5 +109,38 @@
 	</div>
 
 </div>
+
+
+<div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <div class="float-left">
+                    Copyright © 2019 Sharon Team. All rights reserved.        
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="float-right">
+                    <img src="{{URL::asset('images/vietnam.png')}}" alt="" class="img-fluid flag">
+                    <p class="vietnam">Việt Nam</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="top">
+  <i class="fas fa-arrow-circle-up"></i>
+</div>
+
+<script type="text/javascript" src="{{URL::asset('js/search.js')}}"></script>
+
+<script>
+	function contentprocess (name) {
+		var content = document.querySelector("#category ." + name + " .content");
+		content.classList.toggle("showcontent");
+	}
+
+</script>
 
 @endsection

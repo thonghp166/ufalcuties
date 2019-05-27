@@ -3,7 +3,160 @@
     padding: 0px;
 }
 
-.content {
+p.clonetitle {
+    text-transform: uppercase;
+    font-size: 30px;
+}
+
+p.address {
+    font-size: 18px;
+    color: #3498db;
+    height: 30px;
+}
+
+p.email {
+    font-size: 18px;
+    color: #3498db;
+    height: 20px;
+}
+
+p.phone {
+    font-size: 18px;
+    color: #3498db;
+    height: 20px;
+}
+
+p.work_unit {
+    font-size: 18px;
+    color: #3498db;
+    height: 20px;
+}
+
+p.staff_type {
+    font-size: 18px;
+    color: #3498db;
+    height: 20px;
+}
+
+p.code {
+    font-size: 18px;
+    color: #3498db;
+    height: 30px;
+}
+
+p.unique {
+    font-size: 22px;
+    font-weight: bold;
+    height: 70px;
+}
+
+#welcome {
+    font-size: 25px;
+}
+
+#welcome a:hover {
+    color: #3498db;
+}
+
+p.departmentwebsite {
+    font-size: 18px;
+    color: #3498db;
+}
+
+p.departmentaddress {
+    font-size: 18px;
+    color: #3498db;
+    height: 35px;
+}
+
+p.departmentphone {
+    font-size: 18px;
+    color: #3498db;
+    height: 20px;
+}
+
+p.departmenttype {
+    color: #3498db;
+    height: 30px;
+    font-size: 18px;
+}
+
+p.departmentname {
+    font-size: 22px;
+    height: 70px;
+    font-weight: bold;
+}
+
+#category .fields .content {
+    position: absolute;
+    top: 80px;
+    right: 10px;
+    z-index: 4;
+    transition: 0.4s;
+    transform: translateY(40px);
+    border: 1px solid;
+    border-top-left-radius: 15px;
+    text-align: left;
+    padding-left: 20px;
+    overflow: auto;
+    height: 300px;
+    opacity: 0;
+    visibility: hidden;
+}
+
+#category .col-6.text-center.fields {
+    position: relative;
+}
+
+a.fieldelement {
+    color: black;
+}
+
+a.fieldelement:hover {
+    color: #3498db;
+    font-style: italic;
+}
+
+#category .department i.fas.fa-caret-up.arrow {
+    position: absolute;
+    top: -35px;
+    right: 16px;
+    z-index: 4;
+    font-size: 50px;
+    color: #3498db;
+}
+
+.showcontent {
+    opacity: 1!important;
+    transform: translateY(0px)!important;
+    visibility: visible!important;
+}
+
+#category .col-6.text-center.department {
+    position: relative;
+}
+
+#category .col-6.text-center.department .content {
+    position: absolute;
+    top: 80px;
+    left: 64px;
+    z-index: 4;
+    border: 1px solid;
+    border-top-left-radius: 15px;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.4s;
+    transform: translateY(40px);
+    overflow: auto;
+    height: 300px;
+}
+
+.result {
+    position: relative;
+}
+
+#category .content {
+>>>>>>> d546a75aea0b71e7eb26ee9e4dbca1c171acdd76
     background: white;
 }
 
@@ -12,6 +165,12 @@
     display: block;
     color: black;
     margin: 15px;
+    padding: 5px 5px;
+}
+
+a.departmentelement:hover {
+    color: #3498db;
+    font-style: italic;
 }
 
 div#resulttitle {
@@ -240,9 +399,10 @@ input#resetemail {
     transition: 0.4s;
 }
 
-.more p {
+.more a {
     color: white;
     border-radius: 20px;
+    text-decoration: none;
     background: #3498db;
     padding: 10px 40px;
     font-size: 20px;
@@ -437,7 +597,8 @@ p.lineleft {
 }
 
 p.content {
-    font-size: 30px;
+    font-size: 20px;
+    color: gray;
 }
 
 p.title {
@@ -451,8 +612,8 @@ p.title {
     top: 300px;
     left: 50%;
     z-index: 3;
-    width: 500px;
-    margin-left: -250px;
+    width: 100%;
+    margin-left: -50%;
     text-align: center;
     color: white;
 }
