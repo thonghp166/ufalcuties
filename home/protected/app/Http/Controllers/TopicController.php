@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Topic;
 use App\Staff;
+use Auth;
 
 class TopicController extends Controller
 {
@@ -54,9 +55,6 @@ class TopicController extends Controller
                 return 'Success';
 
 
-                // return $topic;
-                // return $request->input('topic_id');
-
             case 'update':
                 $name = $request->input('name');
                 $detail = $request->input('detail');
@@ -85,6 +83,23 @@ class TopicController extends Controller
     public function edit($id)
     {
         //
+    }
+
+    public function add(Request $request)
+    {
+        $name = $request->name;
+        $detail = $request->detail;
+        $id = Auth::user()->staff->id;
+        if (Topic::where('staff_id', '=', $id)->
+            where('name', '=', $name)->where('detail', '=', $detail)->exists()) {
+            return 'Fail';
+        }
+        $topic = Topic::create([
+            'name' => $name,
+            'detail' => $detail,
+            'staff_id' => $id
+        ]);
+        return 'Success';
     }
 
 

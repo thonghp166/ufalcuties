@@ -52,10 +52,9 @@ document.addEventListener("DOMContentLoaded", function () {
 			}
 		}
 
-		var id = document.getElementById("name");
-		newrequest.open("POST", "http://ufaculties.vn/staff/" + staff_id + "/topic", true);
-		console.log("http://ufaculties.vn/staff/" + staff_id + "/topic");
-		newrequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		newrequest.send("name" + id + "&detail='minhmon'");		
+		var name = document.getElementById("name");
+		var detail = document.getElementById("detail");
+		newrequest.open("GET", "http://ufaculties.vn/shit?name=" + name.value + "&detail=" + detail.value , true);
+		newrequest.send();
 	}
 }, false);
