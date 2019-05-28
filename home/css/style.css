@@ -3,6 +3,9 @@
     padding: 0px;
 }
 
+.updatetopic {
+    display: none;
+}
 
 .status {
     margin-top: 30px; 
@@ -275,4 +278,8 @@ nav#bar {
 .show {
     visibility: visible;
     opacity: 1;
+}
+
+.showbutton {
+    display: inline-block;
 }

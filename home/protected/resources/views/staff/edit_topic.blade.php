@@ -106,8 +106,8 @@
               </div>
             </fieldset>
             <div class="text-center">
-              <p id="newtopic" class="btn btn-primary" style="cursor: pointer;"><i class="fas fa-plus-circle"></i> Thêm mới</p>
-              <p id="updatetopic" class="btn btn-success" style="cursor: pointer;"><i class="fas fa-edit"></i> Cập nhật</p>
+              <p class="btn btn-primary newtopic" style="cursor: pointer;"><i class="fas fa-plus-circle"></i> Thêm mới</p>
+              <p class="btn btn-success updatetopic" style="cursor: pointer;"><i class="fas fa-edit"></i> Cập nhật</p>
             </div>  
             <div class="status text-center"></div>          
           </div>
@@ -152,6 +152,8 @@
   topic_id = document.getElementById("topic_id");
 
   function edit (variable) {
+    var updatetopic = document.querySelector(".updatetopic");
+    updatetopic.classList.add("showbutton");
     topic_id.value = variable.getAttribute("data-id");
     topic.value = variable.getAttribute("data-name");
     description.value = variable.getAttribute("data-detail");

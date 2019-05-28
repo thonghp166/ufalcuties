@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 	}, false);
 
-	var newtopic = document.getElementById("newtopic");
+	var newtopic = document.querySelector(".newtopic");
 	newtopic.onclick = function () {
 		
 		var newrequest = new XMLHttpRequest();
@@ -106,6 +106,8 @@ document.addEventListener("DOMContentLoaded", function () {
 					status.innerHTML = "<div>" + "Thêm chủ đề quan tâm '" + name.value + "' thành công    <i class='fas fa-window-close' onclick='hide(this)'></i></div>";
 					status.style.background = "#27ae60";
 
+					var updatetopic = document.querySelector(".updatetopic");
+					updatetopic.classList.remove("showbutton");
 					name.value = "";
 					detail.value = "";
 					
@@ -115,6 +117,8 @@ document.addEventListener("DOMContentLoaded", function () {
 					status.innerHTML = "<div>" + "Lỗi! Chủ đề quan tâm '" + name.value + "' đã tồn tại    <i class='fas fa-window-close' onclick='hide(this)'></i></div>";
 					status.style.background = "#c0392b";
 
+					var updatetopic = document.querySelector(".updatetopic");
+					updatetopic.classList.remove("showbutton");
 					name.value = "";
 					detail.value = "";
 				}
@@ -126,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		newrequest.send();
 	}
 
-	var updatetopic = document.getElementById("updatetopic");
+	var updatetopic = document.querySelector(".updatetopic");
 	updatetopic.onclick = function() {
 		var newrequest = new XMLHttpRequest();
 		
@@ -152,6 +156,8 @@ document.addEventListener("DOMContentLoaded", function () {
 					status.innerHTML = "<div>" + "Cập nhật thông tin chủ đề '" + name.value + "' thành công    <i class='fas fa-window-close' onclick='hide(this)'></i></div>";
 					status.style.background = "#27ae60";
 
+					var updatetopic = document.querySelector(".updatetopic");
+					updatetopic.classList.remove("showbutton");
 					name.value = "";
 					detail.value = "";
 				} else {
@@ -159,6 +165,8 @@ document.addEventListener("DOMContentLoaded", function () {
 					status.innerHTML = "<div>" + "Lỗi! Chủ đề quan tâm '" + name.value + "' với mô tả này đã tồn tại    <i class='fas fa-window-close' onclick='hide(this)'></i></div>";
 					status.style.background = "#c0392b";
 
+					var updatetopic = document.querySelector(".updatetopic");
+					updatetopic.classList.remove("showbutton");
 					name.value = "";
 					detail.value = "";
 				}
