@@ -30,23 +30,23 @@
                 </div>
               </div>
             </fieldset>
+            <fieldset>
+              <div class="tabletitle" style="width: 100%; text-align: center;">
+                <p style="width: 15%; float: left;">Số thứ tự</p>                
+                <p style="width: 20%; float: left;">Chủ đề quan tâm</p>                
+                <p style="width: 35%; float: left;">Mô tả chủ đề quan tâm</p>                
+                <p style="width: 30%; float: left;">Thao tác</p>                
+              </div>
+            </fieldset>
             <fieldset id="topic">
               <table class="table text-center" id="topictable">
-                <thead>
-                  <tr>
-                    <th>Số thứ tự</th>
-                    <th>Chủ đề quan tâm</th>
-                    <th>Mô tả chủ đề quan tâm</th>
-                    <th>Thao tác</th>
-                  </tr>
-                </thead>
                 <tbody id="topicbody">
                   <?php $count = 1; foreach ($staff->topics as $element): ?>
-                    <tr>
-                      <td><?php echo $count; $count++;?><script> count = <?php echo $count; ?></script></td>
-                      <td>{{$element->name}}</td>
-                      <td>{{$element->detail}}</td>
-                      <td>
+                    <tr style="width: 100%;">
+                      <td style="width: 15%;"><?php echo $count; $count++;?><script> count = <?php echo $count; ?></script></td>
+                      <td style="width: 20%;">{{$element->name}}</td>
+                      <td style="width: 35%;">{{$element->detail}}</td>
+                      <td style="width: 30%;">
                         <span class="btn btn-primary edit" data-id="{{$element->id}}" data-name="{{$element->name}}" data-detail="{{$element->detail}}" style="color: white!important; font-weight: normal; font-style: italic; cursor: pointer;" onclick="edit(this)"><i class="fas fa-edit"></i> Sửa</span>
                         <span class="btn btn-danger delete" data-id="{{$element->id}}" data-name="{{$element->name}}" data-detail="{{$element->detail}}" style="color: white!important; font-weight: normal; font-style: italic; cursor: pointer;" onclick="remove(this)"><i class="fas fa-trash"></i> Xóa</span>
                       </td>

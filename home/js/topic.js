@@ -29,12 +29,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	var newtopic = document.querySelector(".newtopic");
 	newtopic.onclick = function () {
-		
+
 		var newrequest = new XMLHttpRequest();
 		
 		var name = document.getElementById("name");
 		var detail = document.getElementById("detail");
-		
+		if (name.value == "") {
+
+		}
+
 		newrequest.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {
 				var data = $.parseJSON(this.response);					
@@ -119,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 					var updatetopic = document.querySelector(".updatetopic");
 					updatetopic.classList.remove("showbutton");
-					name.value = "";
+					name.value = "";s
 					detail.value = "";
 				}
 			} else {
