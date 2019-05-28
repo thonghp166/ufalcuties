@@ -82,4 +82,43 @@ document.addEventListener("DOMContentLoaded", function () {
 		return false;
 	}
 
+	var normalbutton = document.getElementById("normalimportbutton");
+	normalbutton.onclick = function () {
+		var normalimport = document.querySelector(".normalimport"), layer = document.querySelector(".homelayer");
+		normalimport.classList.add("showimport");
+		layer.classList.add("showlayer");
+	}
+	
+	var excelbutton = document.getElementById("excelimportbutton");
+	excelbutton.onclick = function () {
+		var excelimport = document.querySelector(".excelimport"), layer = document.querySelector(".homelayer");
+		excelimport.classList.add("showimport");
+		layer.classList.add("showlayer");
+	}
+
+	var cancelnormalbutton = document.getElementById("cancelnormalbutton");
+	cancelnormalbutton.onclick = function () {
+		var normalimport = document.querySelector(".normalimport"), layer = document.querySelector(".homelayer");
+		normalimport.classList.remove("showimport");
+		layer.classList.remove("showlayer");	
+	}
+
+	var cancelexcelbutton = document.getElementById("cancelexcelbutton");
+	cancelexcelbutton.onclick = function () {
+		var excelimport = document.querySelector(".excelimport"), layer = document.querySelector(".homelayer");
+		excelimport.classList.remove("showimport");
+		layer.classList.remove("showlayer");	
+	}
+
+	var homelayer = document.querySelector(".homelayer");
+	homelayer.onclick = function () {
+		var excelimport = document.querySelector(".excelimport"), layer = document.querySelector(".homelayer");
+		excelimport.classList.remove("showimport");
+		layer.classList.remove("showlayer");
+
+		var normalimport = document.querySelector(".normalimport"), layer = document.querySelector(".homelayer");
+		normalimport.classList.remove("showimport");
+		layer.classList.remove("showlayer");
+	}
+
 }, false);
