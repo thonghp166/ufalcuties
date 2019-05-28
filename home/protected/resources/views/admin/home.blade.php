@@ -85,7 +85,7 @@
                     <div class="text-center">
                         <form>
                             <fieldset class="form-group">
-                              <label for="exampleInputFile" class="title">Nhập thông tin cán bộ mới</label>  
+                              <label class="title">Nhập thông tin đơn vị mới</label>  
                               <div class="row">
                                 <div class="col-1"></div>
                                 <div class="col-4 text-left">
@@ -236,11 +236,11 @@
 
         <div class="row">
                 <div class="col-3"></div>
-                <div class="col-6 normalimport">
+                <div class="col-6 departmentimport">
                     <div class="text-center">
                         <form>
                             <fieldset class="form-group">
-                              <label for="exampleInputFile" class="title">Nhập thông tin cán bộ mới</label>  
+                              <label class="title">Nhập thông tin cán bộ mới</label>  
                               <div class="row">
                                 <div class="col-1"></div>
                                 <div class="col-4 text-left">
