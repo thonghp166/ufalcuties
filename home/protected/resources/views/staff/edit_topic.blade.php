@@ -47,8 +47,8 @@
                       <td>{{$element->name}}</td>
                       <td>{{$element->detail}}</td>
                       <td>
-                        <span class="btn btn-primary edit" data-id="{{$element->id}}" data-name="{{$element->name}}" data-detail="{{$element->detail}}" style="color: white!important; font-weight: normal; font-style: italic;"><i class="fas fa-edit"></i> Sửa</span>
-                        <span class="btn btn-danger delete" data-id="{{$element->id}}" data-name="{{$element->name}}" data-detail="{{$element->detail}}" style="color: white!important; font-weight: normal; font-style: italic;"><i class="fas fa-trash"></i> Xóa</span>
+                        <span class="btn btn-primary edit" data-id="{{$element->id}}" data-name="{{$element->name}}" data-detail="{{$element->detail}}" style="color: white!important; font-weight: normal; font-style: italic; cursor: pointer;" onclick="edit(this)"><i class="fas fa-edit"></i> Sửa</span>
+                        <span class="btn btn-danger delete" data-id="{{$element->id}}" data-name="{{$element->name}}" data-detail="{{$element->detail}}" style="color: white!important; font-weight: normal; font-style: italic; cursor: pointer;" onclick="remove(this)"><i class="fas fa-trash"></i> Xóa</span>
                       </td>
                     </tr>
                   <?php endforeach ?>
@@ -106,9 +106,10 @@
               </div>
             </fieldset>
             <div class="text-center">
-              <p id="newtopic" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Thêm mới</p>
-              <p id="updatetopic" class="btn btn-success"><i class="fas fa-pen-circle"></i> Cập nhật</p>
-            </div>            
+              <p id="newtopic" class="btn btn-primary" style="cursor: pointer;"><i class="fas fa-plus-circle"></i> Thêm mới</p>
+              <p id="updatetopic" class="btn btn-success" style="cursor: pointer;"><i class="fas fa-edit"></i> Cập nhật</p>
+            </div>  
+            <div class="status text-center"></div>          
           </div>
           </div>            
         </form>
@@ -141,5 +142,57 @@
 </div>
 @routes
 <script type="text/javascript" src="{{URL::asset('js/topic.js')}}"></script>
+<script>
+  function hide(variable) {
+    variable.parentNode.parentNode.style.display = "none";
+  }
+
+  var topic = document.getElementById("name"),
+  description = document.getElementById("detail"),
+  topic_id = document.getElementById("topic_id");
+
+  function edit (variable) {
+    topic_id.value = variable.getAttribute("data-id");
+    topic.value = variable.getAttribute("data-name");
+    description.value = variable.getAttribute("data-detail");
+  }
+
+  function remove (variable) {
+    var father = variable.parentNode.parentNode;
+    var id = variable.getAttribute("data-id");
+    var name = variable.getAttribute("data-name");
+    var detail = variable.getAttribute("data-detail");
+    var newrequest = new XMLHttpRequest();
+    newrequest.onreadystatechange = function () {
+      var status = document.querySelector(".status");
+      if (this.readyState == 4 && this.status == 200) {
+        var data = $.parseJSON(this.response);      
+        if (data.state == "Success") {
+          father.style.display = 'none';
+          var row = document.querySelectorAll("#topicbody tr");
+          index = 0;
+          for (var i = 0; i < row.length; i++) {
+            if (row[i].style.display != 'none') {
+              index++;
+              row[i].childNodes[1].innerHTML = "<td>"+index+"</td>";
+            }
+          }
+          status.style.display = "block";
+          status.innerHTML = "<div>" + "Xóa chủ đề '" + name + "' thành công    <i class='fas fa-window-close' onclick='hide(this)'></i></div>";
+          status.style.background = "#27ae60";
+        } else {
+          status.style.display = "block";
+          status.innerHTML = "<div>" + "Lỗi! Chủ đề quan tâm '" + data.error + "' xóa thất bại    <i class='fas fa-window-close' onclick='hide(this)'></i></div>";
+          status.style.background = "#c0392b";
+        }
+      } else {
+        console.log('error');
+      }
+    }
+    newrequest.open("GET", route('staff.delete.topic') + "?id=" + id + "&name=" + name + "&detail=" + detail , true);
+    newrequest.send();
+  }
+
+</script>
 
 @endsection

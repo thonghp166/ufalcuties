@@ -3,6 +3,24 @@
     padding: 0px;
 }
 
+
+.status {
+    margin-top: 30px; 
+    color: white; 
+    font-size: 20px;    
+    padding: 5px 10px;
+}
+
+.status i:hover {
+    cursor: pointer;
+    color: black;
+    transform: scale(1.2);
+}
+
+.status i {
+    transition: 0.4s;
+}
+
 #topic {
     overflow: auto;
     height: 300px;

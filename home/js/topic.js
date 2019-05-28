@@ -1,45 +1,15 @@
 // javascript for topic
 
 document.addEventListener("DOMContentLoaded", function () {
-	
-	var editbutton = document.getElementsByClassName("edit"),
-			topic = document.getElementById("name"),
-			description = document.getElementById("detail"),
-			topic_id = document.getElementById("topic_id");
-	for (var i = 0; i < editbutton.length; i++) {
-		editbutton[i].onclick = function () {
-			topic_id.value = this.getAttribute("data-id");
-			topic.value = this.getAttribute("data-name");
-			description.value = this.getAttribute("data-detail");
-		}
-	}
 
-	var deletebutton = document.getElementsByClassName("delete");
-	for (var i = 0; i < deletebutton.length; i++) {
-		deletebutton[i].onclick = function () {
-			var id = this.getAttribute("data-id");
-			var name = this.getAttribute("data-name");
-			var detail = this.getAttribute("data-detail");
-			console.log(id);
-			var newrequest = new XMLHttpRequest();
-			newrequest.onreadystatechange = function () {
-				if (this.readyState == 4 && this.status == 200) {
-					var data = $.parseJSON(this.response);			
-					if (data.state == "Success") {
-						alert("Thành công");
-						//them giao dien sau khi xoa thanh cong vao day cho tao
-					} else {
-						alert(data.error);
-					}
-				} else {
-					console.log('error');
-				}
-			}
-			newrequest.open("GET", route('staff.delete.topic') + "?id=" + id + "&name=" + name + "&detail=" + detail , true);
-			newrequest.send();
-		}
-	}
-	
+	var topic = document.getElementById("name"),
+	    description = document.getElementById("detail"),
+	    topic_id = document.getElementById("topic_id");
+
+	topic.value = "";
+	description.value = "";
+	topic_id.value = "";
+
 	var check = "under100"
 	window.addEventListener("scroll", function () {
 		if (window.pageYOffset > 100) {
@@ -68,6 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		newrequest.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {
 				var data = $.parseJSON(this.response);					
+				var status = document.querySelector(".status");
 				if (data.state == "Success") {
 					var topicbody = document.getElementById("topicbody");
 
@@ -92,7 +63,8 @@ document.addEventListener("DOMContentLoaded", function () {
 					editbutton.setAttribute("data-id", data.new_id);
 					editbutton.setAttribute("data-name", name.value);
 					editbutton.setAttribute("data-detail", detail.value);
-					editbutton.setAttribute("style", "color: white!important; font-weight: normal; font-style: italic; margin-right: 4px;");
+					editbutton.setAttribute("style", "color: white!important; font-weight: normal; font-style: italic; margin-right: 5px; cursor: pointer;");
+					editbutton.setAttribute("onclick", "edit(this)");
 					var editicon = document.createElement("i");
 					editicon.setAttribute("class", "fas fa-edit");
 					var text4 = document.createTextNode(" Sửa");
@@ -105,7 +77,8 @@ document.addEventListener("DOMContentLoaded", function () {
 					deletebutton.setAttribute("data-id", data.new_id);
 					deletebutton.setAttribute("data-name", name.value);
 					deletebutton.setAttribute("data-detail", detail.value);
-					deletebutton.setAttribute("style", "color: white!important; font-weight: normal; font-style: italic;");
+					deletebutton.setAttribute("style", "color: white!important; font-weight: normal; font-style: italic; cursor: pointer;");
+					deletebutton.setAttribute("onclick", "remove(this)");
 					var deleteicon = document.createElement("i");
 					deleteicon.setAttribute("class", "fas fa-trash");
 					var text5 = document.createTextNode(" Xóa");
@@ -119,12 +92,21 @@ document.addEventListener("DOMContentLoaded", function () {
 					newrow.appendChild(col4);
 					topicbody.appendChild(newrow);
 
+					status.style.display = "block";
+					status.innerHTML = "<div>" + "Thêm chủ đề quan tâm '" + name.value + "' thành công    <i class='fas fa-window-close' onclick='hide(this)'></i></div>";
+					status.style.background = "#27ae60";
+
 					name.value = "";
 					detail.value = "";
 					
 					count++;
 				} else {
-					alert(data.error);
+					status.style.display = "block";
+					status.innerHTML = "<div>" + "Lỗi! Chủ đề quan tâm '" + name.value + "' đã tồn tại    <i class='fas fa-window-close' onclick='hide(this)'></i></div>";
+					status.style.background = "#c0392b";
+
+					name.value = "";
+					detail.value = "";
 				}
 			} else {
 				console.log('error');
@@ -141,16 +123,34 @@ document.addEventListener("DOMContentLoaded", function () {
 		var id = document.getElementById("topic_id");
 		var name = document.getElementById("name");
 		var detail = document.getElementById("detail");
-		console.log(id);
 		newrequest.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {
 				var data = $.parseJSON(this.response);			
-				if (data.state == "Success") {
-					alert("Thành công");
-					// them view sau khi cap nhat vao day nhe
+				var status = document.querySelector(".status");
+					if (data.state == "Success") {
+					editbutton = document.getElementsByClassName("edit");
+					for (var i = 0; i < editbutton.length; i++) {
+						var thisname = editbutton[i].getAttribute("data-id");
+						if (thisname == id.value) {
+							editbutton[i].parentNode.parentNode.childNodes[3].innerHTML = "<td>"+topic.value+"</td>";
+							editbutton[i].parentNode.parentNode.childNodes[5].innerHTML = "<td>"+detail.value+"</td>";
+							editbutton[i].setAttribute("data-name", name.value);
+							editbutton[i].setAttribute("data-detail", detail.value);
+						}
+					}
+					status.style.display = "block";
+					status.innerHTML = "<div>" + "Cập nhật thông tin chủ đề '" + name.value + "' thành công    <i class='fas fa-window-close' onclick='hide(this)'></i></div>";
+					status.style.background = "#27ae60";
 
+					name.value = "";
+					detail.value = "";
 				} else {
-					alert(data.error);
+					status.style.display = "block";
+					status.innerHTML = "<div>" + "Lỗi! Chủ đề quan tâm '" + name.value + "' với mô tả này đã tồn tại    <i class='fas fa-window-close' onclick='hide(this)'></i></div>";
+					status.style.background = "#c0392b";
+
+					name.value = "";
+					detail.value = "";
 				}
 			} else {
 				console.log('error');
@@ -161,5 +161,4 @@ document.addEventListener("DOMContentLoaded", function () {
 		newrequest.send();
 
 	}
-
 }, false);

@@ -49,9 +49,9 @@ class TopicController extends Controller
                    where('name', '=', $name)->
                    where('detail', '=', $detail)->exists()) {
             return response()->json([
-            'state' => 'Fail',
-            'error' => 'Trùng thông tin'
-        ]);
+                'state' => 'Fail',
+                'error' => $name        
+            ]);
         }
         $topic->update([
             'name' => $name,
