@@ -79,9 +79,9 @@ class StaffController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($account)
     {
-        $staff = Staff::find($id);
+        $staff = Staff::where('account','=',$account)->get()->get(0);
         $field = Field::all();
         $topic = Topic::all();
         $department = Department::all();
@@ -100,7 +100,6 @@ class StaffController extends Controller
     public function edit()
     {
         $staff = Auth::user()->staff;
-        // return $staff;
         return view('staff.edit_info',compact('staff'));
     }
 

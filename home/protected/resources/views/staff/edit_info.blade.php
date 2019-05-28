@@ -186,6 +186,4 @@
 </div>
 
 <script type="text/javascript" src="{{URL::asset('js/staff.js')}}"></script>
-
->>>>>>> 75b6a52dcab9e0b4b3c77eb3d2360c16b5cbc751
 @endsection

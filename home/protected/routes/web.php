@@ -11,51 +11,30 @@ Route::get('/search',[
 	'as' => 'search',
 	'uses' => 'HomeController@search'
 ]);
-Route::get('/staff/info/{id}',[
+Route::get('/staff/info/{account}',[
 	'as' => 'staff.info',
 	'uses' => 'StaffController@show'
 ]);
-Route::get('/staff/edit/info',[
-	'middleware' => 'auth',
-	'as' =>'staff.edit',
-	'uses' => 'StaffController@edit']);
-Route::post('/staff/edit',[
-	'middleware' => 'auth',
-	'as' => 'staff.update.info',
-	'uses' => 'StaffController@updateInfo'
-]);
 
-Route::get('/staff/edit/field',[
-	'middleware' => 'auth',
-	'as' =>'staff.edit.field',
-	'uses' => 'StaffController@edit_field'
-]);
-Route::post('/staff/edit/field',[
-	'middleware' => 'auth',
-	'as' =>'staff.update.field',
-	'uses' => 'StaffController@updateField'
-]);
+Route::group(['middleware' => 'auth', 'prefix' => 'staff'], function() {
+	Route::get('/edit/info','StaffController@edit')->name('staff.edit');
+	Route::post('/edit/info','StaffController@updateInfo')->name('staff.update.info');
 
-Route::get('/staff/edit/topic',[
-	'middleware' => 'auth',
-	'as' =>'staff.edit.topic',
-	'uses' => 'StaffController@edit_topic']);
-Route::post('/staff/edit/topic',[
-	'middleware' => 'auth',
-	'as' => 'staff.update.topic',
-	'uses' => 'TopicController@update'
-]);
+	Route::get('/edit/field','StaffController@edit_field')->name('staff.edit.field');
+	Route::post('/edit/field','StaffController@updateField')->name('staff.update.field');
+	
+	Route::get('/edit/topic','StaffController@edit_topic')->name('staff.edit.topic');
+	Route::post('/edit/topic','TopicController@update')->name('staff.update.topic');
 
-Route::get('/addtopic',[
+});
+
+Route::get('/staff/add/topic',[
 	'middleware' => 'auth',
 	'as' => 'staff.add.topic',
 	'uses' => 'TopicController@add'
 ]);
-//get('/department/new','DepartmentController@create');
-//post('department','DepartmentController@store');
 
 Route::get('/field','FieldController@index');
-
 Auth::routes();
 Route::get('password/change',[
 	'middleware' => 'auth',

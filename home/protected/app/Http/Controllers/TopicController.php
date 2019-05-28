@@ -37,12 +37,13 @@ class TopicController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request)
     {
         switch ($request->input('action')) {
             case 'new':
                 $name = $request->input('name');
                 $detail = $request->input('detail');
+                $id = Auth::user()->staff->id;
                 if (Topic::where('staff_id', '=', $id)->
                     where('name', '=', $name)->where('detail', '=', $detail)->exists()) {
                     return 'Fail';
