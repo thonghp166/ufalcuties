@@ -23,21 +23,19 @@ document.addEventListener("DOMContentLoaded", function () {
 			console.log(id);
 			var newrequest = new XMLHttpRequest();
 			newrequest.onreadystatechange = function () {
-			
-				if (this.readyState == 4 && this.status == 200) {				
-					if (this.responseText == "Success") {
-						alert("Thanh cong");
-
+				if (this.readyState == 4 && this.status == 200) {
+					var data = $.parseJSON(this.response);			
+					if (data.state == "Success") {
+						alert("Thành công");
 						//them giao dien sau khi xoa thanh cong vao day cho tao
-
 					} else {
-						alert("Không thành công");
+						alert(data.error);
 					}
 				} else {
 					console.log('error');
 				}
 			}
-			newrequest.open("GET", route('staff.delete.topic') + "?id=" + id + "&name=" + name+ "&detail=" + detail , true);
+			newrequest.open("GET", route('staff.delete.topic') + "?id=" + id + "&name=" + name + "&detail=" + detail , true);
 			newrequest.send();
 		}
 	}
@@ -68,9 +66,9 @@ document.addEventListener("DOMContentLoaded", function () {
 		var detail = document.getElementById("detail");
 		
 		newrequest.onreadystatechange = function () {
-			
-			if (this.readyState == 4 && this.status == 200) {				
-				if (this.responseText == "Success") {
+			if (this.readyState == 4 && this.status == 200) {
+				var data = $.parseJSON(this.response);					
+				if (data.state == "Success") {
 					var topicbody = document.getElementById("topicbody");
 
 					var newrow = document.createElement("tr");
@@ -91,6 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
 					
 					var editbutton = document.createElement("span");
 					editbutton.setAttribute("class", "btn btn-primary edit");
+					editbutton.setAttribute("data-id", data.new_id);
 					editbutton.setAttribute("data-name", name.value);
 					editbutton.setAttribute("data-detail", detail.value);
 					editbutton.setAttribute("style", "color: white!important; font-weight: normal; font-style: italic; margin-right: 4px;");
@@ -103,6 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 					var deletebutton = document.createElement("span");
 					deletebutton.setAttribute("class", "btn btn-danger delete");
+					deletebutton.setAttribute("data-id", data.new_id);
 					deletebutton.setAttribute("data-name", name.value);
 					deletebutton.setAttribute("data-detail", detail.value);
 					deletebutton.setAttribute("style", "color: white!important; font-weight: normal; font-style: italic;");
@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
 					
 					count++;
 				} else {
-					alert("Trùng thông tin");
+					alert(data.error);
 				}
 			} else {
 				console.log('error');
@@ -132,6 +132,34 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 		newrequest.open("GET", route('staff.add.topic') + "?name=" + name.value + "&detail=" + detail.value , true);
 		newrequest.send();
+	}
+
+	var updatetopic = document.getElementById("updatetopic");
+	updatetopic.onclick = function() {
+		var newrequest = new XMLHttpRequest();
+		
+		var id = document.getElementById("topic_id");
+		var name = document.getElementById("name");
+		var detail = document.getElementById("detail");
+		console.log(id);
+		newrequest.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				var data = $.parseJSON(this.response);			
+				if (data.state == "Success") {
+					alert("Thành công");
+					// them view sau khi cap nhat vao day nhe
+
+				} else {
+					alert(data.error);
+				}
+			} else {
+				console.log('error');
+			}
+		}
+
+		newrequest.open("GET", route('staff.update.topic') + "?id=" + id.value + "&name=" + name.value + "&detail=" + detail.value , true);
+		newrequest.send();
+
 	}
 
 }, false);

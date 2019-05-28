@@ -24,10 +24,10 @@ Route::group(['middleware' => 'auth', 'prefix' => 'staff'], function() {
 	Route::post('/edit/field','StaffController@updateField')->name('staff.update.field');
 	
 	Route::get('/edit/topic','StaffController@edit_topic')->name('staff.edit.topic');
-	Route::post('/edit/topic','TopicController@update')->name('staff.update.topic');
 
 	Route::get('/add/topic','TopicController@add')->name('staff.add.topic');
 	Route::get('/delete/topic','TopicController@destroy')->name('staff.delete.topic');
+	Route::get('/update/topic','TopicController@update')->name('staff.update.topic');
 
 });
 
@@ -68,6 +68,8 @@ Route::get('/test',[
 	'as' => 'test',
 	'uses' => 'HomeController@test'
 ]);
+
+// Route::get('/test2)
 
 Route::post('/test',[
 	'as' => 'import',

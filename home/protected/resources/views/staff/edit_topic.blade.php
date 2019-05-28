@@ -47,7 +47,7 @@
                       <td>{{$element->name}}</td>
                       <td>{{$element->detail}}</td>
                       <td>
-                        <span class="btn btn-primary edit" data-id = "{{$element->id}}" data-name="{{$element->name}}" data-detail="{{$element->detail}}" style="color: white!important; font-weight: normal; font-style: italic;"><i class="fas fa-edit"></i> Sửa</span>
+                        <span class="btn btn-primary edit" data-id="{{$element->id}}" data-name="{{$element->name}}" data-detail="{{$element->detail}}" style="color: white!important; font-weight: normal; font-style: italic;"><i class="fas fa-edit"></i> Sửa</span>
                         <span class="btn btn-danger delete" data-id="{{$element->id}}" data-name="{{$element->name}}" data-detail="{{$element->detail}}" style="color: white!important; font-weight: normal; font-style: italic;"><i class="fas fa-trash"></i> Xóa</span>
                       </td>
                     </tr>
@@ -107,7 +107,7 @@
             </fieldset>
             <div class="text-center">
               <p id="newtopic" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Thêm mới</p>
-              <p id="edittopic" class="btn btn-success"><i class="fas fa-pen-circle"></i> Cập nhật</p>
+              <p id="updatetopic" class="btn btn-success"><i class="fas fa-pen-circle"></i> Cập nhật</p>
             </div>            
           </div>
           </div>            
