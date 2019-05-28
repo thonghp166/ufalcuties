@@ -17,16 +17,16 @@ class CreateStaffTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unique()->unsigned();
             $table->string('name');
-            $table->string('code')->nullable();
+            $table->string('code')->default('');
             $table->string('account')->unique();
-            $table->string('staff_type')->nullable();
-            $table->string('work_unit')->nullable();
-            $table->string('degree')->nullable();
-            $table->string('phone')->nullable();
+            $table->string('staff_type')->default('Giảng viên');
+            $table->string('work_unit')->default('');
+            $table->string('degree')->default('');
+            $table->string('phone')->default('');
             $table->string('vnu_email')->unique();
-            $table->string('gmail')->unique()->nullable();
-            $table->string('website')->nullable();
-            $table->string('address')->nullable();
+            $table->string('gmail')->unique()->default('');
+            $table->string('website')->default('');
+            $table->string('address')->default('');
             $table->timestamps();
         });
     }

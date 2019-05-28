@@ -32,7 +32,7 @@
                                 <td><?php echo $count; $count++; ?></td>
                                 <td>{{$staff->code}}</td>
                                 <td>{{$staff->name}}</td>
-                                <td>{{$element->username}}</td>
+                                <td>{{$staff->account}}</td>
                                 <td>{{$staff->vnu_email}}</td>
                                 <td>{{$staff->type}}</td>
                                 <td>{{$staff->degree}}</td>
@@ -98,21 +98,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
-                            <?php $count = 1; foreach ($department as $element): ?>
-                                <tr>
-                                    <td><?php echo $count; $count++; ?></td>    
-                                    <td>{{$element->name}}</td> 
-                                    <td>{{$element->type}}</td> 
-                                    <td>{{$element->address}}</td>  
-                                    <td>{{$element->phone}}</td>    
-                                    <td>{{$element->website}}</td>  
-                                    <td>
-                                        <button class="btn btn-primary" style="margin: 5px 5px;"><i class="fas fa-edit"></i> Sửa</button>
-                                        <button class="btn btn-danger" style="margin: 5px 5px;"><i class="fas fa-trash"></i> Xóa</button>
-                                    </td>
-                                </tr>   
-                            <?php endforeach ?>                     
+                    
+                        <?php $count = 1; foreach ($department as $element): ?>
+                            <tr>
+                                <td><?php echo $count; $count++; ?></td>    
+                                <td>{{$element->name}}</td> 
+                                <td>{{$element->type}}</td> 
+                                <td>{{$element->address}}</td>  
+                                <td>{{$element->phone}}</td>    
+                                <td>{{$element->website}}</td>  
+                                <td>
+                                    <button class="btn btn-primary" style="margin: 5px 5px;"><i class="fas fa-edit"></i> Sửa</button>
+                                    <button class="btn btn-danger" style="margin: 5px 5px;"><i class="fas fa-trash"></i> Xóa</button>
+                                </td>
+                            </tr>   
+                        <?php endforeach ?>                     
                     </tbody>
                 </table>
             </div>

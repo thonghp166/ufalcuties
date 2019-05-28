@@ -17,7 +17,7 @@ class FieldStaffSeeder extends Seeder
        			'field_id' => 2
        		],
        		[
-       			'staff_id'=> 1,
+       			'staff_id'=> 3,
        			'field_id' => 3
        		],
        		[
