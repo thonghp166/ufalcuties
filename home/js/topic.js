@@ -92,6 +92,16 @@ document.addEventListener("DOMContentLoaded", function () {
 					newrow.appendChild(col4);
 					topicbody.appendChild(newrow);
 
+					var row = document.querySelectorAll("#topicbody tr");
+			        index = 0;
+			        for (var i = 0; i < row.length; i++) {
+			          if (row[i].style.display != 'none') {
+			            index++;
+			            console.log(row[i]);
+			            row[i].cells[0].innerText = index;
+			          }
+			        }
+
 					status.style.display = "block";
 					status.innerHTML = "<div>" + "Thêm chủ đề quan tâm '" + name.value + "' thành công    <i class='fas fa-window-close' onclick='hide(this)'></i></div>";
 					status.style.background = "#27ae60";

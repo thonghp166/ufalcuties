@@ -158,7 +158,6 @@
   }
 
   function remove (variable) {
-    var father = variable.parentNode.parentNode;
     var id = variable.getAttribute("data-id");
     var name = variable.getAttribute("data-name");
     var detail = variable.getAttribute("data-detail");
@@ -168,13 +167,14 @@
       if (this.readyState == 4 && this.status == 200) {
         var data = $.parseJSON(this.response);      
         if (data.state == "Success") {
-          father.style.display = 'none';
+          variable.parentNode.parentNode.style.display = 'none';
           var row = document.querySelectorAll("#topicbody tr");
           index = 0;
           for (var i = 0; i < row.length; i++) {
             if (row[i].style.display != 'none') {
               index++;
-              row[i].childNodes[1].innerHTML = "<td>"+index+"</td>";
+              console.log(row[i]);
+              row[i].cells[0].innerText = index;
             }
           }
           status.style.display = "block";
