@@ -6,6 +6,7 @@ use App\Field;
 use App\Topic;
 use App\Department;
 use Illuminate\Support\Facades\Input;
+use Auth;
 
 use Illuminate\Http\Request;
 
@@ -96,31 +97,31 @@ class StaffController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        $staff = Staff::find($id);
+        $staff = Auth::user()->staff;
         // return $staff;
         return view('staff.edit_info',compact('staff'));
     }
 
-    public function edit_field($id)
-    {   
-        $staff = Staff::find($id);
+    public function edit_field()
+    {
+        $staff = Auth::user()->staff;
         $fields = Field::all();
         return view('staff.edit_field')-> with(compact('fields'))
                                        -> with(compact('staff'));
     }
 
-    public function edit_topic($id)
-    {   
-        $staff = Staff::find($id);
+    public function edit_topic()
+    { 
+        $staff = Auth::user()->staff;
         $topic = $staff->topics;
         return view('staff.edit_topic',compact('staff'));
     }
 
-    public function updateInfo(Request $request, $id)
+    public function updateInfo(Request $request)
     {
-        $staff = Staff::find($id);
+        $staff = Auth::user()->staff;
         
         $phone = $request->input('phone');
         $gmail = $request->input('gmail');
@@ -136,34 +137,10 @@ class StaffController extends Controller
         return redirect()->back()->with('status', 'Đã cập nhật thành công');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-//     public function addField($id, $list_field) {
-//         $staff = Staff::find($id);u
-//         $field = Field::find($list_field);
-//         $staff-> fields() -> attach($field);
-//         return "Success";
-//     }
-//     public function removeField($id,$list_field){
-//         $staff = Staff::find($id);
-//         $field = Field::find($list_field);
-//         $staff->fields()-> detach($field);
-//         return "Success remove";
-//     }
-
-    public function updateField(Request $request,$id)
+    public function updateField(Request $request)
     {
         $list = $request->ids;
-        $staff = Staff::find($id);
+        $staff = Auth::user()->staff;
         $staff->fields()->sync($list);
         return redirect()->back()->with('status', 'Đã cập nhật thành công');
     }

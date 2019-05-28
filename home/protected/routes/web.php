@@ -11,37 +11,36 @@ Route::get('/search',[
 	'as' => 'search',
 	'uses' => 'HomeController@search'
 ]);
-Route::get('/staff/{id}',[
+Route::get('/staff/info/{id}',[
 	'as' => 'staff.info',
 	'uses' => 'StaffController@show'
 ]);
-Route::get('/staff/{id}/edit',[
+Route::get('/staff/edit/info',[
 	'middleware' => 'auth',
 	'as' =>'staff.edit',
 	'uses' => 'StaffController@edit']);
-Route::post('/staff/{id}/edit',[
+Route::post('/staff/edit',[
 	'middleware' => 'auth',
 	'as' => 'staff.update.info',
 	'uses' => 'StaffController@updateInfo'
 ]);
 
-Route::get('/staff/{id}/field',[
+Route::get('/staff/edit/field',[
 	'middleware' => 'auth',
 	'as' =>'staff.edit.field',
 	'uses' => 'StaffController@edit_field'
 ]);
-
-Route::post('/staff/{id}/field',[
+Route::post('/staff/edit/field',[
 	'middleware' => 'auth',
 	'as' =>'staff.update.field',
 	'uses' => 'StaffController@updateField'
 ]);
 
-Route::get('/staff/{id}/topic',[
+Route::get('/staff/edit/topic',[
 	'middleware' => 'auth',
 	'as' =>'staff.edit.topic',
 	'uses' => 'StaffController@edit_topic']);
-Route::post('/staff/{id}/topic',[
+Route::post('/staff/edit/topic',[
 	'middleware' => 'auth',
 	'as' => 'staff.update.topic',
 	'uses' => 'TopicController@update'
@@ -87,7 +86,7 @@ Route::group(['middleware' => 'CheckAdminLogin', 'prefix' => 'admin'], function(
 	Route::post('/','UserController@deleteUser')->name('admin.delete.user');
 	Route::post('/','UserController@updateUser')->name('admin.update.user');
 
-	 Route::get('/import','UserController@importExcel')->name('admin.add.user.excel');
+	Route::get('/import','UserController@importExcel')->name('admin.add.user.excel');
 });
 
 
