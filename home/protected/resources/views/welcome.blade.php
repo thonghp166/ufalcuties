@@ -143,7 +143,7 @@
               <p class="email">VNU Email: {{$element->vnu_email}}</p>
             </div>
             <div class="more">
-              <a href="">Chi tiết</a>
+              <a href="{{route('staff.info',['account' => $element->account])}}">Chi tiết</a>
             </div>
           </div>
         </div>

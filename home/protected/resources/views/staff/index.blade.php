@@ -10,7 +10,7 @@
 				<div class="col-2" id="left">
 					<div class="float-right">
 						<select class="custom-select">
-						  <option selected>Tất cả</option>
+						  <option selected value="0">Tất cả</option>
 						  <option value="1">Lĩnh vực nghiên cứu</option>
 						  <option value="2">Đơn vị</option>
 						  <option value="3">Cán bộ</option>
@@ -19,12 +19,12 @@
 				</div>
 				<div class="col-8" id="center">					
 					<div class="text-center">
-						<input type="text" class="key" style="width: 100%;" placeholder="Nhập nội dung tìm kiếm">		
+						<input type="text" class="key" id="key" style="width: 100%;" placeholder="Nhập nội dung tìm kiếm">		
 					</div>
 				</div>
 				<div class="col-2" id="right">
 					<div class="float-left">
-						<button class="btn btn-primary"><i class="fas fa-search"></i></button>
+						<button id="searchbutton" class="btn btn-primary"><i class="fas fa-search"></i></button>
 					</div>
 				</div>
 			</div>
@@ -138,6 +138,5 @@
 		var content = document.querySelector("#category ." + name + " .content");
 		content.classList.toggle("showcontent");
 	}
-
 </script>
 @endsection
