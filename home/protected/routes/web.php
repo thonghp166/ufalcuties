@@ -26,13 +26,10 @@ Route::group(['middleware' => 'auth', 'prefix' => 'staff'], function() {
 	Route::get('/edit/topic','StaffController@edit_topic')->name('staff.edit.topic');
 	Route::post('/edit/topic','TopicController@update')->name('staff.update.topic');
 
-});
+	Route::get('/add/topic','TopicController@add')->name('staff.add.topic');
+	Route::get('/delete/topic','TopicController@destroy')->name('staff.delete.topic');
 
-Route::get('/staff/add/topic',[
-	'middleware' => 'auth',
-	'as' => 'staff.add.topic',
-	'uses' => 'TopicController@add'
-]);
+});
 
 Route::get('/field','FieldController@index');
 Auth::routes();
@@ -55,11 +52,9 @@ Route::group(['middleware' => 'CheckAdminLogin', 'prefix' => 'admin'], function(
 	Route::delete('/delete','DepartmentController@delete')->name('admin.delete.department');
 	Route::post('/','DepartmentController@update')->name('admin.update.department');
 
-
 	Route::post('/','FieldController@addField')->name('admin.add.field');
 	Route::post('/','FieldController@deleteField')->name('admin.delete.field');
 	Route::post('/','FieldController@updateField')->name('admin.update.field');
-
 
 	Route::post('/','UserController@add')->name('admin.add.user');
 	Route::post('/','UserController@deleteUser')->name('admin.delete.user');

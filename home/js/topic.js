@@ -18,7 +18,27 @@ document.addEventListener("DOMContentLoaded", function () {
 	for (var i = 0; i < deletebutton.length; i++) {
 		deletebutton[i].onclick = function () {
 			var id = this.getAttribute("data-id");
+			var name = this.getAttribute("data-name");
+			var detail = this.getAttribute("data-detail");
 			console.log(id);
+			var newrequest = new XMLHttpRequest();
+			newrequest.onreadystatechange = function () {
+			
+				if (this.readyState == 4 && this.status == 200) {				
+					if (this.responseText == "Success") {
+						alert("Thanh cong");
+
+						//them giao dien sau khi xoa thanh cong vao day cho tao
+
+					} else {
+						alert("Không thành công");
+					}
+				} else {
+					console.log('error');
+				}
+			}
+			newrequest.open("GET", route('staff.delete.topic') + "?id=" + id + "&name=" + name+ "&detail=" + detail , true);
+			newrequest.send();
 		}
 	}
 	
@@ -35,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				var bar = document.getElementById("bar");
 				bar.classList.remove("zoomin");
 				check = "under100";	
-			}
+			} 
 		}
 	}, false);
 
@@ -104,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
 					
 					count++;
 				} else {
-					alert("Sai rồi đm");
+					alert("Trùng thông tin");
 				}
 			} else {
 				console.log('error');
@@ -113,4 +133,5 @@ document.addEventListener("DOMContentLoaded", function () {
 		newrequest.open("GET", route('staff.add.topic') + "?name=" + name.value + "&detail=" + detail.value , true);
 		newrequest.send();
 	}
+
 }, false);
