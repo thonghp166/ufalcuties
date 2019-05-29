@@ -18,16 +18,7 @@ class FieldController extends Controller
         return view('field',compact('field'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -39,35 +30,8 @@ class FieldController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
@@ -79,8 +43,44 @@ class FieldController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $id = $request->id;
+        $field = Field::find($id);
+        $child = [];
+        $allChild = $this->getAllChildOf($field,$child);
+        foreach ($allChild as $element) {
+            Field::destroy($element->id);
+        }
+        Field::destroy($field->id);
+        $templist = [];
+        return json_encode([
+            'state' => 'Success',
+            'deleted_id' => $field->id
+        ]);
+    }
+
+
+    private function getChildOf($field){
+        $child = $this->getChild($field);
+        if(count($child) == 0){
+            array_push($templist,$field);
+        } else {
+            foreach ($child as $element) {
+                $this->getChildOf($element);
+            }
+        }
+    }
+
+    private function getChild($field){
+        $fields = Field::all();
+        $id = $field->id;
+        $child = [];
+        foreach ($fields as $element) {
+            if ($id == $element->childOf){
+                array_push($child,$element);
+            }
+        }
+        return $child;
     }
 }

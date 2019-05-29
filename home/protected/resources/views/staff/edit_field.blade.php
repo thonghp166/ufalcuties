@@ -128,6 +128,7 @@
   <i class="fas fa-arrow-circle-up"></i>
 </div>
 
+@routes
 <script type="text/javascript" src="{{URL::asset('js/field.js')}}"></script>
 
 @endsection

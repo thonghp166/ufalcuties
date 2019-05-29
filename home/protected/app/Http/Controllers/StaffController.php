@@ -49,13 +49,28 @@ class StaffController extends Controller
     public function show($account)
     {
         $staff = Staff::where('account','=',$account)->get()->get(0);
-        $field = Field::all();
+        $fields = $staff->fields;
+        $field = [];
+        foreach ($fields as $element) {
+            if($this->isSmallestChild($element)){
+                array_push($field,$element);
+            }
+        }
         $topic = Topic::all();
         $department = Department::all();
         return view('staff.staff_view')-> with(compact('department'))
                                   -> with(compact('field'))
                                   -> with(compact('staff'))
                                   -> with(compact('topic'));
+    }
+
+    private function isSmallestChild($child){
+        $fields = Field::all();
+        foreach ($fields as $element) {
+            if ($child->id == $element->childOf)
+                return false;
+        }
+        return true;
     }
 
     /**
