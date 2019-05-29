@@ -175,6 +175,7 @@ div.col-4.tag a {
 .upload {
     font-weight: bold;
     color: #3498db!important;
+    cursor: pointer;
 }
 
 .delete {

@@ -4,12 +4,19 @@
 
 <div class="layer"></div>
 
-<div class="changeavatar">
-  <span class="title">Thay đổi ảnh đại diện</span>
-  <p class="upload">Tải ảnh lên</p>
-  <p class="delete">Xóa ảnh đại diện</p>
-  <p id="cancel">Hủy</p>
-</div>
+<form action="" class="changeavatar">
+  <fieldset style="margin-bottom: 30px;">
+    <span class="title">Thay đổi ảnh đại diện</span>
+  </fieldset>
+    <label for="file" class="upload">Tải ảnh lên</label>
+    <input type="file" id="file" name="file" style="display: none;">
+  <fieldset>
+    <p class="delete">Xóa ảnh đại diện</p>
+  </fieldset>
+  <fieldset>
+    <p id="cancel">Hủy</p>
+  </fieldset>
+</form>
 
 <div class="content">
   <div class="container">
@@ -146,12 +153,14 @@
             </fieldset>
             <div class="text-center">
               <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Gửi</button>
-              @if (session('status'))
+
+              <div class="status"></div>
+              <!-- @if (session('status'))
                 <div class="alert alert-success" style="display: block; margin-top: 30px; position: fixed; top: 100px; right: 10%; z-index: 4; transition: 0.4s;">
                   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
                   {{ session('status') }}
                 </div>
-              @endif
+              @endif -->
             </div>            
           </div>
           </div>            
@@ -186,4 +195,46 @@
 </div>
 
 <script type="text/javascript" src="{{URL::asset('js/staff.js')}}"></script>
+<script>
+  var uploadfile = document.getElementById("file");
+  uploadfile.onchange = function () {
+    console.log("hello");
+  }
+
+  function uploadimage () {
+    //Lấy ra files
+    var file_data = $('#file').prop('files')[0];
+    //lấy ra kiểu file
+    var type = file_data.type;
+    //Xét kiểu file được upload
+    var match= ["image/gif","image/png","image/jpg",];
+    //kiểm tra kiểu file
+    if(type == match[0] || type == match[1] || type == match[2])
+    {
+      
+      //khởi tạo đối tượng form data
+      var form_data = new FormData();
+      //thêm files vào trong form data
+      form_data.append('file', file_data);
+      //sử dụng ajax post
+      $.ajax({
+              url: '{{URL::asset(upload.php)}}', // gửi đến file upload.php 
+              dataType: 'text',
+              cache: false,
+              contentType: false,
+              processData: false,
+              data: form_data,                       
+              type: 'post',
+              success: function(res){
+                $('.status').text(res);
+                $('#file').val('');
+              }
+          });
+    } else{
+      $('.status').text('Chỉ được upload file ảnh');
+                $('#file').val('');
+    }
+    return false;
+  }
+</script>
 @endsection

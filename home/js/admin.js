@@ -112,6 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	var homelayer = document.querySelector(".homelayer");
 	homelayer.onclick = function () {
+		console.log("babe");
 		var excelimport = document.querySelector(".excelimport"), layer = document.querySelector(".homelayer");
 		excelimport.classList.remove("showimport");
 		layer.classList.remove("showlayer");

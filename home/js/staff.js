@@ -11,9 +11,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	var cancel = document.getElementById("cancel");
 	cancel.onclick =function () {
-		var layer = document.getElementsByClassName("layer"), avatar = document.getElementsByClassName("changeavatar");
-		 layer[0].classList.remove('show');
-		 avatar[0].classList.remove('show');
+		var layer = document.querySelector(".layer"), avatar = document.querySelector(".changeavatar");
+		 layer.classList.remove("show");
+		 avatar.classList.remove("show");
 	}
 
 	var editbutton = document.getElementsByClassName("edit");
@@ -33,6 +33,12 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 	}
 
+	var layer = document.querySelector(".layer");
+	layer.onclick = function () {
+		var avatar = document.querySelector(".changeavatar");
+	 	this.classList.remove("show");
+		avatar.classList.remove("show");
+	}
 	
 	var check = "under100"
 	window.addEventListener("scroll", function () {
