@@ -198,12 +198,13 @@
 <script>
   var uploadfile = document.getElementById("file");
   uploadfile.onchange = function () {
-    console.log("hello");
+    uploadimage();
   }
 
   function uploadimage () {
     //Lấy ra files
     var file_data = $('#file').prop('files')[0];
+    console.log(file_data);
     //lấy ra kiểu file
     var type = file_data.type;
     //Xét kiểu file được upload
@@ -214,11 +215,13 @@
       
       //khởi tạo đối tượng form data
       var form_data = new FormData();
+      console.log(form_data);
       //thêm files vào trong form data
       form_data.append('file', file_data);
       //sử dụng ajax post
+      console.log(form_data);
       $.ajax({
-              url: '{{URL::asset(upload.php)}}', // gửi đến file upload.php 
+              url: 'upload.php', // gửi đến file upload.php 
               dataType: 'text',
               cache: false,
               contentType: false,

@@ -80,15 +80,15 @@ class UserController extends Controller
         if($request->hasFile('excelfile')){
             $file = Input::file('excelfile');
             $extension = File::extension($file->getClientOriginalName());
-        
-        
             if ($extension == "xlsx" || $extension == "xls" || $extension == "csv") {
                 $filepath = time().$file->getClientOriginalName();
                 $upload = $file->move('upload',$filepath);
                 $collection = Excel::toCollection(new UsersImport, $upload)->get(0);
                 if (!$collection->isEmpty()){
                     $new_users = [];
+                    $collection->pop();
                     foreach ($collection as $value) {
+
                         $new_user = $this->saveFromExcel($value);
                         if ($new_user == null) {                    
                             Session::flash('error', 'Lỗi khi thêm tài khoản');
