@@ -45,10 +45,4 @@ class HomeController extends Controller
         return view('test');
     }
 
-    public function test2(Request $request)
-    {
-        echo "<pre>";
-        print_r(Input::file('excelfile')->getClientOriginalName());
-        echo "</pre>";
-    }
 }

@@ -111,4 +111,32 @@ document.addEventListener("DOMContentLoaded", function () {
 			}
 		}
 	}, false);
+
+	var updateform = document.getElementById('staffinfor');
+	updateform.addEventListener('submit',function(e){
+		var request = new XMLHttpRequest();
+		e.preventDefault();
+		var formdata = new FormData(newuserform);
+		request.open('post',route('staff.update.field'));
+		request.send(formdata);
+
+		request.onreadystatechange = function(){
+
+			if (this.readyState == 4 && this.status == 200) {
+				$data = $.parseJSON(this.responseText);
+				if ($data.state == "Success"){
+					// xu ly view khi cap nhat thanh cong
+					//thong bao cap nhat thanh cong
+				} else {
+					// xu ly view khi tao loi
+					// loi duoc luu trong bien $data.error
+				}
+				console.log(this.response);
+			} else {
+				console.log('error');
+			}
+		};
+	},false);
+
+
 }, false);

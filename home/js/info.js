@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		avatar.classList.remove("show");
 	}
 	
-	var check = "under100"
+	var check = "under100";
 	window.addEventListener("scroll", function () {
 		if (window.pageYOffset > 100) {
 			if (check == "under100") {
@@ -56,4 +56,34 @@ document.addEventListener("DOMContentLoaded", function () {
 			}
 		}
 	}, false);
+
+	var updateform = document.getElementById('staffinfor');
+	updateform.addEventListener('submit',function(e){
+		var request = new XMLHttpRequest();
+		e.preventDefault();
+		var formdata = new FormData(updateform);
+		request.open('post',route('staff.update.info'));
+		request.send(formdata);
+
+		request.onreadystatechange = function(){
+
+			if (this.readyState == 4 && this.status == 200) {
+				$data = $.parseJSON(this.responseText);
+				if ($data.state == "Success"){
+					// xu ly view khi cap nhat thanh cong
+				} else {
+					// xu ly view khi tao loi
+					// loi duoc luu trong bien $data.error
+				}
+				console.log(this.response);
+			} else {
+				console.log('error');
+			}
+		};
+	},false);
+
+
+
+
+
 }, false);

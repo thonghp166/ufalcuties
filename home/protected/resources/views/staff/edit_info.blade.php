@@ -4,7 +4,7 @@
 
 <div class="layer"></div>
 
-<form action="" class="changeavatar">
+<form id="changeavatar" class="changeavatar" enctype="multipart/form-data">
   <fieldset style="margin-bottom: 30px;">
     <span class="title">Thay đổi ảnh đại diện</span>
   </fieldset>
@@ -22,7 +22,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <form id="staffinfor" method="POST" action="{{route('staff.update.info')}}">
+        <form id="staffinfor">
           {{ csrf_field() }}
           <div class="row">
             <div class="col-4 tag" style="border-right: 1px solid black;">
@@ -155,12 +155,6 @@
               <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Gửi</button>
 
               <div class="status"></div>
-              <!-- @if (session('status'))
-                <div class="alert alert-success" style="display: block; margin-top: 30px; position: fixed; top: 100px; right: 10%; z-index: 4; transition: 0.4s;">
-                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
-                  {{ session('status') }}
-                </div>
-              @endif -->
             </div>            
           </div>
           </div>            
@@ -193,8 +187,8 @@
 <div class="top">
   <i class="fas fa-arrow-circle-up"></i>
 </div>
-
-<script type="text/javascript" src="{{URL::asset('js/staff.js')}}"></script>
+@routes
+<script type="text/javascript" src="{{URL::asset('js/info.js')}}"></script>
 <script>
   var uploadfile = document.getElementById("file");
   uploadfile.onchange = function () {
@@ -202,41 +196,7 @@
   }
 
   function uploadimage () {
-    //Lấy ra files
-    var file_data = $('#file').prop('files')[0];
-    console.log(file_data);
-    //lấy ra kiểu file
-    var type = file_data.type;
-    //Xét kiểu file được upload
-    var match= ["image/gif","image/png","image/jpg",];
-    //kiểm tra kiểu file
-    if(type == match[0] || type == match[1] || type == match[2])
-    {
-      
-      //khởi tạo đối tượng form data
-      var form_data = new FormData();
-      console.log(form_data);
-      //thêm files vào trong form data
-      form_data.append('file', file_data);
-      //sử dụng ajax post
-      console.log(form_data);
-      $.ajax({
-              url: 'upload.php', // gửi đến file upload.php 
-              dataType: 'text',
-              cache: false,
-              contentType: false,
-              processData: false,
-              data: form_data,                       
-              type: 'post',
-              success: function(res){
-                $('.status').text(res);
-                $('#file').val('');
-              }
-          });
-    } else{
-      $('.status').text('Chỉ được upload file ảnh');
-                $('#file').val('');
-    }
+    
     return false;
   }
 </script>

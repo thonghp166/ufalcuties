@@ -5,14 +5,13 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Staff;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Session;
 use Excel;
 use File;
 use App\Imports\UsersImport;
 use Illuminate\Support\Facades\Input;
-use Response;
+use Validator;
 
 class UserController extends Controller
 {
@@ -32,47 +31,54 @@ class UserController extends Controller
         return view('user.create');
     }
 
-    public function store(Request $request)
+    public function addUser(Request $request)
     {
-        $request->validate([
-            'email' => 'required|unique:users',
-            'username' => 'required|unique:users',
+        $validator = Validator::make($request->all(), [
+           'email' => 'required|email|unique:users',
+           'account' => 'required|string|max:50',
             'code' => 'required|unique:staff'
         ]);
 
+        if ($validator->fails()){
+            return json_encode([
+                'state' => 'Fail',
+                'error' => 'Thông tin không đúng định dạng'
+            ]);
+        } else {
+            $email = $request->email;
+            $username = $request->account;
+            $password = bcrypt('12345678');
 
-        $email = $request->input('email');
-        $username = $request->input('username');
-        $password = bcrypt('12345678');
+            $user = User::create([
+                'email' => $email,
+                'username' => $username,
+                'password' => $password,
+            ]);
 
+            $name = $request->name;
+            $code = $request->code;
+            $vnu_email = $email;
+            $account = $username;
+            $staff_type =  $request->staff_type;
+            $degree = $request->degree;
+            $work_unit = $request->work_unit;
+            $staff_id = $user->id;
 
-        $user = User::create([
-            'email' => $email,
-            'username' => $username,
-            'password' => $password,
-        ]);
-
-        $name = $request->input('name');
-        $code = $request->input('code');
-        $vnu_email = $email;
-        $account = $request->input('username');
-        $staff_type =  $request->input('staff_type');
-        $degree = $request->input('degree');
-        $work_unit = $request->input('work_unit');
-        $staff_id = $user->id;
-
-        $staff = Staff::create([
-            'name' => $name,
-            'code' => $code,
-            'vnu_email' => $vnu_email,
-            'account' => $account,
-            'staff_type' => $staff_type,
-            'degree' => $degree,
-            'work_unit' => $work_unit,
-            'staff_id' => $staff_id,
-        ]);
-
-        return redirect()->back();
+            $staff = Staff::create([
+                'name' => $name,
+                'code' => $code,
+                'vnu_email' => $vnu_email,
+                'account' => $account,
+                'staff_type' => $staff_type,
+                'degree' => $degree,
+                'work_unit' => $work_unit,
+                'user_id' => $staff_id,
+            ]);
+            return json_encode([
+                'state' => 'Success',
+                'new_user' => $user
+            ]);
+        }
     }
 
     public function importExcel(Request $request)
@@ -104,7 +110,7 @@ class UserController extends Controller
                     $data = ['state'=> 'Success','new_users' => $new_users];
                     return json_encode($data);
                 } else {
-                    return json_encode(['state'=> 'Fail','erroe' => 'Không có dữ liệu']);
+                    return json_encode(['state'=> 'Fail','error' => 'Không có dữ liệu']);
                 }
             } else {
                 Session::flash('error', 'Sai định dạng');
@@ -121,8 +127,6 @@ class UserController extends Controller
         }
     }
             
-
-
     private function saveFromExcel($element){
         $name = $element->get('ho_va_ten');
         $username = $element->get('ten_dang_nhap');
@@ -154,12 +158,5 @@ class UserController extends Controller
 
     public function updateUser()
     {
-        
     }
-
-    public function addUser(Request $request){
-        dd(Input::all());
-        // return $request;
-    }
-
 }

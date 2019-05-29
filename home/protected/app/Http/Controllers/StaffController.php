@@ -7,6 +7,7 @@ use App\Topic;
 use App\Department;
 use Illuminate\Support\Facades\Input;
 use Auth;
+use Validator;
 
 use Illuminate\Http\Request;
 
@@ -37,40 +38,6 @@ class StaffController extends Controller
         // return Topic::all();
         // return view('staffs.new');
         return Staff::all();
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $name = $request->input('name');
-        $code = $request->input('code');
-        $account = $request->input('account');
-        $vnu_mail = $request->input('vnu_email');
-        $staff_type = $request->input('staff_type');
-        $degree = $request->input('degree');
-        $work_unit = $request->input('work_unit');
-
-        if (Staff::where('vnu_email', '=', $vnu_email) -> exists() 
-            or Staff::where('account', '=', $account) -> exists()) {
-            return redirect()->route('staff.new')->withError('Trùng vnu mail hoặc trùng tài khoản');
-        } else {
-            Staff::create([
-                'name' => $name,
-                'code' => $code, 
-                'account' => $account, 
-                'vnu_email' => $vnu_mail,
-                'staff_type' => $staff_type,
-                'degree' => $degree,      
-                'work_unit' => $work_unit
-            ]);
-            return "Success";
-            // return redirect()->route('staff.new');
-        }
     }
 
     /**
@@ -120,8 +87,17 @@ class StaffController extends Controller
 
     public function updateInfo(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+           'phone' => 'max:11',
+           'gmail' => 'required|email'
+        ]);
         $staff = Auth::user()->staff;
-        
+        // if ($validator->fails()){
+        //   return json_encode([
+        //     'state' => 'Fail',
+        //     'error' => 'Thông tin không đúng định dạng'
+        //   ]);
+        // }
         $phone = $request->input('phone');
         $gmail = $request->input('gmail');
         $website = $request->input('website');
@@ -133,7 +109,10 @@ class StaffController extends Controller
             'website' => $website,
             'address' => $address
         ]);
-        return redirect()->back()->with('status', 'Đã cập nhật thành công');
+        return json_encode([
+          'state' => 'Success',
+          'updated_staff' => $staff
+        ]);
     }
 
     public function updateField(Request $request)
@@ -141,6 +120,9 @@ class StaffController extends Controller
         $list = $request->ids;
         $staff = Auth::user()->staff;
         $staff->fields()->sync($list);
-        return redirect()->back()->with('status', 'Đã cập nhật thành công');
+        return json_encode([
+          'state' => 'Success',
+          'updated_fields' => $staff->fields
+        ]);
     }
 }
