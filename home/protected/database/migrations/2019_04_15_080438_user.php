@@ -18,7 +18,7 @@ class User extends Migration
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->string('password');
-            $table->integer('level');
+            $table->integer('level')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

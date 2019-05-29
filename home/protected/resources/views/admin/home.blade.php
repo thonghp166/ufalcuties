@@ -66,14 +66,18 @@
                 <div class="col-3"></div>
                 <div class="col-6 excelimport">
                     <div class="text-center">
-                        <form>
-                            <fieldset class="form-group">
-                                <label for="exampleInputFile">Tải file excel</label>
-                                <input type="file" class="form-control-file" id="exampleInputFile">
-                            </fieldset>
-                            <p class="btn btn-primary" id="doexcel" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-file-upload"></i> Nhập vào</p>
-                            <p class="btn btn-secondary" id="cancelexcelbutton" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-window-close"></i> Hủy</p>
+                        <form id="excelform" enctype="multipart/form-data">
+                          {{csrf_field()}}
+                          <fieldset class="form-group">
+                              <label for="excelfile">Tải file excel</label>
+                              <input type="file" class="form-control-file" name="excelfile" id="excelfile">
+                          </fieldset>
+                          <button type="submit"> Upload</button>
+                          <!-- <input type="submit" name="upload" id="upload" class="btn btn-primary" value="Upload"> -->
+                            
                         </form>
+                        <br />
+                        <span id="uploaded_file"></span>
                     </div>
                 </div>
                 <div class="col-3"></div>
@@ -409,6 +413,23 @@
 <div class="top">
   <i class="fas fa-arrow-circle-up"></i>
 </div>
-
+@routes
 <script type="text/javascript" src="{{URL::asset('js/admin.js')}}"></script>
+<script>
+  var form = document.getElementById('excelform');
+  var request = new XMLHttpRequest();
+
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var formdata = new FormData(form);
+
+    request.open('post',route('admin.add.user.excel'));
+    request.send(formdata);
+
+    request.addEventListener('loaded',function(e){
+      console.log(JSON.parse(e.target.responseText));
+    });
+
+  },false);
+</script>
 @endsection

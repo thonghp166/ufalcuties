@@ -24,7 +24,7 @@ class CreateStaffTable extends Migration
             $table->string('degree')->default('');
             $table->string('phone')->default('');
             $table->string('vnu_email')->unique();
-            $table->string('gmail')->unique()->default('');
+            $table->string('gmail')->default('');
             $table->string('website')->default('');
             $table->string('address')->default('');
             $table->timestamps();

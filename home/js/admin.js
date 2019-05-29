@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	cancelnormalbutton.onclick = function () {
 		var normalimport = document.querySelector(".normalimport"), layer = document.querySelector(".homelayer");
 		normalimport.classList.remove("showimport");
-		layer.classList.remove("showlayer");	
+		layer.classList.remove("showlayer");
 	}
 
 	var cancelexcelbutton = document.getElementById("cancelexcelbutton");
@@ -120,5 +120,4 @@ document.addEventListener("DOMContentLoaded", function () {
 		normalimport.classList.remove("showimport");
 		layer.classList.remove("showlayer");
 	}
-
 }, false);

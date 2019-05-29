@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Department;
 use App\Field;
 use App\Staff;
+use Validator;
+use Illuminate\Support\Facades\Input;
+
 
 class HomeController extends Controller
 {
@@ -40,5 +43,12 @@ class HomeController extends Controller
     public function test()
     {
         return view('test');
+    }
+
+    public function test2(Request $request)
+    {
+        echo "<pre>";
+        print_r(Input::file('excelfile')->getClientOriginalName());
+        echo "</pre>";
     }
 }

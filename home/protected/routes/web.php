@@ -1,11 +1,11 @@
 <?php
+use Illuminate\Support\Facades\Input;
 
 Route::get('/',[
 	'as' => 'home',
 	'uses' => 'HomeController@index'
 ]);
 Route::get('/home','HomeController@index');
-Route::get('/staff','StaffController@index');
 
 Route::get('/search',[
 	'as' => 'search',
@@ -60,7 +60,7 @@ Route::group(['middleware' => 'CheckAdminLogin', 'prefix' => 'admin'], function(
 	Route::post('/','UserController@deleteUser')->name('admin.delete.user');
 	Route::post('/','UserController@updateUser')->name('admin.update.user');
 
-	Route::get('/import','UserController@importExcel')->name('admin.add.user.excel');
+	Route::post('/import','UserController@importExcel')->name('admin.add.user.excel');
 });
 
 
@@ -69,9 +69,8 @@ Route::get('/test',[
 	'uses' => 'HomeController@test'
 ]);
 
-// Route::get('/test2)
-
 Route::post('/test',[
 	'as' => 'import',
 	'uses' => 'UserController@importExcel'
 ]);
+

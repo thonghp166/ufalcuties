@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ URL::to('css/app.css') }}">
  
     <title>Laravel Excel Import csv and XLS file in Database</title>
@@ -61,13 +62,16 @@
 </div>
 @endif
  
-<form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
+<form id ="excel" enctype="multipart/form-data">
     {{ csrf_field() }}
-    Choose your xls/csv File : <input type="file" name="file" class="form-control">
+    Choose your xls/csv File : <input id="file" type="file" name="file" class="form-control">
  
-    <input type="submit" class="btn btn-primary btn-lg" style="margin-top: 3%">
+    <!-- <input type="submit" class="btn btn-primary btn-lg" style="margin-top: 3%"> -->
+    <p class="btn btn-primary" id="importexcel" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-file-upload"></i> Nhập vào</p>
 </form>
  
 </div>
+@routes
+<script type="text/javascript" src="{{URL::asset('js/test.js')}}"></script>
 </body>
 </html>
