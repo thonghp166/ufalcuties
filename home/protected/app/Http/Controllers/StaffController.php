@@ -63,6 +63,8 @@ class StaffController extends Controller
     public function deleteAvatar()
     {
         $staff = Auth::user()->staff;
+        $old_img = $staff->img_url;
+        File::delete($old_img);
         $default = 'images/avatar/defaultAvatar.png';
         $staff->update([
           'img_url' => $default
