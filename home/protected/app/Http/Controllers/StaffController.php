@@ -8,6 +8,7 @@ use App\Department;
 use Illuminate\Support\Facades\Input;
 use Auth;
 use Validator;
+use File;
 
 use Illuminate\Http\Request;
 
@@ -29,15 +30,32 @@ class StaffController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Upload avatar and save
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function updateAvatar(Request $request)
     {
-        // return Topic::all();
-        // return view('staffs.new');
-        return Staff::all();
+        $file = Input::file('file');
+        $filepath = time().$file->getClientOriginalName();
+        $extension = File::extension($file->getClientOriginalName());
+        if ($extension == "png" || $extension == "jpg" || $extension == "jpeg"||
+            $extension == "PNG" || $extension == "JPG" || $extension == "JPEG"){
+          $upload = $file->move('images/avatar',$filepath);
+          $staff = Auth::user()->staff;
+          $staff->update([
+            'img_url' => $filepath
+          ]);
+        } else {
+          return json_encode([
+            'state' => 'Fail',
+            'error' => 'File không đúng định dạng'
+          ]);
+        }
+        return json_encode([
+            'state' => 'Success',
+            'img_url' => $filepath
+        ]);
     }
 
     /**
@@ -49,13 +67,28 @@ class StaffController extends Controller
     public function show($account)
     {
         $staff = Staff::where('account','=',$account)->get()->get(0);
-        $field = Field::all();
+        $fields = $staff->fields;
+        $field = [];
+        foreach ($fields as $element) {
+            if($this->isSmallestChild($element)){
+                array_push($field,$element);
+            }
+        }
         $topic = Topic::all();
         $department = Department::all();
         return view('staff.staff_view')-> with(compact('department'))
                                   -> with(compact('field'))
                                   -> with(compact('staff'))
                                   -> with(compact('topic'));
+    }
+
+    private function isSmallestChild($child){
+        $fields = Field::all();
+        foreach ($fields as $element) {
+            if ($child->id == $element->childOf)
+                return false;
+        }
+        return true;
     }
 
     /**

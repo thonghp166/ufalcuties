@@ -18,7 +18,7 @@
 	            <div class="row">
 
 	              <div class="col-4 text-right">
-	                <img src="{{URL::asset('images/thanhld.png')}}" alt="" class="img-fuild avatar">
+	                <img src="{{URL::asset('images/avatar/defaultAvatar.png')}}" alt="" class="img-fuild avatar">
 	              </div>
 	              <div class="col-8">
 	                <h3>{{$staff->degree}} {{$staff->name}}</h3>
@@ -128,6 +128,7 @@
   <i class="fas fa-arrow-circle-up"></i>
 </div>
 
+@routes
 <script type="text/javascript" src="{{URL::asset('js/field.js')}}"></script>
 
 @endsection

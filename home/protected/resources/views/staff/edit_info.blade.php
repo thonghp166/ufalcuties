@@ -5,6 +5,7 @@
 <div class="layer"></div>
 
 <form id="changeavatar" class="changeavatar" enctype="multipart/form-data">
+  {{csrf_field()}}
   <fieldset style="margin-bottom: 30px;">
     <span class="title">Thay đổi ảnh đại diện</span>
   </fieldset>
@@ -35,7 +36,7 @@
               <div class="row">
 
                 <div class="col-4 text-right">
-                  <img src="{{URL::asset('images/thanhld.png')}}" alt="" class="img-fuild avatar">
+                  <img src="{{URL::asset('images/avatar/defaultAvatar.png')}}" alt="" class="img-fuild avatar">
                 </div>
                 <div class="col-8">
                   <h3>{{$staff->degree}} {{$staff->name}}</h3>
@@ -189,15 +190,4 @@
 </div>
 @routes
 <script type="text/javascript" src="{{URL::asset('js/info.js')}}"></script>
-<script>
-  var uploadfile = document.getElementById("file");
-  uploadfile.onchange = function () {
-    uploadimage();
-  }
-
-  function uploadimage () {
-    
-    return false;
-  }
-</script>
 @endsection

@@ -18,16 +18,7 @@ class FieldController extends Controller
         return view('field',compact('field'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -39,35 +30,8 @@ class FieldController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
@@ -79,8 +43,38 @@ class FieldController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $id = $request->id;
+        $field = Field::find($id);
+        $this->destroyChild($field);
+        Field::destroy($id);
+        return json_encode([
+            'state' => 'Success',
+            'deleted_id' => $id
+        ]);
+    }
+
+    private function destroyChild($field){
+        $child = $this->getChildOf($field);
+        if (count($child) == 0){
+            Field::destroy($field->id);
+        } else {
+            foreach ($child as $element) {
+                $this->destroyChild($element);
+            }
+        }
+    }
+
+    private function getChild($field){
+        $fields = Field::all();
+        $id = $field->id;
+        $child = [];
+        foreach ($fields as $element) {
+            if ($id == $element->childOf){
+                array_push($child,$element);
+            }
+        }
+        return $child;
     }
 }

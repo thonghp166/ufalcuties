@@ -80,4 +80,30 @@ document.addEventListener("DOMContentLoaded", function () {
 			}
 		};
 	},false);
+
+	
+	document.getElementById('file').onchange = function(e) {
+    	e.preventDefault();
+    	var uploadavatarform = document.getElementById('changeavatar');
+		var request = new XMLHttpRequest();
+		var formdata = new FormData(uploadavatarform);
+		request.open('post',route('staff.update.avatar'));
+		request.send(formdata);
+
+		request.onreadystatechange = function(){
+			if (this.readyState == 4 && this.status == 200) {
+				$data = $.parseJSON(this.responseText);
+				if ($data.state == "Success"){
+					// xu ly view khi cap nhat avatar thanh cong
+				} else {
+					// xu ly view khi tao loi
+					// loi duoc luu trong bien data.error
+				}
+				console.log(this.response);
+			} else {
+				console.log('error');
+			}
+		};
+	};
+
 }, false);

@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	updateform.addEventListener('submit',function(e){
 		var request = new XMLHttpRequest();
 		e.preventDefault();
-		var formdata = new FormData(newuserform);
+		var formdata = new FormData(updateform);
 		request.open('post',route('staff.update.field'));
 		request.send(formdata);
 

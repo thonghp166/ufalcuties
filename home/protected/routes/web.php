@@ -22,6 +22,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'staff'], function() {
 	Route::get('/edit/info','StaffController@edit')->name('staff.edit');
 	// Update staff's info which edited
 	Route::post('/edit/info','StaffController@updateInfo')->name('staff.update.info');
+	//Update avatar
+	Route::post('/edit/avatar','StaffController@updateAvatar')->name('staff.update.avatar');
 	// Edit staff's field 
 	Route::get('/edit/field','StaffController@edit_field')->name('staff.edit.field');
 	// Update staff's field which edited
