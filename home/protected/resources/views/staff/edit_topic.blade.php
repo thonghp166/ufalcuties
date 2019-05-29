@@ -19,7 +19,7 @@
               <div class="row">
 
                 <div class="col-4 text-right">
-                  <img src="{{URL::asset('images/avatar/defaultAvatar.png')}}" alt="" class="img-fuild avatar">
+                  <img src="http://ufaculties.vn/{{$staff->img_url}}" alt="" class="img-fuild avatar">
                 </div>
                 <div class="col-8">
                   <script> 
@@ -47,8 +47,8 @@
                       <td style="width: 20%;">{{$element->name}}</td>
                       <td style="width: 35%;">{{$element->detail}}</td>
                       <td style="width: 30%;">
-                        <span class="btn btn-primary edit" data-id="{{$element->id}}" data-name="{{$element->name}}" data-detail="{{$element->detail}}" style="color: white!important; font-weight: normal; font-style: italic; cursor: pointer;" onclick="edit(this)"><i class="fas fa-edit"></i> Sửa</span>
-                        <span class="btn btn-danger delete" data-id="{{$element->id}}" data-name="{{$element->name}}" data-detail="{{$element->detail}}" style="color: white!important; font-weight: normal; font-style: italic; cursor: pointer;" onclick="remove(this)"><i class="fas fa-trash"></i> Xóa</span>
+                        <span class="btn btn-primary edit" data-id="{{$element->id}}" data-name="{{$element->name}}" data-detail="{{$element->detail}}" style="color: white!important; font-weight: normal; font-style: italic; cursor: pointer; margin: 5px 5px;" onclick="edit(this)"><i class="fas fa-pen-square"></i> Sửa</span>
+                        <span class="btn btn-danger delete" data-id="{{$element->id}}" data-name="{{$element->name}}" data-detail="{{$element->detail}}" style="color: white!important; font-weight: normal; font-style: italic; cursor: pointer; margin: 5px 5px;" onclick="remove(this)"><i class="fas fa-trash"></i> Xóa</span>
                       </td>
                     </tr>
                   <?php endforeach ?>

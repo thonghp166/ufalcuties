@@ -2,8 +2,6 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 	
-	console.log(staff_fieldArr);
-
 	var boxparent = document.getElementsByClassName("rootparent");
 	
 	for (var i = 0; i < boxparent.length; i++) {
@@ -124,14 +122,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
 			if (this.readyState == 4 && this.status == 200) {
 				$data = $.parseJSON(this.responseText);
+				var status = document.querySelector(".status");
 				if ($data.state == "Success"){
-					// xu ly view khi cap nhat thanh cong
-					//thong bao cap nhat thanh cong
+					status.style.display = "block";
+					status.innerHTML = "<div>" + "Cập nhật các lĩnh vực nghiên cứu thành công    <i class='fas fa-window-close' onclick='hide(this)'></i></div>";
+					status.style.background = "#27ae60";
 				} else {
-					// xu ly view khi tao loi
-					// loi duoc luu trong bien $data.error
+					status.style.display = "block";
+					status.innerHTML = "<div>" + "Lỗi! Chủ đề quan tâm '" + name.value + "' đã tồn tại    <i class='fas fa-window-close' onclick='hide(this)'></i></div>";
+					status.style.background = "#c0392b";
 				}
-				console.log(this.response);
 			} else {
 				console.log('error');
 			}
