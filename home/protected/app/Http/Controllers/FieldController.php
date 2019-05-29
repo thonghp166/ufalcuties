@@ -47,27 +47,21 @@ class FieldController extends Controller
     {
         $id = $request->id;
         $field = Field::find($id);
-        $child = [];
-        $allChild = $this->getAllChildOf($field,$child);
-        foreach ($allChild as $element) {
-            Field::destroy($element->id);
-        }
-        Field::destroy($field->id);
-        $templist = [];
+        $this->destroyChild($field);
+        Field::destroy($id);
         return json_encode([
             'state' => 'Success',
-            'deleted_id' => $field->id
+            'deleted_id' => $id
         ]);
     }
 
-
-    private function getChildOf($field){
-        $child = $this->getChild($field);
-        if(count($child) == 0){
-            array_push($templist,$field);
+    private function destroyChild($field){
+        $child = $this->getChildOf($field);
+        if (count($child) == 0){
+            Field::destroy($field->id);
         } else {
             foreach ($child as $element) {
-                $this->getChildOf($element);
+                $this->destroyChild($element);
             }
         }
     }

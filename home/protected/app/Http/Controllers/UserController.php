@@ -90,11 +90,11 @@ class UserController extends Controller
                 $filepath = time().$file->getClientOriginalName();
                 $upload = $file->move('upload',$filepath);
                 $collection = Excel::toCollection(new UsersImport, $upload)->get(0);
+                File::delete($upload);
                 if (!$collection->isEmpty()){
                     $new_users = [];
                     $collection->pop();
                     foreach ($collection as $value) {
-
                         $new_user = $this->saveFromExcel($value);
                         if ($new_user == null) {                    
                             Session::flash('error', 'Lỗi khi thêm tài khoản');

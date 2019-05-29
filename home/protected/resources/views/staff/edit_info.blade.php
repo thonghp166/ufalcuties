@@ -5,6 +5,7 @@
 <div class="layer"></div>
 
 <form id="changeavatar" class="changeavatar" enctype="multipart/form-data">
+  {{csrf_field()}}
   <fieldset style="margin-bottom: 30px;">
     <span class="title">Thay đổi ảnh đại diện</span>
   </fieldset>
