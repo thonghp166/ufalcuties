@@ -66,10 +66,10 @@ document.addEventListener("DOMContentLoaded", function () {
 					editbutton.setAttribute("data-id", data.new_id);
 					editbutton.setAttribute("data-name", name.value);
 					editbutton.setAttribute("data-detail", detail.value);
-					editbutton.setAttribute("style", "color: white!important; font-weight: normal; font-style: italic; margin-right: 5px; cursor: pointer;");
+					editbutton.setAttribute("style", "color: white!important; font-weight: normal; font-style: italic; margin-right: 5px; cursor: pointer; margin: 5px 5px;");
 					editbutton.setAttribute("onclick", "edit(this)");
 					var editicon = document.createElement("i");
-					editicon.setAttribute("class", "fas fa-edit");
+					editicon.setAttribute("class", "fas fa-pen-square");
 					var text4 = document.createTextNode(" Sửa");
 					editbutton.appendChild(editicon);
 					editbutton.appendChild(text4);
@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
 					deletebutton.setAttribute("data-id", data.new_id);
 					deletebutton.setAttribute("data-name", name.value);
 					deletebutton.setAttribute("data-detail", detail.value);
-					deletebutton.setAttribute("style", "color: white!important; font-weight: normal; font-style: italic; cursor: pointer;");
+					deletebutton.setAttribute("style", "color: white!important; font-weight: normal; font-style: italic; cursor: pointer; margin: 5px 5px;");
 					deletebutton.setAttribute("onclick", "remove(this)");
 					var deleteicon = document.createElement("i");
 					deleteicon.setAttribute("class", "fas fa-trash");

@@ -18,7 +18,7 @@
 	            <div class="row">
 
 	              <div class="col-4 text-right">
-	                <img src="{{URL::asset('images/avatar/defaultAvatar.png')}}" alt="" class="img-fuild avatar">
+	                <img src="http://ufaculties.vn/{{$staff->img_url}}" alt="" class="img-fuild avatar">
 	              </div>
 	              <div class="col-8">
 	                <h3>{{$staff->degree}} {{$staff->name}}</h3>
@@ -89,13 +89,8 @@
 	          </fieldset>
 	          <div class="text-center">
 	            <button type="submit" class="btn btn-primary"><i class="fas fa-pen-square"></i> Cập nhật</button>
-	            @if (session('status'))
-                <div class="alert alert-success" style="display: block; margin-top: 30px;transition: 0.4s;">
-                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
-                  {{ session('status') }}
-                </div>
-                @endif
-	          </div>            
+	          </div> 
+	          <div class="status text-center"></div>           
 	        </div>
 	        </div>            
 	      </form>
@@ -130,5 +125,10 @@
 
 @routes
 <script type="text/javascript" src="{{URL::asset('js/field.js')}}"></script>
+<script>
+	function hide(variable) {
+	    variable.parentNode.parentNode.style.display = "none";
+	}
+</script>
 
 @endsection
