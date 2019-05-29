@@ -1,6 +1,10 @@
 <?php
 use Illuminate\Support\Facades\Input;
 // Control to home function
+Route::get('/',[
+	'as' => 'home',
+	'uses' => 'HomeController@index'
+]);
 Route::get('/home','HomeController@index');
 // Search in home
 Route::get('/search',[

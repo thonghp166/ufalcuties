@@ -66,7 +66,6 @@ document.addEventListener("DOMContentLoaded", function () {
 		request.send(formdata);
 
 		request.onreadystatechange = function(){
-
 			if (this.readyState == 4 && this.status == 200) {
 				$data = $.parseJSON(this.responseText);
 				if ($data.state == "Success"){
@@ -81,9 +80,4 @@ document.addEventListener("DOMContentLoaded", function () {
 			}
 		};
 	},false);
-
-
-
-
-
 }, false);
