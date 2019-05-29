@@ -37,13 +37,19 @@ class StaffController extends Controller
     public function updateAvatar(Request $request)
     {
         $file = Input::file('file');
-        $filepath = time().$file->getClientOriginalName();
+        $filename = time().$file->getClientOriginalName();
         $extension = File::extension($file->getClientOriginalName());
         if ($extension == "png" || $extension == "jpg" || $extension == "jpeg"||
             $extension == "PNG" || $extension == "JPG" || $extension == "JPEG"){
-          $upload = $file->move('images/avatar',$filepath);
+          $upload = $file->move('images/avatar',$filename);
+          $filepath = 'images/avatar/'.$filename;
+          // dd($filepath);
           $staff = Auth::user()->staff;
           $staff->update([
+            'img_url' => $filepath
+          ]);
+          return json_encode([
+            'state' => 'Success',
             'img_url' => $filepath
           ]);
         } else {
@@ -52,9 +58,18 @@ class StaffController extends Controller
             'error' => 'File không đúng định dạng'
           ]);
         }
+    }
+
+    public function deleteAvatar()
+    {
+        $staff = Auth::user()->staff;
+        $default = 'images/avatar/defaultAvatar.png';
+        $staff->update([
+          'img_url' => $default
+        ]);
         return json_encode([
-            'state' => 'Success',
-            'img_url' => $filepath
+          'state' => 'Success',
+          'img_url' =>  $default
         ]);
     }
 
