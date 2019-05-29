@@ -4,9 +4,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	
 	var changeavatar = document.getElementById("changeavatarbutton");
 	changeavatar.onclick = function () {
-		 var layer = document.getElementsByClassName("layer"), avatar = document.getElementsByClassName("changeavatar");
-		 layer[0].classList.add('show');
-		 avatar[0].classList.add('show');
+		 var layer = document.querySelector(".layer"), avatar = document.querySelector(".changeavatar");
+		 layer.classList.add('show');
+		 avatar.classList.add('show');
 	}
 
 	var cancel = document.getElementById("cancel");
@@ -100,6 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				$data = $.parseJSON(this.responseText);
 				var avatarimage = document.getElementById("avatarimage");
 				var status = document.querySelector(".status");
+				var layer = document.querySelector(".layer"), avatar = document.querySelector(".changeavatar");
 				if ($data.state == "Success"){
 					var imageresponse = JSON.parse(this.responseText);
 					avatarimage.setAttribute("src", "http://ufaculties.vn/"+imageresponse.img_url);
@@ -109,6 +110,8 @@ document.addEventListener("DOMContentLoaded", function () {
 					status.innerHTML = "<div>" + "Lỗi! Thay ảnh đại diện thất bại    <i class='fas fa-window-close' onclick='hide(this)'></i></div>";
 					status.style.background = "#c0392b";
 				}
+				layer.classList.remove("show");
+				avatar.classList.remove("show");
 			} else {
 				console.log('error');
 			}
@@ -124,6 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				$data = $.parseJSON(this.responseText);
 				var avatarimage = document.getElementById("avatarimage");
 				var status = document.querySelector(".status");
+				var layer = document.querySelector(".layer"), avatar = document.querySelector(".changeavatar");
 				if ($data.state == "Success"){
 					avatarimage.setAttribute("src", "http://ufaculties.vn/images/avatar/defaultAvatar.png");
 				} else {
@@ -131,7 +135,8 @@ document.addEventListener("DOMContentLoaded", function () {
 					status.innerHTML = "<div>" + "Lỗi! Xóa ảnh đại diện thất bại    <i class='fas fa-window-close' onclick='hide(this)'></i></div>";
 					status.style.background = "#c0392b";
 				}
-				console.log(this.response);
+				layer.classList.remove("show");
+				avatar.classList.remove("show");
 			} else {
 				console.log('error');
 			}
