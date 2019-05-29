@@ -91,7 +91,7 @@
                         <form id="newuserform">
                           {{csrf_field()}}
                             <fieldset class="form-group">
-                              <label class="title">Nhập thông tin đơn vị mới</label>  
+                              <label class="title">Nhập thông tin cán bộ mới</label>  
                               <div class="row">
                                 <div class="col-1"></div>
                                 <div class="col-4 text-left">
@@ -129,7 +129,7 @@
                                 <label for="vnu_email"><i class="fas fa-envelope"></i> VNU Email : </label>
                               </div>
                               <div class="col-7">
-                                <input type="text" class="form-control" name="vnu_email" id="vnu_email" placeholder="Nhập email VNU">
+                                <input type="text" class="form-control" name="email" id="email" placeholder="Nhập email VNU">
                               </div>              
                             </fieldset>
                             <fieldset class="form-group">
@@ -235,7 +235,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="text-center">
-                    <button class="btn btn-success" style="margin-top: 20px;"><i class="fas fa-plus-circle"></i> Thêm mới</button>
+                    <button class="btn btn-success" id="addnewdepartment" style="margin-top: 20px;"><i class="fas fa-plus-circle"></i> Thêm mới</button>
                 </div>
             </div>
         </div>
@@ -246,14 +246,14 @@
                     <div class="text-center">
                         <form>
                             <fieldset class="form-group">
-                              <label class="title">Nhập thông tin cán bộ mới</label>  
+                              <label class="title">Nhập thông tin đơn vị mới</label>  
                               <div class="row">
                                 <div class="col-1"></div>
                                 <div class="col-4 text-left">
-                                  <label for="exampleInputEmail1"><i class="fas fa-id-card"></i> Mã cán bộ : </label>
+                                  <label for=""><i class="fas fa-id-card"></i> Tên đơn vị : </label>
                                 </div>
                                 <div class="col-7">
-                                  <input type="text" class="form-control" name="code" id="code" placeholder="Nhập mã cán bộ">
+                                  <input type="text" class="form-control" name="departmentname" id="departmentname" placeholder="Nhập tên đơn vị">
                                 </div>
                               </div>
                             </fieldset>
@@ -261,82 +261,49 @@
                               <div class="row">
                                 <div class="col-1"></div>
                                 <div class="col-4 text-left">
-                                <label for="exampleSelect1"><i class="fas fa-signature"></i> Họ và tên : </label>
+                                <label for=""><i class="fas fa-window-restore"></i> Loại đơn vị : </label>
                               </div>
                               <div class="col-7">
-                                <input type="text" class="form-control" name="name" id="name" placeholder="Nhập họ và tên">
+                                <select name="departmenttype" id="departmenttype" class="form-control">
+                                  <option value="Bộ môn">Bộ môn</option>
+                                  <option value="Phòng thí nghiệm">Phòng thí nghiệm</option>
+                                </select>
                               </div>              
                             </fieldset>
                             <fieldset class="form-group">
                               <div class="row">
                                 <div class="col-1"></div>
                                 <div class="col-4 text-left">
-                                <label for="exampleSelect1"><i class="fas fa-user"></i> Tài khoản : </label>
+                                <label for=""><i class="fas fa-building"></i> Địa chỉ : </label>
                               </div>
                               <div class="col-7">
-                                <input type="text" class="form-control" name="account" id="account" placeholder="Nhập tài khoản">
+                                <input type="text" class="form-control" name="departmentaddress" id="departmentaddress" placeholder="Nhập địa chỉ">
                               </div>              
                             </fieldset>
                             <fieldset class="form-group">
                               <div class="row">
                                 <div class="col-1"></div>
                                 <div class="col-4 text-left">
-                                <label for="exampleSelect1"><i class="fas fa-envelope"></i> VNU Email : </label>
+                                <label for=""><i class="fas fa-phone"></i> Điện thoại : </label>
                               </div>
                               <div class="col-7">
-                                <input type="text" class="form-control" name="vnu_email" id="vnu_email" placeholder="Nhập email VNU">
+                                <input type="tel" class="form-control" name="departmentphone" id="departmentphone" placeholder="Nhập số điện thoại liên lạc">
                               </div>              
                             </fieldset>
                             <fieldset class="form-group">
                               <div class="row">
                                 <div class="col-1"></div>
                                 <div class="col-4 text-left">
-                                  <label for="staff_type"><i class="fas fa-user-secret"></i> Loại cán bộ : </label>
+                                  <label for=""><i class="fas fa-paper-plane"></i> Website : </label>
                                 </div>
                                 <div class="col-7">
-                                  <select name="staff_type" class="form-control" id="staff_type">
-                                      <option value="Giảng viên">Giảng viên</option>
-                                      <option value="Cán bộ">Cán bộ</option>
-                                      <option value="Cán bộ">Cán bộ</option>
-                                  </select>
+                                  <input type="tel" class="form-control" name="departmentwebsite" id="departmentwebsite" placeholder="Nhập địa chỉ website">
                                 </div>
                               </div>
-                            </fieldset>
-                            <fieldset class="form-group">
-                              <div class="row">
-                                <div class="col-1"></div>
-                                <div class="col-4 text-left">
-                                  <label for="exampleInputEmail1"><i class="fas fa-newspaper"></i> Học hàm, học vị : </label>
-                                </div>
-                                <div class="col-7">
-                                  <select name="degree" class="form-control" id="degree">
-                                      <option value="CN">CN</option>
-                                      <option value="ThS">ThS</option>
-                                      <option value="TS">TS</option>
-                                      <option value="PGS.TS">PGS.TS</option>
-                                      <option value="GS">GS</option>
-                                  </select>
-                                </div>
-                              </div>
-                            </fieldset>
-                            <fieldset class="form-group">
-                              <div class="row">
-                                <div class="col-1"></div>
-                                <div class="col-4 text-left">
-                                  <label for="exampleInputEmail1"><i class="far fa-window-restore"></i> Đơn vị công tác : </label>
-                                </div>
-                                <div class="col-7">
-                                  <select name="work_unit" class="form-control" id="work_unit">
-                                      <?php foreach ($department as $element): ?>
-                                          <option value="{{$element->name}}">{{$element->name}}</option>
-                                      <?php endforeach ?>
-                                  </select>
-                                </div>
-                              </div>
-                            </fieldset>
+                            </fieldset>                            
                             <div class="text-center">
-                              <p class="btn btn-primary" id="addnormalstaff" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-paper-plane"></i> Gửi</p>
-                              <p class="btn btn-secondary" id="cancelnormalbutton" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-window-close"></i> Hủy</p>
+                              <p class="btn btn-primary" id="addnormaldepartment" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-paper-plane"></i> Gửi</p>
+                              <p class="btn btn-secondary" id="canceldepartmentbutton" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-window-close"></i> Hủy</p>
                             </div>
                         </form>
                     </div>
