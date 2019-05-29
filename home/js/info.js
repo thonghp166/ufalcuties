@@ -68,11 +68,16 @@ document.addEventListener("DOMContentLoaded", function () {
 		request.onreadystatechange = function(){
 			if (this.readyState == 4 && this.status == 200) {
 				$data = $.parseJSON(this.responseText);
+				var status = document.querySelector(".status");
 				if ($data.state == "Success"){
-					// xu ly view khi cap nhat thanh cong
+
+					status.style.display = "block";
+					status.innerHTML = "<div>" + "Cập nhật thông tin thành công    <i class='fas fa-window-close' onclick='hide(this)'></i></div>";
+					status.style.background = "#27ae60";
 				} else {
-					// xu ly view khi tao loi
-					// loi duoc luu trong bien $data.error
+					status.style.display = "block";
+					status.innerHTML = "<div>" + "Lỗi! Cập nhật thông tin thất bại    <i class='fas fa-window-close' onclick='hide(this)'></i></div>";
+					status.style.background = "#c0392b";
 				}
 				console.log(this.response);
 			} else {
@@ -93,13 +98,17 @@ document.addEventListener("DOMContentLoaded", function () {
 		request.onreadystatechange = function(){
 			if (this.readyState == 4 && this.status == 200) {
 				$data = $.parseJSON(this.responseText);
+				var avatarimage = document.getElementById("avatarimage");
+				var status = document.querySelector(".status");
 				if ($data.state == "Success"){
-					// xu ly view khi cap nhat avatar thanh cong
+					var imageresponse = JSON.parse(this.responseText);
+					avatarimage.setAttribute("src", "http://ufaculties.vn/"+imageresponse.img_url);
 				} else {
-					// xu ly view khi tao loi
-					// loi duoc luu trong bien data.error
+					avatarimage.setAttribute("src", "http://ufaculties.vn/images/avatar/defaultAvatar.png");
+					status.style.display = "block";
+					status.innerHTML = "<div>" + "Lỗi! Thay ảnh đại diện thất bại    <i class='fas fa-window-close' onclick='hide(this)'></i></div>";
+					status.style.background = "#c0392b";
 				}
-				console.log(this.response);
 			} else {
 				console.log('error');
 			}
@@ -113,11 +122,14 @@ document.addEventListener("DOMContentLoaded", function () {
 		request.onreadystatechange = function(){
 			if (this.readyState == 4 && this.status == 200) {
 				$data = $.parseJSON(this.responseText);
+				var avatarimage = document.getElementById("avatarimage");
+				var status = document.querySelector(".status");
 				if ($data.state == "Success"){
-					// xu ly view khi xoa avatar thanh cong
+					avatarimage.setAttribute("src", "http://ufaculties.vn/images/avatar/defaultAvatar.png");
 				} else {
-					// xu ly view khi tao loi
-					// loi duoc luu trong bien data.error
+					status.style.display = "block";
+					status.innerHTML = "<div>" + "Lỗi! Xóa ảnh đại diện thất bại    <i class='fas fa-window-close' onclick='hide(this)'></i></div>";
+					status.style.background = "#c0392b";
 				}
 				console.log(this.response);
 			} else {

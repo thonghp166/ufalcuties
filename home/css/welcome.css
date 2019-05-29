@@ -3,6 +3,24 @@
     padding: 0px;
 }
 
+.status {
+    margin-top: 30px; 
+    color: white; 
+    font-size: 20px;    
+    padding: 5px 10px;
+}
+
+.status i:hover {
+    cursor: pointer;
+    color: black;
+    transform: scale(1.2);
+}
+
+.status i {
+    transition: 0.4s;
+}
+
+
 .showlayer, .showimport {
     visibility: visible!important;
     opacity: 1!important;
@@ -29,7 +47,7 @@
     font-size: 20px;
 }
 
-.normalimport label.title {
+.normalimport, .departmentimport, .fieldimport label.title {
     font-size: 20px;
     margin-bottom: 20px;
 }
@@ -42,7 +60,7 @@
     font-weight: bold;
 }
 
-.excelimport, .normalimport, .departmentimport {
+.excelimport, .normalimport, .departmentimport, .fieldimport {
     background: #f4f4f4;
     overflow: auto;
     border: 1px solid #d9d9d9;
@@ -215,7 +233,6 @@ a.fieldelement:hover {
 }
 
 #category .content {
->>>>>>> d546a75aea0b71e7eb26ee9e4dbca1c171acdd76
     background: white;
 }
 
@@ -337,19 +354,30 @@ div#category p.title {
     color: white;
 }
 
-
-#department, #user, #field {
+#field {
     border: 3px solid;
-    border-top-left-radius: 20px;
     height: 300px;
     overflow: auto;
     padding: 10px 20px;
 }
 
+.tabletitle {
+    width: 100%; 
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#department, #user {
+    border-top: 3px solid;
+    border-bottom: 1px solid #d9d9d9;
+    height: 300px;
+    overflow: auto;
+}
+
 #field {
     height: 400px;
 }
-
 
 .usertable {padding-top: 150px;}
 

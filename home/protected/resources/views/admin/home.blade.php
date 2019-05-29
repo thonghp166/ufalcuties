@@ -14,35 +14,35 @@
                     <h3 style="border-left: 5px solid #3498db; padding-left: 10px; margin-bottom: 40px;">Quản lý tài khoản</h3>
                 </div>
             </div>
+            <div class="row">
+              <div class="tabletitle">
+                <p style="width: 5%; float: left;">STT</p>                
+                <p style="width: 10%; float: left;">Mã cán bộ</p>                
+                <p style="width: 10%; float: left;">Họ và tên</p>                
+                <p style="width: 10%; float: left; margin-left: -0.3%;">Tài khoản</p>                
+                <p style="width: 25%; float: left;">VNU Email</p>                
+                <p style="width: 10%; float: left; margin-left: -0.5%;">Loại cán bộ</p>                
+                <p style="width: 10%; float: left;">Học vị</p>                
+                <p style="width: 10%; float: left; margin-left: -0.6%;">Đơn vị công tác</p>                
+                <p style="width: 10%; float: left;">Thao tác</p>                
+              </div>
+            </div>
             <div class="row" id="user">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Số thứ tự</th>
-                            <th>Mã cán bộ</th>
-                            <th>Họ và tên</th>
-                            <th>Tài khoản</th>
-                            <th>VNU Email</th>
-                            <th>Loại cán bộ</th>
-                            <th>Học vị</th>
-                            <th>Đơn vị công tác</th>
-                            <th>Thao tác</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                <table class="table" style="text-align: center;">
+                    <tbody id="userbody">
                         <?php $count = 1; foreach ($user as $element): ?>
-                            <tr>
+                            <tr style="width: 100%;">
                                 <?php $staff = $element->staff ?>
-                                <td><?php echo $count; $count++; ?></td>
-                                <td>{{$staff->code}}</td>
-                                <td>{{$staff->name}}</td>
-                                <td>{{$staff->account}}</td>
-                                <td>{{$staff->vnu_email}}</td>
-                                <td>{{$staff->type}}</td>
-                                <td>{{$staff->degree}}</td>
-                                <td>{{$staff->work_unit}}</td>
-                                <td>
-                                    <button class="btn btn-primary" style="margin: 5px 5px;"><i class="fas fa-edit"></i> Sửa</button>
+                                <td style="width: 5%;"><?php echo $count; $count++; ?></td>
+                                <td style="width: 10%;">{{$staff->code}}</td>
+                                <td style="width: 10%;">{{$staff->name}}</td>
+                                <td style="width: 10%;">{{$staff->account}}</td>
+                                <td style="width: 25%;">{{$staff->vnu_email}}</td>
+                                <td style="width: 10%;">{{$staff->type}}</td>
+                                <td style="width: 10%;">{{$staff->degree}}</td>
+                                <td style="width: 10%;">{{$staff->work_unit}}</td>
+                                <td style="width: 10%;">
+                                    <button class="btn btn-primary" onclick="edituser(this)" style="margin: 5px 5px;"><i class="fas fa-edit"></i> Sửa</button>
                                     <button class="btn btn-danger" style="margin: 5px 5px;"><i class="fas fa-trash"></i> Xóa</button>
                                 </td>
                             </tr>
@@ -181,7 +181,11 @@
                             </fieldset>
                             <div class="text-center">
                               <button type="submit" class="btn btn-primary"> <i class="fas fa-paper-plane"></i> Gửi</button>
+                              <button type="submit" class="btn btn-success"> <i class="fas fa-edit"></i> Cập nhật</button>
                               <button class="btn btn-secondary" id="cancelnormalbutton"> <i class="fas fa-window-close"></i> Hủy</button>
+                            </div>
+                            <div class="status text-center">
+                              
                             </div>
                         </form>
                     </div>
@@ -198,31 +202,31 @@
                     <h3 style="border-left: 5px solid #3498db; padding-left: 10px; margin-bottom: 40px;">Quản lý đơn vị</h3>
                 </div>
             </div>
+            
+            <div class="row">
+              <div class="tabletitle">
+                <p style="width: 5%; float: left;">STT</p>                
+                <p style="width: 25%; float: left;">Tên đơn vị</p>                
+                <p style="width: 15%; float: left;">Loại đơn vị</p>                
+                <p style="width: 10%; float: left;">Địa chỉ</p>                
+                <p style="width: 10%; float: left;">Điện thoại</p>                
+                <p style="width: 25%; float: left;">Website</p>                
+                <p style="width: 10%; float: left; margin-left: -1%;">Thao tác</p>                
+              </div>
+            </div>
 
             <div class="row" id="department">
                 <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Số thứ tự</th>
-                            <th>Tên đơn vị</th>
-                            <th>Loại đơn vị</th>
-                            <th>Địa chỉ</th>
-                            <th>Điện thoại</th>
-                            <th>Website</th>
-                            <th>Thao tác</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    
+                    <tbody>                    
                         <?php $count = 1; foreach ($department as $element): ?>
-                            <tr>
-                                <td><?php echo $count; $count++; ?></td>    
-                                <td>{{$element->name}}</td> 
-                                <td>{{$element->type}}</td> 
-                                <td>{{$element->address}}</td>  
-                                <td>{{$element->phone}}</td>    
-                                <td>{{$element->website}}</td>  
-                                <td>
+                            <tr style="text-align: center; width: 100%;">
+                                <td style="width: 5%;"><?php echo $count; $count++; ?></td>    
+                                <td style="width: 25%;">{{$element->name}}</td> 
+                                <td style="width: 15%;">{{$element->type}}</td> 
+                                <td style="width: 10%;">{{$element->address}}</td>  
+                                <td style="width: 10%;">{{$element->phone}}</td>    
+                                <td style="width: 25%;">{{$element->website}}</td>  
+                                <td style="width: 10%;">
                                     <button class="btn btn-primary" style="margin: 5px 5px;"><i class="fas fa-edit"></i> Sửa</button>
                                     <button class="btn btn-danger" style="margin: 5px 5px;"><i class="fas fa-trash"></i> Xóa</button>
                                 </td>
@@ -241,75 +245,76 @@
         </div>
 
         <div class="row">
-                <div class="col-3"></div>
-                <div class="col-6 departmentimport">
-                    <div class="text-center">
-                        <form>
-                            <fieldset class="form-group">
-                              <label class="title">Nhập thông tin đơn vị mới</label>  
-                              <div class="row">
-                                <div class="col-1"></div>
-                                <div class="col-4 text-left">
-                                  <label for=""><i class="fas fa-id-card"></i> Tên đơn vị : </label>
-                                </div>
-                                <div class="col-7">
-                                  <input type="text" class="form-control" name="departmentname" id="departmentname" placeholder="Nhập tên đơn vị">
-                                </div>
-                              </div>
-                            </fieldset>
-                            <fieldset class="form-group">
-                              <div class="row">
-                                <div class="col-1"></div>
-                                <div class="col-4 text-left">
-                                <label for=""><i class="fas fa-window-restore"></i> Loại đơn vị : </label>
-                              </div>
-                              <div class="col-7">
-                                <select name="departmenttype" id="departmenttype" class="form-control">
-                                  <option value="Bộ môn">Bộ môn</option>
-                                  <option value="Phòng thí nghiệm">Phòng thí nghiệm</option>
-                                </select>
-                              </div>              
-                            </fieldset>
-                            <fieldset class="form-group">
-                              <div class="row">
-                                <div class="col-1"></div>
-                                <div class="col-4 text-left">
-                                <label for=""><i class="fas fa-building"></i> Địa chỉ : </label>
-                              </div>
-                              <div class="col-7">
-                                <input type="text" class="form-control" name="departmentaddress" id="departmentaddress" placeholder="Nhập địa chỉ">
-                              </div>              
-                            </fieldset>
-                            <fieldset class="form-group">
-                              <div class="row">
-                                <div class="col-1"></div>
-                                <div class="col-4 text-left">
-                                <label for=""><i class="fas fa-phone"></i> Điện thoại : </label>
-                              </div>
-                              <div class="col-7">
-                                <input type="tel" class="form-control" name="departmentphone" id="departmentphone" placeholder="Nhập số điện thoại liên lạc">
-                              </div>              
-                            </fieldset>
-                            <fieldset class="form-group">
-                              <div class="row">
-                                <div class="col-1"></div>
-                                <div class="col-4 text-left">
-                                  <label for=""><i class="fas fa-paper-plane"></i> Website : </label>
-                                </div>
-                                <div class="col-7">
-                                  <input type="tel" class="form-control" name="departmentwebsite" id="departmentwebsite" placeholder="Nhập địa chỉ website">
-                                </div>
-                              </div>
-                            </fieldset>                            
-                            <div class="text-center">
-                              <p class="btn btn-primary" id="addnormaldepartment" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-paper-plane"></i> Gửi</p>
-                              <p class="btn btn-secondary" id="canceldepartmentbutton" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-window-close"></i> Hủy</p>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-3"></div>
-            </div>
+          <div class="col-3"></div>
+          <div class="col-6 departmentimport">
+              <div class="text-center">
+                  <form>
+                      <fieldset class="form-group">
+                        <label class="title">Nhập thông tin đơn vị mới</label>  
+                        <div class="row">
+                          <div class="col-1"></div>
+                          <div class="col-4 text-left">
+                            <label for=""><i class="fas fa-id-card"></i> Tên đơn vị : </label>
+                          </div>
+                          <div class="col-7">
+                            <input type="text" class="form-control" name="departmentname" id="departmentname" placeholder="Nhập tên đơn vị">
+                          </div>
+                        </div>
+                      </fieldset>
+                      <fieldset class="form-group">
+                        <div class="row">
+                          <div class="col-1"></div>
+                          <div class="col-4 text-left">
+                          <label for=""><i class="fas fa-window-restore"></i> Loại đơn vị : </label>
+                        </div>
+                        <div class="col-7">
+                          <select name="departmenttype" id="departmenttype" class="form-control">
+                            <option value="Bộ môn">Bộ môn</option>
+                            <option value="Phòng thí nghiệm">Phòng thí nghiệm</option>
+                          </select>
+                        </div>              
+                      </fieldset>
+                      <fieldset class="form-group">
+                        <div class="row">
+                          <div class="col-1"></div>
+                          <div class="col-4 text-left">
+                          <label for=""><i class="fas fa-building"></i> Địa chỉ : </label>
+                        </div>
+                        <div class="col-7">
+                          <input type="text" class="form-control" name="departmentaddress" id="departmentaddress" placeholder="Nhập địa chỉ">
+                        </div>              
+                      </fieldset>
+                      <fieldset class="form-group">
+                        <div class="row">
+                          <div class="col-1"></div>
+                          <div class="col-4 text-left">
+                          <label for=""><i class="fas fa-phone"></i> Điện thoại : </label>
+                        </div>
+                        <div class="col-7">
+                          <input type="tel" class="form-control" name="departmentphone" id="departmentphone" placeholder="Nhập số điện thoại liên lạc">
+                        </div>              
+                      </fieldset>
+                      <fieldset class="form-group">
+                        <div class="row">
+                          <div class="col-1"></div>
+                          <div class="col-4 text-left">
+                            <label for=""><i class="fas fa-paper-plane"></i> Website : </label>
+                          </div>
+                          <div class="col-7">
+                            <input type="tel" class="form-control" name="departmentwebsite" id="departmentwebsite" placeholder="Nhập địa chỉ website">
+                          </div>
+                        </div>
+                      </fieldset>                            
+                      <div class="text-center">
+                        <p class="btn btn-primary" id="addnormaldepartment" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-paper-plane"></i> Gửi</p>
+                        <p class="btn btn-success" id="editnormaldepartment" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-edit"></i> Cập nhật</p>
+                        <p class="btn btn-secondary" id="canceldepartmentbutton" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-window-close"></i> Hủy</p>
+                      </div>
+                  </form>
+              </div>
+          </div>
+          <div class="col-3"></div>
+        </div>
     </div>
 
     <div class="fieldtable">
@@ -354,10 +359,38 @@
         <div class="row">
             <div class="col-12">
                 <div class="text-center">
-                    <button class="btn btn-success" style="margin-top: 20px;"><i class="fas fa-plus-circle"></i> Thêm mới</button>
+                    <button class="btn btn-success" id="addnewfield" style="margin-top: 20px;"><i class="fas fa-plus-circle"></i> Thêm mới</button>
                 </div>
             </div>
         </div>
+
+        <div class="row">
+          <div class="col-3"></div>
+          <div class="col-6 fieldimport">
+              <div class="text-center">
+                  <form>
+                      <fieldset class="form-group">
+                        <label class="title">Nhập thông tin lĩnh vực nghiên cứu mới</label>  
+                        <div class="row">
+                          <div class="col-1"></div>
+                          <div class="col-4 text-left">
+                            <label for=""><i class="fas fa-id-card"></i> Tên lĩnh vực nghiên cứu : </label>
+                          </div>
+                          <div class="col-7">
+                            <input type="text" class="form-control" name="fieldname" id="fieldname" placeholder="Nhập tên lĩnh vực nghiên cứu">
+                          </div>
+                        </div>
+                      </fieldset>                     
+                      <div class="text-center">
+                        <p class="btn btn-primary" id="addnormalfield" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-paper-plane"></i> Gửi</p>
+                        <p class="btn btn-secondary" id="cancelfieldbutton" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-window-close"></i> Hủy</p>
+                      </div>
+                  </form>
+              </div>
+          </div>
+          <div class="col-3"></div>
+        </div>
+    </div>
     </div>
 </div>
 
@@ -384,4 +417,30 @@
 </div>
 @routes
 <script type="text/javascript" src="{{URL::asset('js/admin.js')}}"></script>
+<script>
+  function edituser (variable) {
+    var father = variable.parentNode.parentNode;
+    
+    var code = document.getElementById("code");
+    var name = document.getElementById("name");
+    var account = document.getElementById("account");
+    var email = document.getElementById("email");
+    var staff_type = document.getElementById("staff_type");
+    var degree = document.getElementById("degree");
+    var work_unit = document.getElementById("work_unit");
+    var layer = document.querySelector(".homelayer");
+    var normalimport = document.querySelector(".normalimport");
+
+    code.value = father.cells[1].innerText;
+    name.value = father.cells[2].innerText;
+    account.value = father.cells[3].innerText;
+    email.value = father.cells[4].innerText;
+    staff_type.value = father.cells[5].innerText;
+    degree.value = father.cells[6].innerText;
+    work_unit.value = father.cells[7].innerText;
+
+    layer.classList.add("showlayer");
+    normalimport.classList.add("showimport");
+  }
+</script>
 @endsection
