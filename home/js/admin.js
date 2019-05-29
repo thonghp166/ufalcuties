@@ -157,12 +157,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 			if (this.readyState == 4 && this.status == 200) {
 				$data = $.parseJSON(this.responseText);
-				// if ($data.state == "Success"){
-				// 	// xu ly view khi import thanh cong
-				// } else {
-				// 	// xu ly view khi import loi
-				// 	// loi duoc luu trong bien $data.error
-				// }
+				if ($data.state == "Success"){
+					// xu ly view khi tao thanh cong
+				} else {
+					// xu ly view khi tao loi
+					// loi duoc luu trong bien $data.error
+				}
 				console.log(this.response);
 			} else {
 				console.log('error');
