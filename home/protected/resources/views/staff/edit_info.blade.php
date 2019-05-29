@@ -189,15 +189,4 @@
 </div>
 @routes
 <script type="text/javascript" src="{{URL::asset('js/info.js')}}"></script>
-<script>
-  var uploadfile = document.getElementById("file");
-  uploadfile.onchange = function () {
-    uploadimage();
-  }
-
-  function uploadimage () {
-    
-    return false;
-  }
-</script>
 @endsection
