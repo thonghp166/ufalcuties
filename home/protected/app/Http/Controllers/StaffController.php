@@ -142,12 +142,12 @@ class StaffController extends Controller
            'gmail' => 'required|email'
         ]);
         $staff = Auth::user()->staff;
-        // if ($validator->fails()){
-        //   return json_encode([
-        //     'state' => 'Fail',
-        //     'error' => 'Thông tin không đúng định dạng'
-        //   ]);
-        // }
+        if ($validator->fails()){
+          return json_encode([
+            'state' => 'Fail',
+            'error' => 'Thông tin không đúng định dạng'
+          ]);
+        }
         $phone = $request->input('phone');
         $gmail = $request->input('gmail');
         $website = $request->input('website');
