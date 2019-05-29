@@ -157,4 +157,9 @@ class UserController extends Controller
         
     }
 
+    public function addUser(Request $request){
+        dd(Input::all());
+        // return $request;
+    }
+
 }

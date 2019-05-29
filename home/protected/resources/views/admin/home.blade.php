@@ -88,16 +88,17 @@
                 <div class="col-3"></div>
                 <div class="col-6 normalimport">
                     <div class="text-center">
-                        <form>
+                        <form id="newuserform">
+                          {{csrf_field()}}
                             <fieldset class="form-group">
                               <label class="title">Nhập thông tin đơn vị mới</label>  
                               <div class="row">
                                 <div class="col-1"></div>
                                 <div class="col-4 text-left">
-                                  <label for="exampleInputEmail1"><i class="fas fa-id-card"></i> Mã cán bộ : </label>
+                                  <label for="code"><i class="fas fa-id-card"></i> Mã cán bộ : </label>
                                 </div>
                                 <div class="col-7">
-                                  <input type="text" class="form-control" id="code" placeholder="Nhập mã cán bộ">
+                                  <input type="text" class="form-control" name="code" id="code" placeholder="Nhập mã cán bộ">
                                 </div>
                               </div>
                             </fieldset>
@@ -105,40 +106,40 @@
                               <div class="row">
                                 <div class="col-1"></div>
                                 <div class="col-4 text-left">
-                                <label for="exampleSelect1"><i class="fas fa-signature"></i> Họ và tên : </label>
+                                <label for="name"><i class="fas fa-signature"></i> Họ và tên : </label>
                               </div>
                               <div class="col-7">
-                                <input type="text" class="form-control" id="name" placeholder="Nhập họ và tên">
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Nhập họ và tên">
                               </div>              
                             </fieldset>
                             <fieldset class="form-group">
                               <div class="row">
                                 <div class="col-1"></div>
                                 <div class="col-4 text-left">
-                                <label for="exampleSelect1"><i class="fas fa-user"></i> Tài khoản : </label>
+                                <label for="account"><i class="fas fa-user"></i> Tài khoản : </label>
                               </div>
                               <div class="col-7">
-                                <input type="text" class="form-control" id="account" placeholder="Nhập tài khoản">
+                                <input type="text" class="form-control" name="account" id="account" placeholder="Nhập tài khoản">
                               </div>              
                             </fieldset>
                             <fieldset class="form-group">
                               <div class="row">
                                 <div class="col-1"></div>
                                 <div class="col-4 text-left">
-                                <label for="exampleSelect1"><i class="fas fa-envelope"></i> VNU Email : </label>
+                                <label for="vnu_email"><i class="fas fa-envelope"></i> VNU Email : </label>
                               </div>
                               <div class="col-7">
-                                <input type="text" class="form-control" id="vnu_email" placeholder="Nhập email VNU">
+                                <input type="text" class="form-control" name="vnu_email" id="vnu_email" placeholder="Nhập email VNU">
                               </div>              
                             </fieldset>
                             <fieldset class="form-group">
                               <div class="row">
                                 <div class="col-1"></div>
                                 <div class="col-4 text-left">
-                                  <label for="phone"><i class="fas fa-user-secret"></i> Loại cán bộ : </label>
+                                  <label for="staff_type"><i class="fas fa-user-secret"></i> Loại cán bộ : </label>
                                 </div>
                                 <div class="col-7">
-                                  <select name="" class="form-control" id="staff_type">
+                                  <select name="staff_type" class="form-control" id="staff_type">
                                       <option value="Giảng viên">Giảng viên</option>
                                       <option value="Cán bộ">Cán bộ</option>
                                       <option value="Cán bộ">Cán bộ</option>
@@ -150,10 +151,10 @@
                               <div class="row">
                                 <div class="col-1"></div>
                                 <div class="col-4 text-left">
-                                  <label for="exampleInputEmail1"><i class="fas fa-newspaper"></i> Học hàm, học vị : </label>
+                                  <label for="degree"><i class="fas fa-newspaper"></i> Học hàm, học vị : </label>
                                 </div>
                                 <div class="col-7">
-                                  <select name="" class="form-control" id="degree">
+                                  <select name="degree" class="form-control" id="degree">
                                       <option value="CN">CN</option>
                                       <option value="ThS">ThS</option>
                                       <option value="TS">TS</option>
@@ -167,10 +168,10 @@
                               <div class="row">
                                 <div class="col-1"></div>
                                 <div class="col-4 text-left">
-                                  <label for="exampleInputEmail1"><i class="far fa-window-restore"></i> Đơn vị công tác : </label>
+                                  <label for="work_unit"><i class="far fa-window-restore"></i> Đơn vị công tác : </label>
                                 </div>
                                 <div class="col-7">
-                                  <select name="" class="form-control" id="work_unit">
+                                  <select name="work_unit" class="form-control" id="work_unit">
                                       <?php foreach ($department as $element): ?>
                                           <option value="{{$element->name}}">{{$element->name}}</option>
                                       <?php endforeach ?>
@@ -179,8 +180,8 @@
                               </div>
                             </fieldset>
                             <div class="text-center">
-                              <p class="btn btn-primary" id="addnormalstaff" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-paper-plane"></i> Gửi</p>
-                              <p class="btn btn-secondary" id="cancelnormalbutton" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-window-close"></i> Hủy</p>
+                              <button type="submit" class="btn btn-primary"> <i class="fas fa-paper-plane"></i> Gửi</button>
+                              <button class="btn btn-secondary" id="cancelnormalbutton"> <i class="fas fa-window-close"></i> Hủy</button>
                             </div>
                         </form>
                     </div>
@@ -252,7 +253,7 @@
                                   <label for="exampleInputEmail1"><i class="fas fa-id-card"></i> Mã cán bộ : </label>
                                 </div>
                                 <div class="col-7">
-                                  <input type="text" class="form-control" id="code" placeholder="Nhập mã cán bộ">
+                                  <input type="text" class="form-control" name="code" id="code" placeholder="Nhập mã cán bộ">
                                 </div>
                               </div>
                             </fieldset>
@@ -263,7 +264,7 @@
                                 <label for="exampleSelect1"><i class="fas fa-signature"></i> Họ và tên : </label>
                               </div>
                               <div class="col-7">
-                                <input type="text" class="form-control" id="name" placeholder="Nhập họ và tên">
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Nhập họ và tên">
                               </div>              
                             </fieldset>
                             <fieldset class="form-group">
@@ -273,7 +274,7 @@
                                 <label for="exampleSelect1"><i class="fas fa-user"></i> Tài khoản : </label>
                               </div>
                               <div class="col-7">
-                                <input type="text" class="form-control" id="account" placeholder="Nhập tài khoản">
+                                <input type="text" class="form-control" name="account" id="account" placeholder="Nhập tài khoản">
                               </div>              
                             </fieldset>
                             <fieldset class="form-group">
@@ -283,17 +284,17 @@
                                 <label for="exampleSelect1"><i class="fas fa-envelope"></i> VNU Email : </label>
                               </div>
                               <div class="col-7">
-                                <input type="text" class="form-control" id="vnu_email" placeholder="Nhập email VNU">
+                                <input type="text" class="form-control" name="vnu_email" id="vnu_email" placeholder="Nhập email VNU">
                               </div>              
                             </fieldset>
                             <fieldset class="form-group">
                               <div class="row">
                                 <div class="col-1"></div>
                                 <div class="col-4 text-left">
-                                  <label for="phone"><i class="fas fa-user-secret"></i> Loại cán bộ : </label>
+                                  <label for="staff_type"><i class="fas fa-user-secret"></i> Loại cán bộ : </label>
                                 </div>
                                 <div class="col-7">
-                                  <select name="" class="form-control" id="staff_type">
+                                  <select name="staff_type" class="form-control" id="staff_type">
                                       <option value="Giảng viên">Giảng viên</option>
                                       <option value="Cán bộ">Cán bộ</option>
                                       <option value="Cán bộ">Cán bộ</option>
@@ -308,7 +309,7 @@
                                   <label for="exampleInputEmail1"><i class="fas fa-newspaper"></i> Học hàm, học vị : </label>
                                 </div>
                                 <div class="col-7">
-                                  <select name="" class="form-control" id="degree">
+                                  <select name="degree" class="form-control" id="degree">
                                       <option value="CN">CN</option>
                                       <option value="ThS">ThS</option>
                                       <option value="TS">TS</option>
@@ -325,7 +326,7 @@
                                   <label for="exampleInputEmail1"><i class="far fa-window-restore"></i> Đơn vị công tác : </label>
                                 </div>
                                 <div class="col-7">
-                                  <select name="" class="form-control" id="work_unit">
+                                  <select name="work_unit" class="form-control" id="work_unit">
                                       <?php foreach ($department as $element): ?>
                                           <option value="{{$element->name}}">{{$element->name}}</option>
                                       <?php endforeach ?>
@@ -416,21 +417,4 @@
 </div>
 @routes
 <script type="text/javascript" src="{{URL::asset('js/admin.js')}}"></script>
-<script>
-  var form = document.getElementById('excelform');
-  var request = new XMLHttpRequest();
-
-  form.addEventListener('submit',function(e){
-    e.preventDefault();
-    var formdata = new FormData(form);
-
-    request.open('post',route('admin.add.user.excel'));
-    request.send(formdata);
-
-    request.addEventListener('loaded',function(e){
-      console.log(JSON.parse(e.target.responseText));
-    });
-
-  },false);
-</script>
 @endsection

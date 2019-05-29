@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-	
+
 	console.log(allParent);
 	console.log(allId);
 	console.log(idArr);
@@ -112,7 +112,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	var homelayer = document.querySelector(".homelayer");
 	homelayer.onclick = function () {
-		console.log("babe");
 		var excelimport = document.querySelector(".excelimport"), layer = document.querySelector(".homelayer");
 		excelimport.classList.remove("showimport");
 		layer.classList.remove("showlayer");
@@ -121,4 +120,56 @@ document.addEventListener("DOMContentLoaded", function () {
 		normalimport.classList.remove("showimport");
 		layer.classList.remove("showlayer");
 	}
+
+	var excelform = document.getElementById('excelform');
+	excelform.addEventListener('submit',function(e){
+		var request = new XMLHttpRequest();
+		e.preventDefault();
+		var formdata = new FormData(excelform);
+		request.open('post',route('admin.add.user.excel'));
+		request.send(formdata);
+
+		request.onreadystatechange = function(){
+
+			if (this.readyState == 4 && this.status == 200) {
+				$data = $.parseJSON(this.responseText);
+				if ($data.state == "Success"){
+					// xu ly view khi import thanh cong
+				} else {
+					// xu ly view khi import loi
+					// loi duoc luu trong bien $data.error
+				}
+			} else {
+				console.log('error');
+			}
+		};
+	},false);
+
+	var newuserform = document.getElementById('newuserform');
+	newuserform.addEventListener('submit',function(e){
+		var request = new XMLHttpRequest();
+		e.preventDefault();
+		var formdata = new FormData(newuserform);
+		request.open('post',route('admin.add.user'));
+		request.send(formdata);
+
+		request.onreadystatechange = function(){
+
+			if (this.readyState == 4 && this.status == 200) {
+				$data = $.parseJSON(this.responseText);
+				// if ($data.state == "Success"){
+				// 	// xu ly view khi import thanh cong
+				// } else {
+				// 	// xu ly view khi import loi
+				// 	// loi duoc luu trong bien $data.error
+				// }
+				console.log(this.response);
+			} else {
+				console.log('error');
+			}
+		};
+	},false);
+
+
+
 }, false);

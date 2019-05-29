@@ -56,11 +56,12 @@ Route::group(['middleware' => 'CheckAdminLogin', 'prefix' => 'admin'], function(
 	Route::post('/','FieldController@deleteField')->name('admin.delete.field');
 	Route::post('/','FieldController@updateField')->name('admin.update.field');
 
-	Route::post('/','UserController@add')->name('admin.add.user');
+	// Route::post('/','UserController@add')->name('admin.add.user');
 	Route::post('/','UserController@deleteUser')->name('admin.delete.user');
 	Route::post('/','UserController@updateUser')->name('admin.update.user');
 
 	Route::post('/import','UserController@importExcel')->name('admin.add.user.excel');
+	Route::post('/adduser','UserController@addUser')->name('admin.add.user');
 });
 
 
