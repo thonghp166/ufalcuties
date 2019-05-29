@@ -39,7 +39,7 @@
               </div>
             </fieldset>
             <fieldset id="topic">
-              <table class="table text-center" id="topictable">
+              <table class="table text-center">
                 <tbody id="topicbody">
                   <?php $count = 1; foreach ($staff->topics as $element): ?>
                     <tr style="width: 100%;">

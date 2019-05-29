@@ -5,6 +5,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	console.log(idArr);
 	console.log(parentArr);
 	console.log(nameArr);
+	
+	var excelfile = document.getElementById("excelfile");
+	excelfile.value = "";
 
 	var fieldparent = document.getElementsByClassName("field");
 	
@@ -103,6 +106,13 @@ document.addEventListener("DOMContentLoaded", function () {
 		layer.classList.add("showlayer");
 	}
 
+	var addnewfield = document.getElementById("addnewfield");
+	addnewfield.onclick = function () {
+		var fieldimport = document.querySelector(".fieldimport"), layer = document.querySelector(".homelayer");
+		fieldimport.classList.add("showimport");
+		layer.classList.add("showlayer");
+	}
+
 	var cancelnormalbutton = document.getElementById("cancelnormalbutton");
 	cancelnormalbutton.onclick = function () {
 		var normalimport = document.querySelector(".normalimport"), layer = document.querySelector(".homelayer");
@@ -117,15 +127,32 @@ document.addEventListener("DOMContentLoaded", function () {
 		layer.classList.remove("showlayer");	
 	}
 
+	var canceldepartmentbutton = document.getElementById("canceldepartmentbutton");
+	canceldepartmentbutton.onclick = function () {
+		var departmentimport = document.querySelector(".departmentimport"), layer = document.querySelector(".homelayer");
+		departmentimport.classList.remove("showimport");
+		layer.classList.remove("showlayer");
+	}
+
+	var cancelfieldbutton = document.getElementById("cancelfieldbutton");
+	cancelfieldbutton.onclick = function () {
+		var fieldimport = document.querySelector(".fieldimport"), layer = document.querySelector(".homelayer");
+		fieldimport.classList.remove("showimport");
+		layer.classList.remove("showlayer");
+	}
+
 	var homelayer = document.querySelector(".homelayer");
 	homelayer.onclick = function () {
 		var layer = document.querySelector(".homelayer");
 		var excelimport = document.querySelector(".excelimport");
-		excelimport.classList.remove("showimport");
-		layer.classList.remove("showlayer");
-
 		var normalimport = document.querySelector(".normalimport");
+		var departmentimport = document.querySelector(".departmentimport");
+		var fieldimport = document.querySelector(".fieldimport");
+
+		excelimport.classList.remove("showimport");
 		normalimport.classList.remove("showimport");
+		departmentimport.classList.remove("showimport");
+		fieldimport.classList.remove("showimport");
 		layer.classList.remove("showlayer");
 	}
 
