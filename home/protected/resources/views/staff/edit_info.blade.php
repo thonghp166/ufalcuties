@@ -12,7 +12,7 @@
     <label for="file" class="upload">Tải ảnh lên</label>
     <input type="file" id="file" name="file" style="display: none;">
   <fieldset>
-    <p class="delete">Xóa ảnh đại diện</p>
+    <p id="deleteavatar" class="delete">Xóa ảnh đại diện</p>
   </fieldset>
   <fieldset>
     <p id="cancel">Hủy</p>

@@ -20,7 +20,8 @@ class Staff extends Model
         'work_unit',
         'phone',
         'website',
-        'address'
+        'address',
+        'img_url'
     ];
     
     public function fields()

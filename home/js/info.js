@@ -106,4 +106,26 @@ document.addEventListener("DOMContentLoaded", function () {
 		};
 	};
 
+	document.getElementById('deleteavatar').onclick = function(e) {
+		e.preventDefault();
+		var request = new XMLHttpRequest();
+
+		request.onreadystatechange = function(){
+			if (this.readyState == 4 && this.status == 200) {
+				$data = $.parseJSON(this.responseText);
+				if ($data.state == "Success"){
+					// xu ly view khi xoa avatar thanh cong
+				} else {
+					// xu ly view khi tao loi
+					// loi duoc luu trong bien data.error
+				}
+				console.log(this.response);
+			} else {
+				console.log('error');
+			}
+		}
+
+		request.open("GET", route('staff.delete.avatar'), true);
+		request.send();
+	}
 }, false);
