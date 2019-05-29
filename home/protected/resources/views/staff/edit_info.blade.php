@@ -36,7 +36,7 @@
               <div class="row">
 
                 <div class="col-4 text-right">
-                  <img src="{{URL::asset('images/avatar/defaultAvatar.png')}}" alt="" class="img-fuild avatar">
+                  <img src="http://ufaculties.vn/{{$staff->img_url}}" alt="" class="img-fuild avatar" id="avatarimage">
                 </div>
                 <div class="col-8">
                   <h3>{{$staff->degree}} {{$staff->name}}</h3>
@@ -155,7 +155,7 @@
             <div class="text-center">
               <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Gửi</button>
 
-              <div class="status"></div>
+              <div class="status text-center"></div>
             </div>            
           </div>
           </div>            
@@ -190,4 +190,9 @@
 </div>
 @routes
 <script type="text/javascript" src="{{URL::asset('js/info.js')}}"></script>
+<script>
+  function hide(variable) {
+    variable.parentNode.parentNode.style.display = "none";
+  }
+</script>
 @endsection

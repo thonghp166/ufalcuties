@@ -115,16 +115,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	var cancelnormalbutton = document.getElementById("cancelnormalbutton");
 	cancelnormalbutton.onclick = function () {
-		var normalimport = document.querySelector(".normalimport"), layer = document.querySelector(".homelayer");
+		var code = document.getElementById("code");
+	    var name = document.getElementById("name");
+	    var account = document.getElementById("account");
+	    var email = document.getElementById("email");
+	    var staff_type = document.getElementById("staff_type");
+	    var degree = document.getElementById("degree");
+	    var work_unit = document.getElementById("work_unit");
+	    var layer = document.querySelector(".homelayer");
+	    var normalimport = document.querySelector(".normalimport");
+
+	    code.value = "";
+	    name.value = "";
+	    account.value = "";
+	    email.value = "";
+	    staff_type.value = staff_type.querySelector("option").value;
+	    degree.value = degree.querySelector("option").value;
+	    work_unit.value = work_unit.querySelector("option").value;
+
 		normalimport.classList.remove("showimport");
 		layer.classList.remove("showlayer");
 	}
 
 	var cancelexcelbutton = document.getElementById("cancelexcelbutton");
 	cancelexcelbutton.onclick = function () {
-		var excelimport = document.querySelector(".excelimport"), layer = document.querySelector(".homelayer");
+		var excelimport = document.querySelector(".excelimport");
+		var layer = document.querySelector(".homelayer");
+		var excelfile = document.getElementById("excelfile");
+
 		excelimport.classList.remove("showimport");
 		layer.classList.remove("showlayer");	
+
+		excelfile.value = "";
 	}
 
 	var canceldepartmentbutton = document.getElementById("canceldepartmentbutton");
@@ -154,6 +176,25 @@ document.addEventListener("DOMContentLoaded", function () {
 		departmentimport.classList.remove("showimport");
 		fieldimport.classList.remove("showimport");
 		layer.classList.remove("showlayer");
+
+		var code = document.getElementById("code");
+	    var name = document.getElementById("name");
+	    var account = document.getElementById("account");
+	    var email = document.getElementById("email");
+	    var staff_type = document.getElementById("staff_type");
+	    var degree = document.getElementById("degree");
+	    var work_unit = document.getElementById("work_unit");
+	    
+	    code.value = "";
+	    name.value = "";
+	    account.value = "";
+	    email.value = "";
+	    staff_type.value = staff_type.querySelector("option").value;
+	    degree.value = degree.querySelector("option").value;
+	    work_unit.value = work_unit.querySelector("option").value;
+
+	    var excelfile = document.getElementById("excelfile");
+	    excelfile.value = "";
 	}
 
 	var excelform = document.getElementById('excelform');
@@ -169,7 +210,12 @@ document.addEventListener("DOMContentLoaded", function () {
 			if (this.readyState == 4 && this.status == 200) {
 				var data = $.parseJSON(this.responseText);
 				if (data.state == "Success"){
-					// xu ly view khi import thanh cong
+					for (var i = 0; i < data.new_users.length; i++) {
+
+						
+						console.log(data.new_users[i].username);
+						console.log(data.new_users[i].email);
+					}
 					//data.new_users list cac user moi tao
 				} else {
 					// xu ly view khi import loi
@@ -195,7 +241,106 @@ document.addEventListener("DOMContentLoaded", function () {
 			if (this.readyState == 4 && this.status == 200) {
 				$data = $.parseJSON(this.responseText);
 				if ($data.state == "Success"){
-					// xu ly view khi tao thanh cong
+					var code = document.getElementById("code");
+				    var name = document.getElementById("name");
+				    var account = document.getElementById("account");
+				    var email = document.getElementById("email");
+				    var staff_type = document.getElementById("staff_type");
+				    var degree = document.getElementById("degree");
+				    var work_unit = document.getElementById("work_unit");
+				    var layer = document.querySelector(".homelayer");
+				    var normalimport = document.querySelector(".normalimport");
+
+					var userbody = document.getElementById("userbody");
+
+					var newrow = document.createElement("tr");
+					newrow.setAttribute("style", "width: 100%;");
+
+					var col1 = document.createElement("td");
+					col1.setAttribute("style", "width: 5%;");
+					col1.innerText = "new";
+
+					var col2 = document.createElement("td");
+					col2.setAttribute("style", "width: 10%;");
+					col2.innerText = code.value;
+					
+					var col3 = document.createElement("td");
+					col3.setAttribute("style", "width: 10%;");
+					col3.innerText = name.value;
+					
+					var col4 = document.createElement("td");
+					col4.setAttribute("style", "width: 10%;");
+					col4.innerText = account.value;
+					
+					var col5 = document.createElement("td");
+					col5.setAttribute("style", "width: 25%;");
+					col5.innerText = email.value;
+					
+					var col6 = document.createElement("td");
+					col6.setAttribute("style", "width: 10%;");
+					col6.innerText = staff_type.value;
+					
+					var col7 = document.createElement("td");
+					col7.setAttribute("style", "width: 10%;");
+					col7.innerText = degree.value;
+					
+					var col8 = document.createElement("td");
+					col8.setAttribute("style", "width: 10%;");
+					col8.innerText = work_unit.value;
+					
+					var col9 = document.createElement("td");
+					col9.setAttribute("style", "width: 10%;");
+					var editbutton = document.createElement("button");
+					editbutton.setAttribute("class", "btn btn-primary");
+					editbutton.setAttribute("onclick", "edituser(this)");
+					editbutton.setAttribute("style", "margin: 5px 5px;");
+					editbutton.innerText = " Sửa";
+					var editicon = document.createElement("i");
+					editicon.setAttribute("class", "fas fa-edit");
+					editbutton.appendChild(editicon);
+					col9.appendChild(editbutton);
+
+					var deletebutton = document.createElement("button");
+					deletebutton.setAttribute("class", "btn btn-danger");
+					deletebutton.setAttribute("onclick", "deleteuser(this)");
+					deletebutton.setAttribute("style", "margin: 5px 5px;");
+					deletebutton.innerText = " Xóa";
+					var deleteicon = document.createElement("i");
+					deleteicon.setAttribute("class", "fas fa-trash");
+					deletebutton.appendChild(deleteicon);
+					col9.appendChild(deletebutton);
+
+					newrow.appendChild(col1);
+					newrow.appendChild(col2);
+					newrow.appendChild(col3);
+					newrow.appendChild(col4);
+					newrow.appendChild(col5);
+					newrow.appendChild(col6);
+					newrow.appendChild(col7);
+					newrow.appendChild(col8);
+					newrow.appendChild(col9);
+
+					userbody.appendChild(newrow);
+
+					var row = document.querySelectorAll("#userbody tr");
+		            index = 0;
+		            for (var i = 0; i < row.length; i++) {
+		              if (row[i].style.display != 'none') {
+		                index++;
+		                row[i].cells[0].innerText = index;
+		              }
+		            }
+
+		            code.value = "";
+				    name.value = "";
+				    account.value = "";
+				    email.value = "";
+				    staff_type.value = staff_type.querySelector("option").value;
+				    degree.value = degree.querySelector("option").value;
+				    work_unit.value = work_unit.querySelector("option").value;
+
+					normalimport.classList.remove("showimport");
+					layer.classList.remove("showlayer");
 				} else {
 					// xu ly view khi tao loi
 					// loi duoc luu trong bien $data.error

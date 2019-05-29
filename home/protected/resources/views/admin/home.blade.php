@@ -28,8 +28,8 @@
               </div>
             </div>
             <div class="row" id="user">
-                <table class="table" style="text-align: center;" id="usertb">
-                    <tbody>
+                <table class="table" style="text-align: center;">
+                    <tbody id="userbody">
                         <?php $count = 1; foreach ($user as $element): ?>
                             <tr style="width: 100%;">
                                 <?php $staff = $element->staff ?>
@@ -42,7 +42,7 @@
                                 <td style="width: 10%;">{{$staff->degree}}</td>
                                 <td style="width: 10%;">{{$staff->work_unit}}</td>
                                 <td style="width: 10%;">
-                                    <button class="btn btn-primary" style="margin: 5px 5px;"><i class="fas fa-edit"></i> Sửa</button>
+                                    <button class="btn btn-primary" onclick="edituser(this)" style="margin: 5px 5px;"><i class="fas fa-edit"></i> Sửa</button>
                                     <button class="btn btn-danger" style="margin: 5px 5px;"><i class="fas fa-trash"></i> Xóa</button>
                                 </td>
                             </tr>
@@ -181,7 +181,11 @@
                             </fieldset>
                             <div class="text-center">
                               <button type="submit" class="btn btn-primary"> <i class="fas fa-paper-plane"></i> Gửi</button>
+                              <button type="submit" class="btn btn-success"> <i class="fas fa-edit"></i> Cập nhật</button>
                               <button class="btn btn-secondary" id="cancelnormalbutton"> <i class="fas fa-window-close"></i> Hủy</button>
+                            </div>
+                            <div class="status text-center">
+                              
                             </div>
                         </form>
                     </div>
@@ -303,6 +307,7 @@
                       </fieldset>                            
                       <div class="text-center">
                         <p class="btn btn-primary" id="addnormaldepartment" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-paper-plane"></i> Gửi</p>
+                        <p class="btn btn-success" id="editnormaldepartment" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-edit"></i> Cập nhật</p>
                         <p class="btn btn-secondary" id="canceldepartmentbutton" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-window-close"></i> Hủy</p>
                       </div>
                   </form>
@@ -412,4 +417,30 @@
 </div>
 @routes
 <script type="text/javascript" src="{{URL::asset('js/admin.js')}}"></script>
+<script>
+  function edituser (variable) {
+    var father = variable.parentNode.parentNode;
+    
+    var code = document.getElementById("code");
+    var name = document.getElementById("name");
+    var account = document.getElementById("account");
+    var email = document.getElementById("email");
+    var staff_type = document.getElementById("staff_type");
+    var degree = document.getElementById("degree");
+    var work_unit = document.getElementById("work_unit");
+    var layer = document.querySelector(".homelayer");
+    var normalimport = document.querySelector(".normalimport");
+
+    code.value = father.cells[1].innerText;
+    name.value = father.cells[2].innerText;
+    account.value = father.cells[3].innerText;
+    email.value = father.cells[4].innerText;
+    staff_type.value = father.cells[5].innerText;
+    degree.value = father.cells[6].innerText;
+    work_unit.value = father.cells[7].innerText;
+
+    layer.classList.add("showlayer");
+    normalimport.classList.add("showimport");
+  }
+</script>
 @endsection
