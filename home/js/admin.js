@@ -96,6 +96,13 @@ document.addEventListener("DOMContentLoaded", function () {
 		layer.classList.add("showlayer");
 	}
 
+	var addnewdepartment = document.getElementById("addnewdepartment");
+	addnewdepartment.onclick = function () {
+		var departmentimport = document.querySelector(".departmentimport"), layer = document.querySelector(".homelayer");
+		departmentimport.classList.add("showimport");
+		layer.classList.add("showlayer");
+	}
+
 	var cancelnormalbutton = document.getElementById("cancelnormalbutton");
 	cancelnormalbutton.onclick = function () {
 		var normalimport = document.querySelector(".normalimport"), layer = document.querySelector(".homelayer");
@@ -112,11 +119,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	var homelayer = document.querySelector(".homelayer");
 	homelayer.onclick = function () {
-		var excelimport = document.querySelector(".excelimport"), layer = document.querySelector(".homelayer");
+		var layer = document.querySelector(".homelayer");
+		var excelimport = document.querySelector(".excelimport");
 		excelimport.classList.remove("showimport");
 		layer.classList.remove("showlayer");
 
-		var normalimport = document.querySelector(".normalimport"), layer = document.querySelector(".homelayer");
+		var normalimport = document.querySelector(".normalimport");
 		normalimport.classList.remove("showimport");
 		layer.classList.remove("showlayer");
 	}
@@ -135,9 +143,10 @@ document.addEventListener("DOMContentLoaded", function () {
 				var data = $.parseJSON(this.responseText);
 				if (data.state == "Success"){
 					// xu ly view khi import thanh cong
+					//data.new_users list cac user moi tao
 				} else {
 					// xu ly view khi import loi
-					// loi duoc luu trong bien $data.error
+					// loi duoc luu trong bien data.error
 				}
 				console.log(data);
 			} else {

@@ -42,7 +42,7 @@
     font-weight: bold;
 }
 
-.excelimport, .normalimport {
+.excelimport, .normalimport, .departmentimport {
     background: #f4f4f4;
     overflow: auto;
     border: 1px solid #d9d9d9;
