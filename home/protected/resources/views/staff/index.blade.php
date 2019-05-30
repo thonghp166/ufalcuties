@@ -35,7 +35,8 @@
 					</p>
 					<div class="content">
 						<?php foreach ($department as $element): ?>
-							<a href="" class="departmentelement">{{$element->name}}</a>
+							<a style="cursor: pointer;" data-id="{{$element->id}}" data-name="{{$element->name}}" class="departmentelement"
+								onclick="searchDepartment(this)">{{$element->name}}</a>
 						<?php endforeach ?>
 					</div>
 				</div>
@@ -140,6 +141,10 @@
 	}
 </script>
 <script>
+	String.prototype.replaceAll = function(search, replacement) {
+	  		var target = this;
+	  		return target.split(search).join(replacement);
+	};
 	function searchField(variable){
 		var id = variable.getAttribute("data-id");
 	    var named = variable.getAttribute("data-name");
@@ -148,7 +153,33 @@
 	    newrequest.onreadystatechange = function(){
 	    	if (this.readyState == 4 && this.status == 200) {
         		var data = $.parseJSON(this.response);
+        			//xu ly sau khi tim kiem thanh cong
+        			//cac du lieu tim kiem duoc luu trong data.results
+        		console.log(this.responseText);
+        	} else {
+        		console.log('error');
+        	}
+        	String.prototype.replaceAll = function(search, replacement) {
+	  			var target = this;
+	  			return target.split(search).join(replacement);
+			};
+	    }
+	    newrequest.open("GET", route('staff.search.field') + "?id=" + id + "&name=" + named.replaceAll(' ', '+'), true);
+		newrequest.send();
+	}
 
+
+
+	function searchDepartment(variable){
+		var id = variable.getAttribute('data-id');
+		var named = variable.getAttribute("data-name");
+		var newrequest = new XMLHttpRequest();
+
+	    newrequest.onreadystatechange = function(){
+	    	if (this.readyState == 4 && this.status == 200) {
+        		var data = $.parseJSON(this.response);
+        		//xu ly sau khi tim kiem thanh cong
+        		//cac du lieu tim kiem duoc luu trong data.results
         		console.log(this.responseText);
         	} else {
         		console.log('error');
@@ -158,7 +189,7 @@
 	  		var target = this;
 	  		return target.split(search).join(replacement);
 		};
-	    newrequest.open("GET", route('staff.search.field') + "?id=" + id + "&name=" + named.replaceAll(' ', '+'), true);
+	    newrequest.open("GET", route('staff.search.department') + "?id=" + id + "&name=" + named.replaceAll(' ', '+'), true);
 		newrequest.send();
 	}
 </script>

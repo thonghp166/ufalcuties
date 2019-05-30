@@ -11,6 +11,7 @@ Route::get('/search',[
 	'uses' => 'HomeController@search'
 ]);
 Route::get('search/field','HomeController@searchByField')->name('staff.search.field');
+Route::get('search/department','HomeController@searchByDepartment')->name('staff.search.department');
 // Show staff's info
 Route::get('/staff/info/{account}',[
 	'as' => 'staff.info',

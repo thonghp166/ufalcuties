@@ -12,8 +12,6 @@ use Illuminate\Support\Facades\Input;
 
 class HomeController extends Controller
 {
-
-
     /**
      * Show the application dashboard.
      *
@@ -33,7 +31,7 @@ class HomeController extends Controller
     {
         $staff = Staff::all();
         $field = Field::all();
-        $department = Department::all();
+        $department = Department::where('name','!=','Không')->get();
         return view('staff.index')-> with(compact('department'))
                                   -> with(compact('field'))
                                   -> with(compact('staff'));
@@ -55,6 +53,13 @@ class HomeController extends Controller
         ]);
     }
 
-    // public function searchByField
-
+    public function searchByDepartment(Request $request)
+    {
+        $id = $request->id;
+        $staff_list = Department::find($id)->staffs;
+        return json_encode([
+            'state' => 'Success',
+            'results' => $staff_list
+        ]);
+    }
 }
