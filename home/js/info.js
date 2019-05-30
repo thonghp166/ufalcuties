@@ -62,6 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		var request = new XMLHttpRequest();
 		e.preventDefault();
 		var formdata = new FormData(updateform);
+		formdata.append('department_id',updateform.querySelector('select').value);
 		request.open('post',route('staff.update.info'));
 		request.send(formdata);
 
@@ -70,7 +71,6 @@ document.addEventListener("DOMContentLoaded", function () {
 				$data = $.parseJSON(this.responseText);
 				var status = document.querySelector(".status");
 				if ($data.state == "Success"){
-
 					status.style.display = "block";
 					status.innerHTML = "<div>" + "Cập nhật thông tin thành công    <i class='fas fa-window-close' onclick='hide(this)'></i></div>";
 					status.style.background = "#27ae60";

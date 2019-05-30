@@ -60,7 +60,7 @@
 		                        <?php if ($element->childOf == 0): ?>
 		                            <div class="col-12 field field{{$element->id}}" data-id="{{$element->id}}" data-parent="{{$element->childOf}}">
 		                                <i class="dropdownicon fas fa-caret-right"></i> 
-		                                <a href="#" data-id="{{$element->id}}" data-name="{{$element->name}}" class="fieldelement" onclick="searchField(this)"> {{$element->name}}</a>
+		                                <a style="cursor: pointer;" data-id="{{$element->id}}" data-name="{{$element->name}}" class="fieldelement" onclick="searchField(this)"> {{$element->name}}</a>
 		                            </div>
 		                        <?php else: ?>
 		                                <script>

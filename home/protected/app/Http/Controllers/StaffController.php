@@ -159,12 +159,15 @@ class StaffController extends Controller
         $gmail = $request->input('gmail');
         $website = $request->input('website');
         $address = $request->input('address');
+        $department_id = $request->department_id;
+        dd($department_id);
 
         $staff->update([
             'phone' => $phone,
             'gmail' => $gmail,
             'website' => $website,
-            'address' => $address
+            'address' => $address,
+            'department_id' => $department_id
         ]);
         return json_encode([
           'state' => 'Success',

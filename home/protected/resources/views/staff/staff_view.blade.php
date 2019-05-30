@@ -52,7 +52,7 @@
 		               <label for="exampleSelect1"><i class="fas fa-window-restore"></i> Bộ môn :</label>
 		            </div>
 		            <div class="col-6 text-left">
-		            	<p>{{$staff->work_unit}}</p>
+		            	<p>{{$staff->department->name}}</p>
 		            </div>
 	              </fieldset>
 	            <fieldset class="form-group">

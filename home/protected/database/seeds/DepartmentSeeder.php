@@ -13,7 +13,7 @@ class DepartmentSeeder extends Seeder
     {
        $data = [
        		[
-       			'name'=> '',
+       			'name'=> 'Không',
        			'type' => 'Bộ môn',
        			'address' => '',
        			'phone' => '',
