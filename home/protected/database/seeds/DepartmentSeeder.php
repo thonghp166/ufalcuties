@@ -13,49 +13,49 @@ class DepartmentSeeder extends Seeder
     {
        $data = [
        		[
-       			'name'=> 'Bộ môn Các Hệ thống Thông minh',
+       			'name'=> '',
+       			'type' => 'Bộ môn',
+       			'address' => '',
+       			'phone' => '',
+       			'website' => ''
+       		],
+       		[
+       			'name'=> 'Bộ môn Các Hệ thống minh',
        			'type' => 'Bộ môn',
        			'address' => '',
        			'phone' => '0000',
        			'website' => 'fit.uet.vnu.edu.vn'
        		],
        		[
-       			'name'=> 'Bộ môn Các Hệ thống Thông minh',
+       			'name'=> 'Bộ môn bbb thống Thông',
        			'type' => 'Bộ môn',
        			'address' => '',
        			'phone' => '0000',
        			'website' => 'fit.uet.vnu.edu.vn'
        		],
        		[
-       			'name'=> 'Bộ môn Các Hệ thống Thông minh',
+       			'name'=> 'Bộ môn Các Thông minh',
        			'type' => 'Bộ môn',
        			'address' => '',
        			'phone' => '0000',
        			'website' => 'fit.uet.vnu.edu.vn'
        		],
        		[
-       			'name'=> 'Bộ môn Các Hệ thống Thông minh',
-       			'type' => 'Bộ môn',
-       			'address' => '',
-       			'phone' => '0000',
-       			'website' => 'fit.uet.vnu.edu.vn'
-       		],
-       		[
-       			'name'=> 'Bộ môn Các Hệ thống Thông minh',
+       			'name'=> 'Bộ mônthống Thông minh',
        			'type' => 'Bộ môn',
        			'address' => '',
        			'phone' => '0000',
        			'website' => 'fit.uet.vnu.edu.vn'
        		],
 	        [
-	            'name'=> 'Bộ môn Các Hệ thống Thông minh',
+	            'name'=> 'Bộ Hệ Thông minh',
        			'type' => 'Bộ môn',
        			'address' => '',
        			'phone' => '0000',
        			'website' => 'fit.uet.vnu.edu.vn'
 	        ],
 	        [
-	            'name'=> 'Bộ môn Các Hệ thống Thông minh',
+	          'name'=> 'Bộ mônthống minh',
        			'type' => 'Bộ môn',
        			'address' => '',
        			'phone' => '0000',

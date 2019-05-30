@@ -20,14 +20,13 @@ class CreateStaffTable extends Migration
             $table->string('code')->default('');
             $table->string('account')->unique();
             $table->string('staff_type')->default('Giảng viên');
-            $table->string('work_unit')->default('');
             $table->string('degree')->default('');
             $table->string('phone')->default('');
             $table->string('vnu_email')->unique();
             $table->string('gmail')->default('');
             $table->string('website')->default('');
             $table->string('address')->default('');
-            $table->integer('department_id')->unsigned();
+            $table->integer('department_id')->unsigned()->default(1);
             $table->string('img_url')->default('images/avatar/defaultAvatar.png');
             $table->timestamps();
         });
