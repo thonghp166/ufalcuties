@@ -60,7 +60,7 @@
 		                        <?php if ($element->childOf == 0): ?>
 		                            <div class="col-12 field field{{$element->id}}" data-id="{{$element->id}}" data-parent="{{$element->childOf}}">
 		                                <i class="dropdownicon fas fa-caret-right"></i> 
-		                                <a href="" class="fieldelement"> {{$element->name}}</a>
+		                                <a href="#" data-id="{{$element->id}}" data-name="{{$element->name}}" class="fieldelement" onclick="searchField(this)"> {{$element->name}}</a>
 		                            </div>
 		                        <?php else: ?>
 		                                <script>
@@ -131,12 +131,35 @@
   <i class="fas fa-arrow-circle-up"></i>
 </div>
 
+@routes
 <script type="text/javascript" src="{{URL::asset('js/search.js')}}"></script>
-
 <script>
-	function contentprocess (name) {
+	function contentprocess(name) {
 		var content = document.querySelector("#category ." + name + " .content");
 		content.classList.toggle("showcontent");
+	}
+</script>
+<script>
+	function searchField(variable){
+		var id = variable.getAttribute("data-id");
+	    var named = variable.getAttribute("data-name");
+	    var newrequest = new XMLHttpRequest();
+
+	    newrequest.onreadystatechange = function(){
+	    	if (this.readyState == 4 && this.status == 200) {
+        		var data = $.parseJSON(this.response);
+
+        		console.log(this.responseText);
+        	} else {
+        		console.log('error');
+        	}
+	    }
+	    String.prototype.replaceAll = function(search, replacement) {
+	  		var target = this;
+	  		return target.split(search).join(replacement);
+		};
+	    newrequest.open("GET", route('staff.search.field') + "?id=" + id + "&name=" + named.replaceAll(' ', '+'), true);
+		newrequest.send();
 	}
 </script>
 @endsection

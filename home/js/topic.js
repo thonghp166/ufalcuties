@@ -31,7 +31,6 @@ document.addEventListener("DOMContentLoaded", function () {
 	newtopic.onclick = function () {
 
 		var newrequest = new XMLHttpRequest();
-		
 		var name = document.getElementById("name");
 		var detail = document.getElementById("detail");
 		if (name.value == "") {

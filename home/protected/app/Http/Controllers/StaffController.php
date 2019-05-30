@@ -64,11 +64,14 @@ class StaffController extends Controller
     {
         $staff = Auth::user()->staff;
         $old_img = $staff->img_url;
-        File::delete($old_img);
         $default = 'images/avatar/defaultAvatar.png';
-        $staff->update([
-          'img_url' => $default
-        ]);
+        if ($old_img != $default ){
+          File::delete($old_img);
+          $staff->update([
+            'img_url' => $default
+          ]);
+        }
+        
         return json_encode([
           'state' => 'Success',
           'img_url' =>  $default
@@ -91,7 +94,7 @@ class StaffController extends Controller
                 array_push($field,$element);
             }
         }
-        $topic = Topic::all();
+        $topic = $staff->topics;
         $department = Department::all();
         return view('staff.staff_view')-> with(compact('department'))
                                   -> with(compact('field'))

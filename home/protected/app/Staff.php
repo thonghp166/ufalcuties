@@ -21,7 +21,8 @@ class Staff extends Model
         'phone',
         'website',
         'address',
-        'img_url'
+        'img_url',
+        'department_id'
     ];
     
     public function fields()
@@ -32,6 +33,10 @@ class Staff extends Model
     public function topics()
     {
     	return $this->hasMany('App\Topic');
+    }
+
+    public function department(){
+        $this->belongsTo('App\Department');
     }
 
     public function user()

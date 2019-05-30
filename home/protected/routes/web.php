@@ -1,5 +1,4 @@
 <?php
-use Illuminate\Support\Facades\Input;
 // Control to home function
 Route::get('/',[
 	'as' => 'home',
@@ -11,6 +10,7 @@ Route::get('/search',[
 	'as' => 'search',
 	'uses' => 'HomeController@search'
 ]);
+Route::get('search/field','HomeController@searchByField')->name('staff.search.field');
 // Show staff's info
 Route::get('/staff/info/{account}',[
 	'as' => 'staff.info',
@@ -69,12 +69,11 @@ Route::group(['middleware' => 'CheckAdminLogin', 'prefix' => 'admin'], function(
 	Route::post('/','DepartmentController@update')->name('admin.update.department');
 	// Add admin's field
 	Route::post('/','FieldController@addField')->name('admin.add.field');
-	// Delete admin's field
+	// Delete field
 	Route::post('/','FieldController@deleteField')->name('admin.delete.field');
-	// Update admin's field
+	// Update field by admin
 	Route::post('/','FieldController@updateField')->name('admin.update.field');
 
-	// Route::post('/','UserController@add')->name('admin.add.user');
 	// Admin delete user
 	Route::post('/','UserController@deleteUser')->name('admin.delete.user');
 	// Admin update user

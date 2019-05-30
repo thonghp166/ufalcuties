@@ -27,6 +27,7 @@ class CreateStaffTable extends Migration
             $table->string('gmail')->default('');
             $table->string('website')->default('');
             $table->string('address')->default('');
+            $table->integer('department_id')->unsigned();
             $table->string('img_url')->default('images/avatar/defaultAvatar.png');
             $table->timestamps();
         });

@@ -15,4 +15,9 @@ class Department extends Model
     	'phone',
     	'website'
     ];
+
+    public function staffs()
+    {
+    	$this->hasMany('App\Staff');
+    }
 }

@@ -45,4 +45,16 @@ class HomeController extends Controller
         return view('test');
     }
 
+    public function searchByField(Request $request)
+    {
+        $id = $request->id;
+        $staff_list = Field::find($id)->staffs;
+        return json_encode([
+            'state' => 'Success',
+            'results' => $staff_list
+        ]);
+    }
+
+    // public function searchByField
+
 }

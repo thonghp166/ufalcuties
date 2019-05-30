@@ -26,8 +26,11 @@ document.addEventListener("DOMContentLoaded", function () {
 		dropdownicon.setAttribute("class", "dropdownicon fas fa-ban");
 		
 		var name = document.createElement("a");
-		name.setAttribute("href", "");
+		name.setAttribute("href", "#");
 		name.setAttribute("class", "fieldelement");
+		name.setAttribute("data-id", idArr[i]);
+		name.setAttribute("data-name", nameArr[i]);
+		name.setAttribute("onclick",'searchField(this)');
 		var text = document.createTextNode(" " + nameArr[i]);
 		name.appendChild(text);
 
@@ -70,4 +73,6 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 		return false;
 	}
+
+	
 }, false);
