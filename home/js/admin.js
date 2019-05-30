@@ -124,13 +124,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	var normalbutton = document.getElementById("normalimportbutton");
 	normalbutton.onclick = function () {
-		var sendstaff = document.querySelector(".sendstaff");
-	    sendstaff.style.display = "inline-block";
-
-	    var editstaff = document.querySelector(".editstaff");
-	    editstaff.classList.add("hide");
-
-		var normalimport = document.querySelector(".normalimport"), layer = document.querySelector(".homelayer");
+		
+	    var normalimport = document.querySelector(".normalimport"), layer = document.querySelector(".homelayer");
 		normalimport.classList.add("showimport");
 		layer.classList.add("showlayer");
 	}
@@ -184,6 +179,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		normalimport.classList.remove("showimport");
 		layer.classList.remove("showlayer");
+
+		var sendstaff = document.querySelector(".sendstaff");
+		sendstaff.classList.remove("hide");
+		
+		var editstaff = document.querySelector(".editstaff");
+		editstaff.classList.remove("showbutton");
 	}
 
 	var cancelexcelbutton = document.getElementById("cancelexcelbutton");
@@ -269,6 +270,12 @@ document.addEventListener("DOMContentLoaded", function () {
 	    departmentaddress.value = "";
 	    departmentphone.value = "";
 	    departmentwebsite.value = "";
+
+	    var sendstaff = document.querySelector(".sendstaff");
+		sendstaff.classList.remove("hide");
+		
+		var editstaff = document.querySelector(".editstaff");
+		editstaff.classList.remove("showbutton");
 	}
 
 	var excelform = document.getElementById('excelform');

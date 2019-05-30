@@ -74,7 +74,7 @@
                           </fieldset>
                           <fieldset>
                             <button type="submit" class="btn btn-primary"> <i class="fas fa-file-upload"></i> Nhập vào</button>
-                            <button class="btn btn-secondary" id="cancelexcelbutton"> <i class="fas fa-window-close"></i> Hủy</button>
+                            <p class="btn btn-secondary" id="cancelexcelbutton" style="cursor: pointer; margin-top: 15px;" > <i class="fas fa-window-close"></i> Hủy</p>
                           </fieldset>                           
                         </form>
                         <br />
@@ -182,7 +182,7 @@
                             <div class="text-center">
                               <button type="submit" class="btn btn-primary sendstaff"> <i class="fas fa-paper-plane"></i> Gửi</button>
                               <button type="submit" class="btn btn-success editstaff"> <i class="fas fa-edit"></i> Cập nhật</button>
-                              <button class="btn btn-secondary" id="cancelnormalbutton"> <i class="fas fa-window-close"></i> Hủy</button>
+                              <p class="btn btn-secondary" id="cancelnormalbutton" style="cursor: pointer; margin-top: 15px;" > <i class="fas fa-window-close"></i> Hủy</p>
                             </div>
                             <div class="status text-center">
                               
@@ -419,6 +419,11 @@
 @routes
 <script type="text/javascript" src="{{URL::asset('js/admin.js')}}"></script>
 <script>
+  
+  function hide(variable) {
+    variable.parentNode.parentNode.style.display = "none";
+  }
+
   function edituser (variable) {
     var sendstaff = document.querySelector(".sendstaff");
     sendstaff.classList.add("hide");

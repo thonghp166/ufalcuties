@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	description.value = "";
 	topic_id.value = "";
 
-	var check = "under100"
+	var check = "under100";
 	window.addEventListener("scroll", function () {
 		if (window.pageYOffset > 100) {
 			if (check == "under100") {
@@ -174,6 +174,8 @@ document.addEventListener("DOMContentLoaded", function () {
 					status.innerHTML = "<div>" + "Lỗi! Chủ đề quan tâm '" + name.value + "' với mô tả này đã tồn tại    <i class='fas fa-window-close' onclick='hide(this)'></i></div>";
 					status.style.background = "#c0392b";
 
+					var newtopic = document.querySelector(".newtopic");
+					newtopic.classList.remove("hide");
 					var updatetopic = document.querySelector(".updatetopic");
 					updatetopic.classList.remove("showbutton");
 					name.value = "";
