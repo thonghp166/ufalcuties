@@ -301,6 +301,14 @@ div#category p.title {
     
 }
 
+.editnormaldepartment {
+    display: none;
+}
+
+.editnormalfield {
+    display: none;
+}
+
 .searchbar {
     padding-top: 150px;
     background-color: #f4f4f4;
@@ -309,7 +317,7 @@ div#category p.title {
 }
 
 .hide {
-    display: none;
+    display: none!important;
 }
 
 .field {

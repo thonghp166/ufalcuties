@@ -91,7 +91,7 @@
                         <form id="newuserform">
                           {{csrf_field()}}
                             <fieldset class="form-group">
-                              <label class="title">Nhập thông tin cán bộ mới</label>  
+                              <label class="title">Nhập thông tin cán bộ</label>  
                               <div class="row">
                                 <div class="col-1"></div>
                                 <div class="col-4 text-left">
@@ -250,7 +250,7 @@
               <div class="text-center">
                   <form>
                       <fieldset class="form-group">
-                        <label class="title">Nhập thông tin đơn vị mới</label>  
+                        <label class="title">Nhập thông tin đơn vị</label>  
                         <div class="row">
                           <div class="col-1"></div>
                           <div class="col-4 text-left">
@@ -306,8 +306,8 @@
                         </div>
                       </fieldset>                            
                       <div class="text-center">
-                        <p class="btn btn-primary" id="addnormaldepartment" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-paper-plane"></i> Gửi</p>
-                        <p class="btn btn-success" id="editnormaldepartment" style="margin-bottom: 20px; cursor: pointer; display: none;"><i class="fas fa-edit"></i> Cập nhật</p>
+                        <p class="btn btn-primary addnormaldepartment" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-paper-plane"></i> Gửi</p>
+                        <p class="btn btn-success editnormaldepartment" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-edit"></i> Cập nhật</p>
                         <p class="btn btn-secondary" id="canceldepartmentbutton" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-window-close"></i> Hủy</p>
                       </div>
                   </form>
@@ -341,9 +341,9 @@
                         <?php if ($element->childOf == 0): ?>
                             <div class="col-12 field field{{$element->id}}" data-id="{{$element->id}}" data-parent="{{$element->childOf}}">
                                 <i class="dropdownicon fas fa-caret-right"></i> {{$element->name}}
-                                <i class="fas fa-plus-square"></i>
-                                <i class="fas fa-pen-square"></i>
-                                <i class="fas fa-minus-square"></i>  
+                                <i class="fas fa-plus-square" style="cursor: pointer;" onclick="newfield(this)"></i>
+                                <i class="fas fa-pen-square" style="cursor: pointer;" onclick="editfield(this)"></i>
+                                <i class="fas fa-minus-square" style="cursor: pointer;"></i>  
                             </div>
                         <?php else: ?>
                                 <script>
@@ -370,7 +370,7 @@
               <div class="text-center">
                   <form>
                       <fieldset class="form-group">
-                        <label class="title">Nhập thông tin lĩnh vực nghiên cứu mới</label>  
+                        <label class="title">Nhập thông tin lĩnh vực nghiên cứu</label>  
                         <div class="row">
                           <div class="col-1"></div>
                           <div class="col-4 text-left">
@@ -382,8 +382,8 @@
                         </div>
                       </fieldset>                     
                       <div class="text-center">
-                        <p class="btn btn-primary" id="addnormalfield" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-paper-plane"></i> Gửi</p>
-                        <p class="btn btn-success" id="editnormalfield" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-pen-square"></i> Cập nhật</p>
+                        <p class="btn btn-primary addnormalfield" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-paper-plane"></i> Gửi</p>
+                        <p class="btn btn-success editnormalfield" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-pen-square"></i> Cập nhật</p>
                         <p class="btn btn-secondary" id="cancelfieldbutton" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-window-close"></i> Hủy</p>
                       </div>
                   </form>
@@ -462,11 +462,11 @@
   }
 
   function editdepartment (variable) {
-     var editnormaldepartment = document.getElementById("editnormaldepartment");
-     editnormaldepartment.style.display = "inline-block";
+     var editnormaldepartment = document.querySelector(".editnormaldepartment");
+     editnormaldepartment.classList.add("showbutton");
 
-     var addnormaldepartment = document.getElementById("addnormaldepartment");
-     addnormaldepartment.classList.add("hide"); 
+     var addnormaldepartment = document.querySelector(".addnormaldepartment");
+     addnormaldepartment.classList.add("hide");  
 
      var father = variable.parentNode.parentNode;
      
@@ -486,6 +486,25 @@
      
      layer.classList.add("showlayer");
      departmentimport.classList.add("showimport");
+  }
+
+  function editfield (variable) {
+    var editnormalfield = document.querySelector(".editnormalfield");
+    editnormalfield.classList.add("hide");
+
+    var addnormalfield = document.querySelector(".addnormalfield");
+    addnormalfield.classList.add("showbutton");
+
+    var father = variable.parentNode;
+    console.log(father);
+
+    var fieldname = document.getElementById("fieldname");
+    var fieldimport = document.querySelector(".fieldimport");
+    var layer = document.querySelector(".homelayer");  
+    fieldname.value = father.childNodes[1].nodeValue;
+
+    layer.classList.add("showlayer");
+    fieldimport.classList.add("showimport");
   }
 </script>
 @endsection

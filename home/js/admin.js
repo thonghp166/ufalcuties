@@ -69,10 +69,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		var addbutton = document.createElement("i");
 		addbutton.setAttribute("class", "fas fa-plus-square");
+		addbutton.setAttribute("onclick", "newfield(this)");
 		addbutton.setAttribute("style", "margin: 0px 5px;");
 		
 		var editbutton = document.createElement("i");
 		editbutton.setAttribute("class", "fas fa-pen-square");
+		editbutton.setAttribute("onclick", "editfield(this)");
 		editbutton.setAttribute("style", "margin-right: 5px;");
 		
 		var deletebutton = document.createElement("i");
@@ -139,12 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	var addnewdepartment = document.getElementById("addnewdepartment");
 	addnewdepartment.onclick = function () {
-		var editnormaldepartment = document.getElementById("editnormaldepartment");
-		editnormaldepartment.classList.add("hide");
-
-		var addnormaldepartment = document.getElementById("addnormaldepartment");
-		addnormaldepartment.style.display = "inline-block"; 
-
+		
 		var departmentimport = document.querySelector(".departmentimport"), layer = document.querySelector(".homelayer");
 		departmentimport.classList.add("showimport");
 		layer.classList.add("showlayer");
@@ -217,6 +214,12 @@ document.addEventListener("DOMContentLoaded", function () {
 	     
 	    layer.classList.remove("showlayer");
 	    departmentimport.classList.remove("showimport");
+
+	    var editnormaldepartment = document.querySelector(".editnormaldepartment");
+     	editnormaldepartment.classList.remove("showbutton");
+
+     	var addnormaldepartment = document.querySelector(".addnormaldepartment");
+     	addnormaldepartment.classList.remove("hide");
 	}
 
 	var cancelfieldbutton = document.getElementById("cancelfieldbutton");
@@ -276,6 +279,12 @@ document.addEventListener("DOMContentLoaded", function () {
 		
 		var editstaff = document.querySelector(".editstaff");
 		editstaff.classList.remove("showbutton");
+
+		var editnormaldepartment = document.querySelector(".editnormaldepartment");
+     	editnormaldepartment.classList.remove("showbutton");
+
+     	var addnormaldepartment = document.querySelector(".addnormaldepartment");
+     	addnormaldepartment.classList.remove("hide");
 	}
 
 	var excelform = document.getElementById('excelform');
