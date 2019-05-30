@@ -62,4 +62,37 @@ class HomeController extends Controller
             'results' => $staff_list
         ]);
     }
+
+    public function searchText(Request $request)
+    {
+      
+      $id = $request->id;
+      $text = $request->text;
+      switch ($id) {
+        case 0:
+          return json_encode([
+            'state' => 'Success',
+            'results' => 'None'
+          ]);
+        case 1:
+          $res = Field::where('name','LIKE','%' .$text . '%')->get();
+          return json_encode([
+            'state' => 'Success',
+            'results' => $res
+          ]);
+        case 2:
+          $res = Department::where('name','LIKE','%' .$text . '%')->get();
+          return json_encode([
+            'state' => 'Success',
+            'results' => $res
+          ]);
+        case 3:
+          $res = Staff::where('name','LIKE','%' .$text . '%')->get();
+          return json_encode([
+            'state' => 'Success',
+            'results' => $res
+          ]);
+      }
+    }
+    
 }

@@ -9,7 +9,7 @@
 			<div class="row" id="search">
 				<div class="col-2" id="left">
 					<div class="float-right">
-						<select class="custom-select">
+						<select id="searchattr" class="custom-select">
 						  <option selected value="0">Tất cả</option>
 						  <option value="1">Lĩnh vực nghiên cứu</option>
 						  <option value="2">Đơn vị</option>
@@ -19,7 +19,7 @@
 				</div>
 				<div class="col-8" id="center">					
 					<div class="text-center">
-						<input type="text" class="key" id="key" style="width: 100%;" placeholder="Nhập nội dung tìm kiếm">		
+						<input type="text" class="key" id="key" onkeyup="search(this)" style="width: 100%;" placeholder="Nhập nội dung tìm kiếm">		
 					</div>
 				</div>
 				<div class="col-2" id="right">
@@ -98,7 +98,7 @@
 			              <p class="email">VNU Email: {{$element->vnu_email}}</p>
 			            </div>
 			            <div class="more">
-			            	<a href="">Chi tiết</a>
+			            	<a href="{{route('staff.info',['account' => $element->account])}}">Chi tiết</a>
 			            </div>
 			          </div>
 			        </div>
@@ -191,6 +191,28 @@
 		};
 	    newrequest.open("GET", route('staff.search.department') + "?id=" + id + "&name=" + named.replaceAll(' ', '+'), true);
 		newrequest.send();
+	}
+
+	function search(variable){
+		var attrid = document.getElementById('searchattr').value;
+		var text = variable.value.trim();
+		if (text != ''){
+			var newrequest = new XMLHttpRequest();
+			newrequest.onreadystatechange = function(){
+		    	if (this.readyState == 4 && this.status == 200) {
+	        		var data = $.parseJSON(this.response);
+	        		//xu ly sau khi tim kiem thanh cong
+	        		//hien thi cac ket qua
+	        		// cac the hien ra phai co cac truong data-id data-name va onclick
+	        		//cac du lieu tim kiem duoc luu trong data.results
+	        		console.log(this.responseText);
+	        	} else {
+	        		console.log('error');
+	        	}
+		    }
+		    newrequest.open("GET", route('staff.search.text') + "?id=" + attrid + "&text=" + variable.value, true);
+			newrequest.send();
+		}
 	}
 </script>
 @endsection
