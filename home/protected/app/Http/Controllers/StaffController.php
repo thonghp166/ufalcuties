@@ -120,15 +120,19 @@ class StaffController extends Controller
     public function edit()
     {
         $staff = Auth::user()->staff;
-        return view('staff.edit_info',compact('staff'));
+        $alldepartment = Department::all();
+        return view('staff.edit_info')->with(compact('staff'))
+                                      -> with(compact('alldepartment'));
     }
 
     public function edit_field()
     {
         $staff = Auth::user()->staff;
         $fields = Field::all();
+        $alldepartment = Department::all();
         return view('staff.edit_field')-> with(compact('fields'))
-                                       -> with(compact('staff'));
+                                       -> with(compact('staff'))
+                                       -> with(compact('alldepartment'));
     }
 
     public function edit_topic()

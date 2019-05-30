@@ -17,7 +17,6 @@ class Staff extends Model
         'gmail',
         'staff_type',
         'degree',
-        'work_unit',
         'phone',
         'website',
         'address',
@@ -36,7 +35,7 @@ class Staff extends Model
     }
 
     public function department(){
-        $this->belongsTo('App\Department');
+        return $this->belongsTo('App\Department');
     }
 
     public function user()

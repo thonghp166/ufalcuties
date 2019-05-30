@@ -1,10 +1,47 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-	console.log(allParent);
-	console.log(allId);
-	console.log(idArr);
-	console.log(parentArr);
-	console.log(nameArr);
+	var layer = document.querySelector(".homelayer");
+	var excelimport = document.querySelector(".excelimport");
+	var normalimport = document.querySelector(".normalimport");
+	var departmentimport = document.querySelector(".departmentimport");
+	var fieldimport = document.querySelector(".fieldimport");
+
+	excelimport.classList.remove("showimport");
+	normalimport.classList.remove("showimport");
+	departmentimport.classList.remove("showimport");
+	fieldimport.classList.remove("showimport");
+	layer.classList.remove("showlayer");
+
+	var code = document.getElementById("code");
+    var name = document.getElementById("name");
+    var account = document.getElementById("account");
+    var email = document.getElementById("email");
+    var staff_type = document.getElementById("staff_type");
+    var degree = document.getElementById("degree");
+    var work_unit = document.getElementById("work_unit");
+    
+    code.value = "";
+    name.value = "";
+    account.value = "";
+    email.value = "";
+    staff_type.value = staff_type.querySelector("option").value;
+    degree.value = degree.querySelector("option").value;
+    work_unit.value = work_unit.querySelectorAll("option")[1].value;
+
+    var excelfile = document.getElementById("excelfile");
+    excelfile.value = "";
+
+    var departmentname = document.getElementById("departmentname");
+    var departmenttype = document.getElementById("departmenttype");
+    var departmentaddress = document.getElementById("departmentaddress");
+    var departmentphone = document.getElementById("departmentphone");
+    var departmentwebsite = document.getElementById("departmentwebsite");
+
+    departmentname.value = "";
+    departmenttype.value = departmenttype.querySelector("option").value;
+    departmentaddress.value = "";
+    departmentphone.value = "";
+    departmentwebsite.value = "";
 	
 	var excelfile = document.getElementById("excelfile");
 	excelfile.value = "";
@@ -87,6 +124,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	var normalbutton = document.getElementById("normalimportbutton");
 	normalbutton.onclick = function () {
+		var sendstaff = document.querySelector(".sendstaff");
+	    sendstaff.style.display = "inline-block";
+
+	    var editstaff = document.querySelector(".editstaff");
+	    editstaff.classList.add("hide");
+
 		var normalimport = document.querySelector(".normalimport"), layer = document.querySelector(".homelayer");
 		normalimport.classList.add("showimport");
 		layer.classList.add("showlayer");
@@ -101,6 +144,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	var addnewdepartment = document.getElementById("addnewdepartment");
 	addnewdepartment.onclick = function () {
+		var editnormaldepartment = document.getElementById("editnormaldepartment");
+		editnormaldepartment.classList.add("hide");
+
+		var addnormaldepartment = document.getElementById("addnormaldepartment");
+		addnormaldepartment.style.display = "inline-block"; 
+
 		var departmentimport = document.querySelector(".departmentimport"), layer = document.querySelector(".homelayer");
 		departmentimport.classList.add("showimport");
 		layer.classList.add("showlayer");
@@ -131,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	    email.value = "";
 	    staff_type.value = staff_type.querySelector("option").value;
 	    degree.value = degree.querySelector("option").value;
-	    work_unit.value = work_unit.querySelector("option").value;
+	    work_unit.value = work_unit.querySelectorAll("option")[1].value;
 
 		normalimport.classList.remove("showimport");
 		layer.classList.remove("showlayer");
@@ -151,9 +200,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	var canceldepartmentbutton = document.getElementById("canceldepartmentbutton");
 	canceldepartmentbutton.onclick = function () {
-		var departmentimport = document.querySelector(".departmentimport"), layer = document.querySelector(".homelayer");
-		departmentimport.classList.remove("showimport");
-		layer.classList.remove("showlayer");
+		var departmentname = document.getElementById("departmentname");
+	    var departmenttype = document.getElementById("departmenttype");
+	    var departmentaddress = document.getElementById("departmentaddress");
+	    var departmentphone = document.getElementById("departmentphone");
+	    var departmentwebsite = document.getElementById("departmentwebsite");
+	    var layer = document.querySelector(".homelayer");
+	    var departmentimport = document.querySelector(".departmentimport");
+
+	    departmentname.value = "";
+	    departmenttype.value = departmenttype.querySelector("option");
+	    departmentaddress.value = "";
+	    departmentphone.value = "";
+	    departmentwebsite.value = "";
+	     
+	    layer.classList.remove("showlayer");
+	    departmentimport.classList.remove("showimport");
 	}
 
 	var cancelfieldbutton = document.getElementById("cancelfieldbutton");
@@ -191,10 +253,22 @@ document.addEventListener("DOMContentLoaded", function () {
 	    email.value = "";
 	    staff_type.value = staff_type.querySelector("option").value;
 	    degree.value = degree.querySelector("option").value;
-	    work_unit.value = work_unit.querySelector("option").value;
+	    work_unit.value = work_unit.querySelectorAll("option")[1].value;
 
 	    var excelfile = document.getElementById("excelfile");
 	    excelfile.value = "";
+
+	    var departmentname = document.getElementById("departmentname");
+	    var departmenttype = document.getElementById("departmenttype");
+	    var departmentaddress = document.getElementById("departmentaddress");
+	    var departmentphone = document.getElementById("departmentphone");
+	    var departmentwebsite = document.getElementById("departmentwebsite");
+
+	    departmentname.value = "";
+	    departmenttype.value = departmenttype.querySelector("option");
+	    departmentaddress.value = "";
+	    departmentphone.value = "";
+	    departmentwebsite.value = "";
 	}
 
 	var excelform = document.getElementById('excelform');
@@ -240,6 +314,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 			if (this.readyState == 4 && this.status == 200) {
 				$data = $.parseJSON(this.responseText);
+				var status = document.querySelector(".status");
 				if ($data.state == "Success"){
 					var code = document.getElementById("code");
 				    var name = document.getElementById("name");
@@ -337,13 +412,14 @@ document.addEventListener("DOMContentLoaded", function () {
 				    email.value = "";
 				    staff_type.value = staff_type.querySelector("option").value;
 				    degree.value = degree.querySelector("option").value;
-				    work_unit.value = work_unit.querySelector("option").value;
+				    work_unit.value = work_unit.querySelectorAll("option")[1].value;
 
 					normalimport.classList.remove("showimport");
 					layer.classList.remove("showlayer");
 				} else {
-					// xu ly view khi tao loi
-					// loi duoc luu trong bien $data.error
+					status.style.display = "block";
+					status.innerHTML = "<div>" + "Lỗi! Thêm mới tài khoản thất bại    <i class='fas fa-window-close' onclick='hide(this)'></i></div>";
+					status.style.background = "#c0392b";
 				}
 				console.log(this.response);
 			} else {
@@ -352,6 +428,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		};
 	},false);
 
+	var sendstaff = document.querySelector(".sendstaff");
 
 
 }, false);

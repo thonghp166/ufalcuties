@@ -40,7 +40,7 @@
                                 <td style="width: 25%;">{{$staff->vnu_email}}</td>
                                 <td style="width: 10%;">{{$staff->type}}</td>
                                 <td style="width: 10%;">{{$staff->degree}}</td>
-                                <td style="width: 10%;">{{$staff->work_unit}}</td>
+                                <td style="width: 10%;">{{$staff->department->name}}</td>
                                 <td style="width: 10%;">
                                     <button class="btn btn-primary" onclick="edituser(this)" style="margin: 5px 5px;"><i class="fas fa-edit"></i> Sửa</button>
                                     <button class="btn btn-danger" style="margin: 5px 5px;"><i class="fas fa-trash"></i> Xóa</button>
@@ -172,16 +172,16 @@
                                 </div>
                                 <div class="col-7">
                                   <select name="work_unit" class="form-control" id="work_unit">
-                                      <?php foreach ($department as $element): ?>
-                                          <option value="{{$element->name}}">{{$element->name}}</option>
+                                      <?php foreach ($alldepartment as $element): ?>
+                                          <option value="{{$element->id}}">{{$element->name}}</option>
                                       <?php endforeach ?>
                                   </select>
                                 </div>
                               </div>
                             </fieldset>
                             <div class="text-center">
-                              <button type="submit" class="btn btn-primary"> <i class="fas fa-paper-plane"></i> Gửi</button>
-                              <button type="submit" class="btn btn-success"> <i class="fas fa-edit"></i> Cập nhật</button>
+                              <button type="submit" class="btn btn-primary sendstaff"> <i class="fas fa-paper-plane"></i> Gửi</button>
+                              <button type="submit" class="btn btn-success editstaff"> <i class="fas fa-edit"></i> Cập nhật</button>
                               <button class="btn btn-secondary" id="cancelnormalbutton"> <i class="fas fa-window-close"></i> Hủy</button>
                             </div>
                             <div class="status text-center">
@@ -218,7 +218,7 @@
             <div class="row" id="department">
                 <table class="table">
                     <tbody>                    
-                        <?php $count = 1; foreach ($department as $element): ?>
+                        <?php $count = 1; foreach ($alldepartment as $element): ?>
                             <tr style="text-align: center; width: 100%;">
                                 <td style="width: 5%;"><?php echo $count; $count++; ?></td>    
                                 <td style="width: 25%;">{{$element->name}}</td> 
@@ -227,7 +227,7 @@
                                 <td style="width: 10%;">{{$element->phone}}</td>    
                                 <td style="width: 25%;">{{$element->website}}</td>  
                                 <td style="width: 10%;">
-                                    <button class="btn btn-primary" style="margin: 5px 5px;"><i class="fas fa-edit"></i> Sửa</button>
+                                    <button class="btn btn-primary" style="margin: 5px 5px;" onclick="editdepartment(this)"><i class="fas fa-edit"></i> Sửa</button>
                                     <button class="btn btn-danger" style="margin: 5px 5px;"><i class="fas fa-trash"></i> Xóa</button>
                                 </td>
                             </tr>   
@@ -307,7 +307,7 @@
                       </fieldset>                            
                       <div class="text-center">
                         <p class="btn btn-primary" id="addnormaldepartment" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-paper-plane"></i> Gửi</p>
-                        <p class="btn btn-success" id="editnormaldepartment" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-edit"></i> Cập nhật</p>
+                        <p class="btn btn-success" id="editnormaldepartment" style="margin-bottom: 20px; cursor: pointer; display: none;"><i class="fas fa-edit"></i> Cập nhật</p>
                         <p class="btn btn-secondary" id="canceldepartmentbutton" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-window-close"></i> Hủy</p>
                       </div>
                   </form>
@@ -383,6 +383,7 @@
                       </fieldset>                     
                       <div class="text-center">
                         <p class="btn btn-primary" id="addnormalfield" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-paper-plane"></i> Gửi</p>
+                        <p class="btn btn-success" id="editnormalfield" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-pen-square"></i> Cập nhật</p>
                         <p class="btn btn-secondary" id="cancelfieldbutton" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-window-close"></i> Hủy</p>
                       </div>
                   </form>
@@ -419,6 +420,12 @@
 <script type="text/javascript" src="{{URL::asset('js/admin.js')}}"></script>
 <script>
   function edituser (variable) {
+    var sendstaff = document.querySelector(".sendstaff");
+    sendstaff.classList.add("hide");
+
+    var editstaff = document.querySelector(".editstaff");
+    editstaff.classList.add("showbutton");
+
     var father = variable.parentNode.parentNode;
     
     var code = document.getElementById("code");
@@ -437,10 +444,43 @@
     email.value = father.cells[4].innerText;
     staff_type.value = father.cells[5].innerText;
     degree.value = father.cells[6].innerText;
-    work_unit.value = father.cells[7].innerText;
-
+    var departmentinfo = father.cells[7].innerText;
+    var optionarr = work_unit.querySelectorAll("option");
+    for (var i = 0; i < optionarr.length; i++) {
+      if (optionarr[i].innerHTML == departmentinfo) {
+        work_unit.value = optionarr[i].value;
+        break;
+      }
+    }
     layer.classList.add("showlayer");
     normalimport.classList.add("showimport");
+  }
+
+  function editdepartment (variable) {
+     var editnormaldepartment = document.getElementById("editnormaldepartment");
+     editnormaldepartment.style.display = "inline-block";
+
+     var addnormaldepartment = document.getElementById("addnormaldepartment");
+     addnormaldepartment.classList.add("hide"); 
+
+     var father = variable.parentNode.parentNode;
+     
+     var departmentname = document.getElementById("departmentname");
+     var departmenttype = document.getElementById("departmenttype");
+     var departmentaddress = document.getElementById("departmentaddress");
+     var departmentphone = document.getElementById("departmentphone");
+     var departmentwebsite = document.getElementById("departmentwebsite");
+     var layer = document.querySelector(".homelayer");
+     var departmentimport = document.querySelector(".departmentimport");
+
+     departmentname.value = father.cells[1].innerText;
+     departmenttype.value = father.cells[2].innerText;
+     departmentaddress.value = father.cells[3].innerText;
+     departmentphone.value = father.cells[4].innerText;
+     departmentwebsite.value = father.cells[5].innerText;
+     
+     layer.classList.add("showlayer");
+     departmentimport.classList.add("showimport");
   }
 </script>
 @endsection

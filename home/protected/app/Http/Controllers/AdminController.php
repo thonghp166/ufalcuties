@@ -20,8 +20,8 @@ class AdminController extends Controller
     {
     	$user = User::where('level','=',0)->get();
     	$field = Field::all();
-    	$department = Department::all();
-        return view('admin.home')-> with(compact('department'))
+    	$alldepartment = Department::all();
+        return view('admin.home')-> with(compact('alldepartment'))
                                	 -> with(compact('field'))
                                  -> with(compact('user'));
     }

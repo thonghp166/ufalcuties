@@ -73,7 +73,11 @@
                 <label for="exampleSelect1"><i class="fas fa-window-restore"></i> Bộ môn : </label>
               </div>
               <div class="col-7">
-                <input type="text" class="form-control" disabled="" id="work_unit" placeholder="Nhập bộ môn, phòng thí nghiệm" value="{{$staff->work_unit}}">
+                <select name="work_unit" id="work_unit" class="form-control">
+                  <?php foreach ($alldepartment as $element): ?>
+                    <option value="{{$element->id}}">{{$element->name}}</option>
+                  <?php endforeach ?>
+                </select>
               </div>              
             </fieldset>
             <fieldset class="form-group">

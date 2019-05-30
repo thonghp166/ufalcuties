@@ -18,6 +18,6 @@ class Department extends Model
 
     public function staffs()
     {
-    	$this->hasMany('App\Staff');
+    	return $this->hasMany(Staff::class);
     }
 }
