@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		var checkbox = document.querySelector(".box" + staff_fieldArr[i]);
 		var inputtag = checkbox.querySelector("input#_" + staff_fieldArr[i]);
 		inputtag.checked = true;
+		checkedFatherEvent(inputtag);
 	}
 
 	function checkedEvent (checkbox) {
