@@ -613,6 +613,7 @@ input#resetemail {
     border: 2px solid #ebebeb;
     padding-left: 30px;
     padding-right: 10px;
+    margin-bottom: 30px;
 }
 
 .item .content {

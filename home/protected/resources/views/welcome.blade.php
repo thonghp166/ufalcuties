@@ -22,6 +22,80 @@
 @endsection
 
 @section('content')
+<div class="teacher">
+  <div class="container">
+    <div class="row">
+      <div class="col-6 title">
+        <h2><i class="fas fa-users"></i> DANH SÁCH CÁN BỘ</h2>
+      </div>
+      <div class="col-6"></div>
+    </div>
+  </div>
+  <div class="teachercontent">
+    <div class="container">
+      <div class="row">
+        <?php foreach ($staff as $element): ?>
+          <div class="col-4">
+            <div class="text-left item">
+              <div class="avatar">
+                <img src="http://ufaculties.vn/{{$element->img_url}}" alt="" class="img-fuild">
+              </div>
+              <div class="transperantlayer"></div>
+              <div class="content">
+                <p class="unique">{{$element->degree}} {{$element->name}}</p>
+                <p class="code"><i class="fas fa-user"></i> Mã cán bộ: {{$element->code}}</p>
+                <p class="phone"><i class="fas fa-phone"></i> Số điện thoại: {{$element->phone}}</p>
+                <p class="email"><i class="fas fa-envelope"></i> VNU Email: {{$element->vnu_email}}</p>
+              </div>
+              <div class="more">
+                <a href="{{route('staff.info',['account' => $element->account])}}">Chi tiết</a>
+              </div>
+            </div>
+          </div>
+        <?php endforeach ?>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="research">
+  <div class="container">
+    <div class="row">
+      <div class="col-6 title">
+        <h2><i class="fas fa-search"></i> LĨNH VỰC NGHIÊN CỨU</h2>
+      </div>
+      <div class="col-6"></div>
+    </div>
+    <div class="row" id="welcome">
+      <script>
+          var idArr = [];
+          var nameArr = [];
+          var parentArr = [];
+          var allId = [];
+          var allParent = [];
+      </script>
+      <?php foreach ($field as $element): ?>
+          <script>
+              var allParentLength = allParent.push(<?php echo $element->childOf ?>);
+              var allIdLength = allId.push(<?php echo $element->id ?>);
+          </script>
+          <?php if ($element->childOf == 0): ?>
+              <div class="col-12 field field{{$element->id}}" data-id="{{$element->id}}" data-parent="{{$element->childOf}}">
+                  <i class="dropdownicon fas fa-caret-right"></i> 
+                  <a href="" class="fieldelement"> {{$element->name}}</a>
+              </div>
+          <?php else: ?>
+                  <script>
+                      var idLength = idArr.push(<?php echo $element->id ?>);
+                      var nameLength = nameArr.push("<?php echo $element->name ?>");
+                      var parentLength = parentArr.push(<?php echo $element->childOf ?>);
+                  </script>                         
+          <?php endif ?>
+      <?php endforeach ?>
+    </div>
+  </div>
+</div>
+
 <div class="workunit">
   <div class="container">
     <div class="row">
@@ -68,80 +142,6 @@
           <p class="departmentwebsite"><i class="fas fa-paper-plane"></i> Website: {{$element->website}}</p>
         </div>
       <?php endforeach ?>
-  </div>
-</div>
-
-<div class="research">
-  <div class="container">
-    <div class="row">
-      <div class="col-6 title">
-        <h2><i class="fas fa-search"></i> LĨNH VỰC NGHIÊN CỨU</h2>
-      </div>
-      <div class="col-6"></div>
-    </div>
-    <div class="row" id="welcome">
-      <script>
-          var idArr = [];
-          var nameArr = [];
-          var parentArr = [];
-          var allId = [];
-          var allParent = [];
-      </script>
-      <?php foreach ($field as $element): ?>
-          <script>
-              var allParentLength = allParent.push(<?php echo $element->childOf ?>);
-              var allIdLength = allId.push(<?php echo $element->id ?>);
-          </script>
-          <?php if ($element->childOf == 0): ?>
-              <div class="col-12 field field{{$element->id}}" data-id="{{$element->id}}" data-parent="{{$element->childOf}}">
-                  <i class="dropdownicon fas fa-caret-right"></i> 
-                  <a href="" class="fieldelement"> {{$element->name}}</a>
-              </div>
-          <?php else: ?>
-                  <script>
-                      var idLength = idArr.push(<?php echo $element->id ?>);
-                      var nameLength = nameArr.push("<?php echo $element->name ?>");
-                      var parentLength = parentArr.push(<?php echo $element->childOf ?>);
-                  </script>                         
-          <?php endif ?>
-      <?php endforeach ?>
-    </div>
-  </div>
-</div>
-
-<div class="teacher">
-  <div class="container">
-    <div class="row">
-      <div class="col-6 title">
-        <h2><i class="fas fa-users"></i> DANH SÁCH CÁN BỘ</h2>
-      </div>
-      <div class="col-6"></div>
-    </div>
-  </div>
-  <div class="teachercontent">
-    <div class="container">
-      <div class="row">
-        <?php foreach ($staff as $element): ?>
-          <div class="col-4">
-            <div class="text-left item">
-              <div class="avatar">
-                <img src="http://ufaculties.vn/{{$element->img_url}}" alt="" class="img-fuild">
-              </div>
-              <div class="transperantlayer"></div>
-              <div class="content">
-                <p class="unique">{{$element->degree}} {{$element->name}}</p>
-                <p class="code"><i class="fas fa-user"></i> Mã cán bộ: {{$element->code}}</p>
-                <p class="phone"><i class="fas fa-phone"></i> Số điện thoại: {{$element->phone}}</p>
-                <p class="email"><i class="fas fa-envelope"></i> VNU Email: {{$element->vnu_email}}</p>
-              </div>
-              <div class="more">
-                <a href="{{route('staff.info',['account' => $element->account])}}">Chi tiết</a>
-              </div>
-            </div>
-          </div>
-        <?php endforeach ?>
-      </div>
-    </div>
   </div>
 </div>
 
