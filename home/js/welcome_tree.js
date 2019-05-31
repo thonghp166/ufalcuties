@@ -6,6 +6,11 @@ document.addEventListener("DOMContentLoaded", function () {
 	console.log(parentArr);
 	console.log(nameArr);
 
+	var workunitcontent = document.querySelector(".workunitcontent .content");
+	var count = workunitcontent.childElementCount;
+	var width = count*210 + 20;
+	workunitcontent.style.width = width + "px";
+
 	var fieldparent = document.getElementsByClassName("field");
 	
 	for (var i = 0; i < fieldparent.length; i++) {

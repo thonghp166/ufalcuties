@@ -3,6 +3,41 @@
     padding: 0px;
 }
 
+
+
+.workgo a {
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    height: 60px;
+    width: 60px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 30px;
+    margin-top: -30px;
+    margin-left: -30px;
+    transform: scale(1.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.4s;
+}
+
+.worklayer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: #000000b5;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    transition: 0.4s;
+    opacity: 0;
+    visibility: hidden;
+}
+
 .editstaff {
     display: none;
 }
@@ -85,6 +120,11 @@
 p.clonetitle {
     text-transform: uppercase;
     font-size: 30px;
+    transform: scale(0.5);
+    transition: 0.4s;
+    opacity: 0;
+    animation: scalenormal 1.4s forwards;
+    animation-delay: 2s;
 }
 
 p.address {
@@ -145,25 +185,22 @@ p.departmentwebsite {
 p.departmentaddress {
     font-size: 18px;
     color: #3498db;
-    height: 35px;
 }
 
 p.departmentphone {
     font-size: 18px;
     color: #3498db;
-    height: 20px;
 }
 
 p.departmenttype {
     color: #3498db;
-    height: 30px;
     font-size: 18px;
 }
 
 p.departmentname {
     font-size: 22px;
-    height: 70px;
     font-weight: bold;
+    height: 100px;
 }
 
 #category .fields .content {
@@ -541,6 +578,44 @@ input#resetemail {
     text-transform: uppercase;
 }
 
+.unit {
+    height: 350px;
+    width: 200px;
+    margin-right: 10px;
+    border: 1px solid gray;
+    padding: 10px 10px;
+    background: white;
+    float: left;
+    border-radius: 20px;
+    position: relative;
+}
+
+.unit:hover .worklayer {
+    visibility: visible;
+    opacity: 1;
+}
+
+.unit:hover .workgo a {
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1);
+}
+
+.workunitcontent .content {
+    height: 350px;
+    margin-top: 20px;
+    width: 10000px;
+}
+
+.workunitcontent {
+    height: 400px; 
+    background: lightgray; 
+    overflow-x: auto; 
+    border: 2px solid #ebebeb;
+    padding-left: 30px;
+    padding-right: 10px;
+}
+
 .item .content {
     position: absolute;
     background: white;
@@ -711,6 +786,10 @@ p.go {
     transition: 0.4s;
     color: white;
     font-weight: bold;
+    transform: translateY(50px);
+    opacity: 0;
+    animation: goup 1.4s forwards;
+    animation-delay: 3s;
 }
 
 p.lineright {
@@ -718,12 +797,22 @@ p.lineright {
     height: 2px;
     background: white;
     margin-top: -18px;
+    transition: 0.4s;
+    transform: rotate(20deg);
+    opacity: 0;
+    animation: rotateright 1.4s forwards;
+    animation-delay: 1.5s;
 }
 
 p.lineleft {
     width: 100%;
     height: 2px;
     background: white;
+    transition: 0.4s;
+    transform: rotate(-20deg);
+    opacity: 0;
+    animation: rotateleft 1.4s forwards;
+    animation-delay: 1.5s;
 }
 
 p.content {
@@ -735,6 +824,10 @@ p.title {
     text-transform: uppercase;
     font-size: 80px;
     font-weight: 100;
+    transform: translateY(-200px);
+    transition: 0.4s;
+    opacity: 0;
+    animation: godown 2s forwards;
 }
 
 .box {
@@ -762,6 +855,7 @@ p.title {
     height: 800px;
     width: 100%;
     position: relative;
+    overflow: hidden;
 }
 
 a.nav-link.loginbutton:hover {
@@ -793,7 +887,7 @@ a.nav-link.loginbutton {
     opacity: 0;
 }
 
-img.banner-image {width: 100%;position: absolute;top: 0;left: 0;z-index: 1;height: 800px;}
+img.banner-image {width: 100%;position: absolute;top: 0;left: 0;z-index: 1;height: 800px;transform: scale(1);transition: 0.4s;animation: scalebanner 30s forwards;animation-delay: 2s;}
 
 button#barbutton {
     border-radius: 20px;
@@ -835,3 +929,71 @@ nav#bar {
 .showbutton {
     display: inline-block;
 }
+
+@keyframes godown {
+    from {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+@keyframes goup {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+@keyframes scalenormal {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes rotateleft {
+    from {
+        opacity: 0;
+        transform: rotate(-20deg);
+    }
+    to {
+        opacity: 1;
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes rotateright {
+    from {
+        opacity: 0;
+        transform: rotate(20deg);
+    }
+    to {
+        opacity: 1;
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes scalebanner {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(4);
+    }
+}
+
+
+
+

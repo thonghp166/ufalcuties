@@ -31,7 +31,7 @@
       <div class="col-6"></div>
     </div>
     <div class="row">
-      <?php foreach ($department as $element): ?>
+      <!-- <?php foreach ($department as $element): ?>
         <div class="col-4">
           <div class="text-left item">
             <div class="avatar">
@@ -50,22 +50,24 @@
             </div>            
           </div>
         </div>
-      <?php endforeach ?>
+      <?php endforeach ?> -->
+      
     </div>
-
-    <div class="row">
-      <div class="col-4">
-        <div class="line"></div>
-      </div>
-      <div class="col-4">
-        <div class="text-center">
-          <a href="" class="findstaff">Xem thêm</a>
+  </div>
+</div>
+<div class="workunitcontent">
+  <div class="content">
+        <?php foreach ($department as $element): ?>
+        <div class="text-left unit">
+          <div class="worklayer"></div>
+          <div class="workgo"><a href="" class="btn btn-success"><i class="far fa-hand-point-right"></i></a></div>
+          <p class="departmentname">Đơn vị: {{$element->name}}</p>
+          <p class="departmenttype">Loại đơn vị: {{$element->type}}</p>
+          <p class="departmentaddress">Địa chỉ: {{$element->address}}</p>
+          <p class="departmentphone">Số điện thoại: {{$element->phone}}</p>
+          <p class="departmentwebsite">Website: {{$element->website}}</p>
         </div>
-      </div>
-      <div class="col-4">
-        <div class="line"></div>
-      </div>
-    </div>
+      <?php endforeach ?>
   </div>
 </div>
 
@@ -104,19 +106,6 @@
           <?php endif ?>
       <?php endforeach ?>
     </div>
-    <div class="row">
-      <div class="col-4">
-        <div class="line"></div>
-      </div>
-      <div class="col-4">
-        <div class="text-center">
-          <a href="{{route('search')}}" class="findstaff">Xem thêm</a>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="line"></div>
-      </div>
-    </div>
   </div>
 </div>
 
@@ -149,19 +138,7 @@
         </div>
       <?php endforeach ?>
     </div>
-    <div class="row">
-      <div class="col-4">
-        <div class="line"></div>
-      </div>
-      <div class="col-4">
-        <div class="text-center">
-          <a href="{{route('search')}}" class="findstaff">Xem thêm</a>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="line"></div>
-      </div>
-    </div>
+  </div>
 </div>
 
 
