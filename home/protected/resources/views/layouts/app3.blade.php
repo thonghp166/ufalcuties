@@ -28,6 +28,8 @@
             <ul class="navbar-nav ml-auto mr-5">
               <li class="nav-item active">
                 <a class="nav-link" href="{{route('home')}}">Trang chủ<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="{{route('search')}}">Tìm kiếm</a>
               </li>
                          

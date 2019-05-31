@@ -42,7 +42,7 @@
                                 <td style="width: 10%;">{{$staff->degree}}</td>
                                 <td style="width: 10%;">{{$staff->department->name}}</td>
                                 <td style="width: 10%;">
-                                    <button class="btn btn-primary" onclick="edituser(this)" style="margin: 5px 5px;"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-primary" data-id="{{$staff->user_id}}" onclick="edituser(this)" style="margin: 5px 5px;"><i class="fas fa-edit"></i></button>
                                     <button class="btn btn-danger" style="margin: 5px 5px;"><i class="fas fa-trash"></i></button>
                                 </td>
                             </tr>
@@ -111,6 +111,13 @@
                               <div class="col-7">
                                 <input type="text" class="form-control" name="name" id="name" placeholder="Nhập họ và tên">
                               </div>              
+                            </fieldset>
+                            <fieldset class="form-group">
+                              <div class="row">
+                                <div class="col-1"></div>
+                                <div class="col-4 text-left"></div>
+                              <div class="col-7">
+                                <input type="text" hidden="" class="form-control" name="user_id" id="user_id"></div>              
                             </fieldset>
                             <fieldset class="form-group">
                               <div class="row">
@@ -227,7 +234,7 @@
                                 <td style="width: 10%;">{{$element->phone}}</td>    
                                 <td style="width: 25%;">{{$element->website}}</td>  
                                 <td style="width: 10%;">
-                                    <button class="btn btn-primary" style="margin: 5px 5px;" onclick="editdepartment(this)"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-primary" data-id="{{$element->department_id}}" style="margin: 5px 5px;" onclick="editdepartment(this)"><i class="fas fa-edit"></i></button>
                                     <button class="btn btn-danger" style="margin: 5px 5px;"><i class="fas fa-trash"></i></button>
                                 </td>
                             </tr>   
@@ -272,6 +279,15 @@
                             <option value="Bộ môn">Bộ môn</option>
                             <option value="Phòng thí nghiệm">Phòng thí nghiệm</option>
                           </select>
+                        </div>              
+                      </fieldset>
+                      <fieldset class="form-group">
+                        <div class="row">
+                          <div class="col-1"></div>
+                          <div class="col-4 text-left">
+                        </div>
+                        <div class="col-7">
+                          <input type="text" hidden="" name="department_id" id="department_id">
                         </div>              
                       </fieldset>
                       <fieldset class="form-group">
@@ -433,6 +449,7 @@
 
     var father = variable.parentNode.parentNode;
     
+    var user_id = document.getElementById("user_id");
     var code = document.getElementById("code");
     var name = document.getElementById("name");
     var account = document.getElementById("account");
@@ -443,6 +460,7 @@
     var layer = document.querySelector(".homelayer");
     var normalimport = document.querySelector(".normalimport");
 
+    user_id = variable.getAttribute("data-id");
     code.value = father.cells[1].innerText;
     name.value = father.cells[2].innerText;
     account.value = father.cells[3].innerText;
@@ -470,6 +488,7 @@
 
      var father = variable.parentNode.parentNode;
      
+     var department_id = document.getElementById("department_id");
      var departmentname = document.getElementById("departmentname");
      var departmenttype = document.getElementById("departmenttype");
      var departmentaddress = document.getElementById("departmentaddress");
@@ -478,6 +497,8 @@
      var layer = document.querySelector(".homelayer");
      var departmentimport = document.querySelector(".departmentimport");
 
+     department_id.value = variable.getAttribute("data-id");
+     console.log(department_id);
      departmentname.value = father.cells[1].innerText;
      departmenttype.value = father.cells[2].innerText;
      departmentaddress.value = father.cells[3].innerText;

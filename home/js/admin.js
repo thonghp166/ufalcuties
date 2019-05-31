@@ -394,7 +394,7 @@ document.addEventListener("DOMContentLoaded", function () {
 						
 						var col8 = document.createElement("td");
 						col8.setAttribute("style", "width: 10%;");
-						col8.innerText = newuserform.querySelectorAll('select')[2].value;
+						col8.innerText = work_unit.options[work_unit.selectedIndex].text;
 						
 						var col9 = document.createElement("td");
 						col9.setAttribute("style", "width: 10%;");
@@ -402,6 +402,8 @@ document.addEventListener("DOMContentLoaded", function () {
 						editbutton.setAttribute("class", "btn btn-primary");
 						editbutton.setAttribute("onclick", "edituser(this)");
 						editbutton.setAttribute("style", "margin: 5px 5px;");
+						console.log(data.new_user.id);
+						editbutton.setAttribute("data-id", data.new_user.id);
 						var editicon = document.createElement("i");
 						editicon.setAttribute("class", "fas fa-edit");
 						editbutton.appendChild(editicon);
@@ -452,7 +454,6 @@ document.addEventListener("DOMContentLoaded", function () {
 						status.innerHTML = "<div>" + "Lỗi! Thêm mới tài khoản thất bại    <i class='fas fa-window-close' onclick='hide(this)'></i></div>";
 						status.style.background = "#c0392b";
 					}
-					console.log(this.response);
 				} else {
 					console.log('error');
 				}
