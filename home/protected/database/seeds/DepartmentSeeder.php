@@ -20,22 +20,22 @@ class DepartmentSeeder extends Seeder
        			'website' => ''
        		],
        		[
-       			'name'=> 'Bộ môn Các Hệ thống minh',
+       			'name'=> 'Bộ môn Các hệ thống thông minh',
        			'type' => 'Bộ môn',
        			'address' => '',
        			'phone' => '0000',
        			'website' => 'fit.uet.vnu.edu.vn'
        		],
        		[
-       			'name'=> 'Bộ môn bbb thống Thông',
-       			'type' => 'Bộ môn',
+       			'name'=> 'PTN  trọng điểm Hệ thống Tích hợp Thông minh',
+       			'type' => 'Phòng thí nghiệm',
        			'address' => '',
-       			'phone' => '0000',
+       			'phone' => '',
        			'website' => 'fit.uet.vnu.edu.vn'
        		],
        		[
-       			'name'=> 'Bộ môn Các Thông minh',
-       			'type' => 'Bộ môn',
+       			'name'=> 'PTN Cơ kỹ thuật',
+       			'type' => 'Phòng thí nghiệm',
        			'address' => '',
        			'phone' => '0000',
        			'website' => 'fit.uet.vnu.edu.vn'
@@ -48,18 +48,18 @@ class DepartmentSeeder extends Seeder
        			'website' => 'fit.uet.vnu.edu.vn'
        		],
 	        [
-	            'name'=> 'Bộ Hệ Thông minh',
-       			'type' => 'Bộ môn',
+	          'name'=> 'PTN Công nghệ năng lượng',
+       			'type' => 'Phòng thí nghiệm',
        			'address' => '',
-       			'phone' => '0000',
-       			'website' => 'fit.uet.vnu.edu.vn'
+       			'phone' => '',
+       			'website' => 'fema.uet.vnu.edu.vn'
 	        ],
 	        [
-	          'name'=> 'Bộ mônthống minh',
-       			'type' => 'Bộ môn',
+	          'name'=> 'Phòng thực hành Điện tử – Viễn thông',
+       			'type' => 'Phòng thí nghiệm',
        			'address' => '',
-       			'phone' => '0000',
-       			'website' => 'fit.uet.vnu.edu.vn'
+       			'phone' => '',
+       			'website' => 'fet.uet.vnu.edu.vn'
 	        ],
        ];
        DB::table('department')->insert($data);

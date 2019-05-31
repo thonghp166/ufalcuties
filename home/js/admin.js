@@ -65,7 +65,8 @@ document.addEventListener("DOMContentLoaded", function () {
 		var dropdownicon = document.createElement("i");
 		dropdownicon.setAttribute("class", "dropdownicon fas fa-ban");
 		
-		var text = document.createTextNode(" " + nameArr[i]);
+		var text = document.createElement("span");
+		text.textContent = nameArr[i];
 
 		var addbutton = document.createElement("i");
 		addbutton.setAttribute("class", "fas fa-plus-square");
@@ -150,6 +151,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	var addnewfield = document.getElementById("addnewfield");
 	addnewfield.onclick = function () {
+		var fieldname = document.getElementById("fieldname");
+    	fieldname.value = "";
+    	var fieldid = document.getElementById("field_id");
+    	fieldid.value = 0;
 		var fieldimport = document.querySelector(".fieldimport"), layer = document.querySelector(".homelayer");
 		fieldimport.classList.add("showimport");
 		layer.classList.add("showlayer");
@@ -469,7 +474,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	var sendstaff = document.querySelector(".sendstaff");
 
-	// ajax request create or update new user
+	// ajax request create or update new department
 	var departmentform = document.getElementById('departmentform');
 	departmentform.addEventListener('submit',function(e){
 		var action = e.explicitOriginalTarget.name;
@@ -518,4 +523,54 @@ document.addEventListener("DOMContentLoaded", function () {
 			}
 		};
 	},false);
+
+	// ajax request create or update new field
+	var fieldform = document.getElementById('fieldform');
+	fieldform.addEventListener('submit',function(e){
+		var action = e.explicitOriginalTarget.name;
+		var request = new XMLHttpRequest();
+		e.preventDefault();
+		var formdata = new FormData(fieldform);
+		if (action == 'update'){
+			request.open('post', route('admin.update.field'));
+			request.send(formdata);
+			request.onreadystatechange = function(){
+				if (this.readyState == 4 && this.status == 200) {
+					data = $.parseJSON(this.responseText);
+					if (data.state == "Success"){
+						// xu ly su kien 
+						// sau khi thay doi thong tin thanh cong
+						// du lieu moi luu trong data.update_field
+					} else {
+						// xu ly su kien
+						// sau khi thay doi thong tin k thanh cong
+						// loi luu trong data.error
+						
+					}
+					console.log(this.responseText);
+				} else {
+					console.log('error');
+				}
+			}
+		} else {
+			request.open('post',route('admin.add.field'));
+			request.send(formdata);
+			request.onreadystatechange = function(){
+
+				if (this.readyState == 4 && this.status == 200) {
+					data = $.parseJSON(this.responseText);
+					if (data.state == "Success"){
+						// xu ly giao dien khi them thanh cong
+						// data.new_field
+					} else {
+
+						//con cai nay la loi data.error
+					}
+				} else {
+					console.log('error');
+				}
+			}
+		};
+	},false);
+
 }, false);

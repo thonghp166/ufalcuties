@@ -73,11 +73,11 @@ Route::group(['middleware' => 'CheckAdminLogin', 'prefix' => 'admin'], function(
 	// Update admin department
 	Route::post('/update-department','DepartmentController@update')->name('admin.update.department');
 	// Add admin's field
-	Route::post('/','FieldController@addField')->name('admin.add.field');
+	Route::post('/add-field','FieldController@add')->name('admin.add.field');
 	// Delete field
 	Route::get('/delete-field','FieldController@delete')->name('admin.delete.field');
 	// Update field by admin
-	Route::post('/','FieldController@updateField')->name('admin.update.field');
+	Route::post('/update-field','FieldController@update')->name('admin.update.field');
 	// Admin delete user
 	Route::get('/deleteuser','UserController@deleteUser')->name('admin.delete.user');
 	// Admin update user

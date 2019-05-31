@@ -18,13 +18,6 @@ class DatabaseSeeder extends Seeder
      $this->call(TopicSeeder::class);
      $this->call(FieldSeeder::class);
      $this->call(FieldStaffSeeder::class);
-     $this->call(FieldStaffSeeder::class);
 
     }
-
-    // public function run()
-    // {
-       
-    // }
-
 }

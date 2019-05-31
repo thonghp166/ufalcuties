@@ -78,15 +78,9 @@ class StaffController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($account)
     {
-        $staff = Staff::where('account','=',$account)->get()->get(0);
+        $staff = Staff::where('account','=',$account)->first();
         $fields = $staff->fields;
         $field = [];
         foreach ($fields as $element) {
