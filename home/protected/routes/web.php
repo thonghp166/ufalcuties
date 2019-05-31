@@ -10,6 +10,11 @@ Route::get('/search',[
 	'as' => 'search',
 	'uses' => 'HomeController@search'
 ]);
+Route::get('/search/{type}/{name}',[
+	'as' => 'search.type',
+	'uses' => 'HomeController@searchtype'
+]);
+
 Route::get('search/field','HomeController@searchByField')->name('staff.search.field');
 Route::get('search/department','HomeController@searchByDepartment')->name('staff.search.department');
 Route::get('search/text', 'HomeController@searchText')->name('staff.search.text');
@@ -75,7 +80,6 @@ Route::group(['middleware' => 'CheckAdminLogin', 'prefix' => 'admin'], function(
 	Route::post('/','FieldController@deleteField')->name('admin.delete.field');
 	// Update field by admin
 	Route::post('/','FieldController@updateField')->name('admin.update.field');
-
 	// Admin delete user
 	Route::post('/','UserController@deleteUser')->name('admin.delete.user');
 	// Admin update user

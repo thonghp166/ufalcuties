@@ -46,7 +46,7 @@
               <p class="departmentwebsite">Website: {{$element->website}}</p>
             </div>
             <div class="more">
-              <a href="">Chi tiết</a>
+              <a href="{{route('search.type',['type' => 'department','name' => $element->name])}}">Chi tiết</a>
             </div>            
           </div>
         </div>
@@ -59,7 +59,7 @@
       </div>
       <div class="col-4">
         <div class="text-center">
-          <a href="{{route('search')}}" class="findstaff">Xem thêm</a>
+          <a href="" class="findstaff">Xem thêm</a>
         </div>
       </div>
       <div class="col-4">

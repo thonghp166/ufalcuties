@@ -44,6 +44,12 @@ class TopicController extends Controller
         $topic_id = $request->id;
         $id = Auth::user()->staff->id;
         $topic = Topic::find($topic_id);
+        if ($topic == null){
+            return json_encode([
+                'state' => 'Fail',
+                'error' => $name
+            ]);
+        }
         if (Topic::where('staff_id', '=', $id)->
                    where('id', '!=', $topic_id)->
                    where('name', '=', $name)->
