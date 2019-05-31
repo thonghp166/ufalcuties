@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Department;
+use App\Staff;
 use Validator;
 use Illuminate\Support\Facades\Input;
 
@@ -23,7 +24,6 @@ class DepartmentController extends Controller
 
     public function add(Request $request)
     {
-        dd($request->all());
         $validator = Validator::make($request->all(),[
             'name' => 'required|unique:department'
         ]);

@@ -43,7 +43,7 @@ class FieldController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function delete(Request $request)
     {
         $id = $request->id;
         $field = Field::find($id);
@@ -56,7 +56,7 @@ class FieldController extends Controller
     }
 
     private function destroyChild($field){
-        $child = $this->getChildOf($field);
+        $child = $this->getChild($field);
         if (count($child) == 0){
             Field::destroy($field->id);
         } else {

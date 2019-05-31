@@ -360,14 +360,14 @@
                                 <i class="dropdownicon fas fa-caret-right"></i> {{$element->name}}
                                 <i class="fas fa-plus-square" style="cursor: pointer;" onclick="newfield(this)"></i>
                                 <i class="fas fa-pen-square" style="cursor: pointer;" onclick="editfield(this)"></i>
-                                <i class="fas fa-minus-square" style="cursor: pointer;"></i>  
+                                <i class="fas fa-minus-square" style="cursor: pointer;" onclick="deletefield(this)"></i>  
                             </div>
                         <?php else: ?>
-                                <script>
-                                    var idLength = idArr.push(<?php echo $element->id ?>);
-                                    var nameLength = nameArr.push("<?php echo $element->name ?>");
-                                    var parentLength = parentArr.push(<?php echo $element->childOf ?>);
-                                </script>                         
+                              <script>
+                                  var idLength = idArr.push(<?php echo $element->id ?>);
+                                  var nameLength = nameArr.push("<?php echo $element->name ?>");
+                                  var parentLength = parentArr.push(<?php echo $element->childOf ?>);
+                              </script>                         
                         <?php endif ?>
                     <?php endforeach ?>
             </div>
@@ -551,7 +551,11 @@
     newrequest.send();
   }
 
-  function editfield (variable) {
+  function newfield(varibale){
+
+  }
+
+  function editfield(variable) {
     var editnormalfield = document.querySelector(".editnormalfield");
     editnormalfield.classList.add("hide");
 
@@ -568,6 +572,27 @@
 
     layer.classList.add("showlayer");
     fieldimport.classList.add("showimport");
+  }
+
+  function deletefield(variable){
+    var id = variable.parentNode.getAttribute('data-id');
+    var newrequest = new XMLHttpRequest();
+    newrequest.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        var data = $.parseJSON(this.response);      
+        if (data.state == "Success") {
+          // xu ly giao dien khi xoa thanh cong
+
+        } else {
+          // xu ly khi xoa khong thanh cong
+          // loi luu trong data.error
+        }
+      } else {
+        console.log('error');
+      }
+    }
+    newrequest.open("GET", route('admin.delete.field') + "?id=" + id, true);
+    newrequest.send();
   }
 </script>
 @endsection
