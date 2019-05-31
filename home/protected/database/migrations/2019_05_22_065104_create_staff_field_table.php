@@ -15,8 +15,13 @@ class CreateStaffFieldTable extends Migration
     {
         Schema::create('field_staff', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('staff_id');
-            $table->integer('field_id');
+            $table->integer('staff_id')->unsigned();
+            $table->integer('field_id')->unsigned();
+            $table->engine = 'InnoDB';
+        });
+        Schema::table('field_staff', function($table) {
+            $table->foreign('staff_id')->references('id')->on('staff')->onDelete('cascade');
+            $table->foreign('field_id')->references('id')->on('field')->onDelete('cascade');
         });
     }
 

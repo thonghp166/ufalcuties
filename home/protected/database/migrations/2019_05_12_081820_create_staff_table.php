@@ -16,6 +16,7 @@ class CreateStaffTable extends Migration
         Schema::create('staff', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unique()->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('name');
             $table->string('code')->default('');
             $table->string('account')->unique();
@@ -26,9 +27,11 @@ class CreateStaffTable extends Migration
             $table->string('gmail')->default('');
             $table->string('website')->default('');
             $table->string('address')->default('');
-            $table->integer('department_id')->unsigned()->default(1);
+            $table->integer('department_id')->default(1)->unsigned();
+            $table->foreign('department_id')->references('id')->on('department')->onDelete('cascade');
             $table->string('img_url')->default('images/avatar/defaultAvatar.png');
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

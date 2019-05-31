@@ -43,7 +43,7 @@
                                 <td style="width: 10%;">{{$staff->department->name}}</td>
                                 <td style="width: 10%;">
                                     <button class="btn btn-primary" data-id="{{$staff->user_id}}" onclick="edituser(this)" style="margin: 5px 5px;"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-danger" style="margin: 5px 5px;"><i class="fas fa-trash"></i></button>
+                                    <button class="btn btn-danger" data-id="{{$staff->user_id}}" onclick="deleteuser(this)" style="margin: 5px 5px;"><i class="fas fa-trash"></i></button>
                                 </td>
                             </tr>
                         <?php endforeach ?>
@@ -234,8 +234,8 @@
                                 <td style="width: 10%;">{{$element->phone}}</td>    
                                 <td style="width: 25%;">{{$element->website}}</td>  
                                 <td style="width: 10%;">
-                                    <button class="btn btn-primary" data-id="{{$element->department_id}}" style="margin: 5px 5px;" onclick="editdepartment(this)"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-danger" style="margin: 5px 5px;"><i class="fas fa-trash"></i></button>
+                                    <button class="btn btn-primary" data-id="{{$element->id}}" style="margin: 5px 5px;" onclick="editdepartment(this)"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-danger" data-id="{{$element->id}}" onclick="deletedepartment(this)" style="margin: 5px 5px;"><i class="fas fa-trash"></i></button>
                                 </td>
                             </tr>   
                         <?php endforeach ?>                     
@@ -255,7 +255,8 @@
           <div class="col-3"></div>
           <div class="col-6 departmentimport">
               <div class="text-center">
-                  <form>
+                  <form id="departmentform">
+                    {{csrf_field()}}
                       <fieldset class="form-group">
                         <label class="title">Nhập thông tin đơn vị</label>  
                         <div class="row">
@@ -322,9 +323,9 @@
                         </div>
                       </fieldset>                            
                       <div class="text-center">
-                        <p class="btn btn-primary addnormaldepartment" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-paper-plane"></i> Gửi</p>
-                        <p class="btn btn-success editnormaldepartment" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-edit"></i> Cập nhật</p>
-                        <p class="btn btn-secondary" id="canceldepartmentbutton" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-window-close"></i> Hủy</p>
+                        <button type="submit" name="create" class="btn btn-primary addnormaldepartment"> <i class="fas fa-paper-plane"></i> Gửi</button>
+                        <button type="submit" name="update" class="btn btn-success editnormaldepartment"> <i class="fas fa-edit"></i> Cập nhật</button>
+                        <p class="btn btn-secondary" id="canceldepartmentbutton" style="cursor: pointer; margin-top: 15px;" > <i class="fas fa-window-close"></i> Hủy</p>
                       </div>
                   </form>
               </div>
@@ -448,7 +449,6 @@
     editstaff.classList.add("showbutton");
 
     var father = variable.parentNode.parentNode;
-    
     var user_id = document.getElementById("user_id");
     var code = document.getElementById("code");
     var name = document.getElementById("name");
@@ -460,7 +460,7 @@
     var layer = document.querySelector(".homelayer");
     var normalimport = document.querySelector(".normalimport");
 
-    user_id = variable.getAttribute("data-id");
+    user_id.value = variable.getAttribute("data-id");
     code.value = father.cells[1].innerText;
     name.value = father.cells[2].innerText;
     account.value = father.cells[3].innerText;
@@ -477,6 +477,27 @@
     }
     layer.classList.add("showlayer");
     normalimport.classList.add("showimport");
+  }
+
+  function deleteuser(variable) {
+    var id = variable.getAttribute("data-id");
+    var newrequest = new XMLHttpRequest();
+    newrequest.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        var data = $.parseJSON(this.response);      
+        if (data.state == "Success") {
+          // xu ly giao dien khi xoa thanh cong
+
+        } else {
+          // xu ly khi xoa khon thanh cong
+          // loi luu trong data.error
+        }
+      } else {
+        console.log('error');
+      }
+    }
+    newrequest.open("GET", route('admin.delete.user') + "?id=" + id, true);
+    newrequest.send();
   }
 
   function editdepartment (variable) {
@@ -498,7 +519,7 @@
      var departmentimport = document.querySelector(".departmentimport");
 
      department_id.value = variable.getAttribute("data-id");
-     console.log(department_id);
+     console.log(department_id.value);
      departmentname.value = father.cells[1].innerText;
      departmenttype.value = father.cells[2].innerText;
      departmentaddress.value = father.cells[3].innerText;
@@ -507,6 +528,27 @@
      
      layer.classList.add("showlayer");
      departmentimport.classList.add("showimport");
+  }
+
+  function deletedepartment(variable) {
+    var id = variable.getAttribute("data-id");
+    var newrequest = new XMLHttpRequest();
+    newrequest.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        var data = $.parseJSON(this.response);      
+        if (data.state == "Success") {
+          // xu ly giao dien khi xoa thanh cong
+
+        } else {
+          // xu ly khi xoa khong thanh cong
+          // loi luu trong data.error
+        }
+      } else {
+        console.log('error');
+      }
+    }
+    newrequest.open("GET", route('admin.delete.department') + "?id=" + id, true);
+    newrequest.send();
   }
 
   function editfield (variable) {

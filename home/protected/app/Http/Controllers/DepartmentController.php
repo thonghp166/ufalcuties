@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Department;
-use Input;
+use Validator;
+use Illuminate\Support\Facades\Input;
 
 class DepartmentController extends Controller
 {
@@ -20,37 +21,55 @@ class DepartmentController extends Controller
     }
 
 
-    public function store(Request $request){
-        $name = $request->input('name');
-        $type = $request->input('type');
-        $address = $request->input('address');
-        $phone = $request->input('phone');
-        $website = $request->input('website');
-        Department::create([
+    public function add(Request $request)
+    {
+        dd($request->all());
+        $validator = Validator::make($request->all(),[
+            'name' => 'required|unique:department'
+        ]);
+        if ($validator->fails()){
+            return json_encode([
+                'state' => 'Fail',
+                'error' => $validator->errors()
+            ]);
+        }
+        $name = $request->departmentname;
+        $type = $request->departmenttype;
+        $address = $request->departmentaddress;
+        $phone = $request->departmentphone;
+        $website = $request->departmentwebsite;
+        $department = Department::create([
             'name' => $name,
             'type' => $type,
             'address' => $address,
             'phone' => $phone,
             'website' => $website
         ]);
-        return redirect()->route('admin.home')->with('status','Đã thêm mới thành công');
+
+        return json_encode([
+            'state' => 'Success',
+            'new_department' => $department
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request)
     {
-        $department = Department::find($request->input('id'));
-        $name = $request->input('name');
-        $type = $request->input('type');
-        $address = $request->input('address');
-        $phone = $request->input('phone');
-        $website = $request->input('website');
+        $department = Department::find($request->department_id);
+        $validator = Validator::make($request->all(), [
+           'name' => 'required|unique:department,name,'.$department->id
+        ]);
+
+        if ($validator->fails()){
+            return json_encode([
+                'state' => 'Fail',
+                'error' => $validator->errors()
+            ]);
+        }
+        $name = $request->name;
+        $type = $request->type;
+        $address = $request->address;
+        $phone = $request->phone;
+        $website = $request->website;
 
         $department->update([
             'name' => $name,
@@ -59,27 +78,24 @@ class DepartmentController extends Controller
             'phone' => $phone,
             'website' => $website
         ]);
-        return redirect()->route('admin.home')->with('status', 'Đã cập nhật thành công');
+        return json_encode([
+            'state' => 'Success',
+            'update_department' => $department
+        ]);
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function delete(Request $request)
     {
-        // $id = $request->input('id');
-        // // Department::destroy($id);
-        // // $department = Department::find($request->input('id'));
-        // if(Department::destroy($id))
-        // {
-        //     echo 'Data Deleted';
-        // }
-        // return $id;
-        // return redirect()->route('admin.home')->with('status','Đã xóa thành công');
-        return $request;
+        $id = $request->id;
+        $department = Department::find($id);
+        Staff::where('department_id','=',$id)->update([
+            'department_id' => 1
+        ]);
+        $department->delete();
+        return json_encode([
+            'state' => 'Success'
+        ]);
     }
 }

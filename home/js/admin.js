@@ -302,10 +302,10 @@ document.addEventListener("DOMContentLoaded", function () {
 				var data = $.parseJSON(this.responseText);
 				if (data.state == "Success"){
 					for (var i = 0; i < data.new_users.length; i++) {
-						console.log(data.new_users[i].username);
-						console.log(data.new_users[i].email);
+						
 					}
 					//data.new_users list cac user moi tao
+					console.log(this.responseText);
 				} else {
 					// xu ly view khi import loi
 					// loi duoc luu trong bien data.error
@@ -417,6 +417,7 @@ document.addEventListener("DOMContentLoaded", function () {
 						deletebutton.setAttribute("class", "btn btn-danger");
 						deletebutton.setAttribute("onclick", "deleteuser(this)");
 						deletebutton.setAttribute("style", "margin: 5px 5px;");
+						deletebutton.setAttribute("data-id", data.new_user.id);
 						var deleteicon = document.createElement("i");
 						deleteicon.setAttribute("class", "fas fa-trash");
 						deletebutton.appendChild(deleteicon);
@@ -467,5 +468,53 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	var sendstaff = document.querySelector(".sendstaff");
 
+	// ajax request create or update new user
+	var departmentform = document.getElementById('departmentform');
+	departmentform.addEventListener('submit',function(e){
+		var action = e.explicitOriginalTarget.name;
+		var request = new XMLHttpRequest();
+		e.preventDefault();
+		var formdata = new FormData(departmentform);
+		formdata.append('name',departmentform.querySelectorAll('input')[1].value);
 
+		if (action == 'update'){
+			request.open('post', route('admin.update.department'));
+			request.send(formdata);
+			request.onreadystatechange = function(){
+				if (this.readyState == 4 && this.status == 200) {
+					data = $.parseJSON(this.responseText);
+					if (data.state == "Success"){
+						// xu ly su kien 
+						// sau khi thay doi thong tin thanh cong
+						// du lieu moi luu trong data.department
+					} else {
+						// xu ly su kien
+						// sau khi thay doi thong tin k thanh cong
+						// loi luu trong data.error
+						
+					}
+					console.log(this.responseText);
+				} else {
+					console.log('error');
+				}
+			}
+		} else {
+			request.open('post',route('admin.add.department'));
+			request.send(formdata);
+			request.onreadystatechange = function(){
+
+				if (this.readyState == 4 && this.status == 200) {
+					data = $.parseJSON(this.responseText);
+					if (data.state == "Success"){
+						// xu ly giao dien khi them thanh cong
+					} else {
+
+						//con cai nay la loi data.error
+					}
+				} else {
+					console.log('error');
+				}
+			}
+		};
+	},false);
 }, false);

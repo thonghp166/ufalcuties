@@ -203,4 +203,14 @@ class UserController extends Controller
             ]);
         }
     }
+
+    public function deleteUser(Request $request)
+    {
+        $id = $request->id;
+        $user = User::find($id);
+        $user->delete();
+        return json_encode([
+            'state' => 'Success'
+        ]);
+    }
 }

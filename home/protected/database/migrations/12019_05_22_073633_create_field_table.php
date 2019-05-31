@@ -18,6 +18,7 @@ class CreateFieldTable extends Migration
             $table->string('name');
             $table->integer('childOf')->nullable();
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

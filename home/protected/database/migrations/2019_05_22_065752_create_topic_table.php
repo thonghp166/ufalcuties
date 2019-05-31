@@ -18,7 +18,9 @@ class CreateTopicTable extends Migration
             $table->string('name');
             $table->string('detail');
             $table->integer('staff_id')->unsigned();
+            $table->foreign('staff_id')->references('id')->on('staff')->onDelete('cascade');
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 

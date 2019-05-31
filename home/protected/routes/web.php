@@ -67,13 +67,11 @@ Route::group(['middleware' => 'CheckAdminLogin', 'prefix' => 'admin'], function(
 	// Control admin's home
 	Route::get('/', 'AdminController@index')->name('admin.home');
 	// Add admin department
-	Route::post('/','DepartmentController@store')->name('admin.add.department');
+	Route::post('/add-department','DepartmentController@add')->name('admin.add.department');
 	// Delete admin department
-	Route::get('/delete','DepartmentController@delete')->name('admin.delete.department');
-	// Delete admin department
-	Route::delete('/delete','DepartmentController@delete')->name('admin.delete.department');
+	Route::get('/delete-department','DepartmentController@delete')->name('admin.delete.department');
 	// Update admin department
-	Route::post('/','DepartmentController@update')->name('admin.update.department');
+	Route::post('/update-department','DepartmentController@update')->name('admin.update.department');
 	// Add admin's field
 	Route::post('/','FieldController@addField')->name('admin.add.field');
 	// Delete field
@@ -81,7 +79,7 @@ Route::group(['middleware' => 'CheckAdminLogin', 'prefix' => 'admin'], function(
 	// Update field by admin
 	Route::post('/','FieldController@updateField')->name('admin.update.field');
 	// Admin delete user
-	Route::post('/','UserController@deleteUser')->name('admin.delete.user');
+	Route::get('/deleteuser','UserController@deleteUser')->name('admin.delete.user');
 	// Admin update user
 	Route::post('/','UserController@updateUser')->name('admin.update.user');
 	// Admin add user from excel table

@@ -21,6 +21,7 @@ class CreateDepartmentTable extends Migration
             $table->string('phone')->nullable();
             $table->string('website')->nullable();
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
 
