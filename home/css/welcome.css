@@ -292,6 +292,7 @@ div#category p.title {
     padding: 0px 20px;
     border: 2px solid #3498db;
     border-radius: 5px;
+    position: relative;
 }
 
 #left select {
@@ -299,6 +300,36 @@ div#category p.title {
     color: white;
     height: 40px;
     
+}
+
+.keyresult {
+    background: white;
+    border-bottom: 2px solid #3498db;
+    border-left: 2px solid #3498db;
+    border-right: 2px solid #3498db;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    z-index: 9;
+    width: 100%;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.keyremove i {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 9;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.keyresult .keyresultrow:hover {
+    background: #3498db;
+    color: white;
 }
 
 .editnormaldepartment {
@@ -797,8 +828,8 @@ nav#bar {
 }
 
 .show {
-    visibility: visible;
-    opacity: 1;
+    visibility: visible!important;
+    opacity: 1!important;
 }
 
 .showbutton {

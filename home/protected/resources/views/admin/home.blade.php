@@ -42,8 +42,8 @@
                                 <td style="width: 10%;">{{$staff->degree}}</td>
                                 <td style="width: 10%;">{{$staff->department->name}}</td>
                                 <td style="width: 10%;">
-                                    <button class="btn btn-primary" onclick="edituser(this)" style="margin: 5px 5px;"><i class="fas fa-edit"></i> Sửa</button>
-                                    <button class="btn btn-danger" style="margin: 5px 5px;"><i class="fas fa-trash"></i> Xóa</button>
+                                    <button class="btn btn-primary" onclick="edituser(this)" style="margin: 5px 5px;"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-danger" style="margin: 5px 5px;"><i class="fas fa-trash"></i></button>
                                 </td>
                             </tr>
                         <?php endforeach ?>
@@ -227,8 +227,8 @@
                                 <td style="width: 10%;">{{$element->phone}}</td>    
                                 <td style="width: 25%;">{{$element->website}}</td>  
                                 <td style="width: 10%;">
-                                    <button class="btn btn-primary" style="margin: 5px 5px;" onclick="editdepartment(this)"><i class="fas fa-edit"></i> Sửa</button>
-                                    <button class="btn btn-danger" style="margin: 5px 5px;"><i class="fas fa-trash"></i> Xóa</button>
+                                    <button class="btn btn-primary" style="margin: 5px 5px;" onclick="editdepartment(this)"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-danger" style="margin: 5px 5px;"><i class="fas fa-trash"></i></button>
                                 </td>
                             </tr>   
                         <?php endforeach ?>                     

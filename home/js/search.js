@@ -1,10 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
 	
-	console.log(allParent);
-	console.log(allId);
-	console.log(idArr);
-	console.log(parentArr);
-	console.log(nameArr);
+	var key = document.getElementById("key");
+	key.focus();
+	key.value = "";
+	
 
 	var fieldparent = document.getElementsByClassName("field");
 	
@@ -26,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		dropdownicon.setAttribute("class", "dropdownicon fas fa-ban");
 		
 		var name = document.createElement("a");
-		name.setAttribute("style", "cursor:pointer");
+		name.setAttribute("style", "cursor:pointer;");
 		name.setAttribute("class", "fieldelement");
 		name.setAttribute("data-id", idArr[i]);
 		name.setAttribute("data-name", nameArr[i]);

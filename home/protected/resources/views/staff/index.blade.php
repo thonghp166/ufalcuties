@@ -10,8 +10,7 @@
 				<div class="col-2" id="left">
 					<div class="float-right">
 						<select id="searchattr" class="custom-select">
-						  <option selected value="0">Tất cả</option>
-						  <option value="1">Lĩnh vực nghiên cứu</option>
+						  <option selected="" value="1">Lĩnh vực nghiên cứu</option>
 						  <option value="2">Đơn vị</option>
 						  <option value="3">Cán bộ</option>
 						</select>
@@ -21,6 +20,10 @@
 					<div class="text-center">
 						<input type="text" class="key" id="key" onkeyup="search(this)" style="width: 100%;" placeholder="Nhập nội dung tìm kiếm">		
 					</div>
+					<div class="keyremove">
+						<i class="fas fa-window-close" style="font-size: 20px; color: gray; cursor: pointer;" onclick="clearkey(this)"></i>
+					</div>
+					<div class="text-center keyresult"></div>
 				</div>
 				<div class="col-2" id="right">
 					<div class="float-left">
@@ -141,6 +144,7 @@
 	}
 </script>
 <script>
+	
 	String.prototype.replaceAll = function(search, replacement) {
 	  		var target = this;
 	  		return target.split(search).join(replacement);
@@ -153,7 +157,11 @@
 	    newrequest.onreadystatechange = function(){
 	    	if (this.readyState == 4 && this.status == 200) {
         		var data = $.parseJSON(this.response);
-        			//xu ly sau khi tim kiem thanh cong
+        			var keyresult = document.querySelector(".keyresult");
+        			keyresult.innerHTML = "";
+        			for (var i = 0; i < data.results.length; i++) {
+        				console.log(data.results[i]);
+        			}
         			//cac du lieu tim kiem duoc luu trong data.results
         		console.log(this.responseText);
         	} else {
@@ -201,18 +209,52 @@
 			newrequest.onreadystatechange = function(){
 		    	if (this.readyState == 4 && this.status == 200) {
 	        		var data = $.parseJSON(this.response);
-	        		//xu ly sau khi tim kiem thanh cong
-	        		//hien thi cac ket qua
-	        		// cac the hien ra phai co cac truong data-id data-name va onclick
-	        		//cac du lieu tim kiem duoc luu trong data.results
-	        		console.log(this.responseText);
+	        		var keyresult = document.querySelector(".keyresult");
+	        		var keyremove = document.querySelector(".keyremove i");
+	        		keyremove.classList.add("show");
+	        		keyresult.classList.add("showlayer");
+	        		keyresult.innerHTML = "";
+        			for (var i = 0; i < data.results.length; i++) {
+        				var row = document.createElement("row");
+        				
+        				var rowcontent = document.createElement("div");
+        				rowcontent.setAttribute("class", "col-12 text-left keyresultrow");
+        				rowcontent.setAttribute("style", "padding: 5px 5px; margin: 5px 0px; cursor: pointer;");
+        				rowcontent.setAttribute("data-id", data.results[i].id);
+        				rowcontent.setAttribute("data-name", data.results[i].name);
+        				rowcontent.setAttribute("onclick", "");
+        				if (attrid == 3) {
+        					rowcontent.innerHTML = data.results[i].name + " - " + data.results[i].code;
+    					} else {
+    						rowcontent.innerHTML = data.results[i].name;
+    					}
+        				
+        				row.appendChild(rowcontent);
+        				keyresult.appendChild(row);
+           			}
+           			console.log(this.responseText);
 	        	} else {
 	        		console.log('error');
 	        	}
 		    }
 		    newrequest.open("GET", route('staff.search.text') + "?id=" + attrid + "&text=" + variable.value, true);
 			newrequest.send();
+		} else {
+			var keyresult = document.querySelector(".keyresult");
+			keyresult.classList.remove("showlayer");
+			keyresult.innerHTML = "";
+			variable.classList.remove("show");
 		}
+	}
+
+	function clearkey (variable) {
+		var key = document.getElementById("key");
+		var keyresult = document.querySelector(".keyresult");
+		var keyremove = document.querySelector(".keyremove i");
+		keyresult.classList.remove("showlayer");
+		keyresult.innerHTML = "";
+		key.value = ""; 
+		keyremove.classList.remove("show");
 	}
 </script>
 @endsection
