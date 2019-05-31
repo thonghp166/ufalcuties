@@ -75,7 +75,12 @@
                           <fieldset>
                             <button type="submit" class="btn btn-primary"> <i class="fas fa-file-upload"></i> Nhập vào</button>
                             <p class="btn btn-secondary" id="cancelexcelbutton" style="cursor: pointer; margin-top: 15px;" > <i class="fas fa-window-close"></i> Hủy</p>
-                          </fieldset>                           
+                          </fieldset>  
+                          <fieldset>
+                            <div class="excelstatus">
+                              
+                            </div>
+                          </fieldset>                         
                         </form>
                         <br />
                         <span id="uploaded_file"></span>
@@ -224,7 +229,7 @@
 
             <div class="row" id="department">
                 <table class="table">
-                    <tbody>                    
+                    <tbody id="departmentbody">                    
                         <?php $count = 1; foreach ($alldepartment as $element): ?>
                             <tr style="text-align: center; width: 100%;">
                                 <td style="width: 5%;"><?php echo $count; $count++; ?></td>    
@@ -327,6 +332,9 @@
                         <button type="submit" name="update" class="btn btn-success editnormaldepartment"> <i class="fas fa-edit"></i> Cập nhật</button>
                         <p class="btn btn-secondary" id="canceldepartmentbutton" style="cursor: pointer; margin-top: 15px;" > <i class="fas fa-window-close"></i> Hủy</p>
                       </div>
+                      <div class="departmentstatus">
+                        
+                      </div>
                   </form>
               </div>
           </div>
@@ -357,7 +365,8 @@
                         </script>
                         <?php if ($element->childOf == 0): ?>
                             <div class="col-12 field field{{$element->id}}" data-id="{{$element->id}}" data-parent="{{$element->childOf}}">
-                                <i class="dropdownicon fas fa-caret-right"></i> {{$element->name}}
+                                <i class="dropdownicon fas fa-caret-right"></i>
+                                <span>{{$element->name}}</span>
                                 <i class="fas fa-plus-square" style="cursor: pointer;" onclick="newfield(this)"></i>
                                 <i class="fas fa-pen-square" style="cursor: pointer;" onclick="editfield(this)"></i>
                                 <i class="fas fa-minus-square" style="cursor: pointer;" onclick="deletefield(this)"></i>  
@@ -486,11 +495,18 @@
       if (this.readyState == 4 && this.status == 200) {
         var data = $.parseJSON(this.response);      
         if (data.state == "Success") {
-          // xu ly giao dien khi xoa thanh cong
-
+          var father = variable.parentNode.parentNode;
+          father.style.display = "none";
+          var row = document.querySelectorAll("#userbody tr");
+          index = 0;
+          for (var i = 0; i < row.length; i++) {
+            if (row[i].style.display != 'none') {
+              index++;
+              row[i].cells[0].innerText = index;
+            }
+          }
         } else {
-          // xu ly khi xoa khon thanh cong
-          // loi luu trong data.error
+          // Xóa lỗi
         }
       } else {
         console.log('error');
@@ -537,11 +553,18 @@
       if (this.readyState == 4 && this.status == 200) {
         var data = $.parseJSON(this.response);      
         if (data.state == "Success") {
-          // xu ly giao dien khi xoa thanh cong
-
+          var father = variable.parentNode.parentNode;
+          father.style.display = "none";
+          var row = document.querySelectorAll("#departmentbody tr");
+          index = 0;
+          for (var i = 0; i < row.length; i++) {
+            if (row[i].style.display != 'none') {
+              index++;
+              row[i].cells[0].innerText = index;
+            }
+          }
         } else {
-          // xu ly khi xoa khong thanh cong
-          // loi luu trong data.error
+          // Xóa không thành công
         }
       } else {
         console.log('error');
@@ -552,23 +575,30 @@
   }
 
   function newfield(varibale){
+    var fieldimport = document.querySelector(".fieldimport"), layer = document.querySelector(".homelayer");
+    fieldimport.classList.add("showimport");
+    layer.classList.add("showlayer");
 
+    var editnormalfield = document.querySelector(".editnormalfield");
+      editnormalfield.classList.remove("showbutton");
+
+      var addnormalfield = document.querySelector(".addnormalfield");
+      addnormalfield.classList.remove("hide");
   }
 
   function editfield(variable) {
     var editnormalfield = document.querySelector(".editnormalfield");
-    editnormalfield.classList.add("hide");
+    editnormalfield.classList.add("showbutton");
 
     var addnormalfield = document.querySelector(".addnormalfield");
-    addnormalfield.classList.add("showbutton");
+    addnormalfield.classList.add("hide");
 
     var father = variable.parentNode;
-    console.log(father);
-
+    
     var fieldname = document.getElementById("fieldname");
     var fieldimport = document.querySelector(".fieldimport");
     var layer = document.querySelector(".homelayer");  
-    fieldname.value = father.childNodes[1].nodeValue;
+    fieldname.value = father.children[1].innerText;
 
     layer.classList.add("showlayer");
     fieldimport.classList.add("showimport");
@@ -581,11 +611,10 @@
       if (this.readyState == 4 && this.status == 200) {
         var data = $.parseJSON(this.response);      
         if (data.state == "Success") {
-          // xu ly giao dien khi xoa thanh cong
-
+          var father = variable.parentNode;
+          father.style.display = "none";
         } else {
-          // xu ly khi xoa khong thanh cong
-          // loi luu trong data.error
+          // Xóa lỗi
         }
       } else {
         console.log('error');
