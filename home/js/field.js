@@ -40,22 +40,73 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	function checkedEvent (checkbox) {
 		var id = checkbox.parentNode.getAttribute("data-id");
-			for (var i = 0; i < allId.length; i++) {
-				var _checkbox = document.getElementById("_" + allId[i]);
-				var parent = _checkbox.parentNode.getAttribute("data-parent");
-				if (parent == id) {
-					_checkbox.checked = checkbox.checked;
-					checkedEvent(_checkbox);
+		var child = 0;
+		for (var i = 0; i < allId.length; i++) {
+			var _checkbox = document.getElementById("_" + allId[i]);
+			var parent = _checkbox.parentNode.getAttribute("data-parent");
+			if (parent == id) {
+				child++;
+				_checkbox.checked = checkbox.checked;
+				checkedEvent(_checkbox);
 			}
 		} 
+	}
+
+	function checkedFatherEvent (checkbox) {
+		var fatherid = checkbox.parentNode.getAttribute("data-parent");
+		if (fatherid != "0") {
+			var father = document.getElementById("_" + fatherid);
+			if (childCheckedEvent(father) > 0) {
+				if (countChild(father) == childCheckedEvent(father)) {
+					father.checked = true;
+					father.indeterminate = false;
+				} else {
+					father.checked = false;
+					father.indeterminate = true;
+				}
+			} else {
+				father.checked = false;
+				father.indeterminate = false;
+			}
+			checkedFatherEvent(father);
+		}
+	}
+
+	function countChild (checkbox) {
+		var id = checkbox.parentNode.getAttribute("data-id");
+		var child = 0;
+		for (var i = 0; i < allId.length; i++) {
+			var _checkbox = document.getElementById("_" + allId[i]);
+			var parent = _checkbox.parentNode.getAttribute("data-parent");
+			if (parent == id) {
+				child++;
+			}
+		}  
+		return child;
+	}
+
+	function childCheckedEvent (checkbox) {
+		var id = checkbox.parentNode.getAttribute("data-id");
+		var childCheck = 0;
+		for (var i = 0; i < allId.length; i++) {
+			var _checkbox = document.getElementById("_" + allId[i]);
+			var parent = _checkbox.parentNode.getAttribute("data-parent");
+			if (parent == id) {
+				if (_checkbox.checked == true) {
+					childCheck++;
+				}
+			}
+		} 
+		return childCheck;
 	}
 
 	for (var i = 0; i < allId.length; i++) {
 		
 		var checkbox = document.getElementById("_" + allId[i]);
-			checkbox.onchange = function () {
-				checkedEvent(this);
-			}
+		checkbox.onchange = function () {
+			checkedEvent(this);
+			checkedFatherEvent(this);
+		}
 
 		var result = find(allId[i], allParent);
 		if (result == true) {
