@@ -7,7 +7,7 @@
 	<div class="searchbar">
 		<div class="container">
 			<div class="row" id="search">
-				<div class="col-2" id="left">
+				<div class="col-3" id="left">
 					<div class="float-right">
 						<select id="searchattr" class="custom-select">
 						  <option selected="" value="1">Lĩnh vực nghiên cứu</option>
@@ -16,7 +16,7 @@
 						</select>
 					</div>
 				</div>
-				<div class="col-8" id="center">					
+				<div class="col-7" id="center">					
 					<div class="text-center">
 						<input type="text" class="key" id="key" onkeyup="search(this)" style="width: 100%;" placeholder="Nhập nội dung tìm kiếm">		
 					</div>
@@ -204,35 +204,35 @@
 	function search(variable){
 		var attrid = document.getElementById('searchattr').value;
 		var text = variable.value.trim();
-		if (text != ''){
+		if (text.length > 0){
 			var newrequest = new XMLHttpRequest();
 			newrequest.onreadystatechange = function(){
 		    	if (this.readyState == 4 && this.status == 200) {
 	        		var data = $.parseJSON(this.response);
 	        		var keyresult = document.querySelector(".keyresult");
-	        		var keyremove = document.querySelector(".keyremove i");
-	        		keyremove.classList.add("show");
-	        		keyresult.classList.add("showlayer");
-	        		keyresult.innerHTML = "";
-        			for (var i = 0; i < data.results.length; i++) {
-        				var row = document.createElement("row");
-        				
-        				var rowcontent = document.createElement("div");
-        				rowcontent.setAttribute("class", "col-12 text-left keyresultrow");
-        				rowcontent.setAttribute("style", "padding: 5px 5px; margin: 5px 0px; cursor: pointer;");
-        				rowcontent.setAttribute("data-id", data.results[i].id);
-        				rowcontent.setAttribute("data-name", data.results[i].name);
-        				rowcontent.setAttribute("onclick", "");
-        				if (attrid == 3) {
-        					rowcontent.innerHTML = data.results[i].name + " - " + data.results[i].code;
-    					} else {
-    						rowcontent.innerHTML = data.results[i].name;
-    					}
-        				
-        				row.appendChild(rowcontent);
-        				keyresult.appendChild(row);
-           			}
-           			console.log(this.responseText);
+		        	keyresult.innerHTML = "";
+	        		if (data.results.length > 0) {
+	        			var keyremove = document.querySelector(".keyremove i");
+		        		keyremove.classList.add("show");
+		        		keyresult.classList.add("showlayer");
+		        		for (var i = 0; i < data.results.length; i++) {
+	        				var row = document.createElement("row");	        				
+	        				var rowcontent = document.createElement("div");
+	        				rowcontent.setAttribute("class", "col-12 text-left keyresultrow");
+	        				rowcontent.setAttribute("style", "padding: 5px 5px; margin: 5px 0px; cursor: pointer;");
+	        				rowcontent.setAttribute("data-id", data.results[i].id);
+	        				rowcontent.setAttribute("data-name", data.results[i].name);
+	        				rowcontent.setAttribute("onclick", "");
+	        				if (attrid == 3) {
+	        					rowcontent.innerHTML = data.results[i].name + " - " + data.results[i].code;
+	    					} else {
+	    						rowcontent.innerHTML = data.results[i].name;
+	    					}	        				
+	        				row.appendChild(rowcontent);
+	        				keyresult.appendChild(row);
+	           			}
+	        		}
+	        		console.log(this.responseText);
 	        	} else {
 	        		console.log('error');
 	        	}
@@ -243,18 +243,18 @@
 			var keyresult = document.querySelector(".keyresult");
 			keyresult.classList.remove("showlayer");
 			keyresult.innerHTML = "";
-			variable.classList.remove("show");
+			var keyremove = document.querySelector(".keyremove i");
+			keyremove.classList.remove("show");
 		}
 	}
 
 	function clearkey (variable) {
 		var key = document.getElementById("key");
 		var keyresult = document.querySelector(".keyresult");
-		var keyremove = document.querySelector(".keyremove i");
 		keyresult.classList.remove("showlayer");
 		keyresult.innerHTML = "";
 		key.value = ""; 
-		keyremove.classList.remove("show");
+		variable.classList.remove("show");
 	}
 </script>
 @endsection

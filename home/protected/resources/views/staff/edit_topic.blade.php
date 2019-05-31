@@ -44,12 +44,8 @@
                   <?php $count = 1; foreach ($staff->topics as $element): ?>
                     <tr style="width: 100%;">
                       <td style="width: 15%;"><?php echo $count; $count++;?><script> count = <?php echo $count; ?></script></td>
-                      <td style="width: 20%;">
-                        <textarea disabled="" style="width: 100%; height: 100px; padding: 5px 5px;">{{$element->name}}</textarea>
-                      </td>
-                      <td style="width: 35%;">
-                        <textarea disabled="" style="width: 100%; height: 100px; padding: 5px 5px;">{{$element->detail}}</textarea>
-                      </td>
+                      <td style="width: 20%;">{{$element->name}}</td>
+                      <td style="width: 35%;">{{$element->detail}}</td>
                       <td style="width: 30%;">
                         <span class="btn btn-primary edit" data-id="{{$element->id}}" data-name="{{$element->name}}" data-detail="{{$element->detail}}" style="color: white!important; font-weight: normal; font-style: italic; cursor: pointer; margin: 5px 5px;" onclick="edit(this)"><i class="fas fa-pen-square"></i> Sửa</span>
                         <span class="btn btn-danger delete" data-id="{{$element->id}}" data-name="{{$element->name}}" data-detail="{{$element->detail}}" style="color: white!important; font-weight: normal; font-style: italic; cursor: pointer; margin: 5px 5px;" onclick="remove(this)"><i class="fas fa-trash"></i> Xóa</span>
