@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	var workunitcontent = document.querySelector(".workunitcontent .content");
 	var count = workunitcontent.childElementCount;
-	var width = count*210 + 20;
+	var width = count*410 + 20;
 	workunitcontent.style.width = width + "px";
 
 	var fieldparent = document.getElementsByClassName("field");

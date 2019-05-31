@@ -3,7 +3,10 @@
     padding: 0px;
 }
 
-
+.teachercontent {
+    background: lightgray;
+    padding: 20px 20px;
+}
 
 .workgo a {
     position: absolute;
@@ -136,13 +139,11 @@ p.address {
 p.email {
     font-size: 18px;
     color: #3498db;
-    height: 20px;
 }
 
 p.phone {
     font-size: 18px;
     color: #3498db;
-    height: 20px;
 }
 
 p.work_unit {
@@ -160,7 +161,6 @@ p.staff_type {
 p.code {
     font-size: 18px;
     color: #3498db;
-    height: 30px;
 }
 
 p.unique {
@@ -490,7 +490,6 @@ img.img-fluid.flag {
 }
 
 .copyright {
-    margin-top: 150px;
     background: #000000bf;
     color: #ffffff;
     padding: 40px 0px;
@@ -580,7 +579,7 @@ input#resetemail {
 
 .unit {
     height: 350px;
-    width: 200px;
+    width: 400px;
     margin-right: 10px;
     border: 1px solid gray;
     padding: 10px 10px;

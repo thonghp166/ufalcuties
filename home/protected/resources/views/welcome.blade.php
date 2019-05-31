@@ -61,11 +61,11 @@
         <div class="text-left unit">
           <div class="worklayer"></div>
           <div class="workgo"><a href="" class="btn btn-success"><i class="far fa-hand-point-right"></i></a></div>
-          <p class="departmentname">Đơn vị: {{$element->name}}</p>
-          <p class="departmenttype">Loại đơn vị: {{$element->type}}</p>
-          <p class="departmentaddress">Địa chỉ: {{$element->address}}</p>
-          <p class="departmentphone">Số điện thoại: {{$element->phone}}</p>
-          <p class="departmentwebsite">Website: {{$element->website}}</p>
+          <p class="departmentname"><i class="fas fa-id-card"></i> Đơn vị: {{$element->name}}</p>
+          <p class="departmenttype"><i class="fas fa-window-restore"></i> Loại đơn vị: {{$element->type}}</p>
+          <p class="departmentaddress"><i class="fas fa-building"></i> Địa chỉ: {{$element->address}}</p>
+          <p class="departmentphone"><i class="fas fa-phone"></i> Số điện thoại: {{$element->phone}}</p>
+          <p class="departmentwebsite"><i class="fas fa-paper-plane"></i> Website: {{$element->website}}</p>
         </div>
       <?php endforeach ?>
   </div>
@@ -117,26 +117,30 @@
       </div>
       <div class="col-6"></div>
     </div>
-    <div class="row">
-      <?php foreach ($staff as $element): ?>
-        <div class="col-4">
-          <div class="text-left item">
-            <div class="avatar">
-              <img src="{{URL::asset('images/CNTT.jpg')}}" alt="" class="img-fuild">
-            </div>
-            <div class="transperantlayer"></div>
-            <div class="content">
-              <p class="unique">{{$element->degree}} {{$element->name}}</p>
-              <p class="code">Mã cán bộ: {{$element->code}}</p>
-              <p class="phone">Số điện thoại: {{$element->phone}}</p>
-              <p class="email">VNU Email: {{$element->vnu_email}}</p>
-            </div>
-            <div class="more">
-              <a href="{{route('staff.info',['account' => $element->account])}}">Chi tiết</a>
+  </div>
+  <div class="teachercontent">
+    <div class="container">
+      <div class="row">
+        <?php foreach ($staff as $element): ?>
+          <div class="col-4">
+            <div class="text-left item">
+              <div class="avatar">
+                <img src="http://ufaculties.vn/{{$element->img_url}}" alt="" class="img-fuild">
+              </div>
+              <div class="transperantlayer"></div>
+              <div class="content">
+                <p class="unique">{{$element->degree}} {{$element->name}}</p>
+                <p class="code"><i class="fas fa-user"></i> Mã cán bộ: {{$element->code}}</p>
+                <p class="phone"><i class="fas fa-phone"></i> Số điện thoại: {{$element->phone}}</p>
+                <p class="email"><i class="fas fa-envelope"></i> VNU Email: {{$element->vnu_email}}</p>
+              </div>
+              <div class="more">
+                <a href="{{route('staff.info',['account' => $element->account])}}">Chi tiết</a>
+              </div>
             </div>
           </div>
-        </div>
-      <?php endforeach ?>
+        <?php endforeach ?>
+      </div>
     </div>
   </div>
 </div>

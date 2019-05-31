@@ -148,7 +148,7 @@
 	              	<div class="row">
 	              		<div class="col-1"></div>
 	              		<div class="col-11 text-left">
-	              			<p><i class="fas fa-check-circle" style="color: #27ae60;"></i> {{$element->name}}</p>
+	              			<p><i class="fas fa-check-circle" style="color: #27ae60;"></i> {{$element->name}} - {{$element->detail}}</p>
 	              		</div>
 	              	</div>
 	              <?php endforeach ?>
