@@ -68,9 +68,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		request.onreadystatechange = function(){
 			if (this.readyState == 4 && this.status == 200) {
-				$data = $.parseJSON(this.responseText);
+				var data = JSON.parse(this.responseText);
 				var status = document.querySelector(".status");
-				if ($data.state == "Success"){
+				if (data.state == "Success"){
 					status.style.display = "block";
 					status.innerHTML = "<div>" + "Cập nhật thông tin thành công    <i class='fas fa-window-close' onclick='hide(this)'></i></div>";
 					status.style.background = "#27ae60";
@@ -97,11 +97,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		request.onreadystatechange = function(){
 			if (this.readyState == 4 && this.status == 200) {
-				$data = $.parseJSON(this.responseText);
+				var data = JSON.parse(this.responseText);
 				var avatarimage = document.getElementById("avatarimage");
 				var status = document.querySelector(".status");
 				var layer = document.querySelector(".layer"), avatar = document.querySelector(".changeavatar");
-				if ($data.state == "Success"){
+				if (data.state == "Success"){
 					var imageresponse = JSON.parse(this.responseText);
 					avatarimage.setAttribute("src", "http://ufaculties.vn/"+imageresponse.img_url);
 				} else {
@@ -124,11 +124,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		request.onreadystatechange = function(){
 			if (this.readyState == 4 && this.status == 200) {
-				$data = $.parseJSON(this.responseText);
+				var data = JSON.parse(this.responseText);
 				var avatarimage = document.getElementById("avatarimage");
 				var status = document.querySelector(".status");
 				var layer = document.querySelector(".layer"), avatar = document.querySelector(".changeavatar");
-				if ($data.state == "Success"){
+				if (data.state == "Success"){
 					avatarimage.setAttribute("src", "http://ufaculties.vn/images/avatar/defaultAvatar.png");
 				} else {
 					status.style.display = "block";

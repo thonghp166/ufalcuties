@@ -4,11 +4,16 @@ document.addEventListener("DOMContentLoaded", function () {
 	key.focus();
 	key.value = "";
 	
-
 	var fieldparent = document.getElementsByClassName("field");
 	
 	for (var i = 0; i < fieldparent.length; i++) {
 		fieldparent[i].style.marginLeft = '0px';
+	}
+
+	var content = document.querySelector(".content");
+	content.onclick = function () {
+		var keyresult = document.querySelector(".keyresult");
+		keyresult.classList.remove("showlayer");
 	}
 
 	for (var i = 0; i < idArr.length; i++) {

@@ -51,19 +51,11 @@ document.addEventListener("DOMContentLoaded", function () {
 					col1.appendChild(text1);
 
 					var col2 = document.createElement("td");
-					var area2 = document.createElement("textarea");
-					area2.setAttribute("disabled", "");
-					area2.setAttribute("style", "width: 100%; height: 100px; padding: 5px 5px;");
-					area2.innerText = name.value;
-					col2.appendChild(area2);
-
+					col2.innerText = name.value;
+					
 					var col3 = document.createElement("td");
-					var area3 = document.createElement("textarea");
-					area3.setAttribute("disabled", "");
-					area3.setAttribute("style", "width: 100%; height: 100px; padding: 5px 5px;");
-					area3.innerText = detail.value;
-					col3.appendChild(area3);
-
+					col3.innerText = detail.value;
+					
 					var col4 = document.createElement("td");
 					
 					var editbutton = document.createElement("span");
@@ -153,8 +145,8 @@ document.addEventListener("DOMContentLoaded", function () {
 					for (var i = 0; i < editbutton.length; i++) {
 						var thisname = editbutton[i].getAttribute("data-id");
 						if (thisname == id.value) {
-							editbutton[i].parentNode.parentNode.cells[1].innerHTML = "<td><textarea disabled='' style='width: 100%; height: 100px; padding: 5px 5px;'>"+topic.value+"</textarea></td>";
-							editbutton[i].parentNode.parentNode.cells[2].innerHTML = "<td><textarea disabled='' style='width: 100%; height: 100px; padding: 5px 5px;'>"+detail.value+"</textarea></td>";
+							editbutton[i].parentNode.parentNode.cells[1].innerHTML = "<td>"+topic.value+"</td>";
+							editbutton[i].parentNode.parentNode.cells[2].innerHTML = "<td>"+detail.value+"</td>";
 							editbutton[i].setAttribute("data-name", name.value);
 							editbutton[i].setAttribute("data-detail", detail.value);
 						}
