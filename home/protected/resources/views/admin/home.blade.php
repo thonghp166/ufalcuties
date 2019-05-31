@@ -38,7 +38,7 @@
                                 <td style="width: 10%;">{{$staff->name}}</td>
                                 <td style="width: 10%;">{{$staff->account}}</td>
                                 <td style="width: 25%;">{{$staff->vnu_email}}</td>
-                                <td style="width: 10%;">{{$staff->type}}</td>
+                                <td style="width: 10%;">{{$staff->staff_type}}</td>
                                 <td style="width: 10%;">{{$staff->degree}}</td>
                                 <td style="width: 10%;">{{$staff->department->name}}</td>
                                 <td style="width: 10%;">
@@ -180,8 +180,8 @@
                               </div>
                             </fieldset>
                             <div class="text-center">
-                              <button type="submit" class="btn btn-primary sendstaff"> <i class="fas fa-paper-plane"></i> Gửi</button>
-                              <button type="submit" class="btn btn-success editstaff"> <i class="fas fa-edit"></i> Cập nhật</button>
+                              <button type="submit" name="create" class="btn btn-primary sendstaff"> <i class="fas fa-paper-plane"></i> Gửi</button>
+                              <button type="submit" name="update" class="btn btn-success editstaff"> <i class="fas fa-edit"></i> Cập nhật</button>
                               <p class="btn btn-secondary" id="cancelnormalbutton" style="cursor: pointer; margin-top: 15px;" > <i class="fas fa-window-close"></i> Hủy</p>
                             </div>
                             <div class="status text-center">

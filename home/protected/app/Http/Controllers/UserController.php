@@ -26,17 +26,12 @@ class UserController extends Controller
         return view('user.profile', ['user' => User::findOrFail($id)]);
     }
 
-    public function create()
-    {
-        return view('user.create');
-    }
-
     public function addUser(Request $request)
     {
         $validator = Validator::make($request->all(), [
            'email' => 'required|email|unique:users',
-           'account' => 'required|string|max:50',
-            'code' => 'required|unique:staff'
+           'account' => 'required|unique:staff|string|max:50',
+           'code' => 'required|unique:staff'
         ]);
 
         if ($validator->fails()){
@@ -61,7 +56,7 @@ class UserController extends Controller
             $account = $username;
             $staff_type =  $request->staff_type;
             $degree = $request->degree;
-            $work_unit = $request->work_unit;
+            $department_id = $request->work_unit;
             $staff_id = $user->id;
 
             $staff = Staff::create([
@@ -71,7 +66,7 @@ class UserController extends Controller
                 'account' => $account,
                 'staff_type' => $staff_type,
                 'degree' => $degree,
-                'work_unit' => $work_unit,
+                'department_id' => $department_id,
                 'user_id' => $staff_id,
             ]);
             return json_encode([
@@ -163,8 +158,56 @@ class UserController extends Controller
         return true;
     }
 
-    public function updateUser()
+    public function updateUser(Request $request)
     {
+        dd($request->all());
+        // $staff = Staff::where('code','=',$request->code);
+        // $user = 
+        // $validator = Validator::make($request->all(), [
+        //    'email' => 'required|email|unique:users',
+        //    'account' => 'required|unique:staff|string|max:50',
+        //    'code' => 'required|unique:staff'
+        // ]);
 
+        // if ($validator->fails()){
+        //     return json_encode([
+        //         'state' => 'Fail',
+        //         'error' => 'Thông tin không đúng định dạng'
+        //     ]);
+        // } else {
+        //     $email = $request->email;
+        //     $username = $request->account;
+        //     $password = bcrypt('12345678');
+
+        //     $user = User::create([
+        //         'email' => $email,
+        //         'username' => $username,
+        //         'password' => $password,
+        //     ]);
+
+        //     $name = $request->name;
+        //     $code = $request->code;
+        //     $vnu_email = $email;
+        //     $account = $username;
+        //     $staff_type =  $request->staff_type;
+        //     $degree = $request->degree;
+        //     $department_id = $request->work_unit;
+        //     $staff_id = $user->id;
+
+        //     $staff = Staff::create([
+        //         'name' => $name,
+        //         'code' => $code,
+        //         'vnu_email' => $vnu_email,
+        //         'account' => $account,
+        //         'staff_type' => $staff_type,
+        //         'degree' => $degree,
+        //         'department_id' => $department_id,
+        //         'user_id' => $staff_id,
+        //     ]);
+        //     return json_encode([
+        //         'state' => 'Success',
+        //         'new_user' => $user
+        //     ]);
+        // }
     }
 }
