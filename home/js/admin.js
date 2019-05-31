@@ -331,8 +331,13 @@ document.addEventListener("DOMContentLoaded", function () {
 				if (this.readyState == 4 && this.status == 200) {
 					data = $.parseJSON(this.responseText);
 					if (data.state == "Success"){
-
+						// xu ly su kien 
+						// sau khi thay doi thong tin thanh cong
+						// du lieu moi luu trong data.user
 					} else {
+						// xu ly su kien
+						// sau khi thay doi thong tin k thanh cong
+						// loi luu trong data.error
 						
 					}
 					console.log(this.responseText);
@@ -402,7 +407,6 @@ document.addEventListener("DOMContentLoaded", function () {
 						editbutton.setAttribute("class", "btn btn-primary");
 						editbutton.setAttribute("onclick", "edituser(this)");
 						editbutton.setAttribute("style", "margin: 5px 5px;");
-						console.log(data.new_user.id);
 						editbutton.setAttribute("data-id", data.new_user.id);
 						var editicon = document.createElement("i");
 						editicon.setAttribute("class", "fas fa-edit");

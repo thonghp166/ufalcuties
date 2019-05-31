@@ -146,7 +146,6 @@ class UserController extends Controller
                 'id' => $user->id
             ];
             return $account_info;
-            // return json_encode($account_info);
         } else {
             return null;
         }
@@ -160,54 +159,48 @@ class UserController extends Controller
 
     public function updateUser(Request $request)
     {
-        dd($request->all());
-        // $staff = Staff::where('code','=',$request->code);
-        // $user = 
-        // $validator = Validator::make($request->all(), [
-        //    'email' => 'required|email|unique:users',
-        //    'account' => 'required|unique:staff|string|max:50',
-        //    'code' => 'required|unique:staff'
-        // ]);
+        $user = User::where('id','=',$request->user_id)->first();
+        $staff = $user->staff;
+        $validator = Validator::make($request->all(), [
+           'email' => 'required|email|unique:users,email,'.$user->id,
+           'account' => 'required|string|max:50|unique:staff,account,'.$staff->id,
+           'code' => 'required|unique:staff,code,'.$staff->id
+        ]);
 
-        // if ($validator->fails()){
-        //     return json_encode([
-        //         'state' => 'Fail',
-        //         'error' => 'Thông tin không đúng định dạng'
-        //     ]);
-        // } else {
-        //     $email = $request->email;
-        //     $username = $request->account;
-        //     $password = bcrypt('12345678');
+        if ($validator->fails()){
+            return json_encode([
+                'state' => 'Fail',
+                'error' => $validator->errors()
+            ]);
+        } else {
+            $email = $request->email;
+            $username = $request->account;
+            $user->update([
+                'email' => $email,
+                'username' => $username
+            ]);
 
-        //     $user = User::create([
-        //         'email' => $email,
-        //         'username' => $username,
-        //         'password' => $password,
-        //     ]);
+            $name = $request->name;
+            $code = $request->code;
+            $vnu_email = $email;
+            $account = $username;
+            $staff_type =  $request->staff_type;
+            $degree = $request->degree;
+            $department_id = $request->work_unit;
 
-        //     $name = $request->name;
-        //     $code = $request->code;
-        //     $vnu_email = $email;
-        //     $account = $username;
-        //     $staff_type =  $request->staff_type;
-        //     $degree = $request->degree;
-        //     $department_id = $request->work_unit;
-        //     $staff_id = $user->id;
-
-        //     $staff = Staff::create([
-        //         'name' => $name,
-        //         'code' => $code,
-        //         'vnu_email' => $vnu_email,
-        //         'account' => $account,
-        //         'staff_type' => $staff_type,
-        //         'degree' => $degree,
-        //         'department_id' => $department_id,
-        //         'user_id' => $staff_id,
-        //     ]);
-        //     return json_encode([
-        //         'state' => 'Success',
-        //         'new_user' => $user
-        //     ]);
-        // }
+            $staff->update([
+                'name' => $name,
+                'code' => $code,
+                'vnu_email' => $vnu_email,
+                'account' => $account,
+                'staff_type' => $staff_type,
+                'degree' => $degree,
+                'department_id' => $department_id
+            ]);
+            return json_encode([
+                'state' => 'Success',
+                'update_user' => $user
+            ]);
+        }
     }
 }
