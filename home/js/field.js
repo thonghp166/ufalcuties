@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			if (parent == id) {
 				child++;
 				_checkbox.checked = checkbox.checked;
+				_checkbox.indeterminate = checkbox.indeterminate;
 				checkedEvent(_checkbox);
 			}
 		} 
