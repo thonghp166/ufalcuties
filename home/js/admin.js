@@ -79,6 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		
 		var deletebutton = document.createElement("i");
 		deletebutton.setAttribute("class", "fas fa-minus-square");
+		deletebutton.setAttribute("onclick", "deletefield(this)");
 		
 		field.appendChild(dropdownicon);
 		field.appendChild(text);

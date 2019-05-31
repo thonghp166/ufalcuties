@@ -75,7 +75,7 @@ Route::group(['middleware' => 'CheckAdminLogin', 'prefix' => 'admin'], function(
 	// Add admin's field
 	Route::post('/','FieldController@addField')->name('admin.add.field');
 	// Delete field
-	Route::post('/','FieldController@deleteField')->name('admin.delete.field');
+	Route::get('/delete-field','FieldController@delete')->name('admin.delete.field');
 	// Update field by admin
 	Route::post('/','FieldController@updateField')->name('admin.update.field');
 	// Admin delete user
