@@ -51,10 +51,11 @@ class HomeController extends Controller
     public function searchtype($type,$name)
     {
       $name = str_replace('+', ' ', $name);
+      $staff = Staff::all();
       $results = [];
       switch ($type) {
         case 'all':
-          
+          $results = $staff;
           break;
         case 'field':
           $results = $this->searchByField($name);
@@ -63,16 +64,14 @@ class HomeController extends Controller
           $results = $this->searchByDepartment($name);
           break;
       }
-      $staff = Staff::all();
       $field = Field::all();
       $department = Department::where('name','!=','Không')->get();
-      return $results;
       return view('staff.index')-> with(compact('department'))
                                 -> with(compact('field'))
                                 -> with(compact('staff'))
-                                ->with(compact('type'))
-                                ->with(compact('name'))
-                                ->with(compact('results'));
+                                -> with(compact('type'))
+                                -> with(compact('name'))
+                                -> with(compact('results'));
     }
 
     private function searchByField($name)
