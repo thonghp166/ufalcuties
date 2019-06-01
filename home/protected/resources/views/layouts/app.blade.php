@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="{{URL::asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{URL::asset('css/welcome.css')}}">
     <link rel="stylesheet" href="{{URL::asset('css/all.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('css/swiper.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('css/welcome-swiper.css')}}">
 </head>
 <body>
     <div class="menubar">

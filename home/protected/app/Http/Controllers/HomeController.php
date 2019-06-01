@@ -27,6 +27,16 @@ class HomeController extends Controller
                                -> with(compact('staff'));
     }
 
+    public function test()
+    {
+      $staff = Staff::all();
+      $field = Field::all();
+      $department = Department::all();
+      return view('test') -> with(compact('department'))
+                             -> with(compact('field'))
+                             -> with(compact('staff'));
+    }
+
     public function search()
     {
         $staff = Staff::all();
@@ -46,11 +56,6 @@ class HomeController extends Controller
       return view('staff.index')-> with(compact('department'))
                                 -> with(compact('field'))
                                 -> with(compact('staff'));
-    }
-
-    public function test()
-    {
-      return view('test');
     }
 
     public function searchByField(Request $request)
