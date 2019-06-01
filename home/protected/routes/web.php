@@ -79,13 +79,13 @@ Route::group(['middleware' => 'CheckAdminLogin', 'prefix' => 'admin'], function(
 	// Update field by admin
 	Route::post('/update-field','FieldController@update')->name('admin.update.field');
 	// Admin delete user
-	Route::get('/deleteuser','UserController@deleteUser')->name('admin.delete.user');
+	Route::get('/delete-user','UserController@deleteUser')->name('admin.delete.user');
 	// Admin update user
 	Route::post('/','UserController@updateUser')->name('admin.update.user');
 	// Admin add user from excel table
-	Route::post('/import','UserController@importExcel')->name('admin.add.user.excel');
+	Route::post('/import-user','UserController@importExcel')->name('admin.add.user.excel');
 	// Admin add user from data excel
-	Route::post('/adduser','UserController@addUser')->name('admin.add.user');
+	Route::post('/add-user','UserController@addUser')->name('admin.add.user');
 });
 
 // View in home
@@ -93,9 +93,5 @@ Route::get('/test',[
 	'as' => 'test',
 	'uses' => 'HomeController@test'
 ]);
-// Import file Excel into database
-Route::post('/test',[
-	'as' => 'import',
-	'uses' => 'UserController@importExcel'
-]);
+
 

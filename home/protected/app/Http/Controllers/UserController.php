@@ -143,7 +143,8 @@ class UserController extends Controller
                 'username' => $username,
                 'email' => $email,
                 'name' => $name,
-                'id' => $user->id
+                'id' => $user->id,
+                'code' => 'NEW'.$user->id
             ];
             return $account_info;
         } else {
