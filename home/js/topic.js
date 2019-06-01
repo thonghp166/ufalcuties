@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 					var updatetopic = document.querySelector(".updatetopic");
 					updatetopic.classList.remove("showbutton");
-					name.value = "";s
+					name.value = "";
 					detail.value = "";
 				}
 			} else {

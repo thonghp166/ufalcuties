@@ -62,6 +62,40 @@
     transition: 0.4s;
 }
 
+.excelstatus {
+    margin-top: 30px; 
+    color: white; 
+    font-size: 20px;    
+    padding: 5px 10px;
+}
+
+.excelstatus i:hover {
+    cursor: pointer;
+    color: black;
+    transform: scale(1.2);
+}
+
+.excelstatus i {
+    transition: 0.4s;
+}
+
+.departmentstatus {
+    margin-top: 30px; 
+    color: white; 
+    font-size: 20px;    
+    padding: 5px 10px;
+}
+
+.departmentstatus i:hover {
+    cursor: pointer;
+    color: black;
+    transform: scale(1.2);
+}
+
+.departmentstatus i {
+    transition: 0.4s;
+}
+
 
 .showlayer, .showimport {
     visibility: visible!important;
@@ -332,11 +366,12 @@ div#category p.title {
     position: relative;
 }
 
-#left select {
+#departmentselect {
     background: #2c3e50;
     color: white;
     height: 40px;
-    
+    text-align: right;
+    width: 60%;    
 }
 
 .keyresult {

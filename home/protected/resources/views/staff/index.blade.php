@@ -7,15 +7,7 @@
 	<div class="searchbar">
 		<div class="container">
 			<div class="row" id="search">
-				<div class="col-3" id="left">
-					<div class="float-right">
-						<select id="searchattr" class="custom-select">
-						  <option selected="" value="1">Lĩnh vực nghiên cứu</option>
-						  <option value="2">Đơn vị</option>
-						  <option value="3">Cán bộ</option>
-						</select>
-					</div>
-				</div>
+				<div class="col-3" id="left"></div>
 				<div class="col-7" id="center">					
 					<div class="text-center">
 						<input type="text" class="key" id="key" onkeyup="search(this)" style="width: 100%;" placeholder="Nhập nội dung tìm kiếm">		
@@ -32,19 +24,26 @@
 				</div>
 			</div>
 			<div class="row" id="category">
-				<div class="col-6 text-center department">
-					<p class="title" onclick="contentprocess('department')">
-						Đơn vị  <i class="fas fa-caret-down"></i>
-					</p>
-					<div class="content">
-						<?php foreach ($department as $element): ?>
-							<a style="cursor: pointer;" data-id="{{$element->id}}" data-name="{{$element->name}}" class="departmentelement"
-								onclick="searchDepartment(this)">{{$element->name}}</a>
-						<?php endforeach ?>
-					</div>
+				<div class="col-6 text-right department">
+					<select id="departmentselect" class="custom-select">
+					  <option selected="" value="1">Đơn vị</option>
+					  <?php foreach ($department as $element): ?>
+					  	<option value="{{$element->id}}">{{$element->name}}</option>
+					  <?php endforeach ?>
+					  <option value="2">Đơn vị</option>
+					  <option value="3">Cán bộ</option>
+					</select>
 				</div>
-				<div class="col-6 text-center fields">
-					<p class="title" onclick="contentprocess('fields')">
+				<div class="col-6 text-left fields">
+					<select id="fieldselect" class="custom-select">
+					  <option selected="" value="1">Đơn vị</option>
+					  <?php foreach ($department as $element): ?>
+					  	<option value="{{$element->id}}">{{$element->name}}</option>
+					  <?php endforeach ?>
+					  <option value="2">Đơn vị</option>
+					  <option value="3">Cán bộ</option>
+					</select>
+					<!-- <p class="title" onclick="contentprocess('fields')">
 						Lĩnh vực nghiên cứu  <i class="fas fa-caret-down"></i>
 					</p>
 					<div class="content">
@@ -75,7 +74,7 @@
 		                        <?php endif ?>
 		                    <?php endforeach ?>
 						</div>
-					</div>					
+					</div>	 -->				
 				</div>
 			</div>
 		</div>
