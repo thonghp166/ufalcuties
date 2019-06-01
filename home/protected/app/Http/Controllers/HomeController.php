@@ -74,48 +74,71 @@ class HomeController extends Controller
                                 -> with(compact('results'));
     }
 
-    private function searchByField($name)
+    private function searchByField($name,$id)
     {
         $field = Field::where('name','=',$name)->first();
         return $staff_list = $field->staffs; 
     }
 
-    private function searchByDepartment($name)
+    private function searchAll($text)
     {
+      return Staff::where('name','LIKE','%' .$text . '%')->get();
+    }
+
+    private function searchByDepartment($name,$id)
+    {
+        
         $department = Department::where('name','=',$name)->first();
         return $staff_list = $department->staffs;
     }
 
     public function searchText(Request $request)
     {
-      
-      $id = $request->id;
+      dd($request->all());
+      $field_id = $request->field;
+      $department_id = $request->department;
       $text = $request->text;
-      switch ($id) {
-        case 0:
-          return json_encode([
-            'state' => 'Success',
-            'results' => 'None'
-          ]);
-        case 1:
-          $res = Field::where('name','LIKE','%' .$text . '%')->get();
-          return json_encode([
-            'state' => 'Success',
-            'results' => $res
-          ]);
-        case 2:
-          $res = Department::where('name','LIKE','%' .$text . '%')->get();
-          return json_encode([
-            'state' => 'Success',
-            'results' => $res
-          ]);
-        case 3:
-          $res = Staff::where('name','LIKE','%' .$text . '%')->get();
-          return json_encode([
-            'state' => 'Success',
-            'results' => $res
-          ]);
-      }
+      if ($field_id == 'all' and $department_id == 'all'){
+        $result = $this->search($text);
+      } else {
+        if ($field_id == 'all'){
+          $result = $this->searchByDepartment($text,$department_id);
+        } else if ($department_id == 'all'){
+          $result = $this->searchByField($text,$field_id);
+        } else {
+          $result = $this->searchByBoth($text,$field_id,$department_id);
+        }
+      } 
+      return json_encode([
+        'state' => 'Success',
+        'results' = $result
+      ]);
     }
+    //   switch ($field_id) {
+    //     case 0:
+    //       return json_encode([
+    //         'state' => 'Success',
+    //         'results' => 'None'
+    //       ]);
+    //     case 1:
+    //       $res = Field::where('name','LIKE','%' .$text . '%')->get();
+    //       return json_encode([
+    //         'state' => 'Success',
+    //         'results' => $res
+    //       ]);
+    //     case 2:
+    //       $res = Department::where('name','LIKE','%' .$text . '%')->get();
+    //       return json_encode([
+    //         'state' => 'Success',
+    //         'results' => $res
+    //       ]);
+    //     case 3:
+    //       $res = Staff::where('name','LIKE','%' .$text . '%')->get();
+    //       return json_encode([
+    //         'state' => 'Success',
+    //         'results' => $res
+    //       ]);
+    //   }
+    // }
     
 }

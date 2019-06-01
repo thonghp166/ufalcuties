@@ -179,7 +179,9 @@
 	}
 
 	function search(variable){
-		var attrid = document.getElementById('searchattr').value;
+
+		var field_box = document.getElementById('fieldselect').value;
+		var department_box = document.getElementById('departmentselect').value
 		var text = variable.value.trim();
 		if (text.length > 0){
 			var newrequest = new XMLHttpRequest();
@@ -214,7 +216,7 @@
 	        		console.log('error');
 	        	}
 		    }
-		    newrequest.open("GET", route('staff.search.text') + "?id=" + attrid + "&text=" + variable.value, true);
+		    newrequest.open("GET", route('staff.search.text') + "?field=" + field_box + "&department=" + department_box +"&text=" + variable.value, true);
 			newrequest.send();
 		} else {
 			var keyresult = document.querySelector(".keyresult");
