@@ -85,9 +85,9 @@ class HomeController extends Controller
       return Staff::where('name','LIKE','%' .$text . '%')->get();
     }
 
-    private function searchByDepartment($name,$id)
+    private function searchByDepartment($text,$id)
     {
-        
+        Staff::where('department_id','=',$id)->where('name','LIKE','%' .$text . '%')->get();
         $department = Department::where('name','=',$name)->first();
         return $staff_list = $department->staffs;
     }
@@ -111,7 +111,7 @@ class HomeController extends Controller
       } 
       return json_encode([
         'state' => 'Success',
-        'results' = $result
+        'results' => $result
       ]);
     }
     //   switch ($field_id) {
