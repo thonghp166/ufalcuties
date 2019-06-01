@@ -18,3 +18,7 @@ html, body {
       -webkit-align-items: center;
       align-items: center;
 }
+.swiper-pagination {
+			/* show on small viewports */
+			display: block;
+		}

@@ -201,7 +201,7 @@ p.departmenttype {
 p.departmentname {
     font-size: 22px;
     font-weight: bold;
-    height: 100px;
+    height: 80px;
 }
 
 #category .fields .content {
@@ -536,6 +536,7 @@ input#resetemail {
 
 .resetbox {
     padding-top: 150px;
+    margin-bottom: 150px;
 }
 
 .moveleft {

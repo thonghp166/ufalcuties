@@ -54,8 +54,9 @@
           </div>
         <?php endforeach ?>
       </div>
-      <div class="swiper-button-next right-btn"></div>
-      <div class="swiper-button-prev left-btn"></div>
+      <div id="js-prev1" class="swiper-button-prev"></div>
+      <div id="js-next1" class="swiper-button-next"></div>
+      <div class="swiper-pagination"></div>
     </div>
 
     <!-- <div class="swiper-pagination"></div> -->
@@ -109,22 +110,27 @@
       <div class="col-6"></div>
     </div>
     <div class="row">
-    </div>
-  </div>
-</div>
-<div class="workunitcontent">
-  <div class="content">
-        <?php foreach ($department as $element): ?>
-        <div class="text-left unit">
-          <div class="worklayer"></div>
-          <div class="workgo"><a href="" class="btn btn-success"><i class="far fa-hand-point-right"></i></a></div>
-          <p class="departmentname"><i class="fas fa-id-card"></i> Đơn vị: {{$element->name}}</p>
-          <p class="departmenttype"><i class="fas fa-window-restore"></i> Loại đơn vị: {{$element->type}}</p>
-          <p class="departmentaddress"><i class="fas fa-building"></i> Địa chỉ: {{$element->address}}</p>
-          <p class="departmentphone"><i class="fas fa-phone"></i> Số điện thoại: {{$element->phone}}</p>
-          <p class="departmentwebsite"><i class="fas fa-paper-plane"></i> Website: {{$element->website}}</p>
+      <?php foreach ($department as $element): ?>
+        <div class="col-4">
+          <div class="text-left item">
+            <div class="avatar">
+              <img src="{{URL::asset('images/CNTT.jpg')}}" alt="" class="img-fuild">
+            </div>
+            <div class="transperantlayer"></div>
+            <div class="content">
+               <p class="departmentname"><i class="fas fa-id-card"></i> Đơn vị: {{$element->name}}</p>
+              <p class="departmenttype"><i class="fas fa-window-restore"></i> Loại đơn vị: {{$element->type}}</p>
+              <p class="departmentaddress"><i class="fas fa-building"></i> Địa chỉ: {{$element->address}}</p>
+              <p class="departmentphone"><i class="fas fa-phone"></i> Số điện thoại: {{$element->phone}}</p>
+              <p class="departmentwebsite"><i class="fas fa-paper-plane"></i> Website: {{$element->website}}</p>
+            </div>
+            <div class="more">
+              <a href="{{route('staff.info',['account' => $element->account])}}">Chi tiết</a>
+            </div>
+          </div>
         </div>
-      <?php endforeach ?>
+       <?php endforeach ?>
+    </div>
   </div>
 </div>
 
@@ -163,9 +169,20 @@
         prevEl: '.swiper-button-prev'
       },
       autoplay: {
-        delay:3000,
+        delay:2000,
         disableOnInteraction: false
       },
+
+      loop: true, 
+      centeredSlides: true,
+      
+      a11y: true,
+      keyboardControl: true,
+      grabCursor: true,
+      
+      // pagination
+      pagination: '.swiper-pagination',
+      paginationClickable: true,
     });
   </script>
 @endsection
