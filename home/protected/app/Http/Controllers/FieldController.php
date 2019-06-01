@@ -28,9 +28,11 @@ class FieldController extends Controller
             'name' => $name,
             'childOf' => $id
         ]);
+        // dd($field);
+        $fields = Field::all();
         return json_encode([
             'state' => 'Success',
-            'new_field' => $field
+            'all' => $fields
         ]);
     }
 

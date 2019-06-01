@@ -66,11 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		dropdownicon.setAttribute("class", "dropdownicon fas fa-ban");
 		
 		var text = document.createElement("span");
-<<<<<<< HEAD
-		text.innerText = nameArr[i];
-=======
 		text.textContent = nameArr[i];
->>>>>>> e330cdebb0c644f285f15622519a8b75817da35e
 
 		var addbutton = document.createElement("i");
 		addbutton.setAttribute("class", "fas fa-plus-square");
@@ -107,20 +103,23 @@ document.addEventListener("DOMContentLoaded", function () {
 	var dropdown = document.querySelectorAll(".field i.dropdownicon");
 	for (var i = 0; i < dropdown.length; i++) {
 		dropdown[i].onclick = function () {
-			if (this.getAttribute("class") != "dropdownicon fas fa-ban") {
-				this.classList.toggle("fa-caret-down");
-				this.classList.toggle("fa-caret-right");
-				var id = this.parentNode.getAttribute("data-id");
-				for (var i = 0; i < dropdown.length; i++) {
-					if (dropdown[i].parentNode.getAttribute("data-parent") == id) {
-						dropdown[i].parentNode.classList.toggle("hide");
-					}
-				}
-			}
+			dropdownevent(this);
 		}
 	}
 
-
+	function dropdownevent (variable) {
+		if (variable.getAttribute("class") != "dropdownicon fas fa-ban") {
+				variable.classList.toggle("fa-caret-down");
+				variable.classList.toggle("fa-caret-right");
+				var id = variable.parentNode.getAttribute("data-id");
+				var dropdown2 = document.querySelectorAll(".field i.dropdownicon");
+				for (var i = 0; i < dropdown2.length; i++) {
+					if (dropdown2[i].parentNode.getAttribute("data-parent") == id) {
+						dropdown2[i].parentNode.classList.toggle("hide");
+					}
+				}
+			}
+	}
 
 	function find (value, array) {
 		for (var i = 0; i < array.length; i++) {
@@ -242,6 +241,9 @@ document.addEventListener("DOMContentLoaded", function () {
 		fieldimport.classList.remove("showimport");
 		layer.classList.remove("showlayer");
 
+		var fieldname = document.getElementById("fieldname");
+		fieldname.value = "";
+
 		var editnormalfield = document.querySelector(".editnormalfield");
     	editnormalfield.classList.remove("showbutton");
 
@@ -352,7 +354,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 						var col2 = document.createElement("td");
 						col2.setAttribute("style", "width: 10%;");
-						col2.innerText = "";
+						col2.innerText = "NEW" + ids[i];
 
 						var col3 = document.createElement("td");
 						col3.setAttribute("style", "width: 10%;");
@@ -651,7 +653,46 @@ document.addEventListener("DOMContentLoaded", function () {
 				if (this.readyState == 4 && this.status == 200) {
 					data = $.parseJSON(this.responseText);
 					if (data.state == "Success"){
-						console.log(document.getElementById("department_id"));
+						var id = document.getElementById("department_id").value;
+						var button = document.querySelectorAll("#departmentbody button");
+						for (var i = 0; i < button.length; i++) {
+							if (button[i].getAttribute("data-id") == id) {
+								var father = button[i].parentNode.parentNode;
+								console.log(father);
+								father.cells[1].innerText = document.getElementById("departmentname").value;
+								father.cells[2].innerText = document.getElementById("departmenttype").options[document.getElementById("departmenttype").selectedIndex].text;
+								father.cells[3].innerText = document.getElementById("departmentaddress").value;
+								father.cells[4].innerText = document.getElementById("departmentphone").value;
+								father.cells[5].innerText = document.getElementById("departmentwebsite").value;
+
+								var departmentname = document.getElementById("departmentname");
+							    var departmenttype = document.getElementById("departmenttype");
+							    var departmentaddress = document.getElementById("departmentaddress");
+							    var departmentphone = document.getElementById("departmentphone");
+							    var departmentwebsite = document.getElementById("departmentwebsite");
+							    var layer = document.querySelector(".homelayer");
+							    var departmentimport = document.querySelector(".departmentimport");
+
+							    departmentname.value = "";
+							    departmenttype.value = departmenttype.querySelector("option");
+							    departmentaddress.value = "";
+							    departmentphone.value = "";
+							    departmentwebsite.value = "";
+							     
+							    layer.classList.remove("showlayer");
+							    departmentimport.classList.remove("showimport");
+
+							    var fieldname = document.getElementById("fieldname");
+							    fieldname.value = "";
+
+							    var editnormaldepartment = document.querySelector(".editnormaldepartment");
+						     	editnormaldepartment.classList.remove("showbutton");
+
+						     	var addnormaldepartment = document.querySelector(".addnormaldepartment");
+						     	addnormaldepartment.classList.remove("hide");
+						     	break;
+							}
+						}
 					} else {
 						var departmentstatus = document.querySelector(".departmentstatus");
 						departmentstatus.style.display = "block";
@@ -786,14 +827,33 @@ document.addEventListener("DOMContentLoaded", function () {
 				if (this.readyState == 4 && this.status == 200) {
 					data = $.parseJSON(this.responseText);
 					if (data.state == "Success"){
-						// xu ly su kien 
-						// sau khi thay doi thong tin thanh cong
-						// du lieu moi luu trong data.update_field
+						var field_id = data.update_field.id;
+						var fieldname = data.update_field.name;
+						var field = document.querySelectorAll(".field");
+						for (var i = 0; i < field.length; i++) {
+							if (field[i].getAttribute("data-id") == field_id) {
+								field[i].childNodes[1].innerText = fieldname;
+								break;
+							}
+						}
+
+						var fieldimport = document.querySelector(".fieldimport"), layer = document.querySelector(".homelayer");
+						fieldimport.classList.remove("showimport");
+						layer.classList.remove("showlayer");
+
+						var fieldname = document.getElementById("fieldname");
+						fieldname.value = "";
+
+						var editnormalfield = document.querySelector(".editnormalfield");
+				    	editnormalfield.classList.remove("showbutton");
+
+				    	var addnormalfield = document.querySelector(".addnormalfield");
+				    	addnormalfield.classList.remove("hide");
 					} else {
-						// xu ly su kien
-						// sau khi thay doi thong tin k thanh cong
-						// loi luu trong data.error
-						
+						var fieldstatus = document.querySelector(".fieldstatus");
+						fieldstatus.style.display = "block";
+						fieldstatus.innerHTML = "<div>" + "Lỗi! Thêm mới lĩnh vực không thành công do '"+data.error+"'   <i class='fas fa-window-close' onclick='hide(this)'></i></div>";
+						fieldstatus.style.background = "#c0392b";						
 					}
 					console.log(this.responseText);
 				} else {
@@ -808,11 +868,133 @@ document.addEventListener("DOMContentLoaded", function () {
 				if (this.readyState == 4 && this.status == 200) {
 					data = $.parseJSON(this.responseText);
 					if (data.state == "Success"){
-						// xu ly giao dien khi them thanh cong
-						// data.new_field
-					} else {
+						var field = document.getElementById("field");
+						field.innerHTML = "";
 
-						//con cai nay la loi data.error
+						var fulldata = data.all;
+
+						idArr = [];
+                    	nameArr = [];
+                    	parentArr = [];
+                    	allId = [];
+                    	allParent = [];
+
+						for (var i = 0; i < fulldata.length; i++) {
+							var allParentLength = allParent.push(fulldata[i].childOf);
+                        	var allIdLength = allId.push(fulldata[i].id);
+							if (fulldata[i].childOf == 0) {
+								var root = document.createElement("div");
+								root.setAttribute("class", "col-12 field field" + fulldata[i].id);
+								root.setAttribute("data-id", fulldata[i].id);
+								root.setAttribute("data-parent", fulldata[i].childOf);
+								
+								var child1 = document.createElement("i");
+								child1.setAttribute("class", "dropdownicon fas fa-caret-right");
+								
+								var child2 = document.createElement("span");
+								child2.innerText = fulldata[i].name;								
+
+								var child3 = document.createElement("i");
+								child3.setAttribute("class", "fas fa-plus-square");
+								child3.setAttribute("style", "margin: 0px 5px; cursor: pointer;");
+								child3.setAttribute("onclick", "newfield(this)");
+
+								var child4 = document.createElement("i");
+								child4.setAttribute("class", "fas fa-pen-square");
+								child4.setAttribute("style", "margin: 0px 5px; cursor: pointer;");
+								child4.setAttribute("onclick", "editfield(this)");
+
+								var child5 = document.createElement("i");
+								child5.setAttribute("class", "fas fa-minus-square");
+								child5.setAttribute("style", "margin: 0px 5px; cursor: pointer;");
+								child5.setAttribute("onclick", "deletefield(this)");
+
+								root.appendChild(child1);
+								root.appendChild(child2);
+								root.appendChild(child3);
+								root.appendChild(child4);
+								root.appendChild(child5);
+
+								field.appendChild(root);
+							} else {
+								idLength = idArr.push(fulldata[i].id);
+                                nameLength = nameArr.push(fulldata[i].name);
+                                parentLength = parentArr.push(fulldata[i].childOf);
+							}
+						}
+
+						for (var i = 0; i < idArr.length; i++) {
+							var parent = document.querySelector(".field" + parentArr[i]);
+							
+							var field = document.createElement("div");
+							field.setAttribute("class", "col-12 field field" + idArr[i]);
+							field.setAttribute("data-parent", ""+ parentArr[i] + "");
+							field.setAttribute("data-id", ""+ idArr[i] + "");
+							var fieldmargin = 30;
+							field.style.marginLeft = fieldmargin + 'px';
+							
+							var dropdownicon = document.createElement("i");
+							dropdownicon.setAttribute("class", "dropdownicon fas fa-ban");
+							
+							var text = document.createElement("span");
+							text.textContent = nameArr[i];
+
+							var addbutton = document.createElement("i");
+							addbutton.setAttribute("class", "fas fa-plus-square");
+							addbutton.setAttribute("onclick", "newfield(this)");
+							addbutton.setAttribute("style", "margin: 0px 5px; cursor: pointer;");		
+							
+							var editbutton = document.createElement("i");
+							editbutton.setAttribute("class", "fas fa-pen-square");
+							editbutton.setAttribute("onclick", "editfield(this)");
+							editbutton.setAttribute("style", "margin-right: 5px; cursor: pointer;");
+							
+							var deletebutton = document.createElement("i");
+							deletebutton.setAttribute("class", "fas fa-minus-square");
+							deletebutton.setAttribute("onclick", "deletefield(this)");
+							deletebutton.setAttribute("style", "cursor: pointer;");
+							
+							field.appendChild(dropdownicon);
+							field.appendChild(text);
+							field.appendChild(addbutton);
+							field.appendChild(editbutton);
+							field.appendChild(deletebutton);
+							parent.appendChild(field);
+						}
+
+						for (var i = 0; i < allId.length; i++) {
+		
+							var result = find(allId[i], allParent);
+							if (result == true) {
+								var fieldelement = document.querySelector(".field" + allId[i] + " .dropdownicon");
+								fieldelement.setAttribute("class", "dropdownicon fas fa-caret-down");
+							}
+						}
+
+						var dropdown = document.querySelectorAll(".field i.dropdownicon");
+						for (var i = 0; i < dropdown.length; i++) {
+							dropdown[i].onclick = function () {
+								dropdownevent(this);
+							}
+						}
+
+						var fieldimport = document.querySelector(".fieldimport"), layer = document.querySelector(".homelayer");
+						fieldimport.classList.remove("showimport");
+						layer.classList.remove("showlayer");
+
+						var fieldname = document.getElementById("fieldname");
+						fieldname.value = "";
+
+						var editnormalfield = document.querySelector(".editnormalfield");
+				    	editnormalfield.classList.remove("showbutton");
+
+				    	var addnormalfield = document.querySelector(".addnormalfield");
+				    	addnormalfield.classList.remove("hide");
+					} else {
+						var fieldstatus = document.querySelector(".fieldstatus");
+						fieldstatus.style.display = "block";
+						fieldstatus.innerHTML = "<div>" + "Lỗi! Thêm mới lĩnh vực không thành công do '"+data.error+"'   <i class='fas fa-window-close' onclick='hide(this)'></i></div>";
+						fieldstatus.style.background = "#c0392b";
 					}
 				} else {
 					console.log('error');

@@ -422,7 +422,7 @@
                         <button type="submit" name="update" class="btn btn-success editnormalfield"> <i class="fas fa-edit"></i> Cập nhật</button>
                         <p class="btn btn-secondary" id="cancelfieldbutton" style="cursor: pointer; margin-top: 15px;" > <i class="fas fa-window-close"></i> Hủy</p>
                       </div>
-                      <div class="departmentstatus">                     
+                      <div class="fieldstatus"></div>                   
                       
                   </form>
               </div>
