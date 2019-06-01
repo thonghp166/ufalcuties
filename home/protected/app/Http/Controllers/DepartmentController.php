@@ -65,11 +65,11 @@ class DepartmentController extends Controller
                 'error' => $validator->errors()
             ]);
         }
-        $name = $request->name;
-        $type = $request->type;
-        $address = $request->address;
-        $phone = $request->phone;
-        $website = $request->website;
+        $name = $request->departmentname;
+        $type = $request->departmenttype;
+        $address = $request->departmentaddress;
+        $phone = $request->departmentphone;
+        $website = $request->departmentwebsite;
 
         $department->update([
             'name' => $name,

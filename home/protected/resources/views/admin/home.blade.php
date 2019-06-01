@@ -351,34 +351,34 @@
             </div>
 
             <div class="row" id="field">
+                <script>
+                    var idArr = [];
+                    var nameArr = [];
+                    var parentArr = [];
+                    var allId = [];
+                    var allParent = [];
+                </script>
+                <?php foreach ($field as $element): ?>
                     <script>
-                        var idArr = [];
-                        var nameArr = [];
-                        var parentArr = [];
-                        var allId = [];
-                        var allParent = [];
+                        var allParentLength = allParent.push(<?php echo $element->childOf ?>);
+                        var allIdLength = allId.push(<?php echo $element->id ?>);
                     </script>
-                    <?php foreach ($field as $element): ?>
-                        <script>
-                            var allParentLength = allParent.push(<?php echo $element->childOf ?>);
-                            var allIdLength = allId.push(<?php echo $element->id ?>);
-                        </script>
-                        <?php if ($element->childOf == 0): ?>
-                            <div class="col-12 field field{{$element->id}}" data-id="{{$element->id}}" data-parent="{{$element->childOf}}">
-                                <i class="dropdownicon fas fa-caret-right"></i>
-                                <span>{{$element->name}}</span>
-                                <i class="fas fa-plus-square" style="cursor: pointer;" onclick="newfield(this)"></i>
-                                <i class="fas fa-pen-square" style="cursor: pointer;" onclick="editfield(this)"></i>
-                                <i class="fas fa-minus-square" style="cursor: pointer;" onclick="deletefield(this)"></i>  
-                            </div>
-                        <?php else: ?>
-                              <script>
-                                  var idLength = idArr.push(<?php echo $element->id ?>);
-                                  var nameLength = nameArr.push("<?php echo $element->name ?>");
-                                  var parentLength = parentArr.push(<?php echo $element->childOf ?>);
-                              </script>                         
-                        <?php endif ?>
-                    <?php endforeach ?>
+                    <?php if ($element->childOf == 0): ?>
+                        <div class="col-12 field field{{$element->id}}" data-id="{{$element->id}}" data-parent="{{$element->childOf}}">
+                            <i class="dropdownicon fas fa-caret-right"></i>
+                            <span>{{$element->name}}</span>
+                            <i class="fas fa-plus-square" style="cursor: pointer;" onclick="newfield(this)"></i>
+                            <i class="fas fa-pen-square" style="cursor: pointer;" onclick="editfield(this)"></i>
+                            <i class="fas fa-minus-square" style="cursor: pointer;" onclick="deletefield(this)"></i>  
+                        </div>
+                    <?php else: ?>
+                          <script>
+                              var idLength = idArr.push(<?php echo $element->id ?>);
+                              var nameLength = nameArr.push("<?php echo $element->name ?>");
+                              var parentLength = parentArr.push(<?php echo $element->childOf ?>);
+                          </script>                         
+                    <?php endif ?>
+                <?php endforeach ?>
             </div>
         </div>
         
@@ -394,7 +394,17 @@
           <div class="col-3"></div>
           <div class="col-6 fieldimport">
               <div class="text-center">
-                  <form>
+                  <form id="fieldform">
+                    {{csrf_field()}}
+                      <fieldset class="form-group">
+                        <div class="row">
+                          <div class="col-1"></div>
+                          <div class="col-4 text-left">
+                        </div>
+                        <div class="col-7">
+                          <input type="text" hidden="" name="field_id" id="field_id">
+                        </div>              
+                      </fieldset>
                       <fieldset class="form-group">
                         <label class="title">Nhập thông tin lĩnh vực nghiên cứu</label>  
                         <div class="row">
@@ -406,12 +416,14 @@
                             <input type="text" class="form-control" name="fieldname" id="fieldname" placeholder="Nhập tên lĩnh vực nghiên cứu">
                           </div>
                         </div>
-                      </fieldset>                     
+                      </fieldset>
                       <div class="text-center">
-                        <p class="btn btn-primary addnormalfield" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-paper-plane"></i> Gửi</p>
-                        <p class="btn btn-success editnormalfield" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-pen-square"></i> Cập nhật</p>
-                        <p class="btn btn-secondary" id="cancelfieldbutton" style="margin-bottom: 20px; cursor: pointer;"><i class="fas fa-window-close"></i> Hủy</p>
+                        <button type="submit" name="create" class="btn btn-primary addnormalfield"> <i class="fas fa-paper-plane"></i> Gửi</button>
+                        <button type="submit" name="update" class="btn btn-success editnormalfield"> <i class="fas fa-edit"></i> Cập nhật</button>
+                        <p class="btn btn-secondary" id="cancelfieldbutton" style="cursor: pointer; margin-top: 15px;" > <i class="fas fa-window-close"></i> Hủy</p>
                       </div>
+                      <div class="departmentstatus">                     
+                      
                   </form>
               </div>
           </div>
@@ -535,7 +547,6 @@
      var departmentimport = document.querySelector(".departmentimport");
 
      department_id.value = variable.getAttribute("data-id");
-     console.log(department_id.value);
      departmentname.value = father.cells[1].innerText;
      departmenttype.value = father.cells[2].innerText;
      departmentaddress.value = father.cells[3].innerText;
@@ -580,10 +591,15 @@
     layer.classList.add("showlayer");
 
     var editnormalfield = document.querySelector(".editnormalfield");
-      editnormalfield.classList.remove("showbutton");
+    editnormalfield.classList.remove("showbutton");
 
-      var addnormalfield = document.querySelector(".addnormalfield");
-      addnormalfield.classList.remove("hide");
+    var addnormalfield = document.querySelector(".addnormalfield");
+    addnormalfield.classList.remove("hide");
+
+    var fieldname = document.getElementById("fieldname");
+    fieldname.value = "";
+    var fieldid = document.getElementById("field_id");
+    fieldid.value = varibale.parentNode.getAttribute("data-id");
   }
 
   function editfield(variable) {
@@ -596,10 +612,11 @@
     var father = variable.parentNode;
     
     var fieldname = document.getElementById("fieldname");
+    var fieldid = document.getElementById("field_id");
     var fieldimport = document.querySelector(".fieldimport");
     var layer = document.querySelector(".homelayer");  
     fieldname.value = father.children[1].innerText;
-
+    fieldid.value = father.getAttribute("data-id");
     layer.classList.add("showlayer");
     fieldimport.classList.add("showimport");
   }

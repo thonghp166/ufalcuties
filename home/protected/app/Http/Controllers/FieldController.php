@@ -7,34 +7,54 @@ use Illuminate\Http\Request;
 
 class FieldController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $field = Field::all();
-        return view('field',compact('field'));
-    }
-
-    
+  
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function add(Request $request)
     {
-        //
+        $id = $request->field_id;
+        $name = $request->fieldname;
+        if (Field::where('name','=',$name)->exists()){
+            return json_encode([
+                'state' => 'Fail',
+                'error' => 'Lĩnh vực đã tồn tại'
+            ]);
+        }
+        $field = Field::create([
+            'name' => $name,
+            'childOf' => $id
+        ]);
+        return json_encode([
+            'state' => 'Success',
+            'new_field' => $field
+        ]);
     }
 
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $id = $request->field_id;
+        $newName = $request->fieldname;
+        $field = Field::find($id);
+        $id_parent = $field->childOf;
+        if(Field::where('childOf','=',$id_parent)->where('name','=',$newName)->exists()){
+            return json_encode([
+                'state' => 'Fail',
+                'error' => 'Trùng thông tin'
+            ]);
+        }
+        $field->update([
+            'name' => $newName
+        ]);
+        return json_encode([
+            'state' => 'Success',
+            'update_field' => $field
+        ]);
     }
 
     /**
