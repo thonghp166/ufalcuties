@@ -138,13 +138,13 @@ class UserController extends Controller
                 'vnu_email' => $email,
                 'user_id' => $user->id,
                 'account' => $username,
+                'code' => 'NEW'.$user->id
             ]);
             $account_info = [
                 'username' => $username,
                 'email' => $email,
                 'name' => $name,
-                'id' => $user->id,
-                'code' => 'NEW'.$user->id
+                'id' => $user->id
             ];
             return $account_info;
         } else {
