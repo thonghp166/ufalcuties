@@ -30,6 +30,7 @@
 							<div class="text-center">
 								<p class="departmenttitle">Đơn vị :</p>					
 								<select id="departmentselect" class="custom-select">
+									<option value="all" selected="">Tất cả</option>
 								  <?php foreach ($department as $element): ?>
 								  	<option value="{{$element->id}}">{{$element->name}}</option>
 								  <?php endforeach ?>
@@ -44,6 +45,7 @@
 							<div class="text-center">
 								<p class="fieldtitle">Lĩnh vực nghiên cứu :</p>					
 								<select id="fieldselect" class="custom-select">
+									<option value="all" selected="">Tất cả</option>
 								  <?php foreach ($field as $element): ?>
 								  	<option value="{{$element->id}}">{{$element->name}}</option>
 								  <?php endforeach ?>
