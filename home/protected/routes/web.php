@@ -13,7 +13,7 @@ Route::get('/search',[
 Route::get('/search/{type}/{name}',[
 	'as' => 'search.type',
 	'uses' => 'HomeController@searchtype'
-]);
+])->where('name','\w\d\-\_]+');
 
 Route::get('search/field','HomeController@searchByField')->name('staff.search.field');
 Route::get('search/department','HomeController@searchByDepartment')->name('staff.search.department');
@@ -47,8 +47,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'staff'], function() {
 	Route::get('/update/topic','TopicController@update')->name('staff.update.topic');
 
 });
-// Control to field function
-Route::get('/field','FieldController@index');
 Auth::routes();
 // Show form change user's password 
 Route::get('password/change',[
@@ -79,13 +77,13 @@ Route::group(['middleware' => 'CheckAdminLogin', 'prefix' => 'admin'], function(
 	// Update field by admin
 	Route::post('/update-field','FieldController@update')->name('admin.update.field');
 	// Admin delete user
-	Route::get('/delete-user','UserController@deleteUser')->name('admin.delete.user');
+	Route::get('/delete-user','AdminController@deleteUser')->name('admin.delete.user');
 	// Admin update user
-	Route::post('/','UserController@updateUser')->name('admin.update.user');
+	Route::post('/','AdminController@updateUser')->name('admin.update.user');
 	// Admin add user from excel table
-	Route::post('/import-user','UserController@importExcel')->name('admin.add.user.excel');
+	Route::post('/import-user','AdminController@importExcel')->name('admin.add.user.excel');
 	// Admin add user from data excel
-	Route::post('/add-user','UserController@addUser')->name('admin.add.user');
+	Route::post('/add-user','AdminController@addUser')->name('admin.add.user');
 });
 
 // View in home

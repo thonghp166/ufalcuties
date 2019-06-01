@@ -87,7 +87,7 @@
           <?php if ($element->childOf == 0): ?>
               <div class="col-12 field field{{$element->id}}" data-id="{{$element->id}}" data-parent="{{$element->childOf}}">
                   <i class="dropdownicon fas fa-caret-right"></i> 
-                  <a href="" class="fieldelement"> {{$element->name}}</a>
+                  <a href="{{route('search.type',['type'=>'field','name'=>$element->name])}}" class="fieldelement"> {{$element->name}}</a>
               </div>
           <?php else: ?>
                   <script>
