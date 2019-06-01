@@ -249,6 +249,21 @@ p.departmenttype {
     font-size: 18px;
 }
 
+p.departmenttitle {
+    
+    font-size: 20px;
+    display: block;
+    padding-top: 4px;
+    font-weight: bold;
+}
+
+p.fieldtitle {    
+    font-size: 20px;
+    display: block;
+    padding-top: 4px;
+    font-weight: bold;
+}
+
 p.departmentname {
     font-size: 22px;
     font-weight: bold;
@@ -356,6 +371,7 @@ div#category p.title {
 
 #search {
     padding: 10px 20px;
+    margin-bottom: 20px;
 }
 
 #right {
@@ -388,8 +404,16 @@ div#category p.title {
     background: #2c3e50;
     color: white;
     height: 40px;
-    text-align: right;
-    width: 60%;    
+    text-align: center; 
+    width: 60%;  
+}
+
+#fieldselect {
+    background: #2c3e50;
+    color: white;
+    height: 40px;
+    text-align: center;
+    width: 60%;
 }
 
 .keyresult {

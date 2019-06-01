@@ -8,7 +8,7 @@
 		<div class="container">
 			<div class="row" id="search">
 				<div class="col-3" id="left"></div>
-				<div class="col-7" id="center">					
+				<div class="col-6" id="center">					
 					<div class="text-center">
 						<input type="text" class="key" id="key" onkeyup="search(this)" style="width: 100%;" placeholder="Nhập nội dung tìm kiếm">		
 					</div>
@@ -17,64 +17,40 @@
 					</div>
 					<div class="text-center keyresult"></div>
 				</div>
-				<div class="col-2" id="right">
+				<div class="col-3" id="right">
 					<div class="float-left">
 						<button id="searchbutton" class="btn btn-primary"><i class="fas fa-search"></i></button>
 					</div>
 				</div>
 			</div>
 			<div class="row" id="category">
-				<div class="col-6 text-right department">
-					<select id="departmentselect" class="custom-select">
-					  <option selected="" value="1">Đơn vị</option>
-					  <?php foreach ($department as $element): ?>
-					  	<option value="{{$element->id}}">{{$element->name}}</option>
-					  <?php endforeach ?>
-					  <option value="2">Đơn vị</option>
-					  <option value="3">Cán bộ</option>
-					</select>
-				</div>
-				<div class="col-6 text-left fields">
-					<select id="fieldselect" class="custom-select">
-					  <option selected="" value="1">Đơn vị</option>
-					  <?php foreach ($department as $element): ?>
-					  	<option value="{{$element->id}}">{{$element->name}}</option>
-					  <?php endforeach ?>
-					  <option value="2">Đơn vị</option>
-					  <option value="3">Cán bộ</option>
-					</select>
-					<!-- <p class="title" onclick="contentprocess('fields')">
-						Lĩnh vực nghiên cứu  <i class="fas fa-caret-down"></i>
-					</p>
-					<div class="content">
-						<div class="row">
-							<script>
-		                        var idArr = [];
-		                        var nameArr = [];
-		                        var parentArr = [];
-		                        var allId = [];
-		                        var allParent = [];
-		                    </script>
-		                    <?php foreach ($field as $element): ?>
-		                        <script>
-		                            var allParentLength = allParent.push(<?php echo $element->childOf ?>);
-		                            var allIdLength = allId.push(<?php echo $element->id ?>);
-		                        </script>
-		                        <?php if ($element->childOf == 0): ?>
-		                            <div class="col-12 field field{{$element->id}}" data-id="{{$element->id}}" data-parent="{{$element->childOf}}">
-		                                <i class="dropdownicon fas fa-caret-right"></i> 
-		                                <a style="cursor: pointer;" data-id="{{$element->id}}" data-name="{{$element->name}}" class="fieldelement" onclick="searchField(this)"> {{$element->name}}</a>
-		                            </div>
-		                        <?php else: ?>
-		                                <script>
-		                                    var idLength = idArr.push(<?php echo $element->id ?>);
-		                                    var nameLength = nameArr.push("<?php echo $element->name ?>");
-		                                    var parentLength = parentArr.push(<?php echo $element->childOf ?>);
-		                                </script>                         
-		                        <?php endif ?>
-		                    <?php endforeach ?>
+				<div class="col-6 department">
+					<div class="row">
+						<div class="col-12">
+							<div class="text-center">
+								<p class="departmenttitle">Đơn vị :</p>					
+								<select id="departmentselect" class="custom-select">
+								  <?php foreach ($department as $element): ?>
+								  	<option value="{{$element->id}}">{{$element->name}}</option>
+								  <?php endforeach ?>
+								</select>
+							</div>
 						</div>
-					</div>	 -->				
+					</div>
+				</div>
+				<div class="col-6 fields">
+					<div class="row">
+						<div class="col-12">
+							<div class="text-center">
+								<p class="fieldtitle">Lĩnh vực nghiên cứu :</p>					
+								<select id="fieldselect" class="custom-select">
+								  <?php foreach ($field as $element): ?>
+								  	<option value="{{$element->id}}">{{$element->name}}</option>
+								  <?php endforeach ?>
+								</select>
+							</div>
+						</div>
+					</div>			
 				</div>
 			</div>
 		</div>
@@ -83,7 +59,7 @@
 	<div class="result">
 		<div class="container">
 			<div id="resulttitle">
-				<h4>Tất cả cán bộ</h4>
+				<h4>Tổng số cán bộ : <?php echo count($staff); ?></h4>
 			</div>
 			<div class="row">
 				<?php foreach ($staff as $element): ?>
