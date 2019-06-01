@@ -68,7 +68,7 @@
 			        <div class="col-4">
 			          <div class="text-left item">
 			            <div class="avatar">
-			              <img src="{{URL::asset('images/CNTT.jpg')}}" alt="" class="img-fuild">
+			              <img src="http://ufaculties.vn/{{$element->img_url}}" alt="" class="img-fuild">
 			            </div>
 			            <div class="transperantlayer"></div>
 			            <div class="content">
