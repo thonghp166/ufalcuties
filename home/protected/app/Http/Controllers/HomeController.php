@@ -50,35 +50,41 @@ class HomeController extends Controller
 
     public function searchtype($type,$name)
     {
+      $name = str_replace('+', ' ', $name);
+      $results = [];
+      switch ($type) {
+        case 'all':
+          
+          break;
+        case 'field':
+          $results = $this->searchByField($name);
+          break;
+        case 'department':
+          $results = $this->searchByDepartment($name);
+          break;
+      }
       $staff = Staff::all();
       $field = Field::all();
       $department = Department::where('name','!=','Không')->get();
-      return $type;
-      // return view('staff.index')-> with(compact('department'))
-      //                           -> with(compact('field'))
-      //                           -> with(compact('staff'))
-      //                           ->with(compact('type'))
-      //                           ->with(compact('name'));
+      return $results;
+      return view('staff.index')-> with(compact('department'))
+                                -> with(compact('field'))
+                                -> with(compact('staff'))
+                                ->with(compact('type'))
+                                ->with(compact('name'))
+                                ->with(compact('results'));
     }
 
-    public function searchByField(Request $request)
+    private function searchByField($name)
     {
-        $id = $request->id;
-        $staff_list = Field::find($id)->staffs;
-        return json_encode([
-            'state' => 'Success',
-            'results' => $staff_list
-        ]);
+        $field = Field::where('name','=',$name)->first();
+        return $staff_list = $field->staffs; 
     }
 
-    public function searchByDepartment(Request $request)
+    private function searchByDepartment($name)
     {
-        $id = $request->id;
-        $staff_list = Department::find($id)->staffs;
-        return json_encode([
-            'state' => 'Success',
-            'results' => $staff_list
-        ]);
+        $department = Department::where('name','=',$name)->first();
+        return $staff_list = $department->staffs;
     }
 
     public function searchText(Request $request)
