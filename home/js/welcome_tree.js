@@ -6,11 +6,6 @@ document.addEventListener("DOMContentLoaded", function () {
 	console.log(parentArr);
 	console.log(nameArr);
 
-	var workunitcontent = document.querySelector(".workunitcontent .content");
-	var count = workunitcontent.childElementCount;
-	var width = count*410 + 20;
-	workunitcontent.style.width = width + "px";
-
 	var fieldparent = document.getElementsByClassName("field");
 	
 	for (var i = 0; i < fieldparent.length; i++) {
@@ -31,7 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
 		dropdownicon.setAttribute("class", "dropdownicon fas fa-ban");
 		
 		var name = document.createElement("a");
-		name.setAttribute("href", "");
+		var final = nameArr[i].replace(" ", "+");
+		name.setAttribute("href", route('search.type',{type:'field', name: final}));
 		name.setAttribute("class", "fieldelement");
 		var text = document.createTextNode(" " + nameArr[i]);
 		name.appendChild(text);

@@ -85,7 +85,7 @@
           <?php if ($element->childOf == 0): ?>
               <div class="col-12 field field{{$element->id}}" data-id="{{$element->id}}" data-parent="{{$element->childOf}}">
                   <i class="dropdownicon fas fa-caret-right"></i> 
-                  <a href="{{route('search.type',['type'=>'field','name' => str_replace(' ','+',$element->name)])}}" class="fieldelement"> {{$element->name}}</a>
+                  <a href="{{route('search.type',['type'=>'field','name' => str_replace(' ','+',$element->name)])}} " class="fieldelement"> {{$element->name}}</a>
               </div>
           <?php else: ?>
                   <script>
@@ -155,7 +155,7 @@
   <i class="fas fa-arrow-circle-up"></i>
 </div>
 
-
+@routes
 <script type="text/javascript" src="{{URL::asset('js/welcome_tree.js')}}"></script>
 <script type="text/javascript" src="{{URL::asset('js/swiper.min.js')}}"></script>
 <script>
