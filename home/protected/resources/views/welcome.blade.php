@@ -32,10 +32,10 @@
     </div>
   </div>
   <div class="teachercontent">
-    <div class="container">
-      <div class="row">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
         <?php foreach ($staff as $element): ?>
-          <div class="col-4">
+          <div class="swiper-slide">
             <div class="text-left item">
               <div class="avatar">
                 <img src="http://ufaculties.vn/{{$element->img_url}}" alt="" class="img-fuild">
@@ -54,6 +54,9 @@
           </div>
         <?php endforeach ?>
       </div>
+      <div class="swiper-button-prev leftbutton"><i class="fas fa-caret-square-left"></i></div>
+      <div class="swiper-button-next rightbutton"><i class="fas fa-caret-square-right"></i></div>
+      <div class="swiper-pagination"></div>
     </div>
   </div>
 </div>
@@ -105,43 +108,27 @@
       <div class="col-6"></div>
     </div>
     <div class="row">
-      <!-- <?php foreach ($department as $element): ?>
+      <?php foreach ($department as $element): ?>
         <div class="col-4">
           <div class="text-left item">
             <div class="avatar">
-              <img src="{{URL::asset('images/DTVT.png')}}" alt="" class="img-fuild">
+              <img src="{{URL::asset('images/CNTT.jpg')}}" alt="" class="img-fuild">
             </div>
             <div class="transperantlayer"></div>
             <div class="content">
-              <p class="departmentname">Đơn vị: {{$element->name}}</p>
-              <p class="departmenttype">Loại đơn vị: {{$element->type}}</p>
-              <p class="departmentaddress">Địa chỉ: {{$element->address}}</p>
-              <p class="departmentphone">Số điện thoại: {{$element->phone}}</p>
-              <p class="departmentwebsite">Website: {{$element->website}}</p>
+               <p class="departmentname"><i class="fas fa-id-card"></i> Đơn vị: {{$element->name}}</p>
+              <p class="departmenttype"><i class="fas fa-window-restore"></i> Loại đơn vị: {{$element->type}}</p>
+              <p class="departmentaddress"><i class="fas fa-building"></i> Địa chỉ: {{$element->address}}</p>
+              <p class="departmentphone"><i class="fas fa-phone"></i> Số điện thoại: {{$element->phone}}</p>
+              <p class="departmentwebsite"><i class="fas fa-paper-plane"></i> Website: {{$element->website}}</p>
             </div>
             <div class="more">
-              <a href="{{route('search.type',['type' => 'department','name' => $element->name])}}">Chi tiết</a>
-            </div>            
+              <a href="{{route('search')}}">GO <i class="fas fa-hand-point-right"></i></a>
+            </div>
           </div>
         </div>
-      <?php endforeach ?> -->
-      
+       <?php endforeach ?>
     </div>
-  </div>
-</div>
-<div class="workunitcontent">
-  <div class="content">
-        <?php foreach ($department as $element): ?>
-        <div class="text-left unit">
-          <div class="worklayer"></div>
-          <div class="workgo"><a href="" class="btn btn-success"><i class="far fa-hand-point-right"></i></a></div>
-          <p class="departmentname"><i class="fas fa-id-card"></i> Đơn vị: {{$element->name}}</p>
-          <p class="departmenttype"><i class="fas fa-window-restore"></i> Loại đơn vị: {{$element->type}}</p>
-          <p class="departmentaddress"><i class="fas fa-building"></i> Địa chỉ: {{$element->address}}</p>
-          <p class="departmentphone"><i class="fas fa-phone"></i> Số điện thoại: {{$element->phone}}</p>
-          <p class="departmentwebsite"><i class="fas fa-paper-plane"></i> Website: {{$element->website}}</p>
-        </div>
-      <?php endforeach ?>
   </div>
 </div>
 
@@ -170,4 +157,30 @@
 
 
 <script type="text/javascript" src="{{URL::asset('js/welcome_tree.js')}}"></script>
+<script type="text/javascript" src="{{URL::asset('js/swiper.min.js')}}"></script>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+      slidesPerView: 5,
+      spaceBetween: 30,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      },
+      autoplay: {
+        delay:2000,
+        disableOnInteraction: false
+      },
+
+      loop: true, 
+      centeredSlides: true,
+      
+      a11y: true,
+      keyboardControl: true,
+      grabCursor: true,
+      
+      // pagination
+      pagination: '.swiper-pagination',
+      paginationClickable: true,
+    });
+</script>
 @endsection

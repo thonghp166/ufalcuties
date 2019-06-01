@@ -73,7 +73,7 @@
                 <label for="exampleSelect1"><i class="fas fa-window-restore"></i> Bộ môn : </label>
               </div>
               <div class="col-7">
-                <select name="work_unit" id="work_unit" class="form-control">
+                <select name="work_unit" disabled="" id="work_unit" class="form-control">
                   <?php foreach ($alldepartment as $element): ?>
                     <option value="{{$element->id}}">{{$element->name}}</option>
                   <?php endforeach ?>
@@ -87,7 +87,7 @@
                 <label for="exampleSelect1"><i class="fas fa-newspaper"></i> Học hàm, học vị : </label>
               </div>
               <div class="col-7">
-                <input type="text" class="form-control" disabled="" name="degree" id="degree" placeholder="Nhập học hàm, học vị" value="{{$staff->degree}}">
+                <input type="text" class="form-control" disabled="" name="degree" id="degree" placeholder="Học hàm, học vị" value="{{$staff->degree}}">
               </div>              
             </fieldset>
             <fieldset class="form-group">

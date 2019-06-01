@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		request.onreadystatechange = function(){
 			if (this.readyState == 4 && this.status == 200) {
-				var data = JSON.parse(this.responseText);
+				var data = $.parseJSON(this.responseText);
 				var status = document.querySelector(".status");
 				if (data.state == "Success"){
 					status.style.display = "block";
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		request.onreadystatechange = function(){
 			if (this.readyState == 4 && this.status == 200) {
-				var data = JSON.parse(this.responseText);
+				var data = $.parseJSON(this.responseText);
 				var avatarimage = document.getElementById("avatarimage");
 				var status = document.querySelector(".status");
 				var layer = document.querySelector(".layer"), avatar = document.querySelector(".changeavatar");
@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		request.onreadystatechange = function(){
 			if (this.readyState == 4 && this.status == 200) {
-				var data = JSON.parse(this.responseText);
+				var data = $.parseJSON(this.responseText);
 				var avatarimage = document.getElementById("avatarimage");
 				var status = document.querySelector(".status");
 				var layer = document.querySelector(".layer"), avatar = document.querySelector(".changeavatar");

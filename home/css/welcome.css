@@ -3,6 +3,21 @@
     padding: 0px;
 }
 
+.leftbutton {
+    background-image: none!important;
+    font-size: 70px;
+    color: #27ae60;
+    margin-top: -35px!important;
+}
+
+.rightbutton {
+    background-image: none!important;
+    font-size: 70px;
+    color: #27ae60;
+    margin-right: 33px !important;
+    margin-top: -35px!important;
+}
+
 .teachercontent {
     background: lightgray;
     padding: 20px 20px;
