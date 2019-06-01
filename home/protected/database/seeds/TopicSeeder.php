@@ -26,12 +26,12 @@ class TopicSeeder extends Seeder
        		[
        			'name'=> 'IOT',
        			'detail' => 'abcef',
-            'staff_id' => 1
+            'staff_id' => 2
        		],
        		[
        			'name'=> 'Network',
        			'detail' => 'abcefgh',
-            'staff_id' => 1
+            'staff_id' => 4
        		],
        		[
        			'name'=> 'Software',

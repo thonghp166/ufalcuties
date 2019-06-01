@@ -176,7 +176,7 @@ class AdminController extends Controller
                 File::delete($upload);
                 if (!$collection->isEmpty()){
                     $new_users = [];
-                    $collection->pop();
+                    // $collection;
                     foreach ($collection as $value) {
                         $new_user = $this->saveFromExcel($value);
                         if ($new_user == null) {

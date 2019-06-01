@@ -21,25 +21,41 @@ class FieldSeeder extends Seeder
             'childOf' => 1
        		],
        		[
-       			'name'=> 'Công nghệ phần mềm',
-            'childOf' => 2
+       			'name'=> 'An ninh mạng',
+       			'childOf' =>  2
        		],
-       		[
-       			'name'=> 'Mạng máy tính',
-       			'childOf' =>  3
-       		],
+          [
+            'name'=> 'Tương tác người - máy',
+            'childOf' =>  2
+          ],
+          [
+            'name'=> 'Công nghệ phần mềm',
+            'childOf' => 1
+          ],
+          [
+            'name'=> 'Mạng máy tính và truyền thông dữ liệu',
+            'childOf' => 1
+          ],
+          [
+            'name'=> 'Công nghệ thông tin',
+            'childOf' => 1
+          ],
        		[
        			'name'=> 'Điện tử viễn thông',
             	'childOf' => 0,
        		],
 	        [
-	            'name'=> 'DVT2',
+	            'name'=> 'Kỹ thuật Điện tử - truyền thông',
 	            'childOf' => 5,
 	        ],
 	        [
-	            'name'=> 'DVT1',
+	            'name'=> 'Hệ thống Viễn thông',
 	            'childOf' => 6,
 	        ],
+                    [
+              'name'=> 'Kỹ thuật Máy tính',
+              'childOf' => 5,
+          ],
        ];
        DB::table('field')->insert($data);
        

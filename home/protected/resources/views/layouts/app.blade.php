@@ -44,7 +44,13 @@
                   <li class="nav-item">
                     <a class="nav-link" href="{{route('admin.home')}}" >Quản lý thông tin</a>
                   </li> 
-                @endif   
+               @else
+                  @if (Auth::user()->level == 0)
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{route('staff.info',['account'=> Auth::user()->username])}}">Thông tin cá nhân</a>
+                    </li>
+                  @endif
+                @endif
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
                     style="font-weight: bold; font-style: italic;">

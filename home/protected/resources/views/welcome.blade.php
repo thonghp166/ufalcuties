@@ -11,7 +11,7 @@
           <p class="title">u-faculties</p>
           <p class="lineleft"></p>
           <p class="lineright"></p>
-          <p class="clonetitle">Hệ thống tìm kiếm cán bộ theo danh mục: đơn vị, lĩnh vực nghiên cứu</p>
+          <p class="clonetitle">Hệ thống tìm kiếm cán bộ theo danh mục đơn vị, lĩnh vực nghiên cứu</p>
           <p class="go">Khám phá nào</p>
         </div>
       </div>
@@ -37,7 +37,7 @@
         <?php foreach ($staff as $element): ?>
           <div class="swiper-slide">
             <div class="text-left item">
-              <div class="avatar">
+              <div class="avatar" style="width: 100%;">
                 <img src="http://ufaculties.vn/{{$element->img_url}}" alt="" class="img-fuild">
               </div>
               <div class="transperantlayer"></div>
@@ -85,7 +85,7 @@
           <?php if ($element->childOf == 0): ?>
               <div class="col-12 field field{{$element->id}}" data-id="{{$element->id}}" data-parent="{{$element->childOf}}">
                   <i class="dropdownicon fas fa-caret-right"></i> 
-                  <a href="{{route('search.type',['type'=>'field','name' => str_replace(' ','+',$element->name)])}} " class="fieldelement"> {{$element->name}}</a>
+                  <a href="{{route('search.type',['type'=>'field','name' => str_replace(' ','+',$element->name)])}}" class="fieldelement"> {{$element->name}}</a>
               </div>
           <?php else: ?>
                   <script>

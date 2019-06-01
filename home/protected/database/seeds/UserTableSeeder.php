@@ -20,14 +20,50 @@ class UserTableSeeder extends Seeder
        			'level'=> 1
        		],
           [
-            'username'=> 'fit',
-            'email' => 'thonghp11@gmail.com',
-            'password' => bcrypt('fit123'),
+            'username'=> 'thanhld',
+            'email' => 'thongletrung166@gmail.com',
+            'password' => bcrypt('abc123'),
             'level'=> 0
           ],
           [
-            'username'=> 'thanld',
-            'email' => 'thongletrung166@gmail.com',
+            'username'=> 'tunghx',
+            'email' => 'tunghx@vnu.edu.vn',
+            'password' => bcrypt('abc123'),
+            'level'=> 0
+          ],
+          [
+            'username'=> 'sonnh',
+            'email' => 'sonnh@vnu.edu.vn',
+            'password' => bcrypt('abc123'),
+            'level'=> 0
+          ],
+          [
+            'username'=> 'mai.tran',
+            'email' => 'mai.tran@vnu.edu.vn',
+            'password' => bcrypt('abc123'),
+            'level'=> 0
+          ],
+          [
+            'username'=> 'minhld',
+            'email' => 'minhld@vnu.edu.vn',
+            'password' => bcrypt('abc123'),
+            'level'=> 0
+          ],
+          [
+            'username'=> 'phuonghd',
+            'email' => 'phuonghd@vnu.edu.vn',
+            'password' => bcrypt('abc123'),
+            'level'=> 0
+          ],
+          [
+            'username'=> 'minhnl',
+            'email' => 'minhnl@vnu.edu.vn',
+            'password' => bcrypt('abc123'),
+            'level'=> 0
+          ],
+          [
+            'username'=> 'hoangta',
+            'email' => 'hoangta@vnu.edu.vn',
             'password' => bcrypt('abc123'),
             'level'=> 0
           ],

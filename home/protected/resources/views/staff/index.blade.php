@@ -19,7 +19,7 @@
 				</div>
 				<div class="col-3" id="right">
 					<div class="float-left">
-						<button id="searchbutton" class="btn btn-primary"><i class="fas fa-search"></i></button>
+						<button id="searchbutton" onclick="searchbybutton(document.getElementById('key'))" class="btn btn-primary"><i class="fas fa-search"></i></button>
 					</div>
 				</div>
 			</div>
@@ -63,11 +63,11 @@
 			<div id="resulttitle">
 				<h4>Tổng số cán bộ : <?php echo count($staff); ?></h4>
 			</div>
-			<div class="row">
+			<div class="row content">
 				<?php foreach ($staff as $element): ?>
 			        <div class="col-4">
 			          <div class="text-left item">
-			            <div class="avatar">
+			            <div class="avatar" style="width: 100%;">
 			              <img src="http://ufaculties.vn/{{$element->img_url}}" alt="" class="img-fuild">
 			            </div>
 			            <div class="transperantlayer"></div>
@@ -121,11 +121,8 @@
 	}
 </script>
 <script>
+
 	
-	String.prototype.replaceAll = function(search, replacement) {
-	  		var target = this;
-	  		return target.split(search).join(replacement);
-	};
 	function searchField(variable){
 		var id = variable.getAttribute("data-id");
 	    var named = variable.getAttribute("data-name");
@@ -178,6 +175,101 @@
 		newrequest.send();
 	}
 
+	function searchbybutton(variable) {
+		var field_box = document.getElementById('fieldselect').value;
+		var department_box = document.getElementById('departmentselect').value
+		var text = variable.value.trim();
+		if (text.length > 0){
+			var newrequest = new XMLHttpRequest();
+			newrequest.onreadystatechange = function(){
+		    	if (this.readyState == 4 && this.status == 200) {
+	        		var data = $.parseJSON(this.response);
+	        		var keyresult = document.querySelector(".keyresult");
+		        	keyresult.innerHTML = "";
+	        		keyresult.classList.remove("showlayer");
+	        		var resultcontent = document.querySelector(".result .content");
+        			resultcontent.innerHTML = "";
+	        			
+	        		if (data.results.length > 0) {
+	        			for (var i = 0; i < data.results.length; i++) {
+	        				var item = document.createElement("div");
+		        			item.setAttribute("class", "col-4");
+
+		        			var align = document.createElement("div");
+		        			align.setAttribute("class", "text-left item");
+
+		        			var avatar = document.createElement("div");
+		        			avatar.setAttribute("class", "avatar");
+		        			avatar.setAttribute("style", "width: 100%;");
+		        			var img = document.createElement("img");
+		        			img.setAttribute("src", "http://ufaculties.vn/" + data.results[i].img_url);
+		        			img.setAttribute("class", "img-fluid");
+		        			avatar.appendChild(img);
+
+
+		        			var trans = document.createElement("div");
+		        			trans.setAttribute("class", "transperantlayer");
+
+		        			var content = document.createElement("div");
+		        			content.setAttribute("class", "content");
+		        			
+		        			var p1 = document.createElement("p");
+		        			p1.setAttribute("class", "unique");
+		        			p1.innerText = data.results[i].degree + " " + data.results[i].name;
+
+		        			var p2 = document.createElement("p");
+		        			p2.setAttribute("class", "code");
+		        			p2.innerHTML = "<i class='fas fa-user'></i> Mã cán bộ: " + data.results[i].code;
+							
+							var p3 = document.createElement("p");
+		        			p3.setAttribute("class", "phone");
+		        			p3.innerHTML = "<i class='fas fa-phone'></i> Số điện thoại: " + data.results[i].phone;
+
+		        			var p4 = document.createElement("p");
+		        			p4.setAttribute("class", "email");
+		        			p4.innerHTML = "<i class='fas fa-envelope'></i> VNU Email: " + data.results[i].vnu_email;
+							
+							content.appendChild(p1);
+							content.appendChild(p2);
+							content.appendChild(p3);
+							content.appendChild(p4);
+
+							var more = document.createElement("div");
+							more.setAttribute("class", "more");
+
+							var link = document.createElement("a");
+							link.setAttribute("href", route('staff.info',{account: data.results[i].account}));
+							link.innerText = "Chi tiết";
+							more.appendChild(link);
+
+							align.appendChild(avatar);
+							align.appendChild(trans);
+							align.appendChild(content);
+							align.appendChild(more);
+
+							item.appendChild(align);
+
+							resultcontent.appendChild(item);
+	        			}
+	        		}
+	        		var resulttitle = document.querySelector("#resulttitle h4");
+	        		resulttitle.innerText = data.results.length + " kết quả";
+	        		console.log(this.responseText);
+	        	} else {
+	        		console.log('error');
+	        	}
+		    }
+		    newrequest.open("GET", route('staff.search.text') + "?field=" + field_box + "&department=" + department_box +"&text=" + variable.value, true);
+			newrequest.send();
+		} else {
+			var keyresult = document.querySelector(".keyresult");
+			keyresult.classList.remove("showlayer");
+			keyresult.innerHTML = "";
+			var keyremove = document.querySelector(".keyremove i");
+			keyremove.classList.remove("show");
+		}
+	}
+
 	function search(variable){
 
 		var field_box = document.getElementById('fieldselect').value;
@@ -196,20 +288,22 @@
 		        		keyresult.classList.add("showlayer");
 		        		for (var i = 0; i < data.results.length; i++) {
 	        				var row = document.createElement("row");	        				
-	        				var rowcontent = document.createElement("div");
+	        				var rowcontent = document.createElement("a");
+	        				rowcontent.setAttribute("href", route('staff.info',{account:data.results[i].account}));
 	        				rowcontent.setAttribute("class", "col-12 text-left keyresultrow");
 	        				rowcontent.setAttribute("style", "padding: 5px 5px; margin: 5px 0px; cursor: pointer;");
 	        				rowcontent.setAttribute("data-id", data.results[i].id);
 	        				rowcontent.setAttribute("data-name", data.results[i].name);
 	        				rowcontent.setAttribute("onclick", "");
-	        				if (attrid == 3) {
-	        					rowcontent.innerHTML = data.results[i].name + " - " + data.results[i].code;
-	    					} else {
-	    						rowcontent.innerHTML = data.results[i].name;
-	    					}	        				
-	        				row.appendChild(rowcontent);
+	        				
+	        				rowcontent.innerHTML = data.results[i].name + " - " + data.results[i].code;
+	    					
+	    					row.appendChild(rowcontent);
 	        				keyresult.appendChild(row);
 	           			}
+	        		} else {
+	        			var keyresult = document.querySelector(".keyresult");
+	        			keyresult.classList.remove("showlayer");
 	        		}
 	        		console.log(this.responseText);
 	        	} else {

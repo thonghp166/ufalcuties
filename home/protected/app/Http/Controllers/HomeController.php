@@ -19,7 +19,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $staff = Staff::all();
+        $staff = Staff::where('name','!=','Administrator')->get();
         $field = Field::all();
         $department = Department::all();
         return view('welcome') -> with(compact('department'))
@@ -53,15 +53,20 @@ class HomeController extends Controller
       $name = str_replace('+', ' ', $name);
       $staff = Staff::all();
       $results = [];
+      $id = 0;
       switch ($type) {
         case 'all':
           $results = $staff;
           break;
         case 'field':
           $results = $this->searchByField($name);
+          $field = Field::where('name','=',$name)->first();
+          $id = $field->id;
           break;
         case 'department':
           $results = $this->searchByDepartment($name);
+          $department = Department::where('name','=',$name)->first();
+          $id = $department->id;
           break;
       }
       $field = Field::all();
@@ -70,75 +75,55 @@ class HomeController extends Controller
                                 -> with(compact('field'))
                                 -> with(compact('staff'))
                                 -> with(compact('type'))
-                                -> with(compact('name'))
+                                -> with(compact('id'))
                                 -> with(compact('results'));
+      }
+
+    private function searchByDepartment($name)
+    {
+      $department = Department::where('name','=',$name)->first();
+      $res = $department->staff;
+      return $res;
+    }
+    private function searchByField($name){
+      $field = Field::where('name','=',$name)->first();
+      $res = $field->staffs;
+      return $res;
     }
 
-    private function searchByField($name,$id)
+    private function searchByDepartmentAndText($text,$id)
     {
-        $field = Field::where('name','=',$name)->first();
-        return $staff_list = $field->staffs; 
-    }
-
-    private function searchAll($text)
-    {
-      return Staff::where('name','LIKE','%' .$text . '%')->get();
-    }
-
-    private function searchByDepartment($text,$id)
-    {
-        Staff::where('department_id','=',$id)->where('name','LIKE','%' .$text . '%')->get();
-        $department = Department::where('name','=',$name)->first();
-        return $staff_list = $department->staffs;
+      $staff = Staff::where('department_id','=',$id)->where('name','LIKE','%' .$text . '%')->get();
+      return $staff;
     }
 
     public function searchText(Request $request)
     {
-      dd($request->all());
       $field_id = $request->field;
       $department_id = $request->department;
       $text = $request->text;
       if ($field_id == 'all' and $department_id == 'all'){
-        $result = $this->search($text);
+          $staff= Staff::where('name','LIKE','%'.$text .'%')->get(); 
+          $result = $staff;
       } else {
         if ($field_id == 'all'){
-          $result = $this->searchByDepartment($text,$department_id);
+          $result = $this->searchByDepartmentAndText($text,$department_id);
         } else if ($department_id == 'all'){
-          $result = $this->searchByField($text,$field_id);
+          $field = Field::find($field_id);
+          $staff_list = $field->staffs;
+          $res = [];
+          foreach ($staff_list as $element) {
+            if (strpos($element->name,$text) !== false)
+              array_push($res, $element);
+          }
+          $result = $res;
         } else {
-          $result = $this->searchByBoth($text,$field_id,$department_id);
+
         }
-      } 
+      }
       return json_encode([
         'state' => 'Success',
         'results' => $result
       ]);
     }
-    //   switch ($field_id) {
-    //     case 0:
-    //       return json_encode([
-    //         'state' => 'Success',
-    //         'results' => 'None'
-    //       ]);
-    //     case 1:
-    //       $res = Field::where('name','LIKE','%' .$text . '%')->get();
-    //       return json_encode([
-    //         'state' => 'Success',
-    //         'results' => $res
-    //       ]);
-    //     case 2:
-    //       $res = Department::where('name','LIKE','%' .$text . '%')->get();
-    //       return json_encode([
-    //         'state' => 'Success',
-    //         'results' => $res
-    //       ]);
-    //     case 3:
-    //       $res = Staff::where('name','LIKE','%' .$text . '%')->get();
-    //       return json_encode([
-    //         'state' => 'Success',
-    //         'results' => $res
-    //       ]);
-    //   }
-    // }
-    
 }
