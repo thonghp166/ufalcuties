@@ -13,7 +13,7 @@ Route::get('/search',[
 Route::get('/search/{type}/{name}',[
 	'as' => 'search.type',
 	'uses' => 'HomeController@searchtype'
-])->where('name','\w\d\-\_]+');
+]);
 
 Route::get('search/field','HomeController@searchByField')->name('staff.search.field');
 Route::get('search/department','HomeController@searchByDepartment')->name('staff.search.department');
@@ -91,5 +91,5 @@ Route::get('/test',[
 	'as' => 'test',
 	'uses' => 'HomeController@test'
 ]);
-
+	
 
