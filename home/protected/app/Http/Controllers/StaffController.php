@@ -154,7 +154,6 @@ class StaffController extends Controller
         $website = $request->input('website');
         $address = $request->input('address');
         $department_id = $request->department_id;
-        dd($department_id);
 
         $staff->update([
             'phone' => $phone,

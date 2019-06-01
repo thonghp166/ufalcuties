@@ -53,9 +53,12 @@ class HomeController extends Controller
       $staff = Staff::all();
       $field = Field::all();
       $department = Department::where('name','!=','Không')->get();
-      return view('staff.index')-> with(compact('department'))
-                                -> with(compact('field'))
-                                -> with(compact('staff'));
+      return $type;
+      // return view('staff.index')-> with(compact('department'))
+      //                           -> with(compact('field'))
+      //                           -> with(compact('staff'))
+      //                           ->with(compact('type'))
+      //                           ->with(compact('name'));
     }
 
     public function searchByField(Request $request)
